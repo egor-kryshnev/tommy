@@ -1,0 +1,26 @@
+<svg viewBox="0 0 250 250">
+    <defs>
+        <clipPath id="cut-of-circle">
+            <rect id="rectCut" width="50" height="40" x="0" y="-15" fill="white"/>
+        </clipPath>
+    </defs>
+    <g id="shape">
+        <rect id="rect" width="50" height="40" x="0" y="25" fill="white"/>
+        <circle id="circle" r="9" cx="25" cy="27.5" fill="white" clip-path="url(#cut-of-circle)"/>
+        <text id="title" x="10" y="35" style="font-size: 4px;">
+            <tspan>פתיחה בקשה חדשה</tspan>
+        </text>
+        <text id="description" x="10" y="40" dy="0" style="font-size: 2.7px;">
+            <tspan x="40" dy=".6em" direction="rtl">פתיחה חדשה</tspan>
+            <tspan x="40" dy="1.2em" direction="rtl">גדכגדשכשדכ</tspan>
+            <tspan x="40" dy="1.2em" direction="rtl">גדכגדשכשדכ</tspan>
+        </text>
+    </g>
+    <!-- <g id="text"> -->
+    <!-- </g> -->
+    <line x1="16.5" y1="25" x2="33.5" y2="25" stroke="white" stroke-width="0.3"/>
+    <g id="button">
+        <rect id="btn" width="30" height="6" x="10" y="55" fill="green" (click)="onClicke()"/>
+        <text id="nameBtn" x="37" y="59" direction="rtl" fill="white" style="font-size: 3px;">פתיחה בקשה חדשה</text>
+    </g>
+</svg>

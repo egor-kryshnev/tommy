@@ -1,0 +1,39 @@
+.flex-container {
+    /* display: flex; */
+    /* align-items: center; */
+    justify-content: center; 
+    /* flex-wrap: wrap; */
+    /* background-color: DodgerBlue; */
+}
+
+#rect:hover {
+    stroke: yellowgreen;
+    stroke-width: 0.2;
+}
+
+#button:hover > * {
+    cursor: pointer;
+}
+
+#shape:hover > * {
+    stroke: yellowgreen;
+    stroke-width: 0.2;
+}
+
+#shape:hover > * text {
+    stroke: none;
+}
+
+#shape:hover > * tspan {
+    stroke: none;
+}
+/* 
+#circle:hover {
+    stroke: yellowgreen;
+    stroke-width: 0.2;
+} 
+
+#circle:hover #rect {
+    stroke: yellowgreen;
+    stroke-width: 0.2;
+} */

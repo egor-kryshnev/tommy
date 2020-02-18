@@ -1,0 +1,9 @@
+
+<cdk-virtual-scroll-viewport style="height: 600px; width: 300px;" itemSize="250" class="viewport">
+    <mat-list role="list">
+        <mat-list-item role="listitem" *ngFor="let update of updates" style="width: 283px;">
+            <p matLine> {{ update.date }}</p>
+            <p matLine>{{ update.text }}</p>
+        </mat-list-item>
+    </mat-list>
+</cdk-virtual-scroll-viewport>
