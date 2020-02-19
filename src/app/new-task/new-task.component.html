@@ -1,26 +1,50 @@
-<svg viewBox="0 0 250 250">
-    <defs>
-        <clipPath id="cut-of-circle">
-            <rect id="rectCut" width="50" height="40" x="0" y="-15" fill="white"/>
-        </clipPath>
-    </defs>
-    <g id="shape">
-        <rect id="rect" width="50" height="40" x="0" y="25" fill="white"/>
-        <circle id="circle" r="9" cx="25" cy="27.5" fill="white" clip-path="url(#cut-of-circle)"/>
-        <text id="title" x="10" y="35" style="font-size: 4px;">
-            <tspan>פתיחה בקשה חדשה</tspan>
-        </text>
-        <text id="description" x="10" y="40" dy="0" style="font-size: 2.7px;">
-            <tspan x="40" dy=".6em" direction="rtl">פתיחה חדשה</tspan>
-            <tspan x="40" dy="1.2em" direction="rtl">גדכגדשכשדכ</tspan>
-            <tspan x="40" dy="1.2em" direction="rtl">גדכגדשכשדכ</tspan>
-        </text>
+<svg class="shadow" viewBox="0 0 250 250">
+    <g id="task">
+        <defs>
+            <clipPath id="cut-of-circle">
+                <rect id="rectCut" width="50" height="40" x="0" y="-15" fill="white"/>
+            </clipPath>
+        </defs>
+        <g id="shape">
+            <rect id="rect" width="50" height="40" x="0" y="25" fill="white"/>
+            <circle id="circle" r="9" cx="25" cy="27.5" fill="white" clip-path="url(#cut-of-circle)"/>
+            <text id="title" x="10" y="35" style="font-size: 4px;">
+                <tspan>פתיחה בקשה חדשה</tspan>
+            </text>
+            <text id="description" x="10" y="40" dy="0" style="font-size: 2.7px;">
+                <tspan x="40" dy=".6em" direction="rtl">פתיחה חדשה</tspan>
+                <tspan x="40" dy="1.2em" direction="rtl">גדכגדשכשדכ</tspan>
+                <tspan x="40" dy="1.2em" direction="rtl">גדכגדשכשדכ</tspan>
+            </text>
+            <g id="button" (click)="onClicke()">
+                <rect id="btn" width="30" height="6" x="10" y="55" fill="white" stroke="green" stroke-width="0.3"/>
+                <text id="nameBtn" x="37" y="59" direction="rtl" fill="green" style="font-size: 3px;">פתיחה בקשה חדשה</text>
+            </g>
+        </g>
+        <line x1="16.5" y1="25" x2="33.5" y2="25" stroke="white" stroke-width="0.3"/>
     </g>
-    <!-- <g id="text"> -->
-    <!-- </g> -->
-    <line x1="16.5" y1="25" x2="33.5" y2="25" stroke="white" stroke-width="0.3"/>
-    <g id="button">
-        <rect id="btn" width="30" height="6" x="10" y="55" fill="green" (click)="onClicke()"/>
-        <text id="nameBtn" x="37" y="59" direction="rtl" fill="white" style="font-size: 3px;">פתיחה בקשה חדשה</text>
+    <g id="task2">
+        <defs>
+            <clipPath id="cut-of-circle2">
+                <rect id="rectCut" width="50" height="40" x="65" y="-15" fill="white"/>
+            </clipPath>
+        </defs>
+        <g id="shape">
+            <rect id="rect" width="50" height="40" x="65" y="25" fill="white"/>
+            <circle id="circle" r="9" cx="90" cy="27.5" fill="white" clip-path="url(#cut-of-circle2)"/>
+            <text id="title" x="75" y="35" style="font-size: 4px;">
+                <tspan>פתיחה בקשה חדשה</tspan>
+            </text>
+            <text id="description" x="75" y="40" dy="0" style="font-size: 2.7px;">
+                <tspan x="105" dy=".6em" direction="rtl">פתיחה חדשה</tspan>
+                <tspan x="105" dy="1.2em" direction="rtl">גדכגדשכשדכ</tspan>
+                <tspan x="105" dy="1.2em" direction="rtl">גדכגדשכשדכ</tspan>
+            </text>
+            <g id="button" (click)="onClicke()">
+                <rect id="btn" width="30" height="6" x="75" y="55" fill="white" stroke="green" stroke-width="0.3"/>
+                <text id="nameBtn" x="102" y="59" direction="rtl" fill="green" style="font-size: 3px;">פתיחה בקשה חדשה</text>
+            </g>
+        </g>
+        <line x1="81.5" y1="25" x2="98.5" y2="25" stroke="white" stroke-width="0.3"/>
     </g>
 </svg>
