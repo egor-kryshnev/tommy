@@ -15,6 +15,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { HomeComponent } from './home/home.component';
 import { NewTaskComponent } from './new-task/new-task.component';
 import { TaskDetailComponent } from './task-detail/task-detail.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { TaskDetailComponent } from './task-detail/task-detail.component';
     NbListModule,
     MatGridListModule,
     MatListModule,
-    ScrollingModule
+    ScrollingModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
