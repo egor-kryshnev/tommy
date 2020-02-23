@@ -3,6 +3,10 @@ nb-chat {
     margin: 0.5rem 0 2rem 2rem;
 }
 
+nb-layout-header{
+    background-color: black;
+}
+
 #Chat {
     display: none;
     position: fixed;
