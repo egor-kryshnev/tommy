@@ -1,27 +1,12 @@
 <nb-layout>
 
-  <nb-layout-header fixed>
+  <nb-layout-header fixed style="direction: rtl;">
+    <h4 style="color: black;">TOMMY</h4>
   </nb-layout-header>
 
   <nb-layout-column>
-    
-    <!-- <nb-chat id="Chat" title="Tommy HiChat" size="medium" status="success">
-        <nb-chat-message *ngFor="let msg of messages"
-                         [type]="msg.type"
-                         [message]="msg.text"
-                         [sender]="msg.user.name"
-                         [date]="msg.date"
-                         [quote]="msg.quote"
-                         [latitude]="msg.latitude"
-                         [longitude]="msg.longitude"
-                         [avatar]="msg.user.avatar">
-        </nb-chat-message> 
-        <nb-chat-form (send)="sendMessage($event, 'Egor', true)" [dropFiles]="false">
-        </nb-chat-form>
-    </nb-chat> 
 
-
-    <button id="btnChat" mat-fab (click)="onOpenChat()" style="background-color: green;">Chat</button> -->
+    <button id="btnChat" mat-fab (click)="onOpenChat()" style="background-color: green;">Chat</button>
 
 
     <router-outlet></router-outlet>
@@ -32,4 +17,4 @@
 
 </nb-layout>
 
-<!-- <router-outlet></router-outlet> -->
+

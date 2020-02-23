@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "tommy"
+  "defaultProject": "tommy",
+  "cli": {
+    "analytics": false
+  }
 }
