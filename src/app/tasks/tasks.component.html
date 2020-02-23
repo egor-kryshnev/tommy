@@ -1,5 +1,5 @@
 <cdk-virtual-scroll-viewport style="height: 600px; width: 738px;" itemSize="250" class="viewport">
-    <ng-container  *ngFor="let task of tasks">
+    <ng-container *ngFor="let task of tasks">
         <mat-grid-list cols="4" rows="2" rowHeight="70px" style="width: 720px;">
             <mat-grid-tile colspan="1" rowspan="2">
                 {{ task.time }}
