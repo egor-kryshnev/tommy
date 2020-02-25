@@ -16,7 +16,7 @@ export interface Pnia {
 })
 export class TasksComponent implements OnInit {
 
-  
+
 
   tasks: Pnia[] = [
     { title: "Send File",
@@ -61,13 +61,13 @@ export class TasksComponent implements OnInit {
       time: new Date() }
   ]
 
- 
+
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  
+
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { NewTaskComponent } from '../new-task/new-task.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,20 +9,14 @@ import { NewTaskComponent } from '../new-task/new-task.component';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
   }
 
   onOpenDialog(){
-    const dialogRef = this.dialog.open(NewTaskComponent, {
-      width: '1280px',
-      height: '720px',
-    });
+    this.router.navigateByUrl('newtask', { relativeTo: this.route });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
   }
 
 }
