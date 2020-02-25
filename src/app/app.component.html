@@ -1,20 +1,16 @@
+
 <nb-layout>
-
   <nb-layout-header fixed style="direction: rtl;">
-    <h4 style="color: black;">TOMMY</h4>
+  <img src="./assets/group.svg" class="Group">
+  <img src="./assets/group-17.svg"
+     class="Group-17">
   </nb-layout-header>
-
   <nb-layout-column>
-
-    <button id="btnChat" mat-fab (click)="onOpenChat()" style="background-color: green;">Chat</button>
-
-
-    <router-outlet></router-outlet>
+  <button id="btnChat" mat-fab (click)="onOpenChat()" style="background-color: #2d9889;">Chat</button>
+  <router-outlet></router-outlet>
   </nb-layout-column>
-
   <nb-layout-footer fixed>
   </nb-layout-footer>
-
 </nb-layout>
 
 

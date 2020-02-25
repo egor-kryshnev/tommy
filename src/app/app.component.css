@@ -15,8 +15,28 @@ nb-layout-header{
     z-index: 9;
 }
 
+.Rectangle {
+  width: 456px;
+  height: 4px;
+  background-color: #2d9889;
+}
+
 #btnChat {
     position: fixed;
     bottom: 3px;
     right: 225px;
+}
+
+.Group {
+  width: 152px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.Group-17 {
+  width: 33px;
+  height: 29px;
+  object-fit: contain;
+  position: relative;
+  right: 165vh;
 }
