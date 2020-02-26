@@ -1,0 +1,29 @@
+{
+  "name": "tommy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node src/index.ts",
+    "dev": "SET NODE_ENV=development&& nodemon --watch src/**/*.ts --exec ts-node src/index.ts"
+  },
+  "author": "Yoav Rozner",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express-http-proxy": "^1.5.12",
+    "@types/helmet": "0.0.45",
+    "@types/morgan": "^1.7.37"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.4",
+    "express": "^4.17.1",
+    "express-http-proxy": "^1.6.0",
+    "helmet": "^3.21.3",
+    "morgan": "^1.9.1",
+    "passport": "^0.4.1",
+    "passport-shraga": "^1.4.0",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.7.2"
+  }
+}

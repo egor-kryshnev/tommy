@@ -1,0 +1,52 @@
+version: "2.1"
+
+services:
+  testsamlidp_idp:
+    image: kristophjunge/test-saml-idp
+    environment:
+      SIMPLESAMLPHP_SP_ENTITY_ID: http://localhost:3000/metadata.xml
+      SIMPLESAMLPHP_SP_ASSERTION_CONSUMER_SERVICE: http://localhost:3000/auth/saml
+      SIMPLESAMLPHP_SP_SINGLE_LOGOUT_SERVICE: http://localhost/simplesaml/module.php/saml/sp/saml2-logout.php/test-sp
+      SAML_ISSUER: http://localhost:3000/metadata.xml
+      SAML_CALLBACK_URL: http://localhost:3000/auth/saml/callback
+      SIMPLESAMLPHP_ADMIN_PASSWORD: test
+      SIMPLESAMLPHP_SECRET_SALT: salt
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+    volumes:
+      - ./users.php:/var/www/simplesamlphp/config/authsources.php
+
+  shraga-proxy:
+    container_name: shraga
+    environment:
+      MONGODB_URL: mongodb://tommy-mongo:27017
+      MONGODB_NAME: shragaproxy
+      SESSION_SECRET: 123
+    image: shragauser/shraga-proxy
+    ports:
+      - 3000:3000
+    depends_on:
+      - tommy-mongo
+
+  tommy-client:
+    # TODO: Get the image from github
+    # image: registry.gitlab.com/yesodot/shared-projects/dropbox/approval-system-client
+
+  tommy-server:
+    image: tommy-server
+    build:
+      context: ../
+      dockerfile: Dockerfile
+    environment:
+      NODE_TLS_REJECT_UNAUTHORIZED: 0
+      NODE_ENV: production
+      AUTH_CALLBACK_URL: /auth/callback
+      PORT: 80
+      SHRAGA_URL: http://localhost:3000
+      CLIENT_URL: http://tommy-client/
+    ports:
+      - 80:80
+    depends_on:
+      - shraga-proxy
+      - tommy-client

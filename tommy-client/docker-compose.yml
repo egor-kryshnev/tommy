@@ -1,0 +1,10 @@
+version: "2.1"
+
+services:
+  tommy-client:
+    image: tommy-client
+    build: .
+    environment:
+      NODE_ENV: production
+    ports:
+      - 4200:80
