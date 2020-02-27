@@ -32,6 +32,7 @@ services:
   tommy-client:
     # TODO: Get the image from github
     # image: registry.gitlab.com/yesodot/shared-projects/dropbox/approval-system-client
+    # image: https://github.com/egor-kryshnev/tommy/tree/server/tommy-client
 
   tommy-server:
     image: tommy-server
