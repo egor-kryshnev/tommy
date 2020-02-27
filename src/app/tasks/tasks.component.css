@@ -1,9 +1,126 @@
-/* nb-card {
-    width: 720px;
-    height: 15px;
-    margin: 0.5rem 0 2rem 2rem;
-} */
-
-mat-grid-tile {
-    background-color: white;
+.task {
+    width: 800px;
+    height: 100px;
+    border-radius: 4px;
+    border: solid 1px #afc514;
+    background-color: #ffffff;
+    margin-bottom: 20px;
 }
+
+.task #task-title{
+    float: right;
+}
+
+.new-task-container{
+    margin-bottom: 17px;
+}
+
+.new-task-button:hover{
+    cursor: pointer;
+}
+
+.new-task-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 160px;
+    height: 46px;
+    border-radius: 23px;
+    background-color: #3f9c67;
+}
+
+.new-task-button #button-text{
+    width: 88px;
+    height: 19px;
+    font-family: Rubik;
+    font-size: 16px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+}
+
+.new-task-button #button-plus {
+    width: 28px;
+    height: 28px;
+    border-radius: 13.9px;
+    background-color: rgba(255, 255, 255, 0.3);
+    text-align: center;
+}
+
+.Group-2-Copy {
+    width: 12px;
+    height: 12px;
+    object-fit: contain;
+    margin-top: 8px;
+}
+
+.open-closed-tasks{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.open-closed-tasks #text{
+    margin-left: 5px;
+}
+
+.selected-tasks:hover {
+    cursor: pointer;
+}
+
+.unselected-tasks:hover{
+    cursor: pointer;
+}
+
+.selected-tasks #text{
+    width: 112px;
+    height: 24px;
+    font-family: Rubik;
+    font-size: 20px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #3f9c67;
+}
+
+.selected-tasks #seprate-line{
+    width: 122px;
+    height: 3px;
+    border-radius: 1.5px;
+    background-color: #3f9c67;
+}
+
+.unselected-tasks #seprate-line{
+    width: 122px;
+    height: 3px;
+    border-radius: 1.5px;
+    background-color: #3f9c67;
+    visibility: hidden;
+}
+
+.unselected-tasks #text{
+    width: 112px;
+    height: 24px;
+    font-family: Rubik;
+    font-size: 20px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #696969;
+}
+
+
+
+
+
+
