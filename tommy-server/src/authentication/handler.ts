@@ -1,7 +1,7 @@
-import { Application, Request, Response } from "express";
-import * as passport from 'passport';
-import { Strategy } from 'passport-shraga';
+import { Application, NextFunction } from "express";
+import passport from 'passport';
 import { config } from '../config';
+const { Strategy } = require('passport-shraga');
 
 
 export class AuthenticationHandler {
@@ -14,11 +14,13 @@ export class AuthenticationHandler {
         passport.serializeUser(AuthenticationHandler.serialize);
         passport.deserializeUser(AuthenticationHandler.deserialize);
 
-        passport.use(new Strategy(config.auth, (profile, done) => {
+        passport.use(new Strategy(config.auth, (profile: any, done: any) => {
+            AuthenticationHandler.users.push(profile);
             done(null, profile);
         }));
 
         return passport.initialize();
+
     }
 
     static authenticate() {

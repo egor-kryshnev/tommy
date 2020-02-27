@@ -1,15 +1,15 @@
-import * as express from 'express';
-import * as http from 'http';
-import * as bodyParser from 'body-parser';
-import * as helmet from 'helmet';
-import * as morgan from 'morgan';
-import * as cookieParser from 'cookie-parser';
+import express from 'express';
+import http from 'http';
+import bodyParser from 'body-parser';
+import helmet from 'helmet';
+import morgan from 'morgan';
+import session from 'express-session';
+import cookieParser from 'cookie-parser';
 import { config } from './config';
 import { AppRouter } from './router';
-import { userErrorHandler, serverErrorHandler, unknownErrorHandler, errorHandler } from './utils/errors/handler';
+import { errorHandler } from './utils/errors/handler';
 import { AuthenticationHandler } from './authentication/handler';
 import { AuthenticationRouter } from './authentication/router';
-import * as expressProxy from 'express-http-proxy';
 import { AuthenticationMiddleware } from './authentication/middleware';
 
 export class Server {
@@ -24,10 +24,10 @@ export class Server {
         this.app = express();
         this.configureMiddlewares();
         this.initializeAuthenticator();
-        this.app.use('/api/v1', AppRouter);
+        this.app.use('/api', AppRouter);
         this.initializeErrorHandler();
         console.log(config.client.url);
-        this.app.all('/*', AuthenticationMiddleware.requireAuth, expressProxy(config.client.url));
+        this.app.all('/*', AuthenticationMiddleware.requireAuth, (req: express.Request, res: express.Response, next: express.NextFunction) => { res.redirect(config.client.url) });
         this.server = http.createServer(this.app);
         this.server.listen(config.server.port, () => {
             console.log(`Server running in ${process.env.NODE_ENV || 'development'} environment on port ${config.server.port}`)
@@ -46,18 +46,9 @@ export class Server {
         });
 
         this.app.use(function (req: express.Request, res: express.Response, next: express.NextFunction) {
-            const origin = req.headers.origin as string;
-
-            // if (config.cors.allowedOrigins.indexOf(origin) !== -1) {
-            //     res.setHeader('Access-Control-Allow-Origin', origin);
-            // }
             res.setHeader('Access-Control-Allow-Credentials', 'true');
             res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
             res.setHeader('Access-Control-Allow-Headers', 'Authorization, Origin, X-Requested-With, Content-Type');
-
-            // if (req.method === 'OPTIONS') {
-            //     return res.status(200).end(); 
-            // }
 
             return next();
         });
@@ -69,13 +60,15 @@ export class Server {
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: true }));
         this.app.use(cookieParser());
+        this.app.use(session({
+            secret: config.auth.secret,
+            resave: false,
+            saveUninitialized: true
+        }));
     }
 
     private initializeErrorHandler() {
         this.app.use(errorHandler);
-        // this.app.use(userErrorHandler);
-        // this.app.use(serverErrorHandler);
-        // this.app.use(unknownErrorHandler);
     }
 
     private initializeAuthenticator() {

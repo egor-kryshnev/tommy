@@ -1,6 +1,10 @@
 version: "2.1"
 
 services:
+  tommy-mongo:
+    container_name: tommy-mongo
+    image: mongo
+
   testsamlidp_idp:
     image: kristophjunge/test-saml-idp
     environment:
@@ -30,24 +34,29 @@ services:
       - tommy-mongo
 
   tommy-client:
-    # TODO: Get the image from github
-    # image: registry.gitlab.com/yesodot/shared-projects/dropbox/approval-system-client
-    # image: https://github.com/egor-kryshnev/tommy/tree/server/tommy-client
+    image: tommy-client
+    build: 
+      context: ../tommy-client
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 4200:4200
 
   tommy-server:
     image: tommy-server
     build:
-      context: ../
+      context: ../tommy-server
       dockerfile: Dockerfile
     environment:
       NODE_TLS_REJECT_UNAUTHORIZED: 0
       NODE_ENV: production
       AUTH_CALLBACK_URL: /auth/callback
-      PORT: 80
+      PORT: 8008
       SHRAGA_URL: http://localhost:3000
-      CLIENT_URL: http://tommy-client/
+      CLIENT_URL: http://localhost:4200
     ports:
-      - 80:80
+      - 8008:8008
     depends_on:
       - shraga-proxy
       - tommy-client

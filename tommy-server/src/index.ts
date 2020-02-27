@@ -6,11 +6,6 @@ process.on('uncaughtException', (err: Error) => {
     process.exit(1);
 });
 
-process.on('unhandledRejection', (err: Error) => {
-    console.log('Unhandled Rejection', err.message);
-    process.exit(1);
-});
-
 (async () => {
     const server: Server = Server.bootstrap();
 

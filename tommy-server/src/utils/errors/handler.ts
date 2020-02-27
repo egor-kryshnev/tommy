@@ -1,7 +1,7 @@
 import * as express from 'express';
 import { ServerError, UserError } from './application';
 
-export function errorHandler(error, req: express.Request, res: express.Response, next: express.NextFunction) {
+export function errorHandler(error: any, req: express.Request, res: express.Response, next: express.NextFunction) {
     return res.status(error && error.status ? error.status : 500).send(error.message);
 }
 

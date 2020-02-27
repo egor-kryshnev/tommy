@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 
 export class AuthenticationMiddleware {
     static requireAuth(req: Request, res: Response, next: NextFunction) {
-        if (req["user"]) {
+        if (req.user) {
             return next();
         }
 
