@@ -41,6 +41,7 @@
   height: 56px;
 }
 
+
 button {
   position: relative;
   left: 180vh;
@@ -67,7 +68,7 @@ button.learn-more .circle {
   margin: 0;
   width: 3rem;
   height: 3rem;
-  background: #2d9889;
+  background: white;
   border-radius: 1.625rem;
 }
 button.learn-more .circle .icon {
@@ -77,7 +78,7 @@ button.learn-more .circle .icon {
   top: 0;
   bottom: 0;
   margin: auto;
-  background: #fff;
+  background: #3f9c67;
 }
 button.learn-more .circle .icon.arrow {
   -webkit-transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
@@ -94,8 +95,8 @@ button.learn-more .circle .icon.arrow::before {
   right: 0.0625rem;
   width: 0.625rem;
   height: 0.625rem;
-  border-top: 0.125rem solid #fff;
-  border-right: 0.125rem solid #fff;
+  border-top: 0.125rem solid #3f9c67;
+  border-right: 0.125rem solid #3f9c67;
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
 }
@@ -109,7 +110,7 @@ button.learn-more .button-text {
   bottom: 0;
   padding: 0.75rem 0;
   margin: 0 0 0 1.85rem;
-  color: #282936;
+  color: #696969;
   font-weight: 600;
   line-height: 1.6;
   text-align: center;
@@ -119,12 +120,27 @@ button:hover .circle {
   width: 100%;
 }
 button:hover .circle .icon.arrow {
-  background: #fff;
+  background: #3f9c67;
   -webkit-transform: translate(1rem, 0);
           transform: translate(1rem, 0);
 }
 button:hover .button-text {
-  color: #fff;
+  color: #696969;
+}
+
+@supports (display: grid) {
+  body {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 0.625rem;
+    grid-template-areas: ". main main ." ". main main .";
+  }
+
+  #container {
+    grid-area: main;
+    align-self: center;
+    justify-self: center;
+  }
 }
 
 textarea {
