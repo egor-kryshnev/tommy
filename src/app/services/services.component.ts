@@ -1,22 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 
+
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-services',
+  templateUrl: './services.component.html',
+  styleUrls: ['./services.component.css']
 })
-export class HomeComponent implements OnInit {
+export class ServicesComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
   }
 
-  onOpenDialog(){
+  onReturn(){
     this.router.navigateByUrl('newtask', { relativeTo: this.route });
-
   }
+
+  onService(){
+    this.router.navigateByUrl('description', { relativeTo: this.route });
+  }
+
+
 
 }

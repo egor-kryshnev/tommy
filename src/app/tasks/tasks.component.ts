@@ -20,7 +20,10 @@ export interface Pnia {
 export class TasksComponent implements OnInit {
 
 
+<<<<<<< HEAD
   selectedOpenTasks: Boolean = true;
+=======
+>>>>>>> 42a25054c8c6041174c1cde9f4bdc110888950e3
 
   tasks: Pnia[] = [
     {
@@ -85,6 +88,10 @@ export class TasksComponent implements OnInit {
     }
   ]
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 42a25054c8c6041174c1cde9f4bdc110888950e3
 
 
   constructor(public dialog: MatDialog) { }
@@ -92,6 +99,7 @@ export class TasksComponent implements OnInit {
   ngOnInit(): void {
   }
 
+<<<<<<< HEAD
   onOpenDialog() {
     const dialogRef = this.dialog.open(NewTaskComponent, {
       width: '1280px',
@@ -111,6 +119,8 @@ export class TasksComponent implements OnInit {
     if (this.selectedOpenTasks) this.selectedOpenTasks = false;
   }
 
+=======
+>>>>>>> 42a25054c8c6041174c1cde9f4bdc110888950e3
 
 
 }

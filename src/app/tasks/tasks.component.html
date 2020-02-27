@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="open-closed-tasks">
     <div [ngClass]="{'selected-tasks': selectedOpenTasks, 'unselected-tasks' : !selectedOpenTasks}"
         (click)="clickedOpenTasks()">
@@ -29,3 +30,27 @@
         </div>
     </div>
 </cdk-virtual-scroll-viewport>
+=======
+<cdk-virtual-scroll-viewport style="height: 600px; width: 738px;" itemSize="250" class="viewport">
+    <ng-container *ngFor="let task of tasks">
+        <mat-grid-list cols="4" rows="2" rowHeight="70px" style="width: 720px;">
+            <mat-grid-tile colspan="1" rowspan="2">
+                {{ task.time }}
+                <br>
+                {{ task.id }}
+            </mat-grid-tile>
+            <mat-grid-tile colspan="1" rowspan="2">
+            </mat-grid-tile>
+            <mat-grid-tile colspan="1" rowspan="2">
+                <h5>{{ task.title }}</h5>
+                <br>
+                {{ task.date }}
+            </mat-grid-tile>
+            <mat-grid-tile colspan="1" rowspan="2">
+                Image
+            </mat-grid-tile>
+        </mat-grid-list>
+        <br>
+    </ng-container>
+</cdk-virtual-scroll-viewport>
+>>>>>>> 42a25054c8c6041174c1cde9f4bdc110888950e3
