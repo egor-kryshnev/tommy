@@ -17,6 +17,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { NetworksComponent } from './networks/networks.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ServicesComponent } from './services/services.component';
+import { DescriptionComponent } from './description/description.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { ActivatedRoute, Router } from '@angular/router';
     UpdatingComponent,
     HomeComponent,
     TaskDetailComponent,
-    NetworksComponent
+    NetworksComponent,
+    ServicesComponent,
+    DescriptionComponent
   ],
   imports: [
     BrowserModule,
