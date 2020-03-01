@@ -3,14 +3,15 @@
   box-sizing: border-box;
 }
 
-/* .contain{
-  position: relative;
-  left: 8vh;
-  top: 9vh;
-} */
+@font-face {
+  font-family: Rubik;
+  src: url(../../assets/Rubik-Medium.ttf);
+}
+
 
 #kara{
   text-align: center;
+  font-family: Rubik;
   left: 20vh;
   margin-top: 8vh;
   font-size: 1.5rem;
@@ -19,12 +20,14 @@
 #loved{
   text-align: center;
   left: 20vh;
+  font-family: Rubik;
   font-size: 0.95rem;
 }
 
 .potrim {
   text-align: center;
   left: 20vh;
+  font-family: Rubik;
   font-size: 2.8rem;
 }
 
@@ -63,6 +66,7 @@
   margin: 2vh;
   padding: 2px 16px;
   text-align: center;
+  font-family: Rubik;
   height: 4.5vh;
   border-radius: 4px;
   width: 32vh;
@@ -91,16 +95,12 @@
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
-
-
 *::before, *::after {
   box-sizing: border-box;
 }
 
-
-
 body {
-  font-family: 'Mukta', sans-serif;
+  font-family: Rubik;
   font-size: 1rem;
   line-height: 1.5;
   display: -webkit-box;
@@ -114,6 +114,7 @@ body {
   background: #f3f8fa;
 }
 
+
 button {
   position: relative;
   left: 180vh;
@@ -126,7 +127,7 @@ button {
   background: transparent;
   padding: 0;
   font-size: inherit;
-  font-family: inherit;
+  font-family: Rubik;
 }
 button.learn-more {
   width: 12rem;
@@ -140,7 +141,7 @@ button.learn-more .circle {
   margin: 0;
   width: 3rem;
   height: 3rem;
-  background: #2d9889;
+  background: white;
   border-radius: 1.625rem;
 }
 button.learn-more .circle .icon {
@@ -150,7 +151,7 @@ button.learn-more .circle .icon {
   top: 0;
   bottom: 0;
   margin: auto;
-  background: #fff;
+  background: #3f9c67;
 }
 button.learn-more .circle .icon.arrow {
   -webkit-transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
@@ -167,8 +168,8 @@ button.learn-more .circle .icon.arrow::before {
   right: 0.0625rem;
   width: 0.625rem;
   height: 0.625rem;
-  border-top: 0.125rem solid #fff;
-  border-right: 0.125rem solid #fff;
+  border-top: 0.125rem solid #3f9c67;
+  border-right: 0.125rem solid #3f9c67;
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
 }
@@ -178,11 +179,12 @@ button.learn-more .button-text {
   position: absolute;
   top: 0;
   left: 0;
+  font-family: Rubik;
   right: 0;
   bottom: 0;
   padding: 0.75rem 0;
   margin: 0 0 0 1.85rem;
-  color: #282936;
+  color: #696969;
   font-weight: 600;
   line-height: 1.6;
   text-align: center;
@@ -192,12 +194,13 @@ button:hover .circle {
   width: 100%;
 }
 button:hover .circle .icon.arrow {
-  background: #fff;
+  background: #3f9c67;
   -webkit-transform: translate(1rem, 0);
           transform: translate(1rem, 0);
 }
 button:hover .button-text {
-  color: #fff;
+  color: #696969;
+  font-family: Rubik;
 }
 
 @supports (display: grid) {
@@ -214,5 +217,4 @@ button:hover .button-text {
     justify-self: center;
   }
 }
-
 

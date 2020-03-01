@@ -14,9 +14,5 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onOpenDialog(){
-    this.router.navigateByUrl('newtask', { relativeTo: this.route });
-
-  }
 
 }

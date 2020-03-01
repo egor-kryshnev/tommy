@@ -2,7 +2,7 @@ process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0 as any;
 
 export const config = {
     server: {
-        port: process.env.PORT || 8080,
+        port: process.env.PORT || 80,
     },
     auth: {
         callbackURL: process.env.AUTH_CALLBACK_URL || 'http://localhost/auth/callback',
