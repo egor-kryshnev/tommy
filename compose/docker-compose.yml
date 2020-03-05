@@ -40,8 +40,6 @@ services:
       dockerfile: Dockerfile
     environment:
       NODE_ENV: production
-    ports:
-      - 4200:4200
 
   tommy-server:
     image: tommy-server
@@ -54,7 +52,7 @@ services:
       AUTH_CALLBACK_URL: /auth/callback
       PORT: 80
       SHRAGA_URL: http://localhost:3000
-      CLIENT_URL: http://localhost:4200
+      CLIENT_URL: http://tommy-client:4200
     ports:
       - 80:80
     depends_on:

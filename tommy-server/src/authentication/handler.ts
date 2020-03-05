@@ -1,4 +1,4 @@
-import { Application, NextFunction } from "express";
+import { Application } from "express";
 import passport from 'passport';
 import { config } from '../config';
 const { Strategy } = require('passport-shraga');
