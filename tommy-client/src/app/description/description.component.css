@@ -51,10 +51,10 @@
   height: 56px;
 }
 
-
 button {
-  position: relative;
-  left: 180vh;
+  position: fixed;
+  top: 120px;
+  right: 12px;
   display: inline-block;
   cursor: pointer;
   outline: none;
@@ -64,8 +64,11 @@ button {
   background: transparent;
   padding: 0;
   font-size: inherit;
-  font-family: inherit;
+  font-family: Rubik;
 }
+
+
+
 button.learn-more {
   width: 12rem;
   height: auto;

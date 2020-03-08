@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ApigetService, model1 } from '../apiget.service';
+
 
 @Component({
   selector: 'app-networks',
@@ -8,21 +10,25 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class NetworksComponent implements OnInit {
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
 
-  ngOnInit(): void {
-  }
+  networks: model1[];
+  constructor(private router: Router, private route: ActivatedRoute, public aPIgetService:  ApigetService) { }
 
-  oncli(){
-
+  ngOnInit(){
+    this.networks = this.aPIgetService.getNetworks();
   }
 
   onReturn(){
     this.router.navigateByUrl('', { relativeTo: this.route });
   }
 
-  onNetwork(){
-    this.router.navigateByUrl('services', { relativeTo: this.route });
+  onSelectedNetwork(id: string){
+    // this.network
+    this.router.navigate(['/services', id], {relativeTo: this.route});
+  }
+
+  public getID(id: string){
+
   }
 
 }

@@ -3,17 +3,6 @@ nb-chat {
     margin: 0.5rem 0 2rem 2rem;
 }
 
-@font-face {
-  font-family: Rubik;
-  src: url(../assets/Rubik-Medium.ttf);
-}
-
-[_nghost-xwn-c134] nb-layout-header nav {
-  position: fixed;
-  width: webkit-fill-available;
-}
-
-
 #Chat {
     display: none;
     position: fixed;
@@ -50,7 +39,5 @@ nb-chat {
 
 .name{
   position: relative;
-  font-size: 3.1vh;
-  right: 145vh;
-  font-family: Rubik;
+  right: 148vh;
 }

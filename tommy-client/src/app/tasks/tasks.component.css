@@ -12,15 +12,21 @@
     border: solid 1px #afc514;
     background-color: #ffffff;
     margin-bottom: 20px;
+    transition: 0.5s;
 }
 
 .task #task-title{
     float: right;
+    font-family: Rubik;
 }
 
 .new-task-container{
     margin-bottom: 17px;
 }
+
+#task-status{
+    font-family: Rubik;
+} 
 
 .new-task-button:hover{
     cursor: pointer;
@@ -35,6 +41,13 @@
     height: 46px;
     border-radius: 23px;
     background-color: #3f9c67;
+    transition: ease-in 0.3s;
+
+}
+
+.new-task-button:hover{
+    box-shadow: 0 5px 14px 0 rgba(206, 206, 206, 0.5);
+    background-color: #afc514;
 }
 
 .new-task-button #button-text{
@@ -57,6 +70,7 @@
     border-radius: 13.9px;
     background-color: rgba(255, 255, 255, 0.3);
     text-align: center;
+    margin-left: 4px;
 }
 
 .Group-2-Copy {
@@ -126,7 +140,33 @@
     color: #696969;
 }
 
+#scrollBar {
+    margin-right: 10px;
+  }
+  
+  #scrollBar::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: rgba(63, 156, 103, 0.3);
+  }
+  
+  #scrollBar::-webkit-scrollbar {
+    width: 4px;
+    height: 10px;
+    background-color: rgba(63, 156, 103, 0.3);
+  }
+  
+  #scrollBar::-webkit-scrollbar-thumb {
+    border-radius: 1.5px;
+    /* size: 10px; */
+    height: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: #3f9c67;
+  }
+  
 
+
+  
 
 
 

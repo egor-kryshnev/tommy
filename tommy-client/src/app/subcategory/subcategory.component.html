@@ -37,11 +37,8 @@
         <img src="../../assets/icon.png" class="Group-5-Copy">
     </div>
     
-    <h4 id="kara">:בחרו קטגוריה בה התקלה</h4>
+    <h4 id="kara">:בחרו שירות בו התקלה</h4>
     
-    <!-- <h4 id="loved">:אין בעיה, ספרו לנו מה לא עובד ובחרו רשת</h4> -->
-    
-    <!-- <app-category-list></app-category-list> -->
-    <app-category-list *ngIf="categoriesLoaded | async" (onCategoryChoice)="selectedCategory($event)"></app-category-list>
+    <app-category-list (onCategoryChoice)="selectedSubCategory($event)"></app-category-list>
     
     

@@ -18,7 +18,14 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { NetworksComponent } from './networks/networks.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ServicesComponent } from './services/services.component';
+import { CategoryComponent } from './category/category.component'
 import { DescriptionComponent } from './description/description.component';
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { SubcategoryComponent } from './subcategory/subcategory.component';
+import { CategoryListComponent } from './category-list/category-list.component'
+import { EventEmiterService } from './event.emmiter.service';
+import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +36,10 @@ import { DescriptionComponent } from './description/description.component';
     TaskDetailComponent,
     NetworksComponent,
     ServicesComponent,
-    DescriptionComponent
+    DescriptionComponent,
+    CategoryComponent,
+    SubcategoryComponent,
+    CategoryListComponent
   ],
   imports: [
     BrowserModule,
@@ -42,9 +52,12 @@ import { DescriptionComponent } from './description/description.component';
     MatGridListModule,
     MatListModule,
     ScrollingModule,
-    MatDialogModule
+    HttpClientModule,
+    MatDialogModule,
+    CommonModule
+    
   ],
-  providers: [],
+  providers: [EventEmiterService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

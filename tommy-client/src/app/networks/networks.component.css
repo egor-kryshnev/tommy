@@ -32,9 +32,9 @@
 }
 
 .Oval {
-  position: relative;
-  left: 92vh;
-  top: 5vh;
+  margin-top: 60px;
+  margin-right: auto;
+  margin-left: auto;  
   border-radius: 50%;
   width: 104px;
   height: 104px;
@@ -48,7 +48,6 @@
   left: 3.2vh;
   width: 40px;
   height: 56px;
-  /* object-fit: contain; */
 }
 
 .container2{
@@ -73,13 +72,18 @@
 }
 
 .card:hover{
-  width: 260px;
-  height: 40px;
-  border-radius: 4px;
   box-shadow: 0 5px 14px 0 rgba(206, 206, 206, 0.5);
   border: solid 1px #afc514;
   background-color: #ffffff;
   color: #afc514;
+}
+
+
+.container3{
+  display: flex;
+  margin-right: auto;
+  margin-left: auto;
+  justify-content: center; 
 }
 
 
@@ -107,17 +111,18 @@ body {
   display: -webkit-box;
   display: flex;
   -webkit-box-align: center;
-          align-items: center;
+  align-items: center;
   -webkit-box-pack: center;
-          justify-content: center;
+  justify-content: center;
   margin: 0;
   min-height: 100vh;
   background: #f3f8fa;
 }
 
 button {
-  position: relative;
-  left: 180vh;
+  position: fixed;
+  top: 120px;
+  right: 12px;
   display: inline-block;
   cursor: pointer;
   outline: none;
@@ -129,6 +134,7 @@ button {
   font-size: inherit;
   font-family: Rubik;
 }
+
 button.learn-more {
   width: 12rem;
   height: auto;

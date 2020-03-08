@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ApigetService, model1 } from '../apiget.service';
 
 
 @Component({
@@ -9,17 +10,20 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ServicesComponent implements OnInit {
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  services: model1[];
+  constructor(public aPIgetService: ApigetService, public route: ActivatedRoute, private router: Router) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.services = this.aPIgetService.getServices(id);
   }
 
   onReturn(){
     this.router.navigateByUrl('newtask', { relativeTo: this.route });
   }
 
-  onService(){
-    this.router.navigateByUrl('description', { relativeTo: this.route });
+  onService(serviceId){
+    this.router.navigate(['/categories', serviceId],  { relativeTo: this.route });
   }
 
 

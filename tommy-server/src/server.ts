@@ -12,6 +12,7 @@ import { AuthenticationHandler } from './authentication/handler';
 import { AuthenticationRouter } from './authentication/router';
 import { AuthenticationMiddleware } from './authentication/middleware';
 import { createProxyMiddleware } from 'http-proxy-middleware';
+import cors from 'cors';
 
 export class Server {
     public app: express.Application;
@@ -28,6 +29,7 @@ export class Server {
         this.app.use('/api', AppRouter);
         this.initializeErrorHandler();
         console.log(config.client.url);
+        this.app.get('/user', AuthenticationMiddleware.requireAuth, (req: express.Request, res: express.Response, next: express.NextFunction) => res.send(req.user));
         this.app.all('/*', AuthenticationMiddleware.requireAuth, createProxyMiddleware({ target: config.client.url, changeOrigin: false }));
         this.server = http.createServer(this.app);
         this.server.listen(config.server.port, () => {
@@ -45,14 +47,17 @@ export class Server {
         this.app.get('/isalive', function (req: express.Request, res: express.Response, next: express.NextFunction) {
             res.status(200).send('Server Is Up');
         });
-
+        
         this.app.use(function (req: express.Request, res: express.Response, next: express.NextFunction) {
             res.setHeader('Access-Control-Allow-Credentials', 'true');
             res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
             res.setHeader('Access-Control-Allow-Headers', 'Authorization, Origin, X-Requested-With, Content-Type');
+            res.setHeader("Access-Control-Allow-Origin", '*');
 
             return next();
         });
+
+        this.app.use(cors());
 
         if (process.env.NODE_ENV === 'development') {
             this.app.use(morgan('dev'));
