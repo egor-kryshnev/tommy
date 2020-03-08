@@ -1,0 +1,23 @@
+version: "2.1"
+
+services:
+  tommy-client:
+    image: tommy-client
+    environment:
+      NODE_ENV: production
+    ports:
+      - 4200:4200
+
+  tommy-server:
+    image: tommy-server
+    environment:
+      NODE_TLS_REJECT_UNAUTHORIZED: 0
+      NODE_ENV: production
+      AUTH_CALLBACK_URL: /auth/callback
+      PORT: 80
+      SHRAGA_URL: https://shraga.prod.services.idf
+      CLIENT_URL: http://tommy-client:4200
+    ports:
+      - 80:80
+    depends_on:
+      - tommy-client

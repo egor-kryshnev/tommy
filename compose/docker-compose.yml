@@ -1,0 +1,28 @@
+version: "2.1"
+
+services:
+  tommy-client:
+    image: tommy-client
+    build: 
+      context: ../tommy-client
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: production
+
+  tommy-server:
+    image: tommy-server
+    container_name: tommy-server
+    build:
+      context: ../tommy-server
+      dockerfile: Dockerfile
+    environment:
+      NODE_TLS_REJECT_UNAUTHORIZED: 0
+      NODE_ENV: production
+      AUTH_CALLBACK_URL: /auth/callback
+      PORT: 80
+      SHRAGA_URL: http://shraga.prod.services.idf
+      CLIENT_URL: http://tommy-client:4200
+    ports:
+      - 80:80
+    depends_on:
+      - tommy-client

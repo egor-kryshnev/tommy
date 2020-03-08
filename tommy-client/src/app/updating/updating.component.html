@@ -1,0 +1,13 @@
+<div id="updatesContainer">
+  <h1 id="updatesHeadline">עדכונים</h1>
+  <cdk-virtual-scroll-viewport id="scrollBar" style="height: 600px; width: 300px; background-color: white;" itemSize="250"
+    class="viewport">
+    <mat-list role="list">
+      <mat-list-item role="listitem" *ngFor="let update of updates" style="width: 283px;">
+        <p class="date" matLine> {{ update.date }}</p>
+        <div class="Oval"></div>
+        <p class="time" matLine>{{ update.text }}</p>
+      </mat-list-item>
+    </mat-list>
+  </cdk-virtual-scroll-viewport>
+</div>

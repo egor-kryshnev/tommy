@@ -1,0 +1,43 @@
+nb-chat {
+    width: 500px;
+    margin: 0.5rem 0 2rem 2rem;
+}
+
+#Chat {
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    right: 15px;
+    z-index: 9;
+}
+
+.Rectangle {
+  width: 456px;
+  height: 4px;
+  background-color: #2d9889;
+}
+
+#btnChat {
+    position: fixed;
+    bottom: 3px;
+    right: 225px;
+}
+
+.Group {
+  width: 152px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.Group-17 {
+  width: 33px;
+  height: 29px;
+  object-fit: contain;
+  position: relative;
+  right: 165vh;
+}
+
+.name{
+  position: relative;
+  right: 148vh;
+}
