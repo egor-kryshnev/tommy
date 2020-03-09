@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { generate } from 'rxjs';
-import { config } from './../../environments/config.private.prod';
+import { config } from './../../environments/config.dev';
 
 
 export interface CategoryOfIncidents {
