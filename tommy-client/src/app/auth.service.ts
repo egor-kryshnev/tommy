@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApigetService } from './apiget.service';
-import { config } from './../environments/config.private.prod';
+import { config } from './../environments/config.dev';
 
 @Injectable({
   providedIn: 'root'
