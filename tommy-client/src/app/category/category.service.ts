@@ -31,7 +31,7 @@ export class CategoryService {
   selectedCategory: Array<string>;
   //categories: Array<Array<string>>;
   categoriesToDisplay: Array<string>;
-  accessKey: string = '997695383';
+  accessKey: string = '1835377188';
 
   categoriesRequestHeaders = new HttpHeaders()
     .set('Content-type', 'application/json')

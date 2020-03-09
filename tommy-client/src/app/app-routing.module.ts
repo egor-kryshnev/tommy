@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'newtask', component: NetworksComponent },
   { path: 'services/:id', component: ServicesComponent },
   { path: 'categories/:id', component: CategoryComponent },
-  { path: 'subcategories/:id', component: SubcategoryComponent},
+  { path: 'subcategories/:id', component: SubcategoryComponent },
   { path: 'description/:id', component: DescriptionComponent },
 ];
 

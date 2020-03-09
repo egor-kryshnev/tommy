@@ -21,26 +21,26 @@ export class CategoryComponent implements OnInit {
     this.setCategoriesOfIncidents(id);
   }
 
-  setCategoriesOfIncidents(id: string){
+  setCategoriesOfIncidents(id: string) {
     let categoryList = []
     this.categoryService.getCategoriesOfIncidents(id)
       .subscribe((data: CategoryOfIncidents) => {
         const dataArray = data.collection_pcat.pcat;
-        if(dataArray){
+        if (dataArray) {
           dataArray.forEach(element => {
             let splited = element["@COMMON_NAME"].split(".");
             categoryList.push(splited);
           });
         }
-        this.setCategoriesOfRequests(id, categoryList);      
+        this.setCategoriesOfRequests(id, categoryList);
       });
   }
 
-  setCategoriesOfRequests(id: string, categoryList: any){
+  setCategoriesOfRequests(id: string, categoryList: any) {
     this.categoryService.getCategoriesOfRequests(id)
       .subscribe((data: CategoryOfRequests) => {
         const dataArray = data.collection_chgcat.chgcat;
-        if(dataArray){
+        if (dataArray) {
           dataArray.forEach(element => {
             let splited = element["@COMMON_NAME"].split(".");
             categoryList.push(splited);
@@ -52,17 +52,17 @@ export class CategoryComponent implements OnInit {
       })
   }
 
-  selectedCategory(category: string){
+  selectedCategory(category: string) {
     this.categoryService.updateSelectedCategory(category);
     const selectedCategories: string = this.categoryService.getSelectedCategoryString();
-    if(this.categoryService.hasNextSubCategory()){
-      this.router.navigate(['/subcategories', selectedCategories], {relativeTo: this.route});
-    }else{
-      this.router.navigate(['/description', selectedCategories], {relativeTo: this.route});
+    if (this.categoryService.hasNextSubCategory()) {
+      this.router.navigate(['/subcategories', selectedCategories], { relativeTo: this.route });
+    } else {
+      this.router.navigate(['/description', selectedCategories], { relativeTo: this.route });
     }
   }
 
-  onReturn(){
+  onReturn() {
     this.router.navigateByUrl('newtask', { relativeTo: this.route });
   }
 
