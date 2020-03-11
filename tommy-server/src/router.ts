@@ -11,6 +11,7 @@ AppRouter.all('*', (req: Request, res: Response) => {
         method: req.method,
         url: `http:/${req.url}`,
         params: req.params,
+        headers: req.headers,
         data: req.body
     })
     .then((apiRes) => res.status(apiRes.status).send(apiRes.data))
