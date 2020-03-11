@@ -8,6 +8,13 @@
   src: url(../../assets/Rubik-Medium.ttf);
 }
 
+.container3{
+  display: flex;
+  margin-right: auto;
+  margin-left: auto;
+  justify-content: center;
+}
+
 
 
 #kara{
@@ -33,9 +40,9 @@
 }
 
 .Oval {
-  position: relative;
-  left: 92vh;
-  top: 5vh;
+  margin-top: 60px;
+  margin-right: auto;
+  margin-left: auto;
   border-radius: 50%;
   width: 104px;
   height: 104px;
@@ -46,7 +53,7 @@
 .Group-5-Copy {
   position: relative;
   top: 2.6vh;
-  left: 3.2vh;
+  left: 3.3vh;
   width: 40px;
   height: 56px;
 }

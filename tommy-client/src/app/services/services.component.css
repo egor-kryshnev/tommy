@@ -23,71 +23,71 @@
   justify-content: center;
 }
 
-  #loved{
-    text-align: center;
-    left: 20vh;
-    font-family: Rubik;
-    font-size: 0.95rem;
-  }
 
-  .potrim {
-    text-align: center;
-    left: 20vh;
-    font-family: Rubik;
-    font-size: 2.8rem;
-  }
+#loved{
+  text-align: center;
+  left: 20vh;
+  font-family: Rubik;
+  font-size: 0.95rem;
+}
 
-  .Oval {
-    margin-top: 60px;
-    margin-right: auto;
-    margin-left: auto;
-    border-radius: 50%;
-    width: 104px;
-    height: 104px;
-    box-shadow: 0 10px 31px 0 rgba(200, 200, 200, 0.4);
-    background-color: #ffffff;
-  }
+.potrim {
+  text-align: center;
+  left: 20vh;
+  font-family: Rubik;
+  font-size: 2.8rem;
+}
 
-  .Group-5-Copy {
-    position: relative;
-    top: 2.6vh;
-    left: 3.2vh;
-    width: 40px;
-    height: 56px;
-    /* object-fit: contain; */
-  }
+.Oval {
+  margin-top: 60px;
+  margin-right: auto;
+  margin-left: auto;
+  border-radius: 50%;
+  width: 104px;
+  height: 104px;
+  box-shadow: 0 10px 31px 0 rgba(200, 200, 200, 0.4);
+  background-color: #ffffff;
+}
 
-  .container2{
-    position: relative;
-    display: flex;
-    left: 2vh;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
+.Group-5-Copy {
+  position: relative;
+  top: 2.6vh;
+  left: 3.3vh;
+  width: 40px;
+  height: 56px;
+  /* object-fit: contain; */
+}
 
-  .card{
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    background-color: white;
-    transition: 0.3s;
-    margin: 2vh;
-    padding: 2px 16px;
-    text-align: center;
-    height: 4.5vh;
-    border-radius: 4px;
-    font-family: Rubik;
-    width: 32vh;
-  }
+.container2{
+  position: relative;
+  display: flex;
+  left: 2vh;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 
+.card{
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  background-color: white;
+  transition: 0.3s;
+  margin: 2vh;
+  padding: 2px 16px;
+  text-align: center;
+  height: 4.5vh;
+  border-radius: 4px;
+  font-family: Rubik;
+  width: 32vh;
+}
 
-  .card:hover{
-    /* width: 260px;
-    height: 40px;
-    border-radius: 4px; */
-    box-shadow: 0 5px 14px 0 rgba(206, 206, 206, 0.5);
-    border: solid 1px #afc514;
-    background-color: #ffffff;
-    color: #afc514;
-  }
+.card:hover{
+  /* width: 260px;
+  height: 40px;
+  border-radius: 4px; */
+  box-shadow: 0 5px 14px 0 rgba(206, 206, 206, 0.5);
+  border: solid 1px #afc514;
+  background-color: #ffffff;
+  color: #afc514;
+}
 
 
   #network{
