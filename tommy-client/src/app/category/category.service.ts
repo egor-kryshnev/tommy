@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { generate } from 'rxjs';
-import { config } from './../../environments/config.dev';
+import { config } from './../../environments/config.private.prod';
 
 
 export interface CategoryOfIncidents {
@@ -31,7 +31,7 @@ export class CategoryService {
   selectedCategory: Array<string>;
   //categories: Array<Array<string>>;
   categoriesToDisplay: Array<string>;
-  accessKey: string = '997695383';
+  accessKey: string = '59975677';
 
   categoriesRequestHeaders = new HttpHeaders()
     .set('Content-type', 'application/json')
