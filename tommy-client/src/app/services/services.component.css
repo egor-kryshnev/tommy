@@ -1,13 +1,12 @@
 *{
     box-sizing: border-box;
   }
-  
+
   @font-face {
     font-family: Rubik;
     src: url(../../assets/Rubik-Medium.ttf);
   }
-  
-  
+
   #kara{
     text-align: center;
     font-family: Rubik;
@@ -15,33 +14,32 @@
     margin-top: 8vh;
     font-size: 1.5rem;
   }
-  
+
   #loved{
     text-align: center;
     left: 20vh;
     font-family: Rubik;
     font-size: 0.95rem;
   }
-  
+
   .potrim {
     text-align: center;
     left: 20vh;
     font-family: Rubik;
     font-size: 2.8rem;
   }
-  
+
   .Oval {
     margin-top: 60px;
     margin-right: auto;
-    margin-left: auto;  
+    margin-left: auto;
     border-radius: 50%;
     width: 104px;
     height: 104px;
     box-shadow: 0 10px 31px 0 rgba(200, 200, 200, 0.4);
     background-color: #ffffff;
   }
-  
-  
+
   .Group-5-Copy {
     position: relative;
     top: 2.6vh;
@@ -50,7 +48,7 @@
     height: 56px;
     /* object-fit: contain; */
   }
-  
+
   .container2{
     position: relative;
     display: flex;
@@ -58,7 +56,7 @@
     flex-direction: row;
     flex-wrap: wrap;
   }
-  
+
   .card{
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     background-color: white;
@@ -71,8 +69,8 @@
     font-family: Rubik;
     width: 32vh;
   }
-  
-  
+
+
   .card:hover{
     /* width: 260px;
     height: 40px;
@@ -82,8 +80,8 @@
     background-color: #ffffff;
     color: #afc514;
   }
-  
-  
+
+
   #network{
     text-align: center;
     position: relative;
@@ -91,15 +89,15 @@
     font-size: 1.5rem;
     font-weight: bold;
   }
-  
+
   .card:hover {
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   }
-  
+
   *::before, *::after {
     box-sizing: border-box;
   }
-  
+
   body {
     font-family: Rubik;
     font-size: 1rem;
@@ -114,8 +112,8 @@
     min-height: 100vh;
     background: #f3f8fa;
   }
-  
-  
+
+
   button {
     position: fixed;
     top: 120px;
@@ -131,8 +129,8 @@
     font-size: inherit;
     font-family: Rubik;
   }
-  
-  
+
+
   button.learn-more {
     width: 12rem;
     height: auto;
@@ -206,7 +204,7 @@
     color: #696969;
     font-family: Rubik;
   }
-  
+
   @supports (display: grid) {
     body {
       display: grid;
@@ -214,11 +212,10 @@
       grid-gap: 0.625rem;
       grid-template-areas: ". main main ." ". main main .";
     }
-  
+
     #container {
       grid-area: main;
       align-self: center;
       justify-self: center;
     }
   }
-  

@@ -19,7 +19,6 @@ export class AuthService {
   constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router, public api: ApigetService) { }
 
   login() {
-    // this.user = new People(user.genesisId, user.name.firstName + " " + user.name.lastName, user.personalNumber, [''], [new DomainUser(user.adfsId, user.email)], user.email);
     this.http.get(`${config.SERVER_URL}/user`).subscribe((res: any) => {
       console.log(res);
       this.user = res;
@@ -27,17 +26,10 @@ export class AuthService {
       this.userT = res.id.split("@")[0];
       this.phone = res.phoneNumbers;
       this.api.getUUID(this.userT).subscribe((res: any) => {
-        // if(Array.isArray(res.collection_cnt.cnt)){
-        //       console.log(res.collection_cnt.cnt[0]['@id'])
-        //       this.userUUID = res.collection_cnt.cnt[0]['@id'];            
-        //     }
-        // else{
         this.userUUID = res.collection_cnt.cnt['@id'];
         console.log(this.userUUID);
-        // }
       });
     });
-
   }
 
   public loginSub() {
@@ -73,7 +65,6 @@ export class AuthService {
   }
 
   public getPhone() {
-    // retunr
   }
 
 

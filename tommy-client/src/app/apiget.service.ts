@@ -95,23 +95,8 @@ export class ApigetService {
   }
 
   getUUID(UUID) {
-    // this.http.get("" ,
     return this.http.get(config.GET_UUID_URL_FUNCTION(UUID),
-      { headers: this.servicesHeaders })
-    // .subscribe((res: any) => {
-    //   if(Array.isArray(res.collection_cnt.cnt)){
-    //     console.log(res.collection_cnt.cnt[0]['@id'])
-    //     this.userUUID = res.collection_cnt.cnt[0]['@id'];
-    //     // console.log(this.userUUID);
-    //   }
-    //   else{
-    //     // console.log('nabet')
-    //     // console.log('ron')
-    //     // console.log(res.collection_cnt.cnt['@id'])
-    //     this.userUUID = res.collection_cnt.cnt['@id'];
-    //   }
-    //   this.getOpenTasks(this.userUUID);
-    //  });
+    { headers: this.servicesHeaders });
   }
 
 
@@ -143,23 +128,8 @@ export class ApigetService {
   // }
 
   getOpenTasks(UUID) {
-    // console.log("");
     return this.http.get(config.GET_OPEN_TASKS_URL_FUNCTION(UUID),
-      // return this.http.get("",
-      // return this.http.get("",
       { headers: this.tasksHeaders })
-    // .subscribe((res: any) => { 
-    //   this.tasksArray = res.collection_cr.cr;
-    //   this.tasksArray.forEach((element: any) =>{
-    //     this.tasksByIdArray.push(
-    //       {
-    //         "id": element["@COMMON_NAME"],
-    //         "description": element.description,
-    //         "status": element.status["@COMMON_NAME"]
-    //       } as taskModel1
-    //     );
-    //   })
-    // });
   }
 
   getClosedTasks(id) {
