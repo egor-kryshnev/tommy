@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { config } from './../environments/config.dev';
+import { config } from './../environments/config.private.prod';
 
 interface model {
   "@id": string;
@@ -32,7 +32,7 @@ export interface taskModel1 {
 })
 export class ApigetService {
 
-  accessKey: string = '154475270';
+  accessKey: string = '59975677';
   userT: string;
   networksArray: model[];
   networksByIdArray: model1[] = [];
