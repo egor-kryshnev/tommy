@@ -9,26 +9,29 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SubcategoryComponent implements OnInit {
 
-  constructor(public categoryService: CategoryService, public route: ActivatedRoute, private router: Router,) { }
+  constructor(public categoryService: CategoryService, public route: ActivatedRoute, private router: Router, ) { }
 
-  ngOnInit(){
+  ngOnInit() {
     console.log("started subCategory");
   }
 
-  selectedSubCategory(category: string){
+  selectedSubCategory(category: string) {
     this.categoryService.updateSelectedCategory(category);
     const selectedCategories: string = this.categoryService.getSelectedCategoryString();
-    if(this.categoryService.hasNextSubCategory()){
+    if (this.categoryService.hasNextSubCategory()) {
       console.log("in if")
-      this.router.navigate(['/subcategories', selectedCategories], {relativeTo: this.route});
-    }else{
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['/subcategories', selectedCategories], { relativeTo: this.route });
+      });
+      // this.router.navigate(['/subcategories', selectedCategories], { relativeTo: this.route });
+    } else {
       console.log("in else")
-      this.router.navigate(['/description', selectedCategories], {relativeTo: this.route});
+      this.router.navigate(['/description', selectedCategories], { relativeTo: this.route });
     }
     // this.router.navigate(['/subcategories', selectedCategories], {relativeTo: this.route});
   }
 
-  onReturn(){
+  onReturn() {
 
   }
 

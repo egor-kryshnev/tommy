@@ -80,7 +80,7 @@ export class ApigetService {
       { headers: this.head }
     ).subscribe((res: any) => {
       this.networksArray = res.collection_nr.nr;
-      console.log(this.networksArray);
+      // console.log(this.networksArray);
       this.networksArray.forEach((networkObject: any) => {
         this.networksByIdArray.push(
           {
@@ -120,6 +120,7 @@ export class ApigetService {
     this.http.get(config.GET_SERVICES_URL_FUNCTION(id),
       { headers: this.servicesHeaders }
     ).subscribe((res: any) => {
+      console.log("before");
       this.servicesArray = res.collection_z_networks_to_service.z_networks_to_service;
       this.servicesArray.forEach((element: any) => {
         const serviceObject = element.service;
