@@ -1,0 +1,1 @@
+docker save $(docker ps --format '{{.Image}}') -o mydockersimages.tar

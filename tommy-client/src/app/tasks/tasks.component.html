@@ -1,0 +1,33 @@
+<div class="open-closed-tasks">
+        <div [ngClass]="{'selected-tasks': selectedOpenTasks, 'unselected-tasks' : !selectedOpenTasks}"
+            (click)="clickedOpenTasks()">
+            <p id="text">פניות פתוחות</p>
+            <p id="seprate-line"></p>
+        </div>
+    
+        <div [ngClass]="{'selected-tasks': !selectedOpenTasks, 'unselected-tasks' : selectedOpenTasks}"
+            (click)="clickedClosedTasks()">
+            <p id="text">פניות סגורות</p>
+            <p id="seprate-line"></p>
+        </div>
+    </div>
+    
+    <div class="new-task-container">
+        <div (click)="onOpenDialog()" class="new-task-button">
+            <span id="button-text">קריאה חדשה</span>
+            <span id="button-plus">
+                <img src="../../assets/group-2-copy.svg" class="Group-2-Copy">
+            </span>
+        </div>
+    </div>
+    
+    
+    <cdk-virtual-scroll-viewport id="scrollBar" style="height: 520px; width: 820px;" itemSize="50" class="viewport">
+        <div *ngFor="let task of tasksByIdArray">
+            <div class="task">
+                <p id="task-title">{{ task.description }}</p>
+                <p id="task-id">מספר פניה: {{ task.id }}</p>
+                <p id="task-status">סטטוס: {{ task.status }}</p>
+            </div>
+        </div>
+    </cdk-virtual-scroll-viewport>

@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:prod": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -24,7 +25,6 @@
     "@nebular/eva-icons": "4.6.0",
     "@nebular/theme": "^4.6.0",
     "eva-icons": "^1.1.2",
-    "http-proxy-middleware": "^1.0.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
