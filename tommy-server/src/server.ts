@@ -26,7 +26,7 @@ export class Server {
         this.app = express();
         this.configureMiddlewares();
         this.initializeAuthenticator();
-        this.app.use('/api', AppRouter);
+        this.app.use('/api', AuthenticationMiddleware.requireAuth, AppRouter);
         this.initializeErrorHandler();
         console.log(config.client.url);
         this.app.get('/user', AuthenticationMiddleware.requireAuth, (req: express.Request, res: express.Response, next: express.NextFunction) => res.send(req.user));

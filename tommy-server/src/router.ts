@@ -1,10 +1,26 @@
-import { Router, Request, Response } from "express";
+import { Router, Request, Response, NextFunction } from "express";
 import axios from 'axios';
 import { ServerError } from "./utils/errors/application";
+import { NotPermittedError } from "./utils/errors/user";
 
 const AppRouter: Router = Router();
 
 AppRouter.get('/isalive', (req: Request, res: Response) => res.status(200).send('Server Is Up'));
+
+AppRouter.post('*', (req: Request, res: Response, next: NextFunction) => {
+    const user: any = req.user;
+
+    try {
+        if(user["id"] === req.body.cr.customer['@id']) {
+            next();
+        } else {
+            throw new NotPermittedError;
+        }
+    } catch(err) {
+        throw new NotPermittedError;
+    }
+});
+
 AppRouter.all('*', (req: Request, res: Response) => {
     console.log(req.method, `http:/${req.url}`);
     axios({
