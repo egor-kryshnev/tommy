@@ -32,7 +32,7 @@ export interface taskModel1 {
 })
 export class ApigetService {
 
-  accessKey: string = '997695383';
+  accessKey: string = '59975677';
   userT: string;
   networksArray: model[];
   networksByIdArray: model1[] = [];
