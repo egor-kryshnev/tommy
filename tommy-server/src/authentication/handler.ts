@@ -5,7 +5,6 @@ const { Strategy } = require('passport-shraga');
 
 
 export class AuthenticationHandler {
-    public static users: any[] = [];
 
     static initialize(app: Application) {
         app.use(passport.initialize());
@@ -15,7 +14,6 @@ export class AuthenticationHandler {
         passport.deserializeUser(AuthenticationHandler.deserialize);
 
         passport.use(new Strategy(config.auth, (profile: any, done: any) => {
-            AuthenticationHandler.users.push(profile);
             done(null, profile);
         }));
 
@@ -30,13 +28,12 @@ export class AuthenticationHandler {
         });
     }
 
-    private static serialize(user: { id: string }, done: (err?: Error, id?: string) => void) {
-        done(undefined, user.id);
+    private static serialize(user: any, done: (err?: Error, user?: any) => void) {
+        done(undefined, user);
     }
 
-    private static async deserialize(id: string, done: (err?: Error, user?: any) => void) {
+    private static async deserialize(user: any, done: (err?: Error, user?: any) => void) {
         try {
-            const user = AuthenticationHandler.users.filter(user => user.id === id).length > 0 ? AuthenticationHandler.users.filter(user => user.id === id)[0] : {};
             done(undefined, user);
         } catch (err) {
             done(err, null);
