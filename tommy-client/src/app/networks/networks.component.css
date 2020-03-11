@@ -34,7 +34,7 @@
 .Oval {
   margin-top: 60px;
   margin-right: auto;
-  margin-left: auto;  
+  margin-left: auto;
   border-radius: 50%;
   width: 104px;
   height: 104px;
@@ -45,7 +45,7 @@
 .Group-5-Copy {
   position: relative;
   top: 2.6vh;
-  left: 3.2vh;
+  left: 3.3vh;
   width: 40px;
   height: 56px;
 }
@@ -83,7 +83,7 @@
   display: flex;
   margin-right: auto;
   margin-left: auto;
-  justify-content: center; 
+  justify-content: center;
 }
 
 

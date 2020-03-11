@@ -33,13 +33,13 @@ export class AppComponent {
       this._eventEmmiter.sendUser(res);
       this.apigetService.getUUID(this.userT).subscribe((res: any) => {
         if(Array.isArray(res.collection_cnt.cnt)){
-          this.userUUID = res.collection_cnt.cnt[1]['@id'];              
+          this.userUUID = res.collection_cnt.cnt[1]['@id'];
         }
         else{
-          this.userUUID = res.collection_cnt.cnt['@id'];         
+          this.userUUID = res.collection_cnt.cnt['@id'];
         }
         console.log(this.userUUID);
-        this._eventEmmiter.sendMsg(this.userUUID); 
+        this._eventEmmiter.sendMsg(this.userUUID);
       });
     });
   }
