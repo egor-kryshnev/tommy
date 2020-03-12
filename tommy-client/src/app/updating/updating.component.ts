@@ -1,6 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-import { ApigetService, updatesModel } from '../apiget.service';
+import { ApigetService } from '../apiget.service';
 
 export interface Update {
   date: Date,

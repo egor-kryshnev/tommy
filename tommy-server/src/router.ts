@@ -25,6 +25,7 @@ AppRouter.post('*', (req: Request, res: Response, next: NextFunction) => {
 
 AppRouter.all('*', (req: Request, res: Response) => {
     console.log(req.method, `http:/${req.url}`);
+    console.log(new Date());
     axios({
         method: req.method,
         url: `http:/${req.url}`,

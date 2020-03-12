@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { generate } from 'rxjs';
-import { config } from './../../environments/config.dev';
+import { config } from './../../environments/config.dev-no-prox';
 
 
 export interface CategoryOfIncidents {
@@ -79,9 +79,12 @@ export class CategoryService {
 
   getSelectedCategoryString() {
     let selectedCategoryString = "";
-    this.selectedCategory.forEach(element => {
-      selectedCategoryString = selectedCategoryString + "." + element;
-    });
+    if (this.selectedCategory.length == 1) selectedCategoryString = this.selectedCategory[0];
+    else {
+      this.selectedCategory.forEach(element => {
+        selectedCategoryString = selectedCategoryString + "." + element;
+      });
+    }
     return selectedCategoryString;
   }
 

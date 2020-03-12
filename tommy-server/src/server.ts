@@ -49,7 +49,7 @@ export class Server {
         this.app.get('/isalive', function (req: express.Request, res: express.Response, next: express.NextFunction) {
             res.status(200).send('Server Is Up');
         });
-        
+
         this.app.use(function (req: express.Request, res: express.Response, next: express.NextFunction) {
             res.setHeader('Access-Control-Allow-Credentials', 'true');
             res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
