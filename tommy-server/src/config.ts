@@ -14,8 +14,19 @@ export const config = {
     client: {
         url: process.env.CLIENT_URL
     },
-    serviceName:'tommy-server',
+    serviceName: 'tommy-server',
     redis: {
         host: process.env.REDIS_URL || 'redis://localhost',
+    },
+    lehava_api: {
+        request: {
+            method: 'POST',
+            url: process.env.LEHAVA_API_URL || "http://lehava-api-mock:8050/caisd-rest/rest_access",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "Authorization": "Basic c2VydmljZWRlc2s6U0RBZG1pbjAx"
+            }
+        }
     }
 }
