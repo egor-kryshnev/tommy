@@ -3,11 +3,12 @@
   <cdk-virtual-scroll-viewport id="scrollBar" style="height: 600px; width: 300px; background-color: white;" itemSize="250"
     class="viewport">
     <mat-list role="list">
-      <div *ngIf="array; else noArray">
+      <div *ngIf="array">
       <mat-list-item role="listitem" *ngFor="let update of updatesArrayFiltered" style="width: 283px;">
-        <p class="date" matLine> {{ update.date }}</p>
+        <p class="date" matLine>{{ update.open_date }}</p>
+        <p class="name" matLine> {{ update.name }}</p>
         <div class="Oval"></div>
-        <p class="time" matLine>{{ update.text }}</p>
+        <p class="time" matLine>{{ update.description }}</p>
       </mat-list-item>
     </div>
     <ng-template #noArray>
@@ -16,7 +17,6 @@
         <div class="Oval"></div>
         <p class="time" matLine>{{ updatesObject.description }}</p>
       </mat-list-item>
-
     </ng-template>
     </mat-list>
   </cdk-virtual-scroll-viewport>

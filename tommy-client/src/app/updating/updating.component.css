@@ -6,6 +6,11 @@ mat-list-item {
   background-color: white;
 }
 
+@font-face {
+  font-family: Rubik;
+  src: url(../../assets/Rubik-Medium.ttf);
+}
+
 #updatesHeadline {
   /* font-family: 'Rubik'; */
   font-size: 22px;
@@ -21,11 +26,35 @@ mat-list-item {
   padding-bottom: 10px;
 }
 
-.date,
 .time {
-  /* font-family: 'Rubik'; */
+  font-family: 'Rubik';
   font-size: 14px;
   font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: right;
+  color: #696969;
+}
+
+.date{
+  font-family: 'Rubik';
+  font-size: 14px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: right;
+  color: #696969;
+}
+
+
+.name{
+  font-size: 14px;
+  font-weight: 300;
+  font-family: Rubik;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.43;
