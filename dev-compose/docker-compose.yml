@@ -18,8 +18,8 @@ services:
     ports:
       - "8080:8080"
       - "8443:8443"
-    volumes:
-      - ./users.php:/var/www/simplesamlphp/config/authsources.php
+    # volumes:
+    #   - ./users.php:/var/www/simplesamlphp/config/authsources.php
 
   shraga-proxy:
     container_name: shraga
@@ -41,14 +41,14 @@ services:
     environment:
       NODE_ENV: production
 
-  lehava-api-mock:
-    image: lehava-api-mock
-    container_name: lehava-api-mock
-    build:
-      context: ../lehava-api-mock
-      dockerfile: Dockerfile
-    ports:
-      - 8050:8050
+  # lehava-api-mock:
+  #   image: lehava-api-mock
+  #   container_name: lehava-api-mock
+  #   build:
+  #     context: ../lehava-api-mock
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 8050:8050
 
   tommy-server:
     image: tommy-server

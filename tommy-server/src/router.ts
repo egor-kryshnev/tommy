@@ -11,18 +11,19 @@ AppRouter.post('*', (req: Request, res: Response, next: NextFunction) => {
     const user: any = req.user;
 
     try {
-        if(user["id"] === req.body.cr.customer['@id']) {
+        if (user["id"] === req.body.cr.customer['@id']) {
             next();
         } else {
             throw new NotPermittedError;
         }
-    } catch(err) {
+    } catch (err) {
         throw new NotPermittedError;
     }
 });
 
 AppRouter.all('*', (req: Request, res: Response) => {
     console.log(req.method, `http:/${req.url}`);
+    console.log(new Date());
     axios({
         method: req.method,
         url: `http:/${req.url}`,
@@ -30,8 +31,13 @@ AppRouter.all('*', (req: Request, res: Response) => {
         headers: req.headers,
         data: req.body
     })
-    .then((apiRes) => res.status(apiRes.status).send(apiRes.data))
-    .catch((err: Error) => { throw new ServerError(err.message) });
+        .then((apiRes) => {
+            console.log(new Date());
+            console.log(`in axios: ${req.url}`)
+            res.status(apiRes.status).send(apiRes.data)
+
+        })
+        .catch((err: Error) => { throw new ServerError(err.message) });
 })
 
 export { AppRouter };

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApigetService } from '../apiget.service';
 import { CategoryService, CategoryOfIncidents, CategoryOfRequests } from './category.service'
 import { CategoriesDataService } from '../categories-data.service'
+import { PostReqService } from '../post-req.service';
 
 @Component({
   selector: 'app-category',
@@ -14,7 +15,7 @@ export class CategoryComponent implements OnInit {
   public categoriesToDisplay: Array<string>;
   categoriesLoaded: Promise<boolean>;
   // public categories: Array<Array<string>>;
-  constructor(public categoryService: CategoryService, public route: ActivatedRoute, private router: Router) { }
+  constructor(public categoryService: CategoryService, public route: ActivatedRoute, private router: Router, public postReqService: PostReqService) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -55,6 +56,7 @@ export class CategoryComponent implements OnInit {
   selectedCategory(category: string) {
     this.categoryService.updateSelectedCategory(category);
     const selectedCategories: string = this.categoryService.getSelectedCategoryString();
+    
     if (this.categoryService.hasNextSubCategory()) {
       this.router.navigate(['/subcategories', selectedCategories], { relativeTo: this.route });
     } else {

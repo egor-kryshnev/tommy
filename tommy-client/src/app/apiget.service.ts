@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { config } from './../environments/config.dev';
+import { config } from './../environments/config.dev-no-prox';
 
 interface model {
   "@id": string;
@@ -76,6 +76,7 @@ export class ApigetService {
 
   getNetworks() {
     this.networksByIdArray = [];
+    console.log("config" + config.GET_NETWORKS_URL);
     this.http.get(config.GET_NETWORKS_URL,
       { headers: this.head }
     ).subscribe((res: any) => {
