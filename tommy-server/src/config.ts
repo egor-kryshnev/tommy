@@ -15,4 +15,7 @@ export const config = {
         url: process.env.CLIENT_URL
     },
     serviceName:'tommy-server',
+    redis: {
+        host: process.env.REDIS_URL || 'redis://localhost',
+    }
 }
