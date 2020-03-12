@@ -22,7 +22,14 @@ services:
       PORT: 80
       SHRAGA_URL: http://shraga.prod.services.idf
       CLIENT_URL: http://tommy-client:4200
+      REDIS_URL: 'redis://redis:6379'
     ports:
       - 80:80
     depends_on:
       - tommy-client
+      - redis
+  
+  redis:
+    image: 'redis:alpine'
+    ports:
+      - '6379:6379'

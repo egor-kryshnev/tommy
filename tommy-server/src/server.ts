@@ -13,6 +13,8 @@ import { AuthenticationRouter } from './authentication/router';
 import { AuthenticationMiddleware } from './authentication/middleware';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 import cors from 'cors';
+import * as redis from 'redis';
+import connectRedis from 'connect-redis';
 
 export class Server {
     public app: express.Application;
@@ -63,10 +65,13 @@ export class Server {
             this.app.use(morgan('dev'));
         }
 
+        const RedisStore = connectRedis(session);
+        const redisClient = redis.createClient(config.redis.host);
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: true }));
         this.app.use(cookieParser());
         this.app.use(session({
+            store: new RedisStore({ client: redisClient }),
             secret: config.auth.secret,
             resave: false,
             saveUninitialized: true
