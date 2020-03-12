@@ -27,6 +27,12 @@ export interface taskModel1 {
   "status": string;
 }
 
+export interface updatesModel{
+  "name": string;
+  "description": string;
+  "open_date": Date;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -72,7 +78,14 @@ export class ApigetService {
     .set('Content-type', 'application/json')
     .set('X-AccessKey', this.accessKey)
     .set('Accept', 'application/json')
-    .set('X-Obj-Attrs', 'status, summary, description')
+    .set('X-Obj-Attrs', 'status, summary, description');
+
+    updatesHeaders = new HttpHeaders()
+    .set('Content-type', 'application/json')
+    .set('X-AccessKey', this.accessKey)
+    .set('Accept', 'application/json')
+    // .set('X-Obj-Attrs', 'category, open_date, description');
+    .set('X-Obj-Attrs', 'category, description, open_date');
 
   getNetworks() {
     this.networksByIdArray = [];
@@ -97,6 +110,12 @@ export class ApigetService {
   getUUID(UUID) {
     return this.http.get(config.GET_UUID_URL_FUNCTION(UUID),
     { headers: this.servicesHeaders });
+  }
+
+  getUpdates(){
+    console.log("qwerty");
+    return this.http.get(config.GET_UPDATES,
+    { headers: this.updatesHeaders })
   }
 
 

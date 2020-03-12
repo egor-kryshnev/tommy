@@ -63,6 +63,8 @@ module.exports = (app) => {
 
     // GET user Unique id by T username
     app.get('/caisd-rest/cnt', (req, res) => {
+        console.log(req.query);
+        
         res.json(lehavaData.users[arraysearch("T", req.query.WC.split("'")[1], lehavaData.users)].data);
     });
 
