@@ -1,6 +1,6 @@
 nb-chat {
-    width: 500px;
-    margin: 0.5rem 0 2rem 2rem;
+  width: 500px;
+  margin: 0.5rem 0 2rem 2rem;
 }
 
 @font-face {
@@ -15,11 +15,11 @@ nb-chat {
 
 
 #Chat {
-    display: none;
-    position: fixed;
-    bottom: 30px;
-    right: 15px;
-    z-index: 9;
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  right: 15px;
+  z-index: 9;
 }
 
 .Rectangle {
@@ -29,9 +29,9 @@ nb-chat {
 }
 
 #btnChat {
-    position: fixed;
-    bottom: 3px;
-    right: 225px;
+  position: fixed;
+  bottom: 3px;
+  right: 225px;
 }
 
 .Group {
@@ -44,13 +44,47 @@ nb-chat {
   width: 33px;
   height: 29px;
   object-fit: contain;
-  position: relative;
-  right: 165vh;
+  position: absolute;
+  left: 10%;
 }
 
-.name{
-  position: relative;
-  font-size: 3.1vh;
-  right: 145vh;
+.name {
+  font-size: 18px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  position: absolute;
+  left: 20%;
   font-family: Rubik;
+}
+
+#leftRec {
+  width: 33%;
+  height: 4px;
+  background-color: #227e2d;
+  display: inline-block;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+#midRec {
+  position: absolute;
+  top: 0px;
+  left: 33%;
+  width: 34%;
+  height: 4px;
+  background-color: #afc514;
+  display: inline-block;
+}
+
+#rightRec {
+  position: absolute;
+  top: 0px;
+  left: 67%;
+  width: 33%;
+  height: 4px;
+  background-color: #2d9889;
+  display: inline-block;
 }
