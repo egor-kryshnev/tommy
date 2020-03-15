@@ -4,7 +4,9 @@ mat-list-item {
 
 #updatesContainer {
   background-color: white;
-
+  position: relative;
+  top: -55px;
+  left: -13.5vh;
 }
 
 @font-face {
@@ -15,6 +17,7 @@ mat-list-item {
 #updatesHeadline {
   /* font-family: 'Rubik'; */
   font-size: 22px;
+  font-family: Rubik;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
@@ -29,7 +32,7 @@ mat-list-item {
 
 .time {
   font-family: 'Rubik';
-  font-size: 14px;
+  font-size: 10px;
   font-weight: 300;
   font-stretch: normal;
   font-style: normal;
@@ -41,7 +44,7 @@ mat-list-item {
 
 .date{
   font-family: 'Rubik';
-  font-size: 10px;
+  font-size: 8px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -81,14 +84,13 @@ mat-list-item {
 }
 
 #scrollBar::-webkit-scrollbar {
-  width: 4px;
+  width: 3px;
   height: 10px;
   background-color: rgba(63, 156, 103, 0.3);
 }
 
 #scrollBar::-webkit-scrollbar-thumb {
   border-radius: 1.5px;
-  /* size: 10px; */
   height: 10px;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
   background-color: #3f9c67;

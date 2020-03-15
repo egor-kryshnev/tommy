@@ -2132,6 +2132,78 @@ module.exports = {
                     description: "4 הערה של התקלה הרוחבית",
                     open_date: 1578088800000
                 },
+                {
+                    "@COMMON_NAME": '596420',
+                    category: {
+                        "@COMMON_NAME": "ARMYTS. אין אפליקצית MAYBLE"
+                    },
+                    description: "4 הערה של התקלה הרוחבית",
+                    open_date: 1578088800000
+                },
+                {
+                    "@COMMON_NAME": '596420',
+                    category: {
+                        "@COMMON_NAME": "ARMYTS. אין אפליקצית MAYBLE"
+                    },
+                    description: "4 הערה של התקלה הרוחבית",
+                    open_date: 1578088800000
+                },
+                {
+                    "@COMMON_NAME": '596420',
+                    category: {
+                        "@COMMON_NAME": "ARMYTS. אין אפליקצית MAYBLE"
+                    },
+                    description: "4 הערה של התקלה הרוחבית",
+                    open_date: 1578088800000
+                },
+                {
+                    "@COMMON_NAME": '596420',
+                    category: {
+                        "@COMMON_NAME": "ARMYTS. אין אפליקצית MAYBLE"
+                    },
+                    description: "4 הערה של התקלה הרוחבית",
+                    open_date: 1578088800000
+                },
+                {
+                    "@COMMON_NAME": '596420',
+                    category: {
+                        "@COMMON_NAME": "ARMYTS. אין אפליקצית MAYBLE"
+                    },
+                    description: "4 הערה של התקלה הרוחבית",
+                    open_date: 1578088800000
+                },
+                {
+                    "@COMMON_NAME": '596420',
+                    category: {
+                        "@COMMON_NAME": "ARMYTS. אין אפליקצית MAYBLE"
+                    },
+                    description: "4 הערה של התקלה הרוחבית",
+                    open_date: 1578088800000
+                },
+                {
+                    "@COMMON_NAME": '596420',
+                    category: {
+                        "@COMMON_NAME": "ARMYTS. אין אפליקצית MAYBLE"
+                    },
+                    description: "4 הערה של התקלה הרוחבית",
+                    open_date: 1578088800000
+                },
+                {
+                    "@COMMON_NAME": '596420',
+                    category: {
+                        "@COMMON_NAME": "ARMYTS. אין אפליקצית MAYBLE"
+                    },
+                    description: "4 הערה של התקלה הרוחבית",
+                    open_date: 1578088800000
+                },
+                {
+                    "@COMMON_NAME": '596420',
+                    category: {
+                        "@COMMON_NAME": "ARMYTS. אין אפליקצית MAYBLE"
+                    },
+                    description: "4 הערה של התקלה הרוחבית",
+                    open_date: 1578088800000
+                },
             ]
         }
     }
