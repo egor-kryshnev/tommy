@@ -12,7 +12,7 @@ import { UpdatingComponent } from './updating/updating.component';
 import { MatListModule } from '@angular/material/list';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { HomeComponent } from './home/home.component';
-import { TaskDetailComponent } from './task-detail/task-detail.component';
+import { TaskDetailDialog } from './task-detail/task-detail.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { NetworksComponent } from './networks/networks.component';
@@ -33,7 +33,7 @@ import { AuthService } from './auth.service';
     TasksComponent,
     UpdatingComponent,
     HomeComponent,
-    TaskDetailComponent,
+    TaskDetailDialog,
     NetworksComponent,
     ServicesComponent,
     DescriptionComponent,
