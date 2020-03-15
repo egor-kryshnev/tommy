@@ -5,23 +5,23 @@ export const config = {
         port: process.env.PORT || 80,
     },
     auth: {
-        callbackURL: process.env.AUTH_CALLBACK_URL,
-        shragaURL: process.env.SHRAGA_URL,
+        callbackURL: process.env.AUTH_CALLBACK_URL || "/auth/callback",
+        shragaURL: process.env.SHRAGA_URL || 'http://13.79.7.3',
         useEnrichId: true,
         secret: 'ApPr0vaL_5ySt3m',
         daysExpires: 3,
     },
     client: {
-        url: process.env.CLIENT_URL
+        url: process.env.CLIENT_URL || "http://localhost:4200"
     },
     serviceName: 'tommy-server',
     redis: {
-        host: process.env.REDIS_URL || 'redis://localhost',
+        host: process.env.REDIS_URL || 'redis://localhost:6379',
     },
     lehava_api: {
         request: {
             method: 'POST',
-            url: process.env.LEHAVA_API_URL || "http://lehava-api-mock:8050/caisd-rest/rest_access",
+            url: process.env.LEHAVA_API_URL || "http://localhost:8050/caisd-rest/rest_access",
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json",
