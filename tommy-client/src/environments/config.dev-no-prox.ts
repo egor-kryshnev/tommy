@@ -7,5 +7,6 @@ export const config = {
     GET_CATEGORIES_OF_REQUESTS_URL_FUNCTION: (id: string) => `http://localhost:8050/caisd-rest/chgcat?WC=z_impact_service%3D${id}%20and%20delete_flag%3D0`,
     GET_UUID_URL_FUNCTION: (userT: string) => `http://localhost:8050/caisd-rest/cnt?WC=userid%3D'${userT}'`,
     POST_NEW_REQUEST: "http://localhost:8050/caisd-rest/cr",
+    GET_UPDATES: "http://localhost:8050/caisd-rest/cr?WC=type%3D'I'%20and%20active%3D1%20and%20impact%3D0",
     SERVER_URL: 'http://localhost'
 };
