@@ -23,14 +23,13 @@ AppRouter.post('*', (req: Request, res: Response, next: NextFunction) => {
     }
 });
 
-AppRouter.all('*', (req: Request, res: Response) => {
+AppRouter.all('*', async (req: Request, res: Response) => {
     console.log(req.method, `http:/${req.url}`);
-    console.log(new Date());
     axios({
         method: req.method,
         url: `http:/${req.url}`,
         params: req.params,
-        headers: { ...req.headers, 'x-accesskey': AccessTokenService.getAccessToken() },
+        headers: { ...req.headers, 'x-accesskey': await AccessTokenService.getAccessToken() },
         data: req.body
     })
         .then((apiRes) => res.status(apiRes.status).send(apiRes.data))
