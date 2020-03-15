@@ -1,6 +1,6 @@
 <div id="updatesContainer">
   <h1 id="updatesHeadline">עדכונים</h1>
-  <cdk-virtual-scroll-viewport id="scrollBar" style="height: 600px; width: 300px; background-color: white;" itemSize="250"
+  <cdk-virtual-scroll-viewport id="scrollBar" style="height: 700px; width: 400px; background-color: white;" itemSize="250"
     class="viewport">
     <mat-list role="list">
       <div *ngIf="array">
@@ -8,7 +8,7 @@
         <p class="date" matLine>{{ update.open_date }}</p>
         <p class="name" matLine> {{ update.name }}</p>
         <div class="Oval"></div>
-        <p class="time" matLine>{{ update.description }}</p>
+        <p class="name" matLine>{{ update.description }}</p>
       </mat-list-item>
     </div>
     <ng-template #noArray>
@@ -21,3 +21,5 @@
     </mat-list>
   </cdk-virtual-scroll-viewport>
 </div>
+
+
