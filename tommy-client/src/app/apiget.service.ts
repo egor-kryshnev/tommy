@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-// import { config } from './../environments/config.dev-no-prox';
-import { config } from './../environments/config.dev';
+import { config } from './../environments/config.dev-no-prox';
+// import { config } from './../environments/config.dev';
 
 interface model {
   "@id": string;
