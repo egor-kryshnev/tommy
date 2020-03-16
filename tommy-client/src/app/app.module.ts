@@ -26,6 +26,7 @@ import { SubcategoryComponent } from './subcategory/subcategory.component';
 import { CategoryListComponent } from './category-list/category-list.component'
 import { EventEmiterService } from './event.emmiter.service';
 import { AuthService } from './auth.service';
+import { StatusProgressComponent } from './task-detail/status-progress/status-progress.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { AuthService } from './auth.service';
     DescriptionComponent,
     CategoryComponent,
     SubcategoryComponent,
-    CategoryListComponent
+    CategoryListComponent,
+    StatusProgressComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +57,6 @@ import { AuthService } from './auth.service';
     HttpClientModule,
     MatDialogModule,
     CommonModule
-    
   ],
   providers: [EventEmiterService, AuthService],
   bootstrap: [AppComponent]

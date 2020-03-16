@@ -1,6 +1,37 @@
+<button mat-dialog-close id="closeButton">X</button>
 <mat-dialog-content class="mat-typography">
-  <h3>Develop across all platforms</h3>
+  <div id="topContainer">
+    <div>
+      <img src="../../assets/timeUntilTreatment.svg">
+    </div>
+    <div>
+      <!-- <h4>{{ data.name }}</h4> -->
+      <p class="inline" id="taskNameTitle">תקלה</p>
+      <div id="taskNameDecoration"></div>
+    </div>
+  </div>
+  <div id="midContainer">
+    <div>
+      <h4 class="inline" id="taskId">{{ data.id }}</h4>
+      <p class="inline">קריאה</p>
+    </div>
+    <div>
+      <!-- <h4 class="inline">{{ data.category }}</h4> -->
+      <p class="inline">קטגוריה</p>
+    </div>
+    <div>
+      <!-- <h4 class="inline">{{ data.openedAt }}</h4> -->
+      <p class="inline">נפתחה ב </p>
+    </div>
+  </div>
+  <div id="bottomContainer">
+    <div id="statusProgressContainer">
+      <app-status-progress *ngFor="let status of statusList; let i = index" [status]="status" [number]="i+1"
+        [isPressed]="status===data.status"></app-status-progress>
+    </div>
+    <div id="descriptionContainer">
+      <h3>תיאור הבעיה</h3>
+      <p id="description">{{ getDesc() }}</p>
+    </div>
+  </div>
 </mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>X</button>
-</mat-dialog-actions>

@@ -77,7 +77,6 @@ export class TasksComponent implements OnInit {
   }
 
   openTaskDetailDialog(task: taskModel1) {
-    console.log(task);
-    this.taskDetailDialog.open(TaskDetailDialog);
+    this.taskDetailDialog.open(TaskDetailDialog, { width: "720px", height: "400px", data: task });
   }
 }
