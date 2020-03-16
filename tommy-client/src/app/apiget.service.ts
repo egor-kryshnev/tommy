@@ -27,7 +27,7 @@ export interface taskModel1 {
   "status": string;
 }
 
-export interface updatesModel{
+export interface updatesModel {
   "name": string;
   "description": string;
   "open_date": string;
@@ -80,7 +80,7 @@ export class ApigetService {
     .set('Accept', 'application/json')
     .set('X-Obj-Attrs', 'status, summary, description');
 
-    updatesHeaders = new HttpHeaders()
+  updatesHeaders = new HttpHeaders()
     .set('Content-type', 'application/json')
     .set('X-AccessKey', this.accessKey)
     .set('Accept', 'application/json')
@@ -109,13 +109,13 @@ export class ApigetService {
 
   getUUID(UUID) {
     return this.http.get(config.GET_UUID_URL_FUNCTION(UUID),
-    { headers: this.servicesHeaders });
+      { headers: this.servicesHeaders });
   }
 
-  getUpdates(){
+  getUpdates() {
     console.log("qwerty");
     return this.http.get(config.GET_UPDATES,
-    { headers: this.updatesHeaders })
+      { headers: this.updatesHeaders })
   }
 
 

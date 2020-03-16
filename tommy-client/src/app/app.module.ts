@@ -13,7 +13,7 @@ import { MatListModule } from '@angular/material/list';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { HomeComponent } from './home/home.component';
 import { TaskDetailComponent } from './task-detail/task-detail.component';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { NetworksComponent } from './networks/networks.component';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -26,6 +26,7 @@ import { SubcategoryComponent } from './subcategory/subcategory.component';
 import { CategoryListComponent } from './category-list/category-list.component'
 import { EventEmiterService } from './event.emmiter.service';
 import { AuthService } from './auth.service';
+import { FinishRequestComponent } from './finish-request/finish-request.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { AuthService } from './auth.service';
     DescriptionComponent,
     CategoryComponent,
     SubcategoryComponent,
-    CategoryListComponent
+    CategoryListComponent,
+    FinishRequestComponent
   ],
   imports: [
     BrowserModule,
@@ -54,10 +56,12 @@ import { AuthService } from './auth.service';
     ScrollingModule,
     HttpClientModule,
     MatDialogModule,
-    CommonModule
-    
+    CommonModule,
+    MatDialogModule
+
   ],
-  providers: [EventEmiterService, AuthService],
-  bootstrap: [AppComponent]
+  providers: [EventEmiterService, AuthService, {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
+  bootstrap: [AppComponent],
+  entryComponents: [FinishRequestComponent]
 })
 export class AppModule { }

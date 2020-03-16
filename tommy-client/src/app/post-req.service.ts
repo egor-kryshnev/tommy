@@ -2,11 +2,19 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { config } from 'src/environments/config.dev-no-prox';
 
+
+export interface PostResponse {
+  "cr": {
+    "@COMMON_NAME": string
+  }
+}
+
+
 @Injectable({
   providedIn: 'root'
 })
-export class PostReqService {
 
+export class PostReqService {
 
   constructor(private http: HttpClient) { }
 
@@ -29,8 +37,6 @@ export class PostReqService {
 
   postRequest() {
     const description = this.appendDescriptions();
-    console.log(description);
-    console.log(description.split("\n"));
     let requestBody = {
       "cr": {
         "customer":
@@ -74,8 +80,13 @@ export class PostReqService {
     );
   }
 
+
   appendDescriptions() {
     return `${this.descriptionCategory}\n${this.descriptionInput}`
+  }
+
+  getRequestId(postRes: PostResponse) {
+    return postRes.cr["@COMMON_NAME"];
   }
 
 
