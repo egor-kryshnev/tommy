@@ -6,7 +6,8 @@ mat-list-item {
   background-color: white;
   position: relative;
   top: -55px;
-  left: -13.5vh;
+  height: 100%;
+  left: -16.5vw;
 }
 
 @font-face {
