@@ -29,8 +29,6 @@ AppRouter.all('*', async (req: Request, res: Response) => {
 
         const apiHeaders = { ...req.headers };
         apiHeaders['X-AccessKey'] = await AccessTokenService.getAccessToken();
-        apiHeaders['x-accesskey'] = apiHeaders['X-AccessKey'];
-        console.log(apiHeaders);
 
         const apiRes = await axios({
             method: req.method,
@@ -39,7 +37,6 @@ AppRouter.all('*', async (req: Request, res: Response) => {
             headers: apiHeaders,
             data: req.body
         });
-        console.log(apiRes);
         res.status(apiRes.status).send(apiRes.data);
     } catch (e) {
         console.error(e);

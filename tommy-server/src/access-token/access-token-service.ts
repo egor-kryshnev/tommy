@@ -26,6 +26,6 @@ export class AccessTokenService {
                 await this.setAccessTokenRedis('X-AccessKey', JSON.stringify(apiRes.data));
             }
         }
-        return this.accessToken['@id'];
+        return String(this.accessToken['access_key']);
     }
 }
