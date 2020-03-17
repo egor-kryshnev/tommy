@@ -1,6 +1,6 @@
 const express = require('express');
 let router = express.Router();
-const validator = require('../validators')
+const validator = require('../validators/mainValidator')
 
 router
     .route('/*')

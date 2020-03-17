@@ -26,19 +26,21 @@ export class TasksComponent implements OnInit {
   tasksByIdArray: taskModel1[] = [];
   tasks: taskModel1[];
 
-  constructor(private router: Router, private route: ActivatedRoute, public aPIgetService:  ApigetService, public _eventEmmitter: EventEmiterService, public authService: AuthService, public taskDetailDialog: MatDialog) { }
+  constructor(private router: Router, private route: ActivatedRoute, public aPIgetService: ApigetService, public _eventEmmitter: EventEmiterService, public authService: AuthService, public taskDetailDialog: MatDialog) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this._eventEmmitter.dataStr.subscribe(data => {
       this._eventEmmitter.str = data;
       this.aPIgetService.getOpenTasks(data).subscribe((res: any) => {
         this.tasksArray = res.collection_cr.cr;
-        this.tasksArray.forEach((element: any) =>{
+        this.tasksArray.forEach((element: any) => {
           this.tasksByIdArray.push(
             {
               "id": element["@COMMON_NAME"],
               "description": element.description,
-              "status": element.status["@COMMON_NAME"]
+              "status": element.status["@COMMON_NAME"],
+              "category": element.category["@COMMON_NAME"],
+              "open_date": element.open_date,
             } as taskModel1
             // this.tasks = this.tasksByIdArray;
           );
@@ -46,15 +48,17 @@ export class TasksComponent implements OnInit {
       });
     }
     );
-    if(this._eventEmmitter.str){
+    if (this._eventEmmitter.str) {
       this.aPIgetService.getOpenTasks(this._eventEmmitter.str).subscribe((res: any) => {
         this.tasksArray = res.collection_cr.cr;
-        this.tasksArray.forEach((element: any) =>{
+        this.tasksArray.forEach((element: any) => {
           this.tasksByIdArray.push(
             {
               "id": element["@COMMON_NAME"],
               "description": element.description,
-              "status": element.status["@COMMON_NAME"]
+              "status": element.status["@COMMON_NAME"],
+              "category": element.category["@COMMON_NAME"],
+              "open_date": element.open_date,
             } as taskModel1
             // this.tasks = this.tasksByIdArray;
           );
@@ -77,6 +81,7 @@ export class TasksComponent implements OnInit {
   }
 
   openTaskDetailDialog(task: taskModel1) {
+    console.log(task);
     this.taskDetailDialog.open(TaskDetailDialog, { width: "720px", height: "400px", data: task });
   }
 }

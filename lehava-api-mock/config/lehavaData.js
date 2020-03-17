@@ -16,92 +16,52 @@ module.exports = {
                 {
                     "@id": "U'1'",
                     "@REL_ATTR": "U'1'",
-                    "@COMMON_NAME": "עד הקצה",
-                    "link": {
-                        "@href": "http:\/\/plehdev001:8050\/caisd-rest\/nr\/U'1'",
-                        "@rel": "self"
-                    }
+                    "@COMMON_NAME": "עד הקצה"
                 },
                 {
                     "@id": "U'2'",
                     "@REL_ATTR": "U'2'",
-                    "@COMMON_NAME": "קשר קווי",
-                    "link": {
-                        "@href": "http:\/\/plehdev001:8050\/caisd-rest\/nr\/U'2'",
-                        "@rel": "self"
-                    }
+                    "@COMMON_NAME": "קשר קווי"
                 },
                 {
                     "@id": "U'3'",
                     "@REL_ATTR": "U'3'",
-                    "@COMMON_NAME": "אינטרנט מבצעי",
-                    "link": {
-                        "@href": "http:\/\/plehdev001:8050\/caisd-rest\/nr\/U'3'",
-                        "@rel": "self"
-                    }
+                    "@COMMON_NAME": "אינטרנט מבצעי"
                 },
                 {
                     "@id": "U'3'",
                     "@REL_ATTR": "U'3'",
-                    "@COMMON_NAME": "WNET",
-                    "link": {
-                        "@href": "http:\/\/plehdev001:8050\/caisd-rest\/nr\/U'3'",
-                        "@rel": "self"
-                    }
+                    "@COMMON_NAME": "WNET"
                 },
                 {
                     "@id": "U'4'",
                     "@REL_ATTR": "U'4'",
-                    "@COMMON_NAME": "בית הבחירה",
-                    "link": {
-                        "@href": "http:\/\/plehdev001:8050\/caisd-rest\/nr\/U'4'",
-                        "@rel": "self"
-                    }
+                    "@COMMON_NAME": "בית הבחירה"
                 },
                 {
                     "@id": "U'5'",
                     "@REL_ATTR": "U'5'",
-                    "@COMMON_NAME": "שר הטבעות",
-                    "link": {
-                        "@href": "http:\/\/plehdev001:8050\/caisd-rest\/nr\/U'5'",
-                        "@rel": "self"
-                    }
+                    "@COMMON_NAME": "שר הטבעות"
                 },
                 {
                     "@id": "U'6'",
                     "@REL_ATTR": "U'6'",
-                    "@COMMON_NAME": "armyts",
-                    "link": {
-                        "@href": "http:\/\/plehdev001:8050\/caisd-rest\/nr\/U'6'",
-                        "@rel": "self"
-                    }
+                    "@COMMON_NAME": "armyts"
                 },
                 {
                     "@id": "U'7'",
                     "@REL_ATTR": "U'7'",
-                    "@COMMON_NAME": "מקושרים",
-                    "link": {
-                        "@href": "http:\/\/plehdev001:8050\/caisd-rest\/nr\/U'7'",
-                        "@rel": "self"
-                    }
+                    "@COMMON_NAME": "מקושרים"
                 },
                 {
                     "@id": "U'8'",
                     "@REL_ATTR": "U'8'",
-                    "@COMMON_NAME": "נס הרים",
-                    "link": {
-                        "@href": "http:\/\/plehdev001:8050\/caisd-rest\/nr\/U'8'",
-                        "@rel": "self"
-                    }
+                    "@COMMON_NAME": "נס הרים"
                 },
                 {
                     "@id": "U'9'",
                     "@REL_ATTR": "U'9'",
-                    "@COMMON_NAME": "בית הבחירה",
-                    "link": {
-                        "@href": "http:\/\/plehdev001:8050\/caisd-rest\/nr\/U'9'",
-                        "@rel": "self"
-                    }
+                    "@COMMON_NAME": "בית הבחירה"
                 }
             ]
         }
@@ -1941,7 +1901,7 @@ module.exports = {
             data: {
                 collection_cnt: {
                     cnt: {
-                        "@id": "U1",
+                        "@id": "U'1'",
                         "@COMMON_NAME": "ביבי נתניהו"
                     }
                 }
@@ -1952,7 +1912,7 @@ module.exports = {
             data: {
                 collection_cnt: {
                     cnt: {
-                        "@id": "U2",
+                        "@id": "U'2'",
                         "@COMMON_NAME": "בני גנץ"
                     }
                 }
@@ -1963,7 +1923,7 @@ module.exports = {
             data: {
                 collection_cnt: {
                     cnt: {
-                        "@id": "U3",
+                        "@id": "U'3'",
                         "@COMMON_NAME": "איווט ליברמן"
                     }
                 }
@@ -1973,7 +1933,7 @@ module.exports = {
 
     nonactivecalls: [
         {
-            userUniqueId: "U1",
+            userUniqueId: "1",
             data: {
                 collection_cr: {
                     cr: [
@@ -1982,21 +1942,29 @@ module.exports = {
                             "description": "בדיקת מעבר תקלות פקמז",
                             "status": {
                                 "@COMMON_NAME": "סגור"
-                            }
+                            },
+                            "category": {
+                                "@COMMON_NAME": "WNET. השבתה זמנית של אפליקציית AIRPORT"
+                            },
+                            "open_date": 1577829800000
                         },
                         {
                             "@COMMON_NAME": "224937",
                             "description": "בדיקת תקינות שקעים",
                             "status": {
                                 "@COMMON_NAME": "סגור"
-                            }
+                            },
+                            "category": {
+                                "@COMMON_NAME": "עד הקצה. יוזר תקול במערכת Janiks"
+                            },
+                            "open_date": 1577829400000
                         }
                     ]
                 }
             }
         },
         {
-            userUniqueId: "U2",
+            userUniqueId: "2",
             data: {
                 collection_cr: {
                     cr: [
@@ -2005,28 +1973,97 @@ module.exports = {
                             "description": "בדיקת מעבר תקלות פקמז",
                             "status": {
                                 "@COMMON_NAME": "סגור"
-                            }
+                            },
+                            "category": {
+                                "@COMMON_NAME": "צהלנט. אין רשת במחשב"
+                            },
+                            "open_date": 1577822600000
                         },
                         {
                             "@COMMON_NAME": "224333",
                             "description": "בדיקת תקינות שקעים",
                             "status": {
                                 "@COMMON_NAME": "סגור"
-                            }
+                            },
+                            "category": {
+                                "@COMMON_NAME": "נס הרים. תקלה ביוזר TORSER"
+                            },
+                            "open_date": 1577823600000
                         },
                         {
                             "@COMMON_NAME": "186611",
                             "description": "חימום פורט",
                             "status": {
                                 "@COMMON_NAME": "סגור"
-                            }
+                            },
+                            "category": {
+                                "@COMMON_NAME": "WNET. השבתה זמנית של אפליקציית AIRPORT"
+                            },
+                            "open_date": 1577825600000
                         },
                         {
                             "@COMMON_NAME": "224333",
                             "description": "התקנת עמדה",
                             "status": {
                                 "@COMMON_NAME": "סגור"
-                            }
+                            },
+                            "category": {
+                                "@COMMON_NAME": "WNET. השבתה זמנית של אפליקציית AIRPORT"
+                            },
+                            "open_date": 1577822100000
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            userUniqueId: "3",
+            data: {
+                collection_cr: {
+                    cr: [
+                        {
+                            "@COMMON_NAME": "186611",
+                            "description": "בדיקת מעבר תקלות פקמז",
+                            "status": {
+                                "@COMMON_NAME": "סגור"
+                            },
+                            "category": {
+                                "@COMMON_NAME": "צהלנט. אין רשת במחשב"
+                            },
+                            "open_date": 1577822600000
+                        },
+                        {
+                            "@COMMON_NAME": "224333",
+                            "description": "בדיקת תקינות שקעים",
+                            "status": {
+                                "@COMMON_NAME": "סגור"
+                            },
+                            "category": {
+                                "@COMMON_NAME": "נס הרים. תקלה ביוזר TORSER"
+                            },
+                            "open_date": 1577823600000
+                        },
+                        {
+                            "@COMMON_NAME": "186611",
+                            "description": "חימום פורט",
+                            "status": {
+                                "@COMMON_NAME": "סגור"
+                            },
+                            "category": {
+                                "@COMMON_NAME": "WNET. השבתה זמנית של אפליקציית AIRPORT"
+                            },
+                            "open_date": 1577825600000
+                        },
+                        {
+                            "@COMMON_NAME": "224333",
+                            "description": "התקנת עמדה",
+                            "status": {
+                                "@COMMON_NAME": "סגור"
+                            },
+                            "category": {
+                                "@COMMON_NAME": "WNET. השבתה זמנית של אפליקציית AIRPORT"
+                            },
+                            "open_date": 1577822100000
                         }
                     ]
                 }
@@ -2036,7 +2073,7 @@ module.exports = {
 
     activecalls: [
         {
-            userUniqueId: "U1",
+            userUniqueId: "1",
             data: {
                 collection_cr: {
                     cr: [
@@ -2045,21 +2082,29 @@ module.exports = {
                             "description": "התקנת עמדה",
                             "status": {
                                 "@COMMON_NAME": "פתוח"
-                            }
+                            },
+                            "category": {
+                                "@COMMON_NAME": "WNET. השבתה זמנית של אפליקציית AIRPORT"
+                            },
+                            "open_date": 1577822100000
                         },
                         {
                             "@COMMON_NAME": "244937",
                             "description": "חימום פורט",
                             "status": {
                                 "@COMMON_NAME": "פתיחה מחדש"
-                            }
+                            },
+                            "category": {
+                                "@COMMON_NAME": "WNET. השבתה זמנית של אפליקציית AIRPORT"
+                            },
+                            "open_date": 1577822100000
                         }
                     ]
                 }
             }
         },
         {
-            userUniqueId: "U2",
+            userUniqueId: "2",
             data: {
                 collection_cr: {
                     cr: [
@@ -2068,28 +2113,97 @@ module.exports = {
                             "description": "התקנת עמדה",
                             "status": {
                                 "@COMMON_NAME": "פתוח"
-                            }
+                            },
+                            "category": {
+                                "@COMMON_NAME": "WNET. השבתה זמנית של אפליקציית AIRPORT"
+                            },
+                            "open_date": 1577822100000
                         },
                         {
                             "@COMMON_NAME": "227993",
                             "description": "התקנת עמדה",
                             "status": {
                                 "@COMMON_NAME": "פתוח"
-                            }
+                            },
+                            "category": {
+                                "@COMMON_NAME": "WNET. השבתה זמנית של אפליקציית AIRPORT"
+                            },
+                            "open_date": 1577822100000
                         },
                         {
                             "@COMMON_NAME": "123321",
                             "description": "התקנת עמדה",
                             "status": {
                                 "@COMMON_NAME": "נפתח מחדש"
-                            }
+                            },
+                            "category": {
+                                "@COMMON_NAME": "WNET. השבתה זמנית של אפליקציית AIRPORT"
+                            },
+                            "open_date": 1577822100000
                         },
                         {
                             "@COMMON_NAME": "291333",
                             "description": "התקנת עמדה",
                             "status": {
                                 "@COMMON_NAME": "פתוח"
-                            }
+                            },
+                            "category": {
+                                "@COMMON_NAME": "WNET. השבתה זמנית של אפליקציית AIRPORT"
+                            },
+                            "open_date": 1577822100000
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            userUniqueId: "3",
+            data: {
+                collection_cr: {
+                    cr: [
+                        {
+                            "@COMMON_NAME": "186318",
+                            "description": "התקנת עמדה",
+                            "status": {
+                                "@COMMON_NAME": "פתוח"
+                            },
+                            "category": {
+                                "@COMMON_NAME": "WNET. השבתה זמנית של אפליקציית AIRPORT"
+                            },
+                            "open_date": 1577822500000
+                        },
+                        {
+                            "@COMMON_NAME": "227996",
+                            "description": "התקנת עמדה",
+                            "status": {
+                                "@COMMON_NAME": "פתוח"
+                            },
+                            "category": {
+                                "@COMMON_NAME": "WNET. השבתה זמנית של אפליקציית AIRPORT"
+                            },
+                            "open_date": 1577822100000
+                        },
+                        {
+                            "@COMMON_NAME": "123317",
+                            "description": "התקנת עמדה",
+                            "status": {
+                                "@COMMON_NAME": "נפתח מחדש"
+                            },
+                            "category": {
+                                "@COMMON_NAME": "WNET. השבתה זמנית של אפליקציית AIRPORT"
+                            },
+                            "open_date": 1577822100000
+                        },
+                        {
+                            "@COMMON_NAME": "291333",
+                            "description": "התקנת עמדה",
+                            "status": {
+                                "@COMMON_NAME": "פתוח"
+                            },
+                            "category": {
+                                "@COMMON_NAME": "WNET. השבתה זמנית של אפליקציית AIRPORT"
+                            },
+                            "open_date": 1577822100000
                         }
                     ]
                 }

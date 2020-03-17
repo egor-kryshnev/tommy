@@ -18,9 +18,7 @@ p {
   outline: 0;
 }
 
-#taskNameTitle {
-  width: 34px;
-  height: 20px;
+.title {
   font-family: Rubik;
   font-size: 14px;
   font-weight: normal;
@@ -29,7 +27,7 @@ p {
   line-height: 1.43;
   letter-spacing: normal;
   text-align: right;
-  color: #3b3b3b;
+  color: #696969;
 }
 
 #taskNameDecoration {
@@ -115,4 +113,30 @@ p {
   padding-left: 40px;
   padding-right: 40px;
   margin-top: -20px;
+}
+
+#taskName {
+  margin-right: 10px;
+}
+
+#taskCategory {
+  margin-right: 10px;
+}
+
+#taskOpenDate {
+  margin-right: 10px;
+}
+
+#timeTillTreatment {
+  font-family: Rubik;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: right;
+  color: #696969;
+  margin-right: 10px;
+  transform: translate(0%, -30%);
 }

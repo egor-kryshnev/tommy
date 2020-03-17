@@ -25,6 +25,8 @@ export interface taskModel1 {
   "id": string;
   "description": string;
   "status": string;
+  "category": string;
+  "open_date": number;
 }
 
 export interface updatesModel {
@@ -78,7 +80,7 @@ export class ApigetService {
     .set('Content-type', 'application/json')
     .set('X-AccessKey', this.accessKey)
     .set('Accept', 'application/json')
-    .set('X-Obj-Attrs', 'status, summary, description');
+    .set('X-Obj-Attrs', 'status, description, category, open_date');
 
   updatesHeaders = new HttpHeaders()
     .set('Content-type', 'application/json')
@@ -161,7 +163,9 @@ export class ApigetService {
           {
             "id": element["@COMMON_NAME"],
             "description": element.description,
-            "status": element.status["@COMMON_NAME"]
+            "status": element.status["@COMMON_NAME"],
+            "category": element.category["@COMMON_NAME"],
+            "open_date": element.open_date,
           } as taskModel1
         );
       })

@@ -2,26 +2,27 @@
 <mat-dialog-content class="mat-typography">
   <div id="topContainer">
     <div>
+      <p class="inline" id="timeTillTreatment">זמן צפוי לטיפול יומיים</p>
       <img src="../../assets/timeUntilTreatment.svg">
     </div>
     <div>
-      <!-- <h4>{{ data.name }}</h4> -->
-      <p class="inline" id="taskNameTitle">תקלה</p>
+      <p class="inline" id="taskName">{{ getDesc() }}</p>
+      <p class="inline title">תקלה</p>
       <div id="taskNameDecoration"></div>
     </div>
   </div>
   <div id="midContainer">
     <div>
       <h4 class="inline" id="taskId">{{ data.id }}</h4>
-      <p class="inline">קריאה</p>
+      <p class="inline title">קריאה</p>
     </div>
     <div>
-      <!-- <h4 class="inline">{{ data.category }}</h4> -->
-      <p class="inline">קטגוריה</p>
+      <p class="inline" id="taskCategory">{{ getCategory() }}</p>
+      <p class="inline title">קטגוריה</p>
     </div>
     <div>
-      <!-- <h4 class="inline">{{ data.openedAt }}</h4> -->
-      <p class="inline">נפתחה ב </p>
+      <p class="inline" id="taskOpenDate">{{ getOpenDate() }}</p>
+      <p class="inline title">נפתחה ב </p>
     </div>
   </div>
   <div id="bottomContainer">
