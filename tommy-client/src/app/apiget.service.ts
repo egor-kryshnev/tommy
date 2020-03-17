@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { config } from './../environments/config.dev';
+import { config } from './../environments/config.dev-no-prox';
 
 interface model {
   "@id": string;
@@ -27,10 +27,10 @@ export interface taskModel1 {
   "status": string;
 }
 
-export interface updatesModel{
+export interface updatesModel {
   "name": string;
   "description": string;
-  "open_date": Date;
+  "open_date": string;
 }
 
 @Injectable({
@@ -80,11 +80,10 @@ export class ApigetService {
     .set('Accept', 'application/json')
     .set('X-Obj-Attrs', 'status, summary, description');
 
-    updatesHeaders = new HttpHeaders()
+  updatesHeaders = new HttpHeaders()
     .set('Content-type', 'application/json')
     .set('X-AccessKey', this.accessKey)
     .set('Accept', 'application/json')
-    // .set('X-Obj-Attrs', 'category, open_date, description');
     .set('X-Obj-Attrs', 'category, description, open_date');
 
   getNetworks() {
@@ -94,7 +93,7 @@ export class ApigetService {
       { headers: this.head }
     ).subscribe((res: any) => {
       this.networksArray = res.collection_nr.nr;
-      // console.log(this.networksArray);
+      console.log(this.networksArray);
       this.networksArray.forEach((networkObject: any) => {
         this.networksByIdArray.push(
           {
@@ -110,13 +109,13 @@ export class ApigetService {
 
   getUUID(UUID) {
     return this.http.get(config.GET_UUID_URL_FUNCTION(UUID),
-    { headers: this.servicesHeaders });
+      { headers: this.servicesHeaders });
   }
 
-  getUpdates(){
+  getUpdates() {
     console.log("qwerty");
     return this.http.get(config.GET_UPDATES,
-    { headers: this.updatesHeaders })
+      { headers: this.updatesHeaders })
   }
 
 

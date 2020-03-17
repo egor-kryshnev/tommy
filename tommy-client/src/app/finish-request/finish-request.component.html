@@ -1,0 +1,23 @@
+<div class="dialog-container">
+    <div class="flex-container">
+        <div class="top-icon-container">
+            <img src="../../assets/group-10.svg" alt="check-icon">
+        </div>
+        <p id="title-text">
+            עדכונים ותקלות רוחביות
+        </p>
+        <p id="request-text">
+            #בקשה
+            <span id="request-id-text">{{requestId}}</span>
+        </p>
+        <p id="bottom-text">
+            דיווח אודות {{requestId}} בתחנת העבודה הועברה לטיפול. ניתן לעקוב אחר הטיפול בפנייתך בעמוד הראשי
+        </p>
+        <div (click)="onFinishClick()" class="finish-button-container">
+            <div id="finish-text">סיום</div>
+            <div id="icon">
+                <img src="../../assets/path-copy.svg" alt="check-icon">
+            </div>
+        </div>
+    </div>
+</div>
