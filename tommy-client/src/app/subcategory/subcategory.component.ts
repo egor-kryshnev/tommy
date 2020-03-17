@@ -32,7 +32,7 @@ export class SubcategoryComponent implements OnInit {
   }
 
   onReturn() {
-    this.router.navigate(['/services', this.postReqService.serviceId], { relativeTo: this.route });
+    this.router.navigate(['/categories', this.postReqService.serviceId], { relativeTo: this.route });
   }
 
 }
