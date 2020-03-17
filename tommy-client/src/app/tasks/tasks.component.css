@@ -4,20 +4,32 @@
     font-family: Rubik;
     src: url(../../assets/Rubik-Medium.ttf);
 }
-  
+
 .task {
     width: 800px;
     height: 100px;
     border-radius: 4px;
-    border: solid 1px #afc514;
+    border: solid 2px #9b98984b;
     background-color: #ffffff;
     margin-bottom: 20px;
-    transition: 0.5s;
+    transition: 0.2s;
 }
+
+.task:hover {
+  border-radius: 4px;
+  border: solid 1px #afc514;
+  /* width: 805px;
+  height: 102px; */
+}
+
 
 .task #task-title{
     float: right;
+    right: 80px;
+    position: relative;
+    top: -2px;
     font-family: Rubik;
+
 }
 
 .new-task-container{
@@ -26,7 +38,14 @@
 
 #task-status{
     font-family: Rubik;
-} 
+    float: right;
+    right: 3px;
+    position: relative;
+    top: 52px;
+    text-align: center;
+    max-width: 40px;
+    max-height: 20px;
+}
 
 .new-task-button:hover{
     cursor: pointer;
@@ -49,6 +68,16 @@
     box-shadow: 0 5px 14px 0 rgba(206, 206, 206, 0.5);
     background-color: #afc514;
 }
+
+.kav{
+  position: relative;
+  float: right;
+  right: 30px;
+  width: 1px;
+  height: 70px;
+  background-color: #d8d8d8;
+}
+
 
 .new-task-button #button-text{
     width: 88px;
@@ -143,19 +172,19 @@
 #scrollBar {
     margin-right: 10px;
   }
-  
+
   #scrollBar::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
     background-color: rgba(63, 156, 103, 0.3);
   }
-  
+
   #scrollBar::-webkit-scrollbar {
     width: 4px;
     height: 10px;
     background-color: rgba(63, 156, 103, 0.3);
   }
-  
+
   #scrollBar::-webkit-scrollbar-thumb {
     border-radius: 1.5px;
     /* size: 10px; */
@@ -163,10 +192,10 @@
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
     background-color: #3f9c67;
   }
-  
 
 
-  
+
+
 
 
 
