@@ -6,6 +6,6 @@ export interface AccessToken {
         "@href": string,
         "@rel": string
     },
-    access_key: number,
-    expiration_date: number
+    "access_key": number,
+    "expiration_date": number
 }

@@ -24,7 +24,7 @@
     
     <cdk-virtual-scroll-viewport id="scrollBar" style="height: 520px; width: 820px;" itemSize="50" class="viewport">
         <div *ngFor="let task of tasksByIdArray">
-            <div class="task">
+            <div class="task" (click)="openTaskDetailDialog(task)">
                 <p id="task-title">{{ task.description }}</p>
                 <p id="task-id">מספר פניה: {{ task.id }}</p>
                 <p id="task-status">סטטוס: {{ task.status }}</p>

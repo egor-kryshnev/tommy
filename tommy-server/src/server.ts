@@ -45,6 +45,7 @@ export class Server {
 
     private configureMiddlewares() {
         this.app.use(helmet());
+        // this.app.disable('etag');
 
         this.app.get('/isalive', function (req: express.Request, res: express.Response, next: express.NextFunction) {
             res.status(200).send('Server Is Up');

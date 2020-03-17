@@ -23,7 +23,7 @@ export class AuthService {
       console.log(res);
       this.user = res;
       this.userName = res.name.firstName + " " + res.name.lastName;
-      this.userT = res.id.split("@")[0];
+      this.userT = res.adfsId.split("@")[0];
       this.phone = res.phoneNumbers;
       this.api.getUUID(this.userT).subscribe((res: any) => {
         this.userUUID = res.collection_cnt.cnt['@id'];

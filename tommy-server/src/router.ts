@@ -25,15 +25,28 @@ AppRouter.post('*', (req: Request, res: Response, next: NextFunction) => {
 
 AppRouter.all('*', async (req: Request, res: Response) => {
     console.log(req.method, `http:/${req.url}`);
-    axios({
-        method: req.method,
-        url: `http:/${req.url}`,
-        params: req.params,
-        headers: { ...req.headers, 'x-accesskey': await AccessTokenService.getAccessToken() },
-        data: req.body
-    })
-        .then((apiRes) => res.status(apiRes.status).send(apiRes.data))
-        .catch((err: Error) => { throw new ServerError(err.message) });
+    try {
+
+        res.setHeader('Last-Modified', (new Date()).toUTCString());
+        
+        const apiHeaders = { ...req.headers };
+        apiHeaders['X-AccessKey'] = await AccessTokenService.getAccessToken();
+
+        const apiRes = await axios({
+            method: req.method,
+            url: `http:/${req.url}`,
+            params: req.params,
+            headers: apiHeaders,
+            data: req.body
+        });
+
+        res.status(apiRes.status).send(apiRes.data);
+    } catch (e) {
+        console.log('error')
+
+        console.error(e.message);
+        res.send(e.data);
+    }
 })
 
 export { AppRouter };

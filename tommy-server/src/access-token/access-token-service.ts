@@ -14,23 +14,18 @@ export class AccessTokenService {
 
     public static async getAccessToken(): Promise<string> {
         if (!this.accessToken || this.accessToken.expiration_date - new Date().getMilliseconds() <= 0) {
-            const redisAccessToken = await this.getAccessTokenRedis('x-accesskey');
+            const redisAccessToken = await this.getAccessTokenRedis('X-AccessKey');
 
             if (redisAccessToken) {
                 console.log(`Access Key brought from redis: ${redisAccessToken}`)
                 this.accessToken = JSON.parse(redisAccessToken);
             } else {
-                axios(config.lehava_api.request)
-                    .then(async (apiRes) => {
-                        console.log(`Access Key brought from lehava api: ${redisAccessToken}`)
-                        this.accessToken = apiRes.data;
-                        await this.setAccessTokenRedis('x-accesskey', JSON.stringify(apiRes.data));
-                    })
-                    .catch((err: Error) => {
-                        throw new ServerError(err.message);
-                    });
+                const apiRes = await axios(config.lehava_api.request);
+                console.log(`Access Key brought from lehava api: ${redisAccessToken}`)
+                this.accessToken = apiRes.data;
+                await this.setAccessTokenRedis('X-AccessKey', JSON.stringify(apiRes.data));
             }
         }
-        return this.accessToken['@id'];
+        return String(this.accessToken['access_key']);
     }
 }
