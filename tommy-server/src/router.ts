@@ -27,6 +27,8 @@ AppRouter.all('*', async (req: Request, res: Response) => {
     console.log(req.method, `http:/${req.url}`);
     try {
 
+        res.setHeader('Last-Modified', (new Date()).toUTCString());
+        
         const apiHeaders = { ...req.headers };
         apiHeaders['X-AccessKey'] = await AccessTokenService.getAccessToken();
 
@@ -37,9 +39,13 @@ AppRouter.all('*', async (req: Request, res: Response) => {
             headers: apiHeaders,
             data: req.body
         });
+
         res.status(apiRes.status).send(apiRes.data);
     } catch (e) {
-        console.error(e);
+        console.log('error')
+
+        console.error(e.message);
+        res.send(e.data);
     }
 })
 

@@ -27,7 +27,7 @@ export class AppComponent {
     this.authService.loginSub().subscribe((res: any) => {
       console.log(res);
       this.userName = res.name.firstName + " " + res.name.lastName;
-      this.userT = res.id.split("@")[0];
+      this.userT = res.adfsId.split("@")[0];
       this.authService.setUser(this.userT);
       this.authService.setUserShraga(res);
       this._eventEmmiter.sendUser(res);
