@@ -1,4 +1,5 @@
 const lehavaData = require('../config/lehavaData')
+const arraysearch = require('../modules/arraysearch')
 
 module.exports = {
 
@@ -19,6 +20,13 @@ module.exports = {
             }
         } return false;
     },
+    allNetworksWCValidator: (req) => {
+        if (req.query.WC) {
+            if (req.query.WC == 'class=1000792 and delete_flag=0') {
+                return true;
+            }
+        } return false;
+    },
     servicesValidator: (req) => {
         if (req.query.WC) {
             if (req.query.WC.startsWith("network=U\'") && req.header('X-Obj-Attrs') == 'service') {
@@ -31,6 +39,11 @@ module.exports = {
             if (req.query.WC.startsWith("z_impact_service=U'")) {
                 return true;
             }
+        } return false;
+    },
+    userExistsValidator: (req) => {
+        if (lehavaData.users[arraysearch("T", req.query.WC.split("'")[1], lehavaData.users)]) {
+            return true;
         } return false;
     },
     updatesValidator: (req) => {

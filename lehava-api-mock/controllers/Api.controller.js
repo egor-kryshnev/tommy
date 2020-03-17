@@ -1,24 +1,12 @@
 const lehavaData = require('../config/lehavaData')
 const validator = require('../validators')
 const arraysearch = require('../modules/arraysearch')
+const headerValidators = require('../routes/api.router')
 
 module.exports = (app) => {
 
-    // Middlewares
-    app.post('/caisd-rest/*', (req, res, next) => {
-        if (validator.basicHeaderValidator(req)) {
-            next();
-        } else {
-            res.status(400).send({ error: "Headers not sent properly" });
-        }
-    });
-    app.get('/caisd-rest/*', (req, res, next) => {
-        if (validator.headerValidator(req)) {
-            next();
-        } else {
-            res.status(400).send({ error: "Headers not sent properly" });
-        }
-    });
+    // Header Values Middleware-Validator
+    app.use('/caisd-rest', headerValidators);
 
     // get access key by POST request (access key is valid for one week only)
     app.post('/caisd-rest/rest_access', (req, res) => {
@@ -27,7 +15,7 @@ module.exports = (app) => {
 
     // GET all networks details
     app.get('/caisd-rest/nr', (req, res) => {
-        if (req.query.WC == 'class=1000792 and delete_flag=0') {
+        if (validator.allNetworksWCValidator(req)) {
             res.json(lehavaData.all_networks);
         } else {
             res.status(400).send({ error: "WC Parameter not set properly" });
@@ -63,24 +51,24 @@ module.exports = (app) => {
 
     // GET user Unique id by T username
     app.get('/caisd-rest/cnt', (req, res) => {
-        console.log(req.query);
-        
-        res.json(lehavaData.users[arraysearch("T", req.query.WC.split("'")[1], lehavaData.users)].data);
+        if (validator.userExistsValidator(req)) {
+            res.json(lehavaData.users[arraysearch("T", req.query.WC.split("'")[1], lehavaData.users)].data);
+        } else {
+            res.status(400).send({ error: `User:${req.query.WC.split("'")[1]} Doesn't Exist` });
+        }
     });
 
     // GET user active and non-active calls by user unique id
     app.get('/caisd-rest/cr', (req, res) => {
         if (validator.userCallsHeaderValidator(req)) {
             if (req.query.WC.split("active=")[1] == 0) {
-                // respond Non active calls
+                // Respond Non active calls
                 res.json(lehavaData.nonactivecalls[arraysearch("userUniqueId", req.query.WC.split("'")[1], lehavaData.nonactivecalls)].data);
             } else if (req.query.WC.split("active=")[1] == 1) {
-                // respond active calls
+                // Respond Active calls
                 res.json(lehavaData.activecalls[arraysearch("userUniqueId", req.query.WC.split("'")[1], lehavaData.activecalls)].data);
-            } else {
-                res.status(400).send("Bad GET Parameters");
             }
-        } if (validator.updatesValidator(req)) {
+        } else if (validator.updatesValidator(req)) {
             res.send(lehavaData.updates);
         } else {
             res.status(400).send({ error: "Header is not sent in your request" });

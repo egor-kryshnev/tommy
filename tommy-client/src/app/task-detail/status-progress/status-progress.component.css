@@ -1,0 +1,73 @@
+.progressCircleNotPressed {
+  width: 29px;
+  height: 29px;
+  border: solid 1px #afc514;
+  border-radius: 30px;
+  background-color: #ffffff;
+}
+
+.progressCirclePressed {
+  width: 29px;
+  height: 29px;
+  background-color: #afc514;
+  border-radius: 30px;
+}
+
+.progressCirclePressed p {
+  color: white;
+}
+
+.progressCircleNotPressed p {
+  color: #696969;
+}
+
+.statusPressed {
+  margin-top: 5px;
+  margin-right: 10px;
+  font-family: Rubik;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: right;
+  color: #afc514;
+}
+
+.statusNotPressed {
+  margin-top: 5px;
+  margin-right: 10px;
+  font-family: Rubik;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: right;
+  color: #696969;
+}
+
+#dashedLine {
+  background-image: linear-gradient(to bottom, #979797, #979797);
+  background-position: right;
+  background-size: 2px 3px;
+  background-repeat: repeat-y;
+  height: 5px;
+  position: relative;
+  right: 9%;
+  top: 0%;
+  z-index: 1;
+}
+
+#statusProgressBody {
+  display: flex;
+  padding-top: 5px;
+  z-index: 2;
+}
+
+#circleNumber {
+  text-align: center;
+  margin-top: 4px;
+}

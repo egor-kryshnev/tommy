@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApigetService, taskModel1 } from '../apiget.service';
 import { AuthService } from '../auth.service';
 import { EventEmiterService } from '../event.emmiter.service';
+import { TaskDetailDialog } from './../task-detail/task-detail.component';
 
 export interface Pnia {
   title: string;
@@ -25,7 +26,7 @@ export class TasksComponent implements OnInit {
   tasksByIdArray: taskModel1[] = [];
   tasks: taskModel1[];
 
-  constructor(private router: Router, private route: ActivatedRoute, public aPIgetService:  ApigetService, public _eventEmmitter: EventEmiterService, public authService: AuthService) { }
+  constructor(private router: Router, private route: ActivatedRoute, public aPIgetService:  ApigetService, public _eventEmmitter: EventEmiterService, public authService: AuthService, public taskDetailDialog: MatDialog) { }
 
   ngOnInit(){
     this._eventEmmitter.dataStr.subscribe(data => {
@@ -73,5 +74,9 @@ export class TasksComponent implements OnInit {
 
   clickedClosedTasks() {
     if (this.selectedOpenTasks) this.selectedOpenTasks = false;
+  }
+
+  openTaskDetailDialog(task: taskModel1) {
+    this.taskDetailDialog.open(TaskDetailDialog, { width: "720px", height: "400px", data: task });
   }
 }

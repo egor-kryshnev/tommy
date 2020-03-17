@@ -21,7 +21,7 @@ export const config = {
     lehava_api: {
         request: {
             method: 'POST',
-            url: process.env.LEHAVA_API_URL || "http://localhost:8050/caisd-rest/rest_access",
+            url: process.env.LEHAVA_API_URL || "http://lehava-api-mock:8050/caisd-rest/rest_access",
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json",

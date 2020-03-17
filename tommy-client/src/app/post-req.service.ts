@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { config } from 'src/environments/config.dev-no-prox';
+import { config } from 'src/environments/config.dev';
 
 
 export interface PostResponse {
