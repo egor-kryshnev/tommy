@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { config } from 'src/environments/config.dev';
 
-
 export interface PostResponse {
   "cr": {
     "@COMMON_NAME": string
