@@ -77,6 +77,11 @@ export class Server {
             resave: false,
             saveUninitialized: true
         }));
+
+        this.app.all('*', (req: express.Request, res: express.Response, next: express.NextFunction) => {
+            res.setHeader('Last-Modified', (new Date()).toUTCString());
+            next();
+        });
     }
 
     private initializeErrorHandler() {
