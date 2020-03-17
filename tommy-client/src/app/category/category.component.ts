@@ -15,7 +15,8 @@ export class CategoryComponent implements OnInit {
   public categoriesToDisplay: Array<string>;
   categoriesLoaded: Promise<boolean>;
   // public categories: Array<Array<string>>;
-  constructor(public categoryService: CategoryService, public route: ActivatedRoute, private router: Router, public postReqService: PostReqService) { }
+  constructor(public categoryService: CategoryService, public route: ActivatedRoute, private router: Router,
+    public postReqService: PostReqService) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -56,7 +57,6 @@ export class CategoryComponent implements OnInit {
   selectedCategory(category: string) {
     this.categoryService.updateSelectedCategory(category);
     const selectedCategories: string = this.categoryService.getSelectedCategoryString();
-    
     if (this.categoryService.hasNextSubCategory()) {
       this.router.navigate(['/subcategories', selectedCategories], { relativeTo: this.route });
     } else {
@@ -65,7 +65,7 @@ export class CategoryComponent implements OnInit {
   }
 
   onReturn() {
-    this.router.navigateByUrl('newtask', { relativeTo: this.route });
+    this.router.navigate(['/services', this.postReqService.networkId], { relativeTo: this.route });
   }
 
 }

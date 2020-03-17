@@ -7,6 +7,7 @@ import { PostReqService, PostResponse } from '../post-req.service';
 import { CategoryService } from '../category/category.service';
 import { MatDialog } from '@angular/material/dialog';
 import { FinishRequestComponent } from '../finish-request/finish-request.component'
+import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 @Component({
   selector: 'app-description',
@@ -22,7 +23,7 @@ export class DescriptionComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute, public _eventEmmitter: EventEmiterService,
     public authService: AuthService, public postReqService: PostReqService, public categoryService: CategoryService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog, private location: Location) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -35,7 +36,7 @@ export class DescriptionComponent implements OnInit {
   }
 
   onReturn() {
-    this.router.navigateByUrl('services/' + this.route.snapshot.paramMap.get('id'), { relativeTo: this.route });
+    this.router.navigate(['/services', this.postReqService.serviceId], { relativeTo: this.route });
   }
 
   sendPost() {
@@ -52,11 +53,7 @@ export class DescriptionComponent implements OnInit {
         finishRequestDialog.afterClosed().subscribe(result => {
           this.router.navigateByUrl('/', { relativeTo: this.route });
         });
-        // this.router.navigateByUrl('/', { relativeTo: this.route });
       })
-    // this.userPhone = this.authService.getUserShraga().phoneNumbers;
-    // this.userT = this.authService.getUserShraga().id.split("@")[0];
-    // this.aPIgetService.post(this.userUUID, this.userPhone, this.userT ,  );
   }
 
 

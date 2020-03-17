@@ -13,7 +13,6 @@ app.get('/', (req, res) => {
     res.send('This is the Alpha Team Lehava API Mock');
 });
 
-
 apicontroller(app);
 
 let PORT = process.env.PORT || config.port;

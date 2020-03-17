@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../category/category.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PostReqService } from '../post-req.service';
 
 @Component({
   selector: 'app-subcategory',
@@ -9,7 +10,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SubcategoryComponent implements OnInit {
 
-  constructor(public categoryService: CategoryService, public route: ActivatedRoute, private router: Router, ) { }
+  constructor(public categoryService: CategoryService, public route: ActivatedRoute, private router: Router,
+    public postReqService: PostReqService) { }
 
   ngOnInit() {
     console.log("started subCategory");
@@ -19,20 +21,18 @@ export class SubcategoryComponent implements OnInit {
     this.categoryService.updateSelectedCategory(category);
     const selectedCategories: string = this.categoryService.getSelectedCategoryString();
     if (this.categoryService.hasNextSubCategory()) {
-      console.log("in if")
       this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
         this.router.navigate(['/subcategories', selectedCategories], { relativeTo: this.route });
       });
       // this.router.navigate(['/subcategories', selectedCategories], { relativeTo: this.route });
     } else {
-      console.log("in else")
       this.router.navigate(['/description', selectedCategories], { relativeTo: this.route });
     }
     // this.router.navigate(['/subcategories', selectedCategories], {relativeTo: this.route});
   }
 
   onReturn() {
-
+    this.router.navigate(['/services', this.postReqService.serviceId], { relativeTo: this.route });
   }
 
 }
