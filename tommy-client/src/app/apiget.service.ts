@@ -90,7 +90,6 @@ export class ApigetService {
 
   getNetworks() {
     this.networksByIdArray = [];
-    console.log("config" + config.GET_NETWORKS_URL);
     this.http.get(config.GET_NETWORKS_URL,
       { headers: this.head }
     ).subscribe((res: any) => {
@@ -115,7 +114,6 @@ export class ApigetService {
   }
 
   getUpdates() {
-    console.log("qwerty");
     return this.http.get(config.GET_UPDATES,
       { headers: this.updatesHeaders })
   }
@@ -126,7 +124,6 @@ export class ApigetService {
     this.http.get(config.GET_SERVICES_URL_FUNCTION(id),
       { headers: this.servicesHeaders }
     ).subscribe((res: any) => {
-      console.log("before");
       this.servicesArray = res.collection_z_networks_to_service.z_networks_to_service;
       this.servicesArray.forEach((element: any) => {
         const serviceObject = element.service;
