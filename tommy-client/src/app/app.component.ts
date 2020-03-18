@@ -42,6 +42,7 @@ export class AppComponent {
         this._eventEmmiter.sendMsg(this.userUUID);
       });
     });
+    console.clear();
   }
 
 

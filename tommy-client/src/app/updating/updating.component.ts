@@ -36,7 +36,6 @@ export class UpdatingComponent implements OnInit {
           // console.log(dateString);
           // let current_datetime = new Date()
           let formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear() + "\xa0\xa0·\xa0\xa0" + current_datetime.getHours() + ":" + current_datetime.getMinutes() 
-          console.log(formatted_date)
           this.updatesArrayFiltered.push(
             {
               "name": element.category["@COMMON_NAME"],
