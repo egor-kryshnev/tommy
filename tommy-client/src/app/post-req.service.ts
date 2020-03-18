@@ -14,15 +14,15 @@ export interface PostResponse {
 })
 
 export class PostReqService {
-
+  
   constructor(private http: HttpClient) { }
-
+  
   requestHead = new HttpHeaders()
-    .set('Content-type', 'application/json')
-    .set('Accept', 'application/json')
-    .set('Authorization', 'Basic c2VydmljZWRlc2s6U0RBZG1pbjAx');
-
-
+  .set('Content-type', 'application/json')
+  .set('Accept', 'application/json')
+  .set('Authorization', 'Basic c2VydmljZWRlc2s6U0RBZG1pbjAx');
+  
+  
   userUUID: string;
   phoneNumber: string;
   priority: string = "505";

@@ -13,7 +13,7 @@ AppRouter.post('*', (req: Request, res: Response, next: NextFunction) => {
     const user: any = req.user;
 
     try {
-        if (user["id"] === req.body.cr.customer['@id']) {
+        if (user.adfsId.split('@')[0] === req.body.cr.z_username) {
             next();
         } else {
             throw new NotPermittedError;

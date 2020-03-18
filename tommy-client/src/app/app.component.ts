@@ -5,6 +5,7 @@ import { AuthService } from './auth.service';
 import { HttpClient } from '@angular/common/http';
 import { ApigetService } from './apiget.service';
 import { EventEmiterService } from './event.emmiter.service';
+import { PostReqService } from './post-req.service';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class AppComponent {
   @Output() exampleOutput = new EventEmitter<string>();
   userUUID: string;
 
-  constructor(@Inject(DOCUMENT) document,public apigetService: ApigetService, private router: Router, private route: ActivatedRoute, private http: HttpClient, public authService: AuthService, public _eventEmmiter: EventEmiterService) {}
+  constructor(@Inject(DOCUMENT) document,public apigetService: ApigetService, private router: Router, private route: ActivatedRoute, private http: HttpClient, public authService: AuthService, public _eventEmmiter: EventEmiterService, private postReqService: PostReqService) {}
 
   ngOnInit() {
     this.authService.loginSub().subscribe((res: any) => {
@@ -38,6 +39,8 @@ export class AppComponent {
         else{
           this.userUUID = res.collection_cnt.cnt['@id'];
         }
+        this.postReqService.userT = this.userT;
+        this.postReqService.userUUID = this.userUUID;
         console.log(this.userUUID);
         this._eventEmmiter.sendMsg(this.userUUID);
       });
