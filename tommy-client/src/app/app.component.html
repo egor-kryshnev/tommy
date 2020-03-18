@@ -1,18 +1,10 @@
-<nb-layout>
-  <nb-layout-header fixed style="direction: rtl;">
-    <div id="recContainer">
-      <div id="leftRec"></div>
-      <div id="midRec"></div>
-      <div id="rightRec"></div>
-    </div>
-    <img src="./assets/group.svg" (click)="onHome()" class="Group">
-    <span class="name"> {{ userName }} </span>
-    <img src="./assets/group-17.svg" class="Group-17">
-  </nb-layout-header>
-  <nb-layout-column>
-    <!-- <button id="btnChat" mat-fab (click)="onOpenChat()" style="background-color: #2d9889;">Chat</button> -->
-    <router-outlet></router-outlet>
-  </nb-layout-column>
-  <!-- <nb-layout-footer fixed> -->
-  <!-- </nb-layout-footer> -->
-</nb-layout>
+<div class=main-layout>
+  <app-header></app-header>
+  <div id="recContainer">
+    <div id="leftRec"></div>
+    <div id="midRec"></div>
+    <div id="rightRec"></div>
+  </div>
+  <!-- <button id="btnChat" mat-fab (click)="onOpenChat()" style="background-color: #2d9889;">Chat</button> -->
+  <router-outlet></router-outlet>
+</div>

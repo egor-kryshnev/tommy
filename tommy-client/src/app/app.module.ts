@@ -28,6 +28,8 @@ import { EventEmiterService } from './event.emmiter.service';
 import { AuthService } from './auth.service';
 import { StatusProgressComponent } from './task-detail/status-progress/status-progress.component';
 import { FinishRequestComponent } from './finish-request/finish-request.component';
+import { MatSliderModule } from '@angular/material/slider';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { FinishRequestComponent } from './finish-request/finish-request.componen
     SubcategoryComponent,
     CategoryListComponent,
     StatusProgressComponent,
-    FinishRequestComponent
+    FinishRequestComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -59,8 +62,8 @@ import { FinishRequestComponent } from './finish-request/finish-request.componen
     HttpClientModule,
     MatDialogModule,
     CommonModule,
-    MatDialogModule
-
+    MatDialogModule,
+    MatSliderModule
   ],
   providers: [EventEmiterService, AuthService, {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
   bootstrap: [AppComponent],
