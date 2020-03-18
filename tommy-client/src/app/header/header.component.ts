@@ -22,7 +22,6 @@ export class HeaderComponent implements OnInit {
 
   onHome(){
     this.router.navigateByUrl('', { relativeTo: this.route });
-    console.log(this.authService.getName());
   }
 
 
