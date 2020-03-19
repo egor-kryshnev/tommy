@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { config } from 'src/environments/config.dev-no-prox';
+import { config } from 'src/environments/config.dev';
 
 export interface PostResponse {
   "cr": {
@@ -14,15 +14,15 @@ export interface PostResponse {
 })
 
 export class PostReqService {
-  
+
   constructor(private http: HttpClient) { }
-  
+
   requestHead = new HttpHeaders()
   .set('Content-type', 'application/json')
   .set('Accept', 'application/json')
   .set('Authorization', 'Basic c2VydmljZWRlc2s6U0RBZG1pbjAx');
-  
-  
+
+
   userUUID: string;
   phoneNumber: string;
   priority: string = "505";
@@ -93,7 +93,7 @@ export class PostReqService {
   //   "cr": {
   //     "customer":
   //     {
-  //       "@id": 
+  //       "@id":
   //     }
   //   }
   // };
