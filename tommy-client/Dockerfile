@@ -3,7 +3,7 @@ WORKDIR /usr/src/app
 COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
 RUN npm install
 COPY . .
-RUN npm run build:prod
+# RUN npm build:prod
 
 # Stage 2 - serve static files
 FROM nginx:alpine

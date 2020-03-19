@@ -4,7 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbThemeModule, NbLayoutModule, NbChatModule, NbCardModule, NbListModule } from '@nebular/theme';
-import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { MatButtonModule } from '@angular/material/button';
 import { TasksComponent } from './tasks/tasks.component';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -16,7 +15,6 @@ import { TaskDetailDialog } from './task-detail/task-detail.component';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { NetworksComponent } from './networks/networks.component';
-import { ActivatedRoute, Router } from '@angular/router';
 import { ServicesComponent } from './services/services.component';
 import { CategoryComponent } from './category/category.component'
 import { DescriptionComponent } from './description/description.component';
