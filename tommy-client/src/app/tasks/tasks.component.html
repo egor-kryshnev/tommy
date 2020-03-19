@@ -4,14 +4,14 @@
             <p id="text">פניות פתוחות</p>
             <p id="seprate-line"></p>
         </div>
-    
+
         <div [ngClass]="{'selected-tasks': !selectedOpenTasks, 'unselected-tasks' : selectedOpenTasks}"
             (click)="clickedClosedTasks()">
             <p id="text">פניות סגורות</p>
             <p id="seprate-line"></p>
         </div>
     </div>
-    
+
     <div class="new-task-container">
         <div (click)="onOpenDialog()" class="new-task-button">
             <span id="button-text">קריאה חדשה</span>
@@ -20,15 +20,17 @@
             </span>
         </div>
     </div>
-    
-    
+
+
     <cdk-virtual-scroll-viewport id="scrollBar" style="height: 520px; width: 820px;" itemSize="50" class="viewport">
         <div *ngFor="let task of tasksByIdArray">
             <div class="task" (click)="openTaskDetailDialog(task)">
                 <img style="position:relative; float: right; right: 40px; top: 15px; width: 40px;" src="../././../assets/mamtin.png">
                 <p id="task-status">{{ task.status }}</p>
                   <hr class="kav">
+                  <div id="taskNameDecoration"></div>
                   <p id="task-title">{{ task.description }}</p>
+                  <p id="timeTillTreatment">זמן צפוי לטיפול יומיים</p>
                   <p id="task-id">{{ task.id }}</p>
             </div>
         </div>
