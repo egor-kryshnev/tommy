@@ -1,8 +1,20 @@
-/* @import url('https://fonts.googleapis.com/css?family=Rubik&display=swap'); */
 
 @font-face {
     font-family: Rubik;
     src: url(../../assets/Rubik-Medium.ttf);
+}
+
+#taskNameDecoration {
+  width: 9px;
+  height: 9px;
+  border: solid 1px #ff2323;
+  border-radius: 10px;
+  background-color: #ffb7b7;
+  display: inline-block;
+  position: relative;
+  float: right;
+  right: 48px;
+  top: 19px;
 }
 
 .task {
@@ -18,14 +30,12 @@
 .task:hover {
   border-radius: 4px;
   border: solid 1px #afc514;
-  /* width: 805px;
-  height: 102px; */
 }
 
 
 .task #task-title{
     float: right;
-    right: 80px;
+    right: 64px;
     position: relative;
     top: -2px;
     font-family: Rubik;
@@ -139,6 +149,7 @@
     text-align: center;
     color: #3f9c67;
 }
+
 
 .selected-tasks #seprate-line{
     width: 122px;
