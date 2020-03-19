@@ -2169,7 +2169,7 @@ module.exports = {
                         },
                         {
                             "@COMMON_NAME": "227996",
-                            "description": "התקנת עמדה",
+                            "description": "מערכת הפעלה לא עולה",
                             "status": {
                                 "@COMMON_NAME": "פתוח"
                             },
@@ -2180,7 +2180,7 @@ module.exports = {
                         },
                         {
                             "@COMMON_NAME": "123317",
-                            "description": "התקנת עמדה",
+                            "description": "מקלדת לא עובדת",
                             "status": {
                                 "@COMMON_NAME": "נפתח מחדש"
                             },
@@ -2191,9 +2191,64 @@ module.exports = {
                         },
                         {
                             "@COMMON_NAME": "291333",
-                            "description": "התקנת עמדה",
+                            "description": "מייל לא עובד",
                             "status": {
                                 "@COMMON_NAME": "פתוח"
+                            },
+                            "category": {
+                                "@COMMON_NAME": "YNET. השבתה זמנית של אפליקציית AIRPORT"
+                            },
+                            "open_date": 1577822100000
+                        },
+                        {
+                            "@COMMON_NAME": "123317",
+                            "description": "מסך לא נדלק",
+                            "status": {
+                                "@COMMON_NAME": "נפתח מחדש"
+                            },
+                            "category": {
+                                "@COMMON_NAME": "YNET. השבתה זמנית של אפליקציית AIRPORT"
+                            },
+                            "open_date": 1577822100000
+                        },
+                        {
+                            "@COMMON_NAME": "123317",
+                            "description": "אין אינטרנט",
+                            "status": {
+                                "@COMMON_NAME": "נפתח מחדש"
+                            },
+                            "category": {
+                                "@COMMON_NAME": "YNET. השבתה זמנית של אפליקציית AIRPORT"
+                            },
+                            "open_date": 1577822100000
+                        },
+                        {
+                            "@COMMON_NAME": "123317",
+                            "description": "רמקולים לא עובדים",
+                            "status": {
+                                "@COMMON_NAME": "נפתח מחדש"
+                            },
+                            "category": {
+                                "@COMMON_NAME": "YNET. השבתה זמנית של אפליקציית AIRPORT"
+                            },
+                            "open_date": 1577822100000
+                        },
+                        {
+                            "@COMMON_NAME": "123317",
+                            "description": "מחשב לא נדלק",
+                            "status": {
+                                "@COMMON_NAME": "נפתח מחדש"
+                            },
+                            "category": {
+                                "@COMMON_NAME": "YNET. השבתה זמנית של אפליקציית AIRPORT"
+                            },
+                            "open_date": 1577822100000
+                        },
+                        {
+                            "@COMMON_NAME": "123317",
+                            "description": "אינטרנט בעמדה לא עובד",
+                            "status": {
+                                "@COMMON_NAME": "נפתח מחדש"
                             },
                             "category": {
                                 "@COMMON_NAME": "YNET. השבתה זמנית של אפליקציית AIRPORT"
