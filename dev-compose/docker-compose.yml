@@ -1,13 +1,13 @@
 version: "2.1"
 
 services:
-  # tommy-client:
-  #   image: tommy-client
-  #   build: 
-  #     context: ../tommy-client
-  #     dockerfile: Dockerfile
-  #   environment:
-  #     NODE_ENV: production
+  tommy-client:
+    image: tommy-client
+    build: 
+      context: ../tommy-client
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: production
 
   lehava-api-mock:
     image: lehava-api-mock
@@ -35,7 +35,7 @@ services:
     ports:
       - 80:80
     depends_on:
-      # - tommy-client
+      - tommy-client
       - redis
   
   redis:
