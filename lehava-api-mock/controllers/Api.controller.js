@@ -66,8 +66,7 @@ module.exports = (app) => {
                 res.json(lehavaData.nonactivecalls[arraysearch("userUniqueId", req.query.WC.split("'")[1], lehavaData.nonactivecalls)].data);
             } else if (req.query.WC.split("active=")[1] == 1) {
                 // Respond Active calls
-                // Changed because it did not work
-                res.json(lehavaData.activecalls[0].data);
+                res.json(lehavaData.activecalls[arraysearch("userUniqueId", req.query.WC.split("'")[1], lehavaData.activecalls)].data);
             }
         } else if (validator.updatesValidator(req)) {
             res.send(lehavaData.updates);
