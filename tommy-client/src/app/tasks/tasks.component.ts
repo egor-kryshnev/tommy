@@ -31,6 +31,16 @@ export class TasksComponent implements OnInit {
   ngOnInit() {
     this._eventEmmitter.dataStr.subscribe(data => {
       this._eventEmmitter.str = data;
+    });
+    this.getopen();
+    this.getOpenInReturn(this._eventEmmitter.str);
+  }
+
+
+
+  getopen(){
+    this._eventEmmitter.dataStr.subscribe(data => {
+      this._eventEmmitter.str = data;
       this.aPIgetService.getOpenTasks(data).subscribe((res: any) => {
         this.tasksArray = res.collection_cr.cr;
         this.tasksArray.forEach((element: any) => {
@@ -42,14 +52,16 @@ export class TasksComponent implements OnInit {
               "category": element.category["@COMMON_NAME"],
               "open_date": element.open_date,
             } as taskModel1
-            // this.tasks = this.tasksByIdArray;
           );
         })
       });
     }
     );
-    if (this._eventEmmitter.str) {
-      this.aPIgetService.getOpenTasks(this._eventEmmitter.str).subscribe((res: any) => {
+  }
+
+  getOpenInReturn(event){
+    if (event) {
+      this.aPIgetService.getOpenTasks(event).subscribe((res: any) => {
         this.tasksArray = res.collection_cr.cr;
         this.tasksArray.forEach((element: any) => {
           this.tasksByIdArray.push(
@@ -60,12 +72,14 @@ export class TasksComponent implements OnInit {
               "category": element.category["@COMMON_NAME"],
               "open_date": element.open_date,
             } as taskModel1
-            // this.tasks = this.tasksByIdArray;
           );
         })
       });
     }
   }
+
+
+
 
 
   onOpenDialog() {
