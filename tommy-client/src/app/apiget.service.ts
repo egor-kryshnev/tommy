@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { config } from './../environments/config.dev';
+import { config } from './../environments/config.dev-no-prox';
 
 interface model {
   "@id": string;
@@ -90,22 +90,11 @@ export class ApigetService {
 
   getNetworks() {
     this.networksByIdArray = [];
-    this.http.get(config.GET_NETWORKS_URL,
+    return this.http.get(config.GET_NETWORKS_URL,
       { headers: this.head }
-    ).subscribe((res: any) => {
-      this.networksArray = res.collection_nr.nr;
-      console.log(this.networksArray);
-      this.networksArray.forEach((networkObject: any) => {
-        this.networksByIdArray.push(
-          {
-            "id": networkObject["@id"],
-            "value": networkObject["@COMMON_NAME"]
-          } as model1
-        );
-      })
-    });
-    console.log(this.networksByIdArray);
-    return this.networksByIdArray;
+    );
+    //console.log(this.networksByIdArray);
+    //return this.networksByIdArray;
   }
 
   getUUID(UUID) {
@@ -121,21 +110,9 @@ export class ApigetService {
 
   getServices(id) {
     this.servicesByIdArray = [];
-    this.http.get(config.GET_SERVICES_URL_FUNCTION(id),
+    return this.http.get(config.GET_SERVICES_URL_FUNCTION(id),
       { headers: this.servicesHeaders }
-    ).subscribe((res: any) => {
-      this.servicesArray = res.collection_z_networks_to_service.z_networks_to_service;
-      this.servicesArray.forEach((element: any) => {
-        const serviceObject = element.service;
-        this.servicesByIdArray.push(
-          {
-            "id": serviceObject["@id"],
-            "value": serviceObject["@COMMON_NAME"],
-          } as model1
-        );
-      })
-    });
-    return this.servicesByIdArray;
+    );
   }
 
   // getTasks(){

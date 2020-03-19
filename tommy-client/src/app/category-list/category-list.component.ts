@@ -9,18 +9,43 @@ import { CategoriesDataService } from '../categories-data.service'
   styleUrls: ['./category-list.component.css']
 })
 export class CategoryListComponent implements OnInit {
-  
+
   public categories: Array<String>;
-  @Output() onCategoryChoice: EventEmitter<string> = new EventEmitter<string>(); 
+  categoriesToDisplay: any[];
+  limit: number = 7;
+  @Output() onCategoryChoice: EventEmitter<string> = new EventEmitter<string>();
   constructor(public categoriesDataService: CategoriesDataService, public categoryService: CategoryService) { }
 
   ngOnInit(): void {
     this.categories = this.categoryService.getCategoriesToDisplay();
-    console.log(this.categories);
+    this.setCategoriesToDisplay();
   }
 
-  onCategory(category: string){
+  onCategory(category: string) {
     this.onCategoryChoice.emit(category);
+  }
+
+  showMore() {
+    if (this.categories.length > this.limit) this.limit = this.categories.length;
+    this.setCategoriesToDisplay();
+  }
+
+  showLess() {
+    this.limit = 7;
+    this.setCategoriesToDisplay();
+  }
+
+  setCategoriesToDisplay() {
+    this.categoriesToDisplay = [];
+    let i = 0;
+    for (let category of this.categories) {
+      if (i < this.limit && i < this.categories.length) {
+        this.categoriesToDisplay.push(category);
+        i++;
+      } else {
+        return;
+      }
+    }
   }
 
 }

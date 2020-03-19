@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ApigetService } from './apiget.service';
-import { config } from './../environments/config.dev';
+import { config } from './../environments/config.dev-no-prox';
 
 @Injectable({
   providedIn: 'root'
