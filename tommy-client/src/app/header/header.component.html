@@ -1,5 +1,9 @@
-<div class="main-header">
-    <img src="./assets/group.svg" (click)="onHome()" class="tommy-logo-header">
-    <img src="./assets/group-17.svg" class="one-logo-header">
-    <span class="username-header"> {{ userName }} </span>
-</div>
+<nb-layout>
+<nb-layout-header fixed style="direction: rtl;">
+        <img src="./assets/group.svg" (click)="onHome()" class="Group">
+      <img src="./assets/group-17.svg"
+         class="Group-17">
+        <h4 class="name">{{ userName }}</h4>
+        <!-- <h4 class="name">בן נתנאל</h4> -->
+</nb-layout-header>
+</nb-layout>

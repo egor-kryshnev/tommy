@@ -1,13 +1,9 @@
-.main-layout {
-  height: 100% ;
-  background-color: #f9fafb;
-}
-
-
 nb-chat {
   width: 500px;
   margin: 0.5rem 0 2rem 2rem;
 }
+
+
 
 @font-face {
   font-family: Rubik;
