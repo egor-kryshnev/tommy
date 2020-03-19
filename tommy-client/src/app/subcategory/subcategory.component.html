@@ -1,44 +1,37 @@
 <div id="container">
-        <button class="learn-more" (click)="onReturn()">
-            <span class="circle" aria-hidden="true">
-                <span class="icon arrow"></span>
-            </span>
-            <span class="button-text">לעמוד הקודם</span>
-        </button>
-    </div>
-    
-    <h4 class="potrim">פותרים את מה שלא עובד</h4>
-    
+    <button class="learn-more" (click)="onReturn()">
+        <span class="circle" aria-hidden="true">
+            <span class="icon arrow"></span>
+        </span>
+        <span class="button-text">לעמוד הקודם</span>
+    </button>
+</div>
+
+<h4 class="potrim">פותרים את מה שלא עובד</h4>
+
+<div class="container3">
     <div style="
-        position: absolute;
-        left: 50%;
-        width: 40px;
-        height: 3px;
-        background-color: #2d9889;">
+    width: 40px;
+    height: 3px;
+    background-color: #2d9889;">
     </div>
-    
     <div style="
-        position: absolute;
-        left: 48.1%;
-        width: 40px;
-        height: 3px;
-        background-color: #afc514;">
+    width: 40px;
+    height: 3px;
+    background-color: #afc514;">
     </div>
-    
     <div style="
-        position: absolute;
-        left: 46.2%;
-        width: 40px;
-        height: 3px;
-        background-color: #2d9889;">
+    width: 40px;
+    height: 3px;
+    background-color: #2d9889;">
     </div>
-    
-    <div class="Oval">
-        <img src="../../assets/icon.png" class="Group-5-Copy">
-    </div>
-    
-    <h4 id="kara">:בחרו שירות בו התקלה</h4>
-    
-    <app-category-list (onCategoryChoice)="selectedSubCategory($event)"></app-category-list>
-    
-    
+</div>
+
+<div class="Oval">
+    <img src="../../assets/icon.png" class="Group-5-Copy">
+</div>
+
+<h4 id="kara">:בחרו קטגוריה בה התקלה</h4>
+
+
+<app-category-list (onCategoryChoice)="selectedSubCategory($event)"></app-category-list>

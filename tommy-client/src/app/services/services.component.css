@@ -64,6 +64,7 @@
   left: 2vh;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .card{
@@ -80,6 +81,7 @@
   border-radius: 4px;
   font-family: Rubik;
   width: 32vh;
+  flex: 0 0 0 25%;
 }
 
 .card:hover{
