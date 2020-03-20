@@ -29,10 +29,8 @@ export class DescriptionComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     const selectedCategories = this.categoryService.getSelectedCategoryString();
     this.postReqService.descriptionCategory = selectedCategories;
-    // this.services = this.aPIgetService.getServices(id);
     this._eventEmmitter.user.subscribe(data => this.authService.setUserShraga(data));
     this._eventEmmitter.dataStr.subscribe(data => this.userUUID = data);
-    // this.authService.setUserShraga(this._eventEmmitter.user);
   }
 
   onReturn() {
