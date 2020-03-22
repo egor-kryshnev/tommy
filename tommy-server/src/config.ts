@@ -28,5 +28,9 @@ export const config = {
                 "Authorization": "Basic c2VydmljZWRlc2s6U0RBZG1pbjAx"
             }
         }
+    },
+    rabbitmq: {
+        url: process.env.RABBITMQ_URL || "amqp://rabbitmq:5672",
+        queue_name: "access_token_rpc_queue"
     }
 }

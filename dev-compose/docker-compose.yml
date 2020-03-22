@@ -32,6 +32,7 @@ services:
       SHRAGA_URL: http://13.79.7.3
       CLIENT_URL: http://tommy-client:4200
       REDIS_URL: 'redis://redis:6379'
+      RABBITMQ_URL: "amqp://rabbitmq:5672"
     ports:
       - 80:80
     depends_on:
@@ -44,9 +45,10 @@ services:
     ports:
       - '6379:6379'
 
-  rabbit:
+  rabbitmq:
     image: rabbitmq:management
-    hostname: rabbit
+    container_name: 'rabbitmq'
+    hostname: rabbitmq
     ports:
       - "5672:5672"
       - "15672:15672"
@@ -59,6 +61,8 @@ services:
       dockerfile: Dockerfile
     environment:
       NODE_ENV: production
+      RABBITMQ_URL: "amqp://rabbitmq:5672"
+      REDIS_URL: 'redis://redis:6379'
     depends_on:
       - redis
-      - rabbit
+      - rabbitmq

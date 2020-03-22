@@ -1,6 +1,6 @@
 export const config = {
     redis: {
-        host: process.env.REDIS_URL || 'redis://localhost:6379',
+        host: process.env.REDIS_URL || 'redis://redis:6379',
     },
     lehava_api: {
         request: {
@@ -8,7 +8,7 @@ export const config = {
         }
     },
     rabbitmq: {
-        url: process.env.RABBITMQ_URL || "amqp://localhost",
+        url: process.env.RABBITMQ_URL || "amqp://rabbitmq:5672",
         queue_name: "access_token_rpc_queue"
     }
 }
