@@ -6,6 +6,7 @@ mat-list-item {
   height: 92%;
   grid-area: auto;
   margin-top: 8vh;
+  cursor: context-menu;
 }
 
 @font-face {
