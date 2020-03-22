@@ -24,18 +24,34 @@
 
 
     <cdk-virtual-scroll-viewport id="scrollerComponents" itemSize="50" class="viewport">
-        <div *ngFor="let task of tasksByIdArray">
-            <div class="task" (click)="openTaskDetailDialog(task)">
-                <img class="StatusImg" src="{{ task.icon }}">
-                <p id="task-status">{{ task.status }}</p>
-                  <hr class="kav">
-                  <div id="taskNameDecoration"></div>
-                  <p id="task-date">{{ task.open_date }}</p>
-                  <p id="task-title">{{ task.description }}</p>
+      <div *ngIf="open; else closed">
+    <div *ngFor="let task of tasksByIdArray">
+          <div class="task" (click)="openTaskDetailDialog(task)">
+              <img class="StatusImg" src="{{ task.icon }}">
+              <p id="task-status">{{ task.status }}</p>
+                <hr class="kav">
+                <div id="taskNameDecoration"></div>
+                <p id="task-date">{{ task.open_date }}</p>
+                <p id="task-title">{{ task.description }}</p>
 
-                  <p id="timeTillTreatment">זמן צפוי לטיפול יומיים</p>
-                  <p id="task-id">{{ task.id }}</p>
-            </div>
+                <p id="timeTillTreatment">זמן צפוי לטיפול יומיים</p>
+                <p id="task-id">{{ task.id }}</p>
+          </div>
+      </div>
+    </div>
+    <ng-template #closed>
+      <div *ngFor="let closedtask of tasksByIdArrayClosed">
+        <div class="task" (click)="openTaskDetailDialog(closedtask)">
+            <img class="StatusImg" src="{{ closedtask.icon }}">
+            <p id="task-status">{{ closedtask.status }}</p>
+              <hr class="kav">
+              <div id="taskNameDecoration"></div>
+              <p id="task-date">{{ closedtask.open_date }}</p>
+              <p id="task-title">{{ closedtask.description }}</p>
+              <p id="timeTillTreatment">זמן צפוי לטיפול יומיים</p>
+              <p id="task-id">{{ closedtask.id }}</p>
         </div>
-    </cdk-virtual-scroll-viewport>
+    </div>
+    </ng-template>
+  </cdk-virtual-scroll-viewport>
 </div>

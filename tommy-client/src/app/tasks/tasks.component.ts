@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApigetService, taskModel1 } from '../apiget.service';
@@ -17,15 +17,17 @@ export interface Pnia {
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
-  styleUrls: ['./tasks.component.css'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./tasks.component.css']
 })
 export class TasksComponent implements OnInit {
 
   selectedOpenTasks: Boolean = true;
   tasksArray: taskModel1[] = [];
+  tasksArrayClosed: taskModel1[] =[];
   tasksByIdArray: taskModel1[] = [];
+  tasksByIdArrayClosed: taskModel1[] = [];
   tasks: taskModel1[];
+  open = true;
 
   constructor(private router: Router, private route: ActivatedRoute, public aPIgetService: ApigetService, public _eventEmmitter: EventEmiterService, public authService: AuthService, public taskDetailDialog: MatDialog) { }
 
@@ -34,6 +36,7 @@ export class TasksComponent implements OnInit {
       this._eventEmmitter.str = data;
     });
     this.getopen();
+    this.getClosed();
     this.getOpenInReturn(this._eventEmmitter.str);
   }
 
@@ -68,9 +71,31 @@ export class TasksComponent implements OnInit {
       this.aPIgetService.getOpenTasks(event).subscribe((res: any) => {
         this.tasksArray = res.collection_cr.cr;
         this.tasksArray.forEach((element: any) => {
+          this.tasksByIdArray.push(
+            {
+              "id": element["@COMMON_NAME"],
+              "description": element.description,
+              "status": element.status["@COMMON_NAME"],
+              "category": element.category["@COMMON_NAME"],
+              "open_date": element.open_date,
+              "icon": this.iconGenerator()
+            } as taskModel1
+          );
+        })
+      });
+    }
+  }
+
+  getClosed(){
+    this._eventEmmitter.dataStr.subscribe(data => {
+      this._eventEmmitter.str = data;
+      this.aPIgetService.getClosedTasks(data).subscribe((res: any) => {
+        console.log(res);
+        this.tasksArrayClosed = res.collection_cr.cr;
+        this.tasksArrayClosed.forEach((element: any) => {
           let current_datetime = new Date (element.open_date);
           let formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear()
-          this.tasksByIdArray.push(
+          this.tasksByIdArrayClosed.push(
             {
               "id": element["@COMMON_NAME"],
               "description": element.description,
@@ -83,6 +108,7 @@ export class TasksComponent implements OnInit {
         })
       });
     }
+    );
   }
 
   iconGenerator(){
@@ -96,15 +122,20 @@ export class TasksComponent implements OnInit {
   }
 
   clickedOpenTasks() {
+    this.open = true;
     if (!this.selectedOpenTasks) this.selectedOpenTasks = true;
+
   }
 
   clickedClosedTasks() {
+    this.open = false;
+    this.getClosed();
+    console.log(this.tasksByIdArrayClosed);
     if (this.selectedOpenTasks) this.selectedOpenTasks = false;
   }
 
   openTaskDetailDialog(task: taskModel1) {
-    console.log(task);
+
     this.taskDetailDialog.open(TaskDetailDialog, { width: "720px", height: "400px", data: task });
   }
 }
