@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbChatModule, NbCardModule, NbListModule } from '@nebular/theme';
+// import { NbThemeModule, NbLayoutModule, NbChatModule, NbCardModule, NbListModule } from '@nebular/theme';
 import { MatButtonModule } from '@angular/material/button';
 import { TasksComponent } from './tasks/tasks.component';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -25,6 +25,7 @@ import { EventEmiterService } from './event.emmiter.service';
 import { AuthService } from './auth.service';
 import { StatusProgressComponent } from './task-detail/status-progress/status-progress.component';
 import { FinishRequestComponent } from './finish-request/finish-request.component';
+import { HeaderComponent } from './header/header.component';
 import { CardsListComponent } from './cards-list/cards-list.component';
 
 @NgModule({
@@ -41,14 +42,15 @@ import { CardsListComponent } from './cards-list/cards-list.component';
     SubcategoryComponent,
     StatusProgressComponent,
     FinishRequestComponent,
-    CardsListComponent
+    CardsListComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    NbThemeModule.forRoot({ name: 'default' }),
-    NbLayoutModule,
+    // NbThemeModule.forRoot({ name: 'default' }),
+    // NbLayoutModule,
     MatExpansionModule,
     MatButtonModule,
     MatGridListModule,
