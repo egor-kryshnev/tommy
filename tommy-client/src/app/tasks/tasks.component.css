@@ -4,6 +4,23 @@
     src: url(../../assets/Rubik-Medium.ttf);
 }
 
+#timeTillTreatment {
+  font-family: Rubik;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: right;
+  color: #696969;
+  float: left;
+  position: relative;
+  left: 10px;
+  top: 5px;
+}
+
+
 #taskNameDecoration {
   width: 9px;
   height: 9px;
@@ -14,7 +31,7 @@
   position: relative;
   float: right;
   right: 48px;
-  top: 19px;
+  top: 28px;
 }
 
 .task {
@@ -35,9 +52,9 @@
 
 .task #task-title{
     float: right;
-    right: 64px;
+    right: 58px;
     position: relative;
-    top: -2px;
+    top: 8px;
     font-family: Rubik;
 
 }
