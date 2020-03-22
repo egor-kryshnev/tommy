@@ -1,7 +1,8 @@
-#task-container{
+#task-container {
     margin-top: 12vh;
     margin-right: 5vh;
 }
+
 @font-face {
     font-family: Varela;
     font-style: normal;
@@ -9,47 +10,61 @@
     font-display: swap;
     src: local('Varela Round Regular'), local('VarelaRound-Regular'), url(../../assets/Varela-Round.woff2) format('woff2');
     unicode-range: U+0590-05FF, U+20AA, U+25CC, U+FB1D-FB4F;
-  }
-  @font-face {
+}
+
+@font-face {
     font-family: Rubik-light;
     font-style: normal;
     font-weight: 400;
     src: local('Rubik'), local('Rubik-Regular'), url(../../assets/rubik-light.woff2) format('woff2');
     unicode-range: U+0590-05FF, U+20AA, U+25CC, U+FB1D-FB4F;
-  }
+}
+
 @font-face {
     font-family: Rubik;
     src: url(../../assets/Rubik-Medium.ttf);
 }
 
 #timeTillTreatment {
-  font-family: rubik-light;
-  font-size: 14px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.43;
-  letter-spacing: normal;
-  text-align: right;
-  color: #696969;
-  float: left;
-  position: relative;
-  left: 10px;
-  top: 5px;
+    font-family: rubik-light;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.43;
+    letter-spacing: normal;
+    text-align: right;
+    color: #696969;
+    float: left;
+    position: relative;
+    left: 10px;
+    top: 5px;
 }
 
+#taskNameDecorationOpen {
+    width: 9px;
+    height: 9px;
+    border: solid 1px #37c306;
+    border-radius: 10px;
+    background-color: #d7ffc9;
+    display: inline-block;
+    position: relative;
+    float: right;
+    right: 48px;
+    top: 28px;
+}
 
-#taskNameDecoration {
-  width: 9px;
-  height: 9px;
-  border: solid 1px #ff2323;
-  border-radius: 10px;
-  background-color: #ffb7b7;
-  display: inline-block;
-  position: relative;
-  float: right;
-  right: 48px;
-  top: 28px;
+#taskNameDecorationClosed {
+    width: 9px;
+    height: 9px;
+    border: solid 1px #ff2323;
+    border-radius: 10px;
+    background-color: #ffb7b7;
+    display: inline-block;
+    position: relative;
+    float: right;
+    right: 48px;
+    top: 28px;
 }
 
 .task {
@@ -63,59 +78,58 @@
 }
 
 .task:hover {
-  border-radius: 4px;
-  border: solid 1px #afc514;
+    border-radius: 4px;
+    border: solid 1px #afc514;
 }
 
-
-.task #task-title{
+.task #task-title {
     float: right;
     right: -13px;
     position: relative;
     top: 7px;
     font-family: Rubik;
     color: #3b3b3b;
-
 }
 
-.StatusImg{
-  position:relative;
-  float: right;
-  right: 35px;
-  top: 20px;
-  width: 36px;
+.StatusImg {
+    position: relative;
+    float: right;
+    right: 35px;
+    top: 20px;
+    width: 36px;
 }
 
-#task-id{
-  float: left;
-  position: relative;
-  top: 44px;
-  right: 75px;
-  font-family: Rubik;
-  font-size: 14px;
-  color: #3b3b3b;
+#task-id {
+    float: left;
+    position: relative;
+    top: 44px;
+    right: 75px;
+    font-family: Rubik;
+    font-size: 14px;
+    color: #3b3b3b;
 }
 
-#task-date{
-  position: relative;
-  float: right;
-  right: 56px;
-  font-family: Rubik;
-  font-size: 14px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.43;
-  letter-spacing: normal;
-  text-align: right;
-  color: #3b3b3b;
-  top: 45px;
+#task-date {
+    position: relative;
+    float: right;
+    right: 56px;
+    font-family: Rubik;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.43;
+    letter-spacing: normal;
+    text-align: right;
+    color: #3b3b3b;
+    top: 45px;
 }
-.new-task-container{
+
+.new-task-container {
     margin-bottom: 17px;
 }
 
-#task-status{
+#task-status {
     width: 38px;
     font-family: Rubik-light;
     height: 30px;
@@ -129,7 +143,7 @@
     font-size: 14px;
 }
 
-.new-task-button:hover{
+.new-task-button:hover {
     cursor: pointer;
 }
 
@@ -143,27 +157,25 @@
     border-radius: 23px;
     background-color: #3f9c67;
     transition: ease-in 0.3s;
-
 }
 
-.new-task-button:hover{
+.new-task-button:hover {
     box-shadow: 0 5px 14px 0 rgba(206, 206, 206, 0.5);
     background-color: #afc514;
 }
 
-.kav{
-  position: relative;
-  float: right;
-  right: 30px;
-  width: 1px;
-  height: 70px;
-  background-color: #d8d8d8;
-  border: none;
-  top: 0.5vh;
+.kav {
+    position: relative;
+    float: right;
+    right: 30px;
+    width: 1px;
+    height: 70px;
+    background-color: #d8d8d8;
+    border: none;
+    top: 0.5vh;
 }
 
-
-.new-task-button #button-text{
+.new-task-button #button-text {
     width: 88px;
     height: 19px;
     font-family: Rubik;
@@ -193,12 +205,12 @@
     margin-top: 8px;
 }
 
-.open-closed-tasks{
+.open-closed-tasks {
     display: flex;
     flex-direction: row-reverse;
 }
 
-.open-closed-tasks #text{
+.open-closed-tasks #text {
     margin-left: 5px;
 }
 
@@ -206,11 +218,11 @@
     cursor: context-menu;
 }
 
-.unselected-tasks:hover{
+.unselected-tasks:hover {
     cursor: pointer!important;
 }
 
-.selected-tasks #text{
+.selected-tasks #text {
     width: 112px;
     height: 24px;
     font-family: Rubik;
@@ -224,15 +236,14 @@
     color: #3f9c67;
 }
 
-
-.selected-tasks #seprate-line{
+.selected-tasks #seprate-line {
     width: 122px;
     height: 3px;
     border-radius: 1.5px;
     background-color: #3f9c67;
 }
 
-.unselected-tasks #seprate-line{
+.unselected-tasks #seprate-line {
     width: 122px;
     height: 3px;
     border-radius: 1.5px;
@@ -240,7 +251,7 @@
     visibility: hidden;
 }
 
-.unselected-tasks #text{
+.unselected-tasks #text {
     width: 112px;
     height: 24px;
     font-family: Rubik;
@@ -260,7 +271,7 @@
 }
 
 #scrollerComponents::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
 /* #timeTillTreatment {
