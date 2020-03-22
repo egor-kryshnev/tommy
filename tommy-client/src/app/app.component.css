@@ -1,3 +1,16 @@
 .body{
   background-color: #f9fafb;
 }
+
+
+.chatImg{
+  width: 26px;
+  height: 26px;
+
+}
+
+#btnChat {
+   position: fixed;
+  bottom: 89px;
+  right: 75px;
+}
