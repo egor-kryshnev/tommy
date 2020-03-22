@@ -65,7 +65,6 @@
 .container2{
   position: relative;
   display: flex;
-  left: 2vh;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;

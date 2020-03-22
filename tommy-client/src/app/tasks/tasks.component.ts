@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApigetService, taskModel1 } from '../apiget.service';
@@ -17,7 +17,8 @@ export interface Pnia {
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
-  styleUrls: ['./tasks.component.css']
+  styleUrls: ['./tasks.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class TasksComponent implements OnInit {
 
