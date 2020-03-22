@@ -1,0 +1,21 @@
+{
+  "name": "access-token-service",
+  "version": "1.0.0",
+  "description": "A micro service for acquiring an access token",
+  "main": "server.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc && node ./dist/server.js"
+  },
+  "author": "Yoav Rozner",
+  "license": "ISC",
+  "dependencies": {
+    "@types/amqplib": "^0.5.13",
+    "@types/axios": "^0.14.0",
+    "@types/redis": "^2.8.16",
+    "amqplib": "^0.5.5",
+    "axios": "^0.19.2",
+    "redis": "^3.0.2",
+    "util": "^0.12.2"
+  }
+}
