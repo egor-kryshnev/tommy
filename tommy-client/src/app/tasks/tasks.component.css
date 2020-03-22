@@ -52,10 +52,11 @@
 
 .task #task-title{
     float: right;
-    right: 58px;
+    right: -13px;
     position: relative;
-    top: 8px;
+    top: 7px;
     font-family: Rubik;
+    color: #3b3b3b;
 
 }
 
@@ -74,9 +75,24 @@
   right: 100px;
   font-family: Rubik;
   font-size: 14px;
-  color: #696969;
+  color: #3b3b3b;
 }
 
+#task-date{
+  position: relative;
+  float: right;
+  right: 56px;
+  font-family: Rubik;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: right;
+  color: #3b3b3b;
+  top: 40px;
+}
 .new-task-container{
     margin-bottom: 17px;
 }

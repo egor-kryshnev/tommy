@@ -45,7 +45,7 @@ export class TasksComponent implements OnInit {
         this.tasksArray = res.collection_cr.cr;
         this.tasksArray.forEach((element: any) => {
           let current_datetime = new Date (element.open_date);
-          let formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear() + "\xa0\xa0·\xa0\xa0" + current_datetime.getHours() + ":" + current_datetime.getMinutes()
+          let formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear()
           this.tasksByIdArray.push(
             {
               "id": element["@COMMON_NAME"],
@@ -53,6 +53,7 @@ export class TasksComponent implements OnInit {
               "status": element.status["@COMMON_NAME"],
               "category": element.category["@COMMON_NAME"],
               "open_date": formatted_date,
+              "icon": this.iconGenerator()
             } as taskModel1
           );
         })
@@ -73,6 +74,7 @@ export class TasksComponent implements OnInit {
               "status": element.status["@COMMON_NAME"],
               "category": element.category["@COMMON_NAME"],
               "open_date": element.open_date,
+              "icon": this.iconGenerator()
             } as taskModel1
           );
         })
@@ -80,9 +82,11 @@ export class TasksComponent implements OnInit {
     }
   }
 
-
-
-
+  iconGenerator(){
+    let imgNumber = Math.floor(Math.random() * 3) + 1;;
+    let statusIcon = "../../assets/status" + imgNumber + ".png";
+    return statusIcon;
+  }
 
   onOpenDialog() {
     this.router.navigateByUrl('newtask', { relativeTo: this.route });
