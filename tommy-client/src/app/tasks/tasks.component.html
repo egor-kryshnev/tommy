@@ -25,7 +25,7 @@
     <cdk-virtual-scroll-viewport id="scrollBar" style="height: 520px; width: 820px;" itemSize="50" class="viewport">
         <div *ngFor="let task of tasksByIdArray">
             <div class="task" (click)="openTaskDetailDialog(task)">
-                <img style="position:relative; float: right; right: 40px; top: 15px; width: 40px;" src="../././../assets/mamtin.png">
+                <img class="StatusImg" src="../././../assets/mamtin.png">
                 <p id="task-status">{{ task.status }}</p>
                   <hr class="kav">
                   <div id="taskNameDecoration"></div>

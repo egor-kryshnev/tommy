@@ -59,6 +59,24 @@
 
 }
 
+.StatusImg{
+  position:relative;
+  float: right;
+  right: 35px;
+  top: 10px;
+  width: 36px;
+}
+
+#task-id{
+  float: left;
+  position: relative;
+  top: 40px;
+  right: 100px;
+  font-family: Rubik;
+  font-size: 14px;
+  color: #696969;
+}
+
 .new-task-container{
     margin-bottom: 17px;
 }
@@ -66,12 +84,13 @@
 #task-status{
     font-family: Rubik;
     float: right;
-    right: 3px;
+    right: 2px;
     position: relative;
-    top: 52px;
+    top: 44px;
     text-align: center;
-    max-width: 40px;
+    max-width: 31px;
     max-height: 20px;
+    font-size: 14px;
 }
 
 .new-task-button:hover{
