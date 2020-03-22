@@ -11,15 +11,13 @@ import { PostReqService } from '../post-req.service';
 })
 export class ServicesComponent implements OnInit {
 
-  services: model1[] = [];
-  servicesToDisplay: model1[];
-  limit: number = 7;
+  services: model1[];
   constructor(public aPIgetService: ApigetService, public route: ActivatedRoute, private router: Router, public postReqService: PostReqService) { }
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     this.aPIgetService.getServices(id).subscribe((res: any) => {
-      // this.services = [];
+      this.services = [];
       let servicesResponse = res.collection_z_networks_to_service.z_networks_to_service;
       servicesResponse.forEach((element: any) => {
         const serviceObject = element.service;
@@ -30,7 +28,6 @@ export class ServicesComponent implements OnInit {
           } as model1
         );
       })
-      this.setServicesToDisplay();
     });
   }
 
@@ -38,33 +35,15 @@ export class ServicesComponent implements OnInit {
     this.router.navigateByUrl('newtask', { relativeTo: this.route });
   }
 
-  onService(serviceId) {
-    this.postReqService.serviceId = serviceId;
-    this.router.navigate(['/categories', serviceId], { relativeTo: this.route });
+  onSelectedService(serviceName: string) {
+    const serviceSelected = this.services.find(service => {
+      return service.value == serviceName;
+    });
+    this.postReqService.serviceId = serviceSelected.id;
+    this.router.navigate(['/categories', serviceSelected.id], { relativeTo: this.route });
   }
 
-  showMore() {
-    if (this.services.length > this.limit) this.limit = this.services.length;
-    this.setServicesToDisplay();
+  getServicesNames() {
+    return this.services.map(service => service.value);
   }
-
-  showLess() {
-    this.limit = 7;
-    this.setServicesToDisplay();
-  }
-
-  setServicesToDisplay() {
-    this.servicesToDisplay = [];
-    let i = 0;
-    for (let service of this.services) {
-      if (i < this.limit && i < this.services.length) {
-        this.servicesToDisplay.push(service);
-        i++;
-      } else {
-        return;
-      }
-    }
-  }
-
-
 }
