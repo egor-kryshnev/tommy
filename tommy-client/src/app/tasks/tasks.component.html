@@ -1,4 +1,5 @@
-<div class="open-closed-tasks">
+<div id="task-container">
+    <div class="open-closed-tasks">
         <div [ngClass]="{'selected-tasks': selectedOpenTasks, 'unselected-tasks' : !selectedOpenTasks}"
             (click)="clickedOpenTasks()">
             <p id="text">פניות פתוחות</p>
@@ -22,7 +23,7 @@
     </div>
 
 
-    <cdk-virtual-scroll-viewport id="scrollBar" style="height: 520px; width: 820px;" itemSize="50" class="viewport">
+    <cdk-virtual-scroll-viewport id="scrollerComponents" itemSize="50" class="viewport">
         <div *ngFor="let task of tasksByIdArray">
             <div class="task" (click)="openTaskDetailDialog(task)">
                 <img class="StatusImg" src="{{ task.icon }}">
@@ -37,3 +38,4 @@
             </div>
         </div>
     </cdk-virtual-scroll-viewport>
+</div>

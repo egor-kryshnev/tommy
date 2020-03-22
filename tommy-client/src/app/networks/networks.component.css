@@ -62,6 +62,13 @@
   height: 56px;
 }
 
+.container2{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
 
 .container3{

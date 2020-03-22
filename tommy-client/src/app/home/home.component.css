@@ -1,7 +1,18 @@
 .flex-container {
-    display: flex;
     align-items: center;
-    justify-content: center;
-    flex-wrap: nowrap;
+    display: grid;
+    grid-template-areas: "a b c d e";
+    grid-template-columns: repeat(5,1fr);
+    background-color: #f9fafb;
+    height: 100%;
 }
 
+.task-component {
+    grid-area: c;
+}
+
+.updating-component {
+    grid-area: a;
+    height: 100%;
+    background-color: #fff;
+}
