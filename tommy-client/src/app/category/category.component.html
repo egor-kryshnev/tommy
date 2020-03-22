@@ -33,7 +33,6 @@
 
 <h4 id="kara">:בחרו קטגוריה בה התקלה</h4>
 
-<!-- <h4 id="loved">:אין בעיה, ספרו לנו מה לא עובד ובחרו רשת</h4> -->
+<app-cards-list *ngIf="categoriesLoaded" [cardsList]="categoriesToDisplay" (selected)="selectedCategory($event)">
+</app-cards-list>
 
-<!-- <app-category-list></app-category-list> -->
-<app-category-list *ngIf="categoriesLoaded | async" (onCategoryChoice)="selectedCategory($event)"></app-category-list>

@@ -21,11 +21,11 @@ import { DescriptionComponent } from './description/description.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { SubcategoryComponent } from './subcategory/subcategory.component';
-import { CategoryListComponent } from './category-list/category-list.component'
 import { EventEmiterService } from './event.emmiter.service';
 import { AuthService } from './auth.service';
 import { StatusProgressComponent } from './task-detail/status-progress/status-progress.component';
 import { FinishRequestComponent } from './finish-request/finish-request.component';
+import { CardsListComponent } from './cards-list/cards-list.component';
 
 @NgModule({
   declarations: [
@@ -39,9 +39,9 @@ import { FinishRequestComponent } from './finish-request/finish-request.componen
     DescriptionComponent,
     CategoryComponent,
     SubcategoryComponent,
-    CategoryListComponent,
     StatusProgressComponent,
-    FinishRequestComponent
+    FinishRequestComponent,
+    CardsListComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +60,7 @@ import { FinishRequestComponent } from './finish-request/finish-request.componen
     MatDialogModule
 
   ],
-  providers: [EventEmiterService, AuthService, {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
+  providers: [EventEmiterService, AuthService, { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }],
   bootstrap: [AppComponent],
   entryComponents: [FinishRequestComponent]
 })

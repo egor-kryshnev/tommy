@@ -34,4 +34,5 @@
 <h4 id="kara">:בחרו קטגוריה בה התקלה</h4>
 
 
-<app-category-list (onCategoryChoice)="selectedSubCategory($event)"></app-category-list>
+<app-cards-list *ngIf="categoriesToDisplay" [cardsList]="categoriesToDisplay" (selected)="selectedSubCategory($event)">
+</app-cards-list>
