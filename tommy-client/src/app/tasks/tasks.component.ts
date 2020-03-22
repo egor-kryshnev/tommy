@@ -38,6 +38,7 @@ export class TasksComponent implements OnInit {
     this.getopen();
     this.getClosed();
     this.getOpenInReturn(this._eventEmmitter.str);
+    this.getClosedinReturn(this._eventEmmitter.str);
   }
 
 
@@ -71,13 +72,15 @@ export class TasksComponent implements OnInit {
       this.aPIgetService.getOpenTasks(event).subscribe((res: any) => {
         this.tasksArray = res.collection_cr.cr;
         this.tasksArray.forEach((element: any) => {
+          let current_datetime = new Date (element.open_date);
+          let formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear()
           this.tasksByIdArray.push(
             {
               "id": element["@COMMON_NAME"],
               "description": element.description,
               "status": element.status["@COMMON_NAME"],
               "category": element.category["@COMMON_NAME"],
-              "open_date": element.open_date,
+              "open_date": formatted_date,
               "icon": this.iconGenerator()
             } as taskModel1
           );
@@ -111,6 +114,29 @@ export class TasksComponent implements OnInit {
     );
   }
 
+  getClosedinReturn(event){
+    if (event) {
+    this.aPIgetService.getClosedTasks(event).subscribe((res: any) => {
+      console.log(res);
+      this.tasksArrayClosed = res.collection_cr.cr;
+      this.tasksArrayClosed.forEach((element: any) => {
+        let current_datetime = new Date (element.open_date);
+        let formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear()
+        this.tasksByIdArrayClosed.push(
+          {
+            "id": element["@COMMON_NAME"],
+            "description": element.description,
+            "status": element.status["@COMMON_NAME"],
+            "category": element.category["@COMMON_NAME"],
+            "open_date": formatted_date,
+            "icon": this.iconGenerator()
+          } as taskModel1
+        );
+      })
+    });
+    }
+  }
+
   iconGenerator(){
     let imgNumber = Math.floor(Math.random() * 3) + 1;;
     let statusIcon = "../../assets/status" + imgNumber + ".png";
@@ -124,7 +150,6 @@ export class TasksComponent implements OnInit {
   clickedOpenTasks() {
     this.open = true;
     if (!this.selectedOpenTasks) this.selectedOpenTasks = true;
-
   }
 
   clickedClosedTasks() {
