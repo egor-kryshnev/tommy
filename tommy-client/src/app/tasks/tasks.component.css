@@ -23,7 +23,7 @@
 }
 
 #timeTillTreatment {
-  font-family: Rubik;
+  font-family: rubik-light;
   font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
@@ -82,14 +82,14 @@
   position:relative;
   float: right;
   right: 35px;
-  top: 10px;
+  top: 20px;
   width: 36px;
 }
 
 #task-id{
   float: left;
   position: relative;
-  top: 40px;
+  top: 44px;
   right: 100px;
   font-family: Rubik;
   font-size: 14px;
@@ -109,7 +109,7 @@
   letter-spacing: normal;
   text-align: right;
   color: #3b3b3b;
-  top: 40px;
+  top: 45px;
 }
 .new-task-container{
     margin-bottom: 17px;
@@ -158,6 +158,8 @@
   width: 1px;
   height: 70px;
   background-color: #d8d8d8;
+  border: none;
+  top: 0.5vh;
 }
 
 
@@ -261,14 +263,14 @@
   display: none;
 }
 
-#timeTillTreatment {
+/* #timeTillTreatment {
     font-family: rubik-light;
     margin-left: 20px;
     margin-top: 30px;
     margin-bottom: 10px;
-}
+} */
 
-#task-id {
+/* #task-id {
     margin-left: 50px;
     margin-top: 0px;
-}
+} */

@@ -68,13 +68,15 @@ export class TasksComponent implements OnInit {
       this.aPIgetService.getOpenTasks(event).subscribe((res: any) => {
         this.tasksArray = res.collection_cr.cr;
         this.tasksArray.forEach((element: any) => {
+          let current_datetime = new Date (element.open_date);
+          let formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear()
           this.tasksByIdArray.push(
             {
               "id": element["@COMMON_NAME"],
               "description": element.description,
               "status": element.status["@COMMON_NAME"],
               "category": element.category["@COMMON_NAME"],
-              "open_date": element.open_date,
+              "open_date": formatted_date,
               "icon": this.iconGenerator()
             } as taskModel1
           );
