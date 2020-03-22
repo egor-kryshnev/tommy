@@ -27,6 +27,7 @@ export interface taskModel1 {
   "status": string;
   "category": string;
   "open_date": string;
+  "icon": string;
 }
 
 export interface updatesModel {
