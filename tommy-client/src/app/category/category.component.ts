@@ -14,7 +14,7 @@ export class CategoryComponent implements OnInit {
 
   public categoriesToDisplay: Array<string>;
   categoriesLoaded: Promise<boolean>;
-  // public categories: Array<Array<string>>;
+
   constructor(public categoryService: CategoryService, public route: ActivatedRoute, private router: Router,
     public postReqService: PostReqService) { }
 

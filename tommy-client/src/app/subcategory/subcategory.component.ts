@@ -10,11 +10,13 @@ import { PostReqService } from '../post-req.service';
 })
 export class SubcategoryComponent implements OnInit {
 
+  public categoriesToDisplay: Array<string>;
+  
   constructor(public categoryService: CategoryService, public route: ActivatedRoute, private router: Router,
     public postReqService: PostReqService) { }
 
   ngOnInit() {
-    console.log("started subCategory");
+    this.categoriesToDisplay = this.categoryService.getCategoriesToDisplay();
   }
 
   selectedSubCategory(category: string) {
@@ -24,11 +26,9 @@ export class SubcategoryComponent implements OnInit {
       this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
         this.router.navigate(['/subcategories', selectedCategories], { relativeTo: this.route });
       });
-      // this.router.navigate(['/subcategories', selectedCategories], { relativeTo: this.route });
     } else {
       this.router.navigate(['/description', selectedCategories], { relativeTo: this.route });
     }
-    // this.router.navigate(['/subcategories', selectedCategories], {relativeTo: this.route});
   }
 
   onReturn() {

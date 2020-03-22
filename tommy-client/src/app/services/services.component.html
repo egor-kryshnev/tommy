@@ -33,17 +33,5 @@
 
 <h4 id="kara">:בחרו שירות בו התקלה</h4>
 <!-- <h4 id="loved">:אין בעיה, ספרו לנו מה לא עובד ובחרו רשת</h4> -->
-
-<div class="container2">
-  <div class="card" *ngFor="let service of services" (click)="onService(service.id)">
-    <span id="text-in-card">{{ service.value }}</span>
-  </div>
-
-  <div class="card" *ngIf="limit === 7 && services.length > limit" (click)="showMore()">
-    <span id="text-in-card">הראה עוד</span>
-  </div>
-
-  <div class="card" *ngIf="limit > 7" (click)="showLess()">
-    <span id="text-in-card">הראה פחות</span>
-  </div>
-</div>
+<app-cards-list *ngIf="services" [cardsList]="getServicesNames()" (selected)="onSelectedService($event)">
+</app-cards-list>
