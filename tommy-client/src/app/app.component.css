@@ -32,8 +32,8 @@ nb-chat {
 
 #btnChat {
   position: fixed;
-  bottom: 3px;
-  right: 225px;
+  bottom: 89px;
+  right: 75px;
 }
 
 .Group {
@@ -59,6 +59,12 @@ nb-chat {
   position: absolute;
   left: 14%;
   font-family: Rubik;
+}
+
+.chatImg{
+    width: 26px;
+    height: 26px;
+
 }
 
 #leftRec {

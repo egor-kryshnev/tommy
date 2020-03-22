@@ -53,14 +53,7 @@ export class AppComponent {
     this.router.navigateByUrl('/', { relativeTo: this.route });
   }
 
-  onOpenChat() {
-    if(!this.openChat){
-      document.getElementById('Chat').style.display = "flex";
-    } else {
-      document.getElementById('Chat').style.display = "none";
-    }
-    this.openChat = !this.openChat;
-  }
+ 
 
 
 }
