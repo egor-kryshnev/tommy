@@ -116,35 +116,16 @@ export class ApigetService {
     );
   }
 
-  // getTasks(){
-  //   this.tasksByIdArray = [];
-  //   // this.getOpenTasks(this.getUUID());
-  //   this.getClosedTasks();
-  //   return this.tasksByIdArray;
-  // }
+
 
   getOpenTasks(UUID) {
     return this.http.get(config.GET_OPEN_TASKS_URL_FUNCTION(UUID),
       { headers: this.tasksHeaders })
   }
 
-  getClosedTasks(id) {
-    this.http.get(config.GET_CLOSED_TASKS_URL_FUNCTION(id),
-      { headers: this.tasksHeaders }
-    ).subscribe((res: any) => {
-      this.tasksArray = res.collection_cr.cr;
-      this.tasksArray.forEach((element: any) => {
-        this.tasksByIdArray.push(
-          {
-            "id": element["@COMMON_NAME"],
-            "description": element.description,
-            "status": element.status["@COMMON_NAME"],
-            "category": element.category["@COMMON_NAME"],
-            "open_date": element.open_date,
-          } as taskModel1
-        );
-      })
-    });
+  getClosedTasks(UUID) {
+    return this.http.get(config.GET_CLOSED_TASKS_URL_FUNCTION(UUID),
+      { headers: this.tasksHeaders })
   }
 
   post(uuid, phone, userT, network, service, description) {

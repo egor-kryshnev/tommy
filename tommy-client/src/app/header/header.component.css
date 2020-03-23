@@ -45,12 +45,14 @@
 #one-logo {
     grid-area: c;
     width: 2.2vw;
+    height: 3vh;
     margin-left: 50%;
 }
 
 #tommy-logo {
     grid-area: k;
     width: 10vw;
+    height: 5vh;
 }
 
 @font-face {
@@ -61,4 +63,5 @@
 #username{
     grid-area: d;
     font-family: rubik;
+    font-size: 16px;
 }
