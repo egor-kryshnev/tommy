@@ -24,7 +24,7 @@ AppRouter.post('*', (req: Request, res: Response, next: NextFunction) => {
 
 AppRouter.all('*', async (req: Request, res: Response) => {
     console.log(req.method, `http:/${req.url}`);
-    try {        
+    try {
         const apiHeaders = { ...req.headers };
         apiHeaders['X-AccessKey'] = await AccessTokenProvider.getAccessToken();
 

@@ -20,11 +20,13 @@ export class AccessTokenService {
                 this.accessToken = JSON.parse(redisAccessToken);
             } else {
                 const apiRes = await axios(config.lehava_api.request.url,
-                    { headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json",
-                    "Authorization": "Basic c2VydmljZWRlc2s6U0RBZG1pbjAx"
-                }, method: "POST" });
+                    {
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Accept": "application/json",
+                            "Authorization": "Basic c2VydmljZWRlc2s6U0RBZG1pbjAx"
+                        }, method: "POST"
+                    });
                 console.log(`Access Key brought from lehava api: ${JSON.stringify(apiRes.data)}`)
                 this.accessToken = apiRes.data;
                 await this.setAccessTokenRedis('X-AccessKey', JSON.stringify(apiRes.data));

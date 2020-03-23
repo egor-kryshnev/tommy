@@ -20,12 +20,12 @@ amqp.connect(config.rabbitmq.url, (error0: Error, connection) => {
     channel.consume(queue, async (msg) => {
       if (msg) {
         const accessToken = await AccessTokenService.getAccessToken();
-        
+
         channel.sendToQueue(msg.properties.replyTo,
           Buffer.from(JSON.stringify(accessToken)), {
-            correlationId: msg.properties.correlationId
-          });
-          
+          correlationId: msg.properties.correlationId
+        });
+
         channel.ack(msg);
       }
     });
