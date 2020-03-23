@@ -27,6 +27,8 @@ import { StatusProgressComponent } from './task-detail/status-progress/status-pr
 import { FinishRequestComponent } from './finish-request/finish-request.component';
 import { HeaderComponent } from './header/header.component';
 import { CardsListComponent } from './cards-list/cards-list.component';
+import { ReturnButtonComponent } from './return-button/return-button.component';
+import { PageTopTitleComponent } from './page-top-title/page-top-title.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { CardsListComponent } from './cards-list/cards-list.component';
     StatusProgressComponent,
     FinishRequestComponent,
     CardsListComponent,
-    HeaderComponent
+    HeaderComponent,
+    ReturnButtonComponent,
+    PageTopTitleComponent
   ],
   imports: [
     BrowserModule,
