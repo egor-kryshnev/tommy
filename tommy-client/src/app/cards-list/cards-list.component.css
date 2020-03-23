@@ -15,6 +15,7 @@
     text-align: center;
     padding-top: 5px;
     font-size: 22px;
+    transition: 0.5s;
 }
 
 .text-in-card{
@@ -32,7 +33,7 @@
 }
 
 .card:hover, #show-card:hover{
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    box-shadow: 0 5px 14px 0 rgba(206, 206, 206, 0.5);
     border: solid 1px #afc514;
     background-color: #ffffff;
     color: #afc514;

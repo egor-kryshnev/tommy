@@ -1,6 +1,9 @@
 p {
   font-family: Rubik;
+  cursor: context-menu;
 }
+
+h3 {cursor: context-menu;}
 
 #closeButton {
   border: none;
