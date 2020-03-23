@@ -1,4 +1,4 @@
-version: "3"
+version: "2.1"
 
 services:
   tommy-client:
@@ -6,8 +6,6 @@ services:
     build: 
       context: ../tommy-client
       dockerfile: Dockerfile
-    environment:
-      NODE_ENV: production
 
   lehava-api-mock:
     image: lehava-api-mock
@@ -26,7 +24,7 @@ services:
       dockerfile: Dockerfile
     environment:
       NODE_TLS_REJECT_UNAUTHORIZED: 0
-      NODE_ENV: production
+      NODE_ENV: development
       AUTH_CALLBACK_URL: /auth/callback
       PORT: 80
       SHRAGA_URL: http://13.79.7.3
@@ -46,14 +44,16 @@ services:
       - '6379:6379'
 
   rabbitmq:
-    image: rabbitmq:management
     container_name: 'rabbitmq'
+    build:
+      context: ../rabbitmq
+      dockerfile: Dockerfile
     hostname: rabbitmq
     ports:
       - "5672:5672"
       - "15672:15672"
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5672"]
+      test: ["CMD", "curl", "-f", "http://rabbitmq:15672"]
       interval: 30s
       timeout: 10s
       retries: 5
@@ -68,7 +68,8 @@ services:
       NODE_ENV: production
       RABBITMQ_URL: "amqp://rabbitmq:5672"
       REDIS_URL: 'redis://redis:6379'
-    restart: on-failure
     depends_on:
-      - redis
-      - rabbitmq
+      rabbitmq:
+        condition: service_healthy
+      redis:
+        condition: service_started
