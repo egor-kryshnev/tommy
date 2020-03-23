@@ -11,7 +11,7 @@ export class AccessTokenService {
     private static setAccessTokenRedis = promisify(AccessTokenService.client.set).bind(AccessTokenService.client);
     private static accessToken: AccessToken;
 
-    public static async getAccessToken(): Promise<string> {
+    public static async getAccessToken(): Promise<AccessToken> {
         if (!this.accessToken || this.accessToken.expiration_date - new Date().getMilliseconds() <= 0) {
             const redisAccessToken = await this.getAccessTokenRedis('X-AccessKey');
 
@@ -25,11 +25,11 @@ export class AccessTokenService {
                     "Accept": "application/json",
                     "Authorization": "Basic c2VydmljZWRlc2s6U0RBZG1pbjAx"
                 }, method: "POST" });
-                console.log(`Access Key brought from lehava api: ${redisAccessToken}`)
+                console.log(`Access Key brought from lehava api: ${JSON.stringify(apiRes.data)}`)
                 this.accessToken = apiRes.data;
                 await this.setAccessTokenRedis('X-AccessKey', JSON.stringify(apiRes.data));
             }
         }
-        return String(this.accessToken['access_key']);
+        return this.accessToken;
     }
 }

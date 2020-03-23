@@ -52,6 +52,11 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5672"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
     
   access-token-service:
     image: "access-token-service"
@@ -63,6 +68,7 @@ services:
       NODE_ENV: production
       RABBITMQ_URL: "amqp://rabbitmq:5672"
       REDIS_URL: 'redis://redis:6379'
+    restart: on-failure
     depends_on:
       - redis
       - rabbitmq

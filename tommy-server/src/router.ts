@@ -1,6 +1,5 @@
 import { Router, Request, Response, NextFunction } from "express";
 import axios from 'axios';
-import { ServerError } from "./utils/errors/application";
 import { NotPermittedError } from "./utils/errors/user";
 import { AccessTokenProvider } from './access-token/access-token-service';
 

@@ -19,10 +19,10 @@ amqp.connect(config.rabbitmq.url, (error0: Error, connection) => {
     console.log(' [x] Awaiting RPC requests');
     channel.consume(queue, async (msg) => {
       if (msg) {
-        const responseMsg = await AccessTokenService.getAccessToken();
+        const accessToken = await AccessTokenService.getAccessToken();
         
         channel.sendToQueue(msg.properties.replyTo,
-          Buffer.from(responseMsg), {
+          Buffer.from(JSON.stringify(accessToken)), {
             correlationId: msg.properties.correlationId
           });
           
