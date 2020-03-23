@@ -62,7 +62,7 @@ import { CardsListComponent } from './cards-list/cards-list.component';
     MatDialogModule
 
   ],
-  providers: [EventEmiterService, AuthService, { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }],
+  providers: [EventEmiterService, AuthService, { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } }],
   bootstrap: [AppComponent],
   entryComponents: [FinishRequestComponent]
 })
