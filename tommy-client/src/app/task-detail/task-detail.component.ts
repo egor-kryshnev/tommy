@@ -16,12 +16,13 @@ export class TaskDetailDialog {
   }
 
   getOpenDate(): string {
-    const dateObj = new Date(this.data.open_date);
-    let dd = dateObj.getDate() < 10 ? '0' + dateObj.getDate() : dateObj.getDate();
-    let mm = dateObj.getMonth() + 1 < 10 ? '0' + dateObj.getMonth() + 1 : dateObj.getMonth() + 1;
-    const yyyy = dateObj.getFullYear();
-
-    return `${dd}/${mm}/${yyyy}`;
+    // const dateObj = new Date(this.data.open_date);
+    // let dd = dateObj.getDate() < 10 ? '0' + dateObj.getDate() : dateObj.getDate();
+    // let mm = dateObj.getMonth() + 1 < 10 ? '0' + dateObj.getMonth() + 1 : dateObj.getMonth() + 1;
+    // const yyyy = dateObj.getFullYear();
+    // console.log(this.data.open_date);
+    // return `${dd}/${mm}/${yyyy}`;
+    return this.data.open_date;
   }
 
   getCategory(): string {

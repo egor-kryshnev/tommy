@@ -28,6 +28,8 @@ import { FinishRequestComponent } from './finish-request/finish-request.componen
 import { HeaderComponent } from './header/header.component';
 import { CardsListComponent } from './cards-list/cards-list.component';
 import { PreloaderComponent } from './preloader/preloader.component';
+import { ReturnButtonComponent } from './return-button/return-button.component';
+import { PageTopTitleComponent } from './page-top-title/page-top-title.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { PreloaderComponent } from './preloader/preloader.component';
     FinishRequestComponent,
     CardsListComponent,
     HeaderComponent,
-    PreloaderComponent
+    PreloaderComponent,
+    ReturnButtonComponent,
+    PageTopTitleComponent
   ],
   imports: [
     BrowserModule,
