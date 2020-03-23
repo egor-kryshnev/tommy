@@ -42,7 +42,7 @@ export class HeaderComponent implements OnInit {
         this._eventEmmiter.sendMsg(this.userUUID);
       });
     });
-    console.clear();
+    // console.clear();
   }
 
   onHome(){

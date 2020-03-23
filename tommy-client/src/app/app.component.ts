@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { ApigetService } from './apiget.service';
 import { EventEmiterService } from './event.emmiter.service';
 import { PostReqService } from './post-req.service';
-
+import * as $ from "jquery";
 
 @Component({
   selector: 'app-root',
@@ -45,7 +45,7 @@ export class AppComponent {
         this._eventEmmiter.sendMsg(this.userUUID);
       });
     });
-    console.clear();
+    // console.clear();
   }
 
 

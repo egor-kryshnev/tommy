@@ -1,0 +1,29 @@
+<!-- <div class="preloader" id="preloader-main" [ngStyle]="opacityStyle" style="opacity: 1;"> -->
+<div class="preloader" #preloader>
+    <div class="preloader-content">
+        <div class="preloader-logo">
+            <span class="preloader-logo-letter bold">T</span>
+            <span class="preloader-logo-letter bold">O</span>
+            <span class="preloader-logo-letter bold">M</span>
+            <span class="preloader-logo-letter bold">M</span>
+            <span class="preloader-logo-letter bold">Y</span>
+        </div>
+    </div>
+</div>
+
+<!-- <script>
+    console.log("doing it");
+    setTimeout(function(){
+        let opacity = 1;
+        console.log("start");
+        let inter = setInterval(function(){
+            opacity -= 0.01;
+            console.log("this is opacity" + opacity);
+            if(opacity == 0){
+                clearInterval(inter);
+                console.log("out of interval");
+            }
+        }, 10);
+    // document.getElementById('preloader-main').style.opacity = `${x}`;
+    }, 2500);
+</script> -->

@@ -27,6 +27,7 @@ import { StatusProgressComponent } from './task-detail/status-progress/status-pr
 import { FinishRequestComponent } from './finish-request/finish-request.component';
 import { HeaderComponent } from './header/header.component';
 import { CardsListComponent } from './cards-list/cards-list.component';
+import { PreloaderComponent } from './preloader/preloader.component';
 import { ReturnButtonComponent } from './return-button/return-button.component';
 import { PageTopTitleComponent } from './page-top-title/page-top-title.component';
 
@@ -46,6 +47,7 @@ import { PageTopTitleComponent } from './page-top-title/page-top-title.component
     FinishRequestComponent,
     CardsListComponent,
     HeaderComponent,
+    PreloaderComponent,
     ReturnButtonComponent,
     PageTopTitleComponent
   ],
