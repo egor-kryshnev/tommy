@@ -1,3 +1,5 @@
+p {cursor: context-menu;}
+
 .progressCircleNotPressed {
   width: 29px;
   height: 29px;

@@ -1,3 +1,5 @@
+span {cursor: context-menu;}
+
 .header-wrapper {
     width: 100%;
     align-items: center;
@@ -53,6 +55,7 @@
     grid-area: k;
     width: 10vw;
     height: 5vh;
+    cursor: pointer;
 }
 
 @font-face {

@@ -36,12 +36,17 @@
   left: 20vh;
   font-family: Rubik;
   font-size: 2.8rem;
+  margin-top: 14vh;
+  margin-bottom: 1vh;
+  font-weight: 500;
 }
 
 .Oval {
   margin-top: 60px;
+  display: flex;
   margin-right: auto;
   margin-left: auto;
+  justify-content: center;
   border-radius: 50%;
   width: 104px;
   height: 104px;
@@ -50,12 +55,8 @@
 }
 
 .Group-5-Copy {
-  position: relative;
-  top: 2.6vh;
-  left: 3.3vh;
-  width: 40px;
   height: 56px;
-  /* object-fit: contain; */
+  margin-top: 23%;
 }
 
 .container2{
