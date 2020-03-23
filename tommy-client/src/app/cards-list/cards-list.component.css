@@ -1,28 +1,37 @@
 .cards-container{
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: grid;
+    grid-auto-rows: 80px;
+    grid-gap: 10px;
     justify-content: center;
 }
 
 .card{
-    background-color: white;
+    width: 260px;
+    height: 40px;
     border-radius: 4px;
     border: solid 1px #ebebeb;
-    transition: 0.3s;
-    font-size: 14px;
-    margin: 2vh;
-    padding: 2px 16px;
+    background-color: #ffffff;
+    margin: 20px;
     text-align: center;
-    height: 4.5vh;
-    border-radius: 4px;
+    padding-top: 5px;
+    font-size: 22px;
+}
+
+.text-in-card{
+    width: 247px;
+    height: 20px;
     font-family: Rubik;
-    width: 32vh;
-    flex: 0 0 0 25%;
+    line-height: 1.43;
+    letter-spacing: normal;
+    text-align: center;
+    color: #3b3b3b;
 }
   
-.card:hover{
+.card#show-card{
+    box-shadow: 0 10px 31px 0 rgba(200, 200, 200, 0.4);
+}
+
+.card:hover, #show-card:hover{
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
     border: solid 1px #afc514;
     background-color: #ffffff;
@@ -30,11 +39,7 @@
     cursor: pointer;
 }
 
-#text-in-card{
-    text-align: center;
-    position: relative;
-    margin-top: 40px;
-    font-size: 1.5rem;
-    font-size: 18px;
-    font-family: Rubik;
+#show-card #text-in-card{
+    color: #afc514;
+    border-bottom: 0.8px solid;
 }
