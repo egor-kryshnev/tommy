@@ -1,7 +1,6 @@
 .cards-container{
     position: relative;
     display: flex;
-    left: 2vh;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;

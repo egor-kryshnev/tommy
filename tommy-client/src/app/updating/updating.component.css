@@ -6,6 +6,7 @@ mat-list-item {
   height: 92%;
   grid-area: auto;
   margin-top: 8vh;
+  cursor: context-menu;
 }
 
 @font-face {
@@ -31,7 +32,7 @@ mat-list-item {
   font-weight: 500;
   text-align: right;
   padding-top: 5vh;
-  padding-right: 3vw;
+  padding-right: 40px;
 }
 
 .time {

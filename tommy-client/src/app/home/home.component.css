@@ -2,7 +2,7 @@
     align-items: center;
     display: grid;
     grid-template-areas: "a b c d e";
-    grid-template-columns: repeat(5,1fr);
+    grid-template-columns: repeat(5, 1fr);
     background-color: #f9fafb;
     height: 100%;
 }
@@ -15,4 +15,15 @@
     grid-area: a;
     height: 100%;
     background-color: #fff;
+}
+
+.chatImg {
+    width: 26px;
+    height: 26px;
+}
+
+#btnChat {
+    position: fixed;
+    bottom: 75px;
+    right: 48px;
 }
