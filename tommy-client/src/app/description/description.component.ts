@@ -20,6 +20,7 @@ export class DescriptionComponent implements OnInit {
   userUUID: string = '';
   userPhone: any;
   userT: any;
+  input: number = 0;
 
   constructor(private router: Router, private route: ActivatedRoute, public _eventEmmitter: EventEmiterService,
     public authService: AuthService, public postReqService: PostReqService, public categoryService: CategoryService,
@@ -53,6 +54,14 @@ export class DescriptionComponent implements OnInit {
         });
       })
   }
+
+  counter(){
+    this.input = (<HTMLInputElement>document.getElementById("subject")).value.length;
+    console.log(this.input);
+  }
+
+
+  
 
 
 }

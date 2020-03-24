@@ -178,6 +178,22 @@ button:hover .button-text {
   color: #bfbfc0;
 }
 
+#charCounter{
+  position: relative;
+  width: 20px;
+  left: 60.7%;
+  top: -43px;
+  font-family: Rubik;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: right;
+  color: #bfbfc0;
+}
+
 textarea {
   width: 30%;
   height: 200px;
