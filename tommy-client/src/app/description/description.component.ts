@@ -55,9 +55,9 @@ export class DescriptionComponent implements OnInit {
       })
   }
 
-  counter(){
+  counter() {
     this.input = (<HTMLInputElement>document.getElementById("subject")).value.length;
-    console.log(this.input);
+    // console.log(this.input);
   }
 
 
