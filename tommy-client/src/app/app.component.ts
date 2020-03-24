@@ -5,8 +5,7 @@ import { AuthService } from './auth.service';
 import { HttpClient } from '@angular/common/http';
 import { ApigetService } from './apiget.service';
 import { EventEmiterService } from './event.emmiter.service';
-import { PostReqService } from './post-req.service';
-import * as $ from "jquery";
+import { PostReqService } from './open-request/post-req.service';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +21,7 @@ export class AppComponent {
   @Output() exampleOutput = new EventEmitter<string>();
   userUUID: string;
 
-  constructor(@Inject(DOCUMENT) document,public apigetService: ApigetService, private router: Router, private route: ActivatedRoute, private http: HttpClient, public authService: AuthService, public _eventEmmiter: EventEmiterService, private postReqService: PostReqService) {}
+  constructor(@Inject(DOCUMENT) document, public apigetService: ApigetService, private router: Router, private route: ActivatedRoute, private http: HttpClient, public authService: AuthService, public _eventEmmiter: EventEmiterService, private postReqService: PostReqService) { }
 
   ngOnInit() {
     this.authService.loginSub().subscribe((res: any) => {
@@ -33,10 +32,10 @@ export class AppComponent {
       this.authService.setUserShraga(res);
       this._eventEmmiter.sendUser(res);
       this.apigetService.getUUID(this.userT).subscribe((res: any) => {
-        if(Array.isArray(res.collection_cnt.cnt)){
+        if (Array.isArray(res.collection_cnt.cnt)) {
           this.userUUID = res.collection_cnt.cnt[1]['@id'];
         }
-        else{
+        else {
           this.userUUID = res.collection_cnt.cnt['@id'];
         }
         this.postReqService.userT = this.userT;
@@ -49,11 +48,11 @@ export class AppComponent {
   }
 
 
-  onHome(){
+  onHome() {
     this.router.navigateByUrl('/', { relativeTo: this.route });
   }
 
- 
+
 
 
 }

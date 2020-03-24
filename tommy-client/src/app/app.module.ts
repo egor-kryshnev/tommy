@@ -14,22 +14,14 @@ import { HomeComponent } from './home/home.component';
 import { TaskDetailDialog } from './task-detail/task-detail.component';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { NetworksComponent } from './networks/networks.component';
-import { ServicesComponent } from './services/services.component';
-import { CategoryComponent } from './category/category.component'
-import { DescriptionComponent } from './description/description.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { SubcategoryComponent } from './subcategory/subcategory.component';
 import { EventEmiterService } from './event.emmiter.service';
 import { AuthService } from './auth.service';
-import { StatusProgressComponent } from './task-detail/status-progress/status-progress.component';
-import { FinishRequestComponent } from './finish-request/finish-request.component';
 import { HeaderComponent } from './header/header.component';
-import { CardsListComponent } from './cards-list/cards-list.component';
 import { PreloaderComponent } from './preloader/preloader.component';
-import { ReturnButtonComponent } from './return-button/return-button.component';
-import { PageTopTitleComponent } from './page-top-title/page-top-title.component';
+import { OpenRequestModule } from './open-request/open-request.module';
+import { StatusProgressComponent } from './task-detail/status-progress/status-progress.component';
 
 @NgModule({
   declarations: [
@@ -38,18 +30,10 @@ import { PageTopTitleComponent } from './page-top-title/page-top-title.component
     UpdatingComponent,
     HomeComponent,
     TaskDetailDialog,
-    NetworksComponent,
-    ServicesComponent,
-    DescriptionComponent,
-    CategoryComponent,
-    SubcategoryComponent,
-    StatusProgressComponent,
-    FinishRequestComponent,
-    CardsListComponent,
     HeaderComponent,
     PreloaderComponent,
-    ReturnButtonComponent,
-    PageTopTitleComponent
+    StatusProgressComponent,
+    TaskDetailDialog
   ],
   imports: [
     BrowserModule,
@@ -65,11 +49,11 @@ import { PageTopTitleComponent } from './page-top-title/page-top-title.component
     HttpClientModule,
     MatDialogModule,
     CommonModule,
-    MatDialogModule
-
+    MatDialogModule,
+    OpenRequestModule
   ],
   providers: [EventEmiterService, AuthService, { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } }],
-  bootstrap: [AppComponent],
-  entryComponents: [FinishRequestComponent]
+  bootstrap: [AppComponent]
+  // entryComponents: [FinishRequestComponent]
 })
 export class AppModule { }

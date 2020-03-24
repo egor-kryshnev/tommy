@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApigetService, model1 } from '../apiget.service';
-import { AuthService } from '../auth.service';
-import { EventEmiterService } from '../event.emmiter.service';
+import { model1 } from '../../apiget.service';
+import { AuthService } from '../../auth.service';
+import { EventEmiterService } from '../../event.emmiter.service';
 import { PostReqService, PostResponse } from '../post-req.service';
 import { CategoryService } from '../category/category.service';
 import { MatDialog } from '@angular/material/dialog';
 import { FinishRequestComponent } from '../finish-request/finish-request.component'
-import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 @Component({
   selector: 'app-description',
@@ -24,7 +23,7 @@ export class DescriptionComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute, public _eventEmmitter: EventEmiterService,
     public authService: AuthService, public postReqService: PostReqService, public categoryService: CategoryService,
-    public dialog: MatDialog, private location: Location) { }
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -61,7 +60,7 @@ export class DescriptionComponent implements OnInit {
   }
 
 
-  
+
 
 
 }

@@ -5,7 +5,7 @@ import { AuthService } from '../auth.service';
 import { HttpClient } from '@angular/common/http';
 import { ApigetService } from '../apiget.service';
 import { EventEmiterService } from '../event.emmiter.service';
-import { PostReqService } from '../post-req.service';
+import { PostReqService } from '../open-request/post-req.service';
 
 
 @Component({

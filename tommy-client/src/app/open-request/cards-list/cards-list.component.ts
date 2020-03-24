@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { model1 } from '../apiget.service'
+import { model1 } from '../../apiget.service'
 
 @Component({
   selector: 'app-cards-list',

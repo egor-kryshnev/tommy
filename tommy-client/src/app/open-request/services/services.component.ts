@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApigetService, model1 } from '../apiget.service';
+import { ApigetService, model1 } from '../../apiget.service';
 import { PostReqService } from '../post-req.service';
 
 

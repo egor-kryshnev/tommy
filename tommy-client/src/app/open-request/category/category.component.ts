@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApigetService } from '../apiget.service';
 import { CategoryService, CategoryOfIncidents, CategoryOfRequests } from './category.service'
-import { CategoriesDataService } from '../categories-data.service'
 import { PostReqService } from '../post-req.service';
 
 @Component({
