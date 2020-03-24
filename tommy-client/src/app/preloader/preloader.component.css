@@ -1,7 +1,6 @@
 .preloader {
     z-index: 999;
-    background-color: #fff;
-    background-image: url(../../assets/loader-backg.png);
+    background: radial-gradient(#fff, #777777);
     background-size: cover;
     -webkit-transform-origin: top;
     transform-origin: top;
