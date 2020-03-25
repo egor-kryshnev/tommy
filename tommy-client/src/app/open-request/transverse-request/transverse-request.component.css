@@ -1,0 +1,17 @@
+#closeButton {
+  border: none;
+  border-radius: 40px;
+  background-color: white;
+  color: rgb(105, 105, 105);
+  cursor: pointer;
+  padding: 10px;
+  position: relative;
+  top: -20px;
+  left: -20px;
+}
+
+#contentContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
