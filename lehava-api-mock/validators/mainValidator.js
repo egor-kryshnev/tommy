@@ -52,5 +52,10 @@ module.exports = {
                 return true;
             }
         } return false;
+    },
+    newCallValidator: (req) => {
+        if (req.body.cr && req.body.cr.customer && req.body.cr.customer['@id'] && req.body.cr.description && req.body.cr.description) {
+            return true;
+        } return false;
     }
 }
