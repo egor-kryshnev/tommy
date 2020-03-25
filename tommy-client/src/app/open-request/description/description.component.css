@@ -128,3 +128,6 @@ textarea:focus {
   justify-content: center;
 } 
 
+#taskOpenBtn {
+  cursor: pointer;
+}

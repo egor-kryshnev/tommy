@@ -8,7 +8,7 @@
     <textarea id="subject" (keyup)="counter()" maxlength="500"
         placeholder="מוכנים להשקיע מספר דקות מזמנכם? לרשותך מדריך קצר שעשוי לעזור לפתור את הבעיה"></textarea>
     <p id="charCounter">{{ input }}/500</p>
-    <div class="button_cont" (click)="sendPost()" align="center" style="cursor: pointer;">
+    <div class="button_cont" (click)="sendPost()" id="taskOpenBtn" align="center">
         <a class="example_b">פתיחת פניה</a>
     </div>
 </div>
