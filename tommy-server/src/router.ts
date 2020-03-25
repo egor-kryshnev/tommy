@@ -31,9 +31,7 @@ AppRouter.all('*', async (req: Request, res: Response) => {
 
         Proxy(`http:/${req.url}`, req, res);
     } catch (e) {
-        console.log('error')
-
-        console.error(e.message);
+        console.error(`error\n${e.message}`);
         res.send(e.data);
     }
 })
