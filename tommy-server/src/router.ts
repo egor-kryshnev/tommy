@@ -2,7 +2,7 @@ import { Router, Request, Response, NextFunction } from "express";
 import axios from 'axios';
 import { NotPermittedError } from "./utils/errors/user";
 import { AccessTokenProvider } from './access-token/access-token-service';
-
+import { Proxy } from 'axios-express-proxy';
 
 const AppRouter: Router = Router();
 
@@ -27,16 +27,9 @@ AppRouter.all('*', async (req: Request, res: Response) => {
     try {
         const apiHeaders = { ...req.headers };
         apiHeaders['X-AccessKey'] = await AccessTokenProvider.getAccessToken();
+        req.headers = apiHeaders;
 
-        const apiRes = await axios({
-            method: req.method,
-            url: `http:/${req.url}`,
-            params: req.params,
-            headers: apiHeaders,
-            data: req.body
-        });
-
-        res.status(apiRes.status).send(apiRes.data);
+        Proxy(`http:/${req.url}`, req, res);
     } catch (e) {
         console.log('error')
 
