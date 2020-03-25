@@ -86,6 +86,7 @@ module.exports = (app) => {
             const newCall = new Call(userId, category, description);
             newCall.save();
             res.send(lehavaData.requests);
+            lehavaData.requests.cr['@COMMON_NAME'] += 1;
         } else {
             res.status(400).send({ error: "Bad Parameters" })
         }
