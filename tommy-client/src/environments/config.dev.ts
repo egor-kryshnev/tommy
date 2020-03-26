@@ -6,6 +6,7 @@ export const config = {
     GET_CATEGORIES_OF_INCIDENTS_URL_FUNCTION: (id: string) => `http://localhost/api/lehava-api-mock:8050/caisd-rest/pcat?WC=z_impact_service%3D${id}%20and%20delete_flag%3D0`,
     GET_CATEGORIES_OF_REQUESTS_URL_FUNCTION: (id: string) => `http://localhost/api/lehava-api-mock:8050/caisd-rest/chgcat?WC=z_impact_service%3D${id}%20and%20delete_flag%3D0`,
     GET_UUID_URL_FUNCTION: (userT: string) => `http://localhost/api/lehava-api-mock:8050/caisd-rest/cnt?WC=userid%3D'${userT}'`,
+    GET_TRANSVERSE_URL_FUNCTION: (categoryId: string) => `http://localhost/api/lehava-api-mock:8050/caisd-rest/cr?WC=impact%3D1111%20and%20type%3D'I'%20and%20active%3D1%20and%20category%3D${categoryId}`,
     GET_UPDATES: "http://localhost/api/lehava-api-mock:8050/caisd-rest/cr?WC=type%3D'I'%20and%20active%3D1%20and%20impact%3D0",
     POST_NEW_REQUEST: "http://localhost/api/lehava-api-mock:8050/caisd-rest/cr",
     SERVER_URL: 'http://localhost'

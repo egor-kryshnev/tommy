@@ -20,7 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from '../app-routing.module';
-import { TransverseRequestComponent } from './transverse-request/transverse-request.component';
+import { TransverseIncidentDialog } from './transverse-incident/transverse-incident.component';
 
 
 
@@ -35,7 +35,7 @@ import { TransverseRequestComponent } from './transverse-request/transverse-requ
     CardsListComponent,
     ReturnButtonComponent,
     PageTopTitleComponent,
-    TransverseRequestComponent
+    TransverseIncidentDialog
   ],
   imports: [
     CommonModule,

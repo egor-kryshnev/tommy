@@ -37,6 +37,14 @@ export class CategoryService {
     .set('X-AccessKey', this.accessKey)
     .set('Accept', 'application/json')
 
+  transverseIncidentHeaders = new HttpHeaders()
+    .set('Content-type', 'application/json')
+    .set('X-Obj-Attrs', 'description, open_date')
+    .set('Accept', 'application/json')
+
+  getTransverseIncident(categoryId: string) {
+    return this.http.get(config.GET_TRANSVERSE_URL_FUNCTION(categoryId), { headers: this.transverseIncidentHeaders });
+  }
 
   getCategoriesOfIncidents(serviceId: string) {
     return this.http.get(config.GET_CATEGORIES_OF_INCIDENTS_URL_FUNCTION(serviceId),
