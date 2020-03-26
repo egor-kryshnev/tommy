@@ -1,5 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { TransverseIncident } from '../category/category.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-transverse-incident',
@@ -8,9 +10,13 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class TransverseIncidentDialog {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: TransverseIncident, private router: Router) { }
 
   onHomeClick() {
-    console.log('hay');
+    this.router.navigateByUrl('');
+  }
+
+  onOpenNewIncident() {
+    this.router.navigateByUrl('/networks');
   }
 }

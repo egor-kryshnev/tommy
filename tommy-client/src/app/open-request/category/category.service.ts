@@ -19,7 +19,10 @@ export interface CategoryOfRequests {
   }
 }
 
-
+export interface TransverseIncident {
+  "description": string;
+  "open_date": string;
+}
 
 @Injectable({
   providedIn: 'root'

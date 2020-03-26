@@ -15,3 +15,54 @@
   flex-direction: column;
   text-align: center;
 }
+
+.finish-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 156px;
+  height: 46px;
+  border-radius: 23px;
+  background-color: #3f9c67;
+  cursor: pointer;
+}
+
+.finish-text {
+  width: 29px;
+  height: 19px;
+  font-family: Rubik;
+  font-size: 16px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: right;
+  color: #ffffff;
+  margin-right: 30px;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 13.9px;
+  background-color: rgba(255, 255, 255, 0.3);
+  margin-right: 10px;
+}
+
+h1 {
+  font-family: Rubik;
+  font-weight: 500;
+  font-size: 24px;
+  color: #3b3b3b;
+  margin-bottom: 15px;
+}
+
+p {
+  color: #3b3b3b;
+  font-family: Rubik;
+  font-size: 16px;
+  margin: 20px
+}
