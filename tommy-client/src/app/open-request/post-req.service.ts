@@ -32,7 +32,7 @@ export class PostReqService {
   serviceId: string;
   descriptionCategory: string;
   descriptionInput: string;
-
+  location: string;
 
   postRequest() {
     const description = this.appendDescriptions();
@@ -54,7 +54,7 @@ export class PostReqService {
         "z_ipaddress": "1.1.1.1",
         "z_username": this.userT,
         "z_computer_name": "computer_name",
-        "z_current_loc": "customer_location",
+        "z_current_loc": this.location,
         "z_network":
         {
           "@id": this.networkId
@@ -74,9 +74,10 @@ export class PostReqService {
         },
       }
     }
+    console.log(requestBody);
     return this.http.post(config.POST_NEW_REQUEST, requestBody,
       { headers: this.requestHead }
-    );
+      );
   }
 
 
