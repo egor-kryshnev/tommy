@@ -2158,45 +2158,45 @@ module.exports = {
                     cr: [
                         {
                             "@COMMON_NAME": "186318",
-                            "description": "התקנת עמדה",
+                            "description": "מה שהמשתמש כתב",
                             "status": {
                                 "@COMMON_NAME": "פתוח"
                             },
                             "category": {
-                                "@COMMON_NAME": "YNET. השבתה זמנית של אפליקציית AIRPORT"
+                                "@COMMON_NAME": "התקנת עמדה. התקנת עמדת עד הסוף. דחוף"
                             },
                             "open_date": 1577822500000
                         },
                         {
                             "@COMMON_NAME": "227996",
-                            "description": "מערכת הפעלה לא עולה",
+                            "description": "טקסט משתמש",
                             "status": {
                                 "@COMMON_NAME": "פתוח"
                             },
                             "category": {
-                                "@COMMON_NAME": "YNET. השבתה זמנית של אפליקציית AIRPORT"
+                                "@COMMON_NAME": "התקנת מערכת הפעלה. ווינדוס 10. דחוף"
                             },
                             "open_date": 1577822100000
                         },
                         {
                             "@COMMON_NAME": "123317",
-                            "description": "מקלדת לא עובדת",
+                            "description": "דסריפשן משתמש",
                             "status": {
                                 "@COMMON_NAME": "נפתח מחדש"
                             },
                             "category": {
-                                "@COMMON_NAME": "YNET. השבתה זמנית של אפליקציית AIRPORT"
+                                "@COMMON_NAME": "תקלת מקלדת. מקלדת לא עובדת"
                             },
                             "open_date": 1577822100000
                         },
                         {
                             "@COMMON_NAME": "291333",
-                            "description": "מייל לא עובד",
+                            "description": "טקסט משתמש טקסט",
                             "status": {
                                 "@COMMON_NAME": "פתוח"
                             },
                             "category": {
-                                "@COMMON_NAME": "YNET. השבתה זמנית של אפליקציית AIRPORT"
+                                "@COMMON_NAME": "תקלת מייל. אפליקציית מייל לא עולה. לא דחוף"
                             },
                             "open_date": 1577822100000
                         }
