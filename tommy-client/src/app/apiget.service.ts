@@ -119,6 +119,7 @@ export class ApigetService {
 
 
   getOpenTasks(UUID) {
+    console.log("in get open tasks get");
     return this.http.get(config.GET_OPEN_TASKS_URL_FUNCTION(UUID),
       { headers: this.tasksHeaders })
   }

@@ -45,7 +45,7 @@
       </div>
     </div>
     <ng-template #closed>
-      <div *ngFor="let closedtask of tasksByIdArrayClosed">
+      <div *ngFor="let closedtask of tasksToDisplay">
         <div class="task" (click)="openTaskDetailDialog(closedtask)">
           <img class="StatusImg" src="{{ closedtask.icon }}">
           <p id="task-status">{{ closedtask.status }}</p>

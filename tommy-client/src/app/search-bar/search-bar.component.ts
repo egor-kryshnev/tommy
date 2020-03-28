@@ -15,7 +15,7 @@ export class SearchBarComponent implements OnInit {
   }
 
   onChange(event: KeyboardEvent) {
-    const text: string = (event.target as HTMLInputElement).value
+    const text: string = (event.target as HTMLInputElement).value 
     this.serachText = text;
     this.textChanged.emit(text);
   }
