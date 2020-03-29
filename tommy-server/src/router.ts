@@ -1,5 +1,4 @@
 import { Router, Request, Response, NextFunction } from "express";
-import axios from 'axios';
 import { NotPermittedError } from "./utils/errors/user";
 import { AccessTokenProvider } from './access-token/access-token-service';
 import { Proxy } from 'axios-express-proxy';
@@ -20,6 +19,8 @@ AppRouter.post('*', (req: Request, res: Response, next: NextFunction) => {
     } catch (err) {
         throw new NotPermittedError;
     }
+}, (req: Request, res: Response, next: NextFunction) => {
+    
 });
 
 AppRouter.all('*', async (req: Request, res: Response) => {

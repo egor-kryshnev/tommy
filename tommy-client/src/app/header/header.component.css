@@ -1,43 +1,70 @@
-nb-chat {
-    width: 500px;
-    margin: 0.5rem 0 2rem 2rem;
-}
+span {cursor: context-menu;}
 
-#Chat {
-    display: none;
+.header-wrapper {
+    width: 100%;
+    align-items: center;
+    display: grid;
+    grid-template-areas: "a b c d e f g h i j k l";
+    grid-template-columns: repeat(12,1fr);
+    background-color: white;
+    height: 8vh;
     position: fixed;
-    bottom: 30px;
-    right: 15px;
-    z-index: 9;
+    box-shadow: 0 5px 13px 0 rgba(184, 184, 184, 0.3);
+    top: 0%;
+    z-index: 1;
 }
 
-.Rectangle {
-  width: 456px;
-  height: 4px;
+#leftRec {
+    width: 33%;
+    height: 0.5vh;
+    background-color: #227e2d;
+    display: inline-block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+#midRec {
+  position: absolute;
+  top: 0px;
+  left: 33%;
+  width: 34%;
+  height: 0.5vh;
+  background-color: #afc514;
+  display: inline-block;
+}
+
+#rightRec {
+  position: absolute;
+  top: 0px;
+  left: 67%;
+  width: 33%;
+  height: 0.5vh;
   background-color: #2d9889;
+  display: inline-block;
 }
 
-#btnChat {
-    position: fixed;
-    bottom: 3px;
-    right: 225px;
+#one-logo {
+    grid-area: c;
+    width: 2.2vw;
+    height: 3vh;
+    margin-left: 50%;
 }
 
-.Group {
-  width: 152px;
-  height: 30px;
-  object-fit: contain;
+#tommy-logo {
+    grid-area: k;
+    width: 10vw;
+    height: 5vh;
+    cursor: pointer;
 }
 
-.Group-17 {
-  width: 33px;
-  height: 29px;
-  object-fit: contain;
-  position: relative;
-  right: 165vh;
+@font-face {
+    font-family: Rubik;
+    src: url(../../assets/Rubik-Medium.ttf);
 }
 
-.name{
-  position: relative;
-  right: 148vh;
+#username{
+    grid-area: d;
+    font-family: rubik;
+    font-size: 16px;
 }

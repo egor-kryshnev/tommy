@@ -2199,61 +2199,6 @@ module.exports = {
                                 "@COMMON_NAME": "YNET. השבתה זמנית של אפליקציית AIRPORT"
                             },
                             "open_date": 1577822100000
-                        },
-                        {
-                            "@COMMON_NAME": "123317",
-                            "description": "מסך לא נדלק",
-                            "status": {
-                                "@COMMON_NAME": "נפתח מחדש"
-                            },
-                            "category": {
-                                "@COMMON_NAME": "YNET. השבתה זמנית של אפליקציית AIRPORT"
-                            },
-                            "open_date": 1577822100000
-                        },
-                        {
-                            "@COMMON_NAME": "123317",
-                            "description": "אין אינטרנט",
-                            "status": {
-                                "@COMMON_NAME": "נפתח מחדש"
-                            },
-                            "category": {
-                                "@COMMON_NAME": "YNET. השבתה זמנית של אפליקציית AIRPORT"
-                            },
-                            "open_date": 1577822100000
-                        },
-                        {
-                            "@COMMON_NAME": "123317",
-                            "description": "רמקולים לא עובדים",
-                            "status": {
-                                "@COMMON_NAME": "נפתח מחדש"
-                            },
-                            "category": {
-                                "@COMMON_NAME": "YNET. השבתה זמנית של אפליקציית AIRPORT"
-                            },
-                            "open_date": 1577822100000
-                        },
-                        {
-                            "@COMMON_NAME": "123317",
-                            "description": "מחשב לא נדלק",
-                            "status": {
-                                "@COMMON_NAME": "נפתח מחדש"
-                            },
-                            "category": {
-                                "@COMMON_NAME": "YNET. השבתה זמנית של אפליקציית AIRPORT"
-                            },
-                            "open_date": 1577822100000
-                        },
-                        {
-                            "@COMMON_NAME": "123317",
-                            "description": "אינטרנט בעמדה לא עובד",
-                            "status": {
-                                "@COMMON_NAME": "נפתח מחדש"
-                            },
-                            "category": {
-                                "@COMMON_NAME": "YNET. השבתה זמנית של אפליקציית AIRPORT"
-                            },
-                            "open_date": 1577822100000
                         }
                     ]
                 }
@@ -2267,18 +2212,29 @@ module.exports = {
         }
     },
 
-    updates:{
+    updates: {
         collection_cr: {
             "@COUNT": 4,
             "@START": 4,
             "@TOTAL_COUNT": 4,
             cr: [
                 {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
                     "@COMMON_NAME": '596417',
                     category: {
-                        "@COMMON_NAME": "YNET. השבתה זמנית של אפליקציית AIRPORT"
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                     },
-                    description: "הערה של התקלה הרוחבית",
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
                     open_date: 1577829600000,
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
@@ -2287,45 +2243,1035 @@ module.exports = {
                 {
                     "@COMMON_NAME": '596418',
                     category: {
-                        "@COMMON_NAME": "YNET. אין אפליקצית SUPERIOUR"
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
                     },
-                    description: "הערה של התקלה הרוחבית 2",
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
                     open_date: 1577916000000,
                     status: {
                         "@COMMON_NAME": 'בטיפול צוות מחשוב'
                     }
                 },
                 {
-                    "@COMMON_NAME": '596419',
+                    "@COMMON_NAME": '596417',
                     category: {
-                        "@COMMON_NAME": "MIAMI. אין אפליקצית GENERAL"
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                     },
-                    description: "3 הערה של התקלה הרוחבית",
-                    open_date: 1578002400000,
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
                     status: {
-                        "@COMMON_NAME": 'בטיפול צוות טכני'
+                        "@COMMON_NAME": 'ממתין לטיפול'
                     }
                 },
                 {
-                    "@COMMON_NAME": '596420',
+                    "@COMMON_NAME": '596418',
                     category: {
-                        "@COMMON_NAME": "MIAMI. אין אפליקצית MAYBLE"
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
                     },
-                    description: "4 הערה של התקלה הרוחבית",
-                    open_date: 1578088800000,
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
                     status: {
-                        "@COMMON_NAME": 'בטיפול אפסנאות'
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
                     }
                 },
                 {
-                    "@COMMON_NAME": '596421',
+                    "@COMMON_NAME": '596417',
                     category: {
-                        "@COMMON_NAME": "MIAMI. אין אפליקצית Jankins"
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                     },
-                    description: "5 הערה של התקלה הרוחבית",
-                    open_date: 1578088820000,
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
                     status: {
-                        "@COMMON_NAME": 'טיפול הסתיים'
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג."
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג."
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג."
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג."
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג."
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596417',
+                    category: {
+                        "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג."
+                    },
+                    description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                    open_date: 1577829600000,
+                    status: {
+                        "@COMMON_NAME": 'ממתין לטיפול'
+                    }
+                },
+                {
+                    "@COMMON_NAME": '596418',
+                    category: {
+                        "@COMMON_NAME": ".איתחול של שרת הדואר מתוזמן ל13:20"
+                    },
+                    description: ".במידה ולאחר 12:30 המייל לא מתחבר בצעו איתחול",
+                    open_date: 1577916000000,
+                    status: {
+                        "@COMMON_NAME": 'בטיפול צוות מחשוב'
                     }
                 }
             ]

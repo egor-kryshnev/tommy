@@ -87,5 +87,3 @@ services:
     depends_on:
       rabbitmq:
         condition: service_healthy
-      redis:
-        condition: service_started

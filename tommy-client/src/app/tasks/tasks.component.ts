@@ -23,8 +23,11 @@ export class TasksComponent implements OnInit {
 
   selectedOpenTasks: Boolean = true;
   tasksArray: taskModel1[] = [];
+  tasksArrayClosed: taskModel1[] =[];
   tasksByIdArray: taskModel1[] = [];
+  tasksByIdArrayClosed: taskModel1[] = [];
   tasks: taskModel1[];
+  open = true;
 
   constructor(private router: Router, private route: ActivatedRoute, public aPIgetService: ApigetService, public _eventEmmitter: EventEmiterService, public authService: AuthService, public taskDetailDialog: MatDialog) { }
 
@@ -33,7 +36,9 @@ export class TasksComponent implements OnInit {
       this._eventEmmitter.str = data;
     });
     this.getopen();
+    this.getClosed();
     this.getOpenInReturn(this._eventEmmitter.str);
+    this.getClosedinReturn(this._eventEmmitter.str);
   }
 
 
@@ -45,7 +50,7 @@ export class TasksComponent implements OnInit {
         this.tasksArray = res.collection_cr.cr;
         this.tasksArray.forEach((element: any) => {
           let current_datetime = new Date (element.open_date);
-          let formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear() + "\xa0\xa0·\xa0\xa0" + current_datetime.getHours() + ":" + current_datetime.getMinutes()
+          let formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear()
           this.tasksByIdArray.push(
             {
               "id": element["@COMMON_NAME"],
@@ -53,6 +58,7 @@ export class TasksComponent implements OnInit {
               "status": element.status["@COMMON_NAME"],
               "category": element.category["@COMMON_NAME"],
               "open_date": formatted_date,
+              "icon": this.iconGenerator()
             } as taskModel1
           );
         })
@@ -66,13 +72,16 @@ export class TasksComponent implements OnInit {
       this.aPIgetService.getOpenTasks(event).subscribe((res: any) => {
         this.tasksArray = res.collection_cr.cr;
         this.tasksArray.forEach((element: any) => {
+          let current_datetime = new Date (element.open_date);
+          let formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear()
           this.tasksByIdArray.push(
             {
               "id": element["@COMMON_NAME"],
               "description": element.description,
               "status": element.status["@COMMON_NAME"],
               "category": element.category["@COMMON_NAME"],
-              "open_date": element.open_date,
+              "open_date": formatted_date,
+              "icon": this.iconGenerator()
             } as taskModel1
           );
         })
@@ -80,24 +89,78 @@ export class TasksComponent implements OnInit {
     }
   }
 
+  getClosed(){
+    this._eventEmmitter.dataStr.subscribe(data => {
+      this._eventEmmitter.str = data;
+      this.aPIgetService.getClosedTasks(data).subscribe((res: any) => {
+        console.log(res);
+        this.tasksArrayClosed = res.collection_cr.cr;
+        this.tasksArrayClosed.forEach((element: any) => {
+          let current_datetime = new Date (element.open_date);
+          let formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear()
+          this.tasksByIdArrayClosed.push(
+            {
+              "id": element["@COMMON_NAME"],
+              "description": element.description,
+              "status": element.status["@COMMON_NAME"],
+              "category": element.category["@COMMON_NAME"],
+              "open_date": formatted_date,
+              "icon": this.iconGenerator()
+            } as taskModel1
+          );
+        })
+      });
+    }
+    );
+  }
 
+  getClosedinReturn(event){
+    if (event) {
+    this.aPIgetService.getClosedTasks(event).subscribe((res: any) => {
+      console.log(res);
+      this.tasksArrayClosed = res.collection_cr.cr;
+      this.tasksArrayClosed.forEach((element: any) => {
+        let current_datetime = new Date (element.open_date);
+        let formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear()
+        this.tasksByIdArrayClosed.push(
+          {
+            "id": element["@COMMON_NAME"],
+            "description": element.description,
+            "status": element.status["@COMMON_NAME"],
+            "category": element.category["@COMMON_NAME"],
+            "open_date": formatted_date,
+            "icon": this.iconGenerator()
+          } as taskModel1
+        );
+      })
+    });
+    }
+  }
 
-
+  iconGenerator(){
+    let imgNumber = Math.floor(Math.random() * 3) + 1;;
+    let statusIcon = "../../assets/status" + imgNumber + ".png";
+    return statusIcon;
+  }
 
   onOpenDialog() {
     this.router.navigateByUrl('newtask', { relativeTo: this.route });
   }
 
   clickedOpenTasks() {
+    this.open = true;
     if (!this.selectedOpenTasks) this.selectedOpenTasks = true;
   }
 
   clickedClosedTasks() {
+    this.open = false;
+    this.getClosed();
+    console.log(this.tasksByIdArrayClosed);
     if (this.selectedOpenTasks) this.selectedOpenTasks = false;
   }
 
   openTaskDetailDialog(task: taskModel1) {
-    console.log(task);
+
     this.taskDetailDialog.open(TaskDetailDialog, { width: "720px", height: "400px", data: task });
   }
 }
