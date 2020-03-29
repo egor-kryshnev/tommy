@@ -186,7 +186,7 @@ export class TasksComponent implements OnInit {
 
   addTasksToDisplay(tasksArray: taskModel1[]) {
     tasksArray.forEach((task: taskModel1) => {
-      if ((task.description).includes(this.searchText)) {
+      if ((task.category).includes(this.searchText)) {
         this.tasksToDisplay.push(task);
       }
     })
