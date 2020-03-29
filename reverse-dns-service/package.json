@@ -1,0 +1,17 @@
+{
+  "name": "reverse-dns-service",
+  "version": "1.0.0",
+  "description": "A micro service for acquiring the computer name with given ip.",
+  "main": "dist/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yoav Rozner",
+  "license": "ISC",
+  "dependencies": {
+    "@types/amqplib": "^0.5.13",
+    "amqplib": "^0.5.5",
+    "dns": "^0.2.2",
+    "typescript": "^3.8.3"
+  }
+}
