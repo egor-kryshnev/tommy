@@ -28,3 +28,37 @@ services:
     image: 'redis:alpine'
     ports:
       - '6379:6379'
+
+  rabbitmq:
+    image: 'rabbitmq'
+    hostname: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://rabbitmq:15672"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    
+  access-token-service:
+    image: "access-token-service"
+    environment:
+      NODE_ENV: production
+      RABBITMQ_URL: "amqp://rabbitmq:5672"
+      REDIS_URL: 'redis://redis:6379'
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      redis:
+        condition: service_started
+
+  reverse-dns-service:
+    image: "reverse-dns-service"
+    environment:
+      NODE_ENV: production
+      RABBITMQ_URL: "amqp://rabbitmq:5672"
+      REDIS_URL: 'redis://redis:6379'
+    depends_on:
+      rabbitmq:
+        condition: service_healthy

@@ -1,7 +1,7 @@
 import amqp from 'amqplib/callback_api';
 import { config } from './../config';
 
-export const GetAccessToken = async (ip: string): Promise<string> => {
+export const GetComputerName = async (ip: string): Promise<string> => {
     return new Promise((res, rej) => {
 
         amqp.connect(config.rabbitmq.url, (error0, connection) => {

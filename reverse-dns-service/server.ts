@@ -19,27 +19,34 @@ amqp.connect(config.rabbitmq.url, (error0: Error, connection) => {
         console.log(' [x] Awaiting RPC requests for reverse dns service');
         channel.consume(queue, async (msg) => {
             if (msg) {
-                const computerName = await getComputerName(msg.content.toString());
+                const ip = msg.content.toString();
+                let computerName = '';
 
-                channel.sendToQueue(msg.properties.replyTo,
-                    Buffer.from(computerName), {
-                    correlationId: msg.properties.correlationId
-                });
+                try {
+                    console.log(`Searching computer name for ip: ${ip}`)
+                    computerName = await getComputerName(ip);
+                } catch (err) {
+                    console.error(err);
+                    computerName = "Error: Computer name wasn't found";
+                } finally {
+                    channel.sendToQueue(msg.properties.replyTo,
+                        Buffer.from(computerName), {
+                        correlationId: msg.properties.correlationId
+                    });
 
-                channel.ack(msg);
+                    channel.ack(msg);
+                }
             }
         });
     });
 });
 
-async function getComputerName(ip: string): Promise<string> {
-    return new Promise((resolve, reject) =>
-        dns.reverse(ip, (err: Error | null, hostnames: string[]) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(hostnames[0]);
-            }
-        })
-    );
-}
+const getComputerName = async (ip: string): Promise<string> => new Promise((resolve, reject) =>
+    dns.reverse(ip, (err: Error | null, hostnames: string[]) => {
+        if (err) {
+            reject(err);
+        } else {
+            resolve(hostnames[0]);
+        }
+    })
+);
