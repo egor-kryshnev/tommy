@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApigetService, taskModel1 } from '../apiget.service';
+import { ApigetService, taskModel1, model1 } from '../apiget.service';
 import { AuthService } from '../auth.service';
 import { EventEmiterService } from '../event.emmiter.service';
 import { TaskDetailDialog } from './../task-detail/task-detail.component';
@@ -194,5 +194,12 @@ export class TasksComponent implements OnInit {
 
   stripWhiteSpaces(str) {
     return str.replace(/^\s+|\s+$/g, '');
+  }
+
+  getTaskCategory(task: taskModel1){
+    const categoryStringArray = task.category.split(".");
+    if(categoryStringArray[0]){
+      return categoryStringArray[0];
+    } return categoryStringArray[1];
   }
 }

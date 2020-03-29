@@ -6,12 +6,9 @@
       <img src="../../assets/timeUntilTreatment.svg">
     </div>
     <div>
-      <p class="inline" id="taskName">{{ getDesc() }}</p>
+      <p class="inline" id="taskName">{{ getCategory() }}</p>
       <p class="inline title">פניה</p>
-      <div *ngIf="data.status; else closed" id="taskNameDecoration"></div>
-      <ng-template #closed>
-        <div id="taskNameDecorationClosed"></div>
-      </ng-template>
+      <div id="taskNameDecoration"></div>
     </div>
   </div>
   <div id="midContainer">
