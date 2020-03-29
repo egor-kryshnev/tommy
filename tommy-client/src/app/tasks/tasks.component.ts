@@ -169,8 +169,12 @@ export class TasksComponent implements OnInit {
     }
   }
 
-  openTaskDetailDialog(task: taskModel1) {
-    this.taskDetailDialog.open(TaskDetailDialog, { width: "720px", height: "400px", data: task });
+  openTaskDetailDialog(task: taskModel1, status: boolean) {
+    let dataObj = {
+      "task": task,
+      "status": status
+    };
+    this.taskDetailDialog.open(TaskDetailDialog, { width: "720px", height: "400px", data: dataObj });
   }
 
   searchTextChanged(text: string) {
