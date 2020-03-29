@@ -3276,6 +3276,133 @@ module.exports = {
                 }
             ]
         }
-    }
+    },
+
+    categoryWideProblems: [
+        {
+            categoryId: "1",
+            data: {
+                collection_cr: {
+                    cr: [
+                        {
+                            "@COMMON_NAME": "112",
+                            "description": "תיאור של תקלה 1 ברוחבית של מקלדות",
+                            "status": {
+                                "@COMMON_NAME": "פתוח"
+                            },
+                            "category": {
+                                "@COMMON_NAME": "קטגוריה של תקלה 1 ברוחבית של מקלדות"
+                            },
+                            "open_date": 1577822500000
+                        },
+                        {
+                            "@COMMON_NAME": "113",
+                            "description": "תיאור של תקלה 2 ברוחבית של מקלדות",
+                            "status": {
+                                "@COMMON_NAME": "פתוח"
+                            },
+                            "category": {
+                                "@COMMON_NAME": "קטגוריה של תקלה 2 ברוחבית של מקלדות"
+                            },
+                            "open_date": 1577822500000
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            categoryId: "2",
+            data: {
+                collection_cr: {
+                    cr: [
+                        {
+                            "@COMMON_NAME": "114",
+                            "description": "תיאור של תקלה 1 ברוחבית של עכברים",
+                            "status": {
+                                "@COMMON_NAME": "פתוח"
+                            },
+                            "category": {
+                                "@COMMON_NAME": "קטגוריה של תקלה 1 ברוחבית של עכברים"
+                            },
+                            "open_date": 1577822500000
+                        },
+                        {
+                            "@COMMON_NAME": "113",
+                            "description": "תיאור של תקלה 2 ברוחבית של עכברים",
+                            "status": {
+                                "@COMMON_NAME": "פתוח"
+                            },
+                            "category": {
+                                "@COMMON_NAME": "קטגוריה של תקלה 2 ברוחבית של עכברים"
+                            },
+                            "open_date": 1577822500000
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            categoryId: "3",
+            data: {
+                collection_cr: {
+                    cr: [
+                        {
+                            "@COMMON_NAME": "1233",
+                            "description": "תיאור של תקלה 1 ברוחבית של מיילים",
+                            "status": {
+                                "@COMMON_NAME": "פתוח"
+                            },
+                            "category": {
+                                "@COMMON_NAME": "קטגוריה של תקלה 1 ברוחבית של מיילים"
+                            },
+                            "open_date": 1577822500000
+                        },
+                        {
+                            "@COMMON_NAME": "189232",
+                            "description": "תיאור של תקלה 2 ברוחבית של מיילים",
+                            "status": {
+                                "@COMMON_NAME": "פתוח"
+                            },
+                            "category": {
+                                "@COMMON_NAME": "קטגוריה של תקלה 2 ברוחבית של מיילים"
+                            },
+                            "open_date": 1577822500000
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            categoryId: "4",
+            data: {
+                collection_cr: {
+                    cr: [
+                        {
+                            "@COMMON_NAME": "1233",
+                            "description": "תיאור של תקלה 1 ברוחבית של שירות הורדות",
+                            "status": {
+                                "@COMMON_NAME": "פתוח"
+                            },
+                            "category": {
+                                "@COMMON_NAME": "קטגוריה של תקלה 1 ברוחבית של שירות הורדות"
+                            },
+                            "open_date": 1577822500000
+                        },
+                        {
+                            "@COMMON_NAME": "189232",
+                            "description": "תיאור של תקלה 2 ברוחבית של שירות הורדות",
+                            "status": {
+                                "@COMMON_NAME": "פתוח"
+                            },
+                            "category": {
+                                "@COMMON_NAME": "קטגוריה של תקלה 2 ברוחבית של שירות הורדות"
+                            },
+                            "open_date": 1577822500000
+                        }
+                    ]
+                }
+            }
+        }
+    ]
 
 }
