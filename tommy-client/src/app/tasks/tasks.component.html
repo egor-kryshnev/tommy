@@ -31,7 +31,7 @@
   <cdk-virtual-scroll-viewport *ngIf="tasksToDisplay" id="scrollerComponents" itemSize="50" class="viewport">
     <div *ngIf="open; else closed">
       <div *ngFor="let task of tasksToDisplay">
-        <div class="task" (click)="openTaskDetailDialog(task)">
+        <div class="task" (click)="openTaskDetailDialog(task, true)">
           <img class="StatusImg" src="{{ task.icon }}">
           <p id="task-status">{{ task.status }}</p>
           <hr class="kav">
@@ -46,7 +46,7 @@
     </div>
     <ng-template #closed>
       <div *ngFor="let closedtask of tasksToDisplay">
-        <div class="task" (click)="openTaskDetailDialog(closedtask)">
+        <div class="task" (click)="openTaskDetailDialog(closedtask, false)">
           <img class="StatusImg" src="{{ closedtask.icon }}">
           <p id="task-status">{{ closedtask.status }}</p>
           <hr class="kav">

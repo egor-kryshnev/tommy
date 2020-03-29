@@ -9,10 +9,12 @@ import { taskModel1 } from '../apiget.service';
 })
 export class TaskDetailDialog {
   public statusList: string[] = ["ממתין לטיפול", "בטיפול צוות מחשוב", "בטיפול צוות טכני", "בטיפול אפסנאות", "טיפול הסתיים"];
-  constructor(@Inject(MAT_DIALOG_DATA) public data: taskModel1) { }
+  
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
+  }
 
   getDesc(): string {
-    return this.data.description.length <= 200 ? this.data.description : this.data.description.substring(0, 200) + '...';
+    return (this.data.task).description.length <= 200 ? (this.data.task).description : (this.data.task).description.substring(0, 200) + '...';
   }
 
   getOpenDate(): string {
@@ -22,10 +24,10 @@ export class TaskDetailDialog {
     // const yyyy = dateObj.getFullYear();
     // console.log(this.data.open_date);
     // return `${dd}/${mm}/${yyyy}`;
-    return this.data.open_date;
+    return (this.data.task).open_date;
   }
 
   getCategory(): string {
-    return this.data.category.split('.')[0];
+    return (this.data.task).category.split('.')[0];
   }
 }
