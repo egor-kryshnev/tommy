@@ -33,12 +33,22 @@ h3 {cursor: context-menu;}
   color: #696969;
 }
 
-#taskNameDecoration {
+#taskNameDecorationClosed {
   width: 9px;
   height: 9px;
   border: solid 1px #ff2323;
   border-radius: 10px;
   background-color: #ffb7b7;
+  display: inline-block;
+  margin-left: 15px;
+}
+
+#taskNameDecoration {
+  width: 9px;
+  height: 9px;
+  border: solid 1px #37c306;
+  border-radius: 10px;
+  background-color: #d7ffc9;
   display: inline-block;
   margin-left: 15px;
 }

@@ -6,7 +6,7 @@ import { EventEmiterService } from '../../event.emmiter.service';
 import { PostReqService, PostResponse } from '../post-req.service';
 import { CategoryService } from '../category/category.service';
 import { MatDialog } from '@angular/material/dialog';
-import { FinishRequestComponent } from '../finish-request/finish-request.component'
+import { FinishRequestComponent } from '../finish-request/finish-request.component';
 
 @Component({
   selector: 'app-description',
@@ -39,6 +39,8 @@ export class DescriptionComponent implements OnInit {
 
   sendPost() {
     this.postReqService.descriptionInput = (<HTMLInputElement>document.getElementById("subject")).value;
+    this.postReqService.location = (<HTMLInputElement>document.getElementById("location")).value;
+    this.postReqService.phoneNumber = (<HTMLInputElement>document.getElementById("phone")).value;
     this.postReqService.postRequest()
       .subscribe((res: PostResponse) => {
         const requestId = this.postReqService.getRequestId(res);

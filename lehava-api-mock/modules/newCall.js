@@ -1,6 +1,4 @@
 const lehavaData = require('../config/lehavaData');
-// const express = require('express');
-
 
 module.exports = class Call {
     constructor(userId, category, description) {
@@ -19,6 +17,5 @@ module.exports = class Call {
     }
     save() {
         lehavaData.activecalls[this.userId - 1].data.collection_cr.cr.push(this.callObject);
-        lehavaData.requests.cr['@COMMON_NAME'] += 1;
     }
 }

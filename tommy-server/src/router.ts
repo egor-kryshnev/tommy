@@ -1,5 +1,5 @@
 import { Router, Request, Response, NextFunction } from "express";
-import { NotPermittedError } from "./utils/errors/user";
+import { AuthorizationMiddleware } from "./authorization/middleware";
 import { AccessTokenProvider } from './access-token/access-token-service';
 import { Proxy } from 'axios-express-proxy';
 
@@ -7,20 +7,11 @@ const AppRouter: Router = Router();
 
 AppRouter.get('/isalive', (req: Request, res: Response) => res.status(200).send('Server Is Up'));
 
-AppRouter.post('*', (req: Request, res: Response, next: NextFunction) => {
-    const user: any = req.user;
-
-    try {
-        if (user.adfsId.split('@')[0] === req.body.cr.z_username) {
-            next();
-        } else {
-            throw new NotPermittedError;
-        }
-    } catch (err) {
-        throw new NotPermittedError;
-    }
-}, (req: Request, res: Response, next: NextFunction) => {
-    
+AppRouter.post('*', AuthorizationMiddleware.postAuthorization, (req: Request, res: Response, next: NextFunction) => {
+    const ip = req.ip.split(':')[3];
+    req.body.cr.z_ipaddress = ip;
+    console.log(ip);
+    next();
 });
 
 AppRouter.all('*', async (req: Request, res: Response) => {

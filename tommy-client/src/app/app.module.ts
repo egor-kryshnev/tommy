@@ -22,6 +22,10 @@ import { HeaderComponent } from './header/header.component';
 import { PreloaderComponent } from './preloader/preloader.component';
 import { OpenRequestModule } from './open-request/open-request.module';
 import { StatusProgressComponent } from './task-detail/status-progress/status-progress.component';
+import { SearchBarComponent } from './search-bar/search-bar.component';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +37,8 @@ import { StatusProgressComponent } from './task-detail/status-progress/status-pr
     HeaderComponent,
     PreloaderComponent,
     StatusProgressComponent,
-    TaskDetailDialog
+    TaskDetailDialog,
+    SearchBarComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +55,9 @@ import { StatusProgressComponent } from './task-detail/status-progress/status-pr
     MatDialogModule,
     CommonModule,
     MatDialogModule,
-    OpenRequestModule
+    OpenRequestModule,
+    MatInputModule,
+    FormsModule
   ],
   providers: [EventEmiterService, AuthService, { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } }],
   bootstrap: [AppComponent]

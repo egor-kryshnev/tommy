@@ -48,25 +48,14 @@
 }
 
 .preloader-content {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
     width: 100%;
     height: 100%
 }
 
 .preloader-logo {
-    font-family: Montserrat, sans-serif;
-    font-weight: 400;
-    font-size: 1.125rem;
-    color: #AFC514;
-    letter-spacing: .25em
+    top: 42%;
+    position: absolute;
+    left: 21%;
 }
 
 @media screen and (min-width:600px) {
@@ -91,7 +80,8 @@
 }
 
 .preloader-logo .preloader-logo-letter.bold {
-    font-weight: 700
+    font-weight: 700;
+    width: 7vw;
 }
 
 .preloader-logo .preloader-logo-letter:first-child {
@@ -143,4 +133,7 @@
         -webkit-transform: translateZ(0);
         transform: translateZ(0)
     }
+}
+img{
+    width: 30vw;
 }

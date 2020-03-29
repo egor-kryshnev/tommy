@@ -1,5 +1,4 @@
-
-*{
+* {
   box-sizing: border-box;
 }
 
@@ -8,15 +7,14 @@
   src: url(../../../assets/Rubik-Medium.ttf);
 }
 
-.container3{
+.container3 {
   display: flex;
   margin-right: auto;
   margin-left: auto;
   justify-content: center;
 }
 
-
-#kara{
+#kara {
   text-align: center;
   left: 20vh;
   font-family: Rubik;
@@ -24,7 +22,7 @@
   font-size: 1.5rem;
 }
 
-#loved{
+#loved {
   text-align: center;
   left: 20vh;
   font-family: Rubik;
@@ -49,11 +47,11 @@
   font-style: normal;
   line-height: 1.43;
   letter-spacing: normal;
-  text-align: right;
+  text-align: center;
   color: #bfbfc0;
 }
 
-#charCounter{
+#charCounter {
   position: relative;
   width: 20px;
   left: 89%;
@@ -87,16 +85,12 @@ textarea {
 }
 
 textarea:hover {
-  border-radius: 4px;
   border: solid 1px #afc514;
 }
 
 textarea:focus {
-  border-radius: 4px;
   border: solid 1px #afc514;
 }
-
-
 
 .example_b {
   color: #fff !important;
@@ -112,13 +106,12 @@ textarea:focus {
   border: none;
   transition: all 0.4s ease 0s;
   cursor: pointer;
-  }
-
+}
 
 .example_b:hover {
   text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
-  -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-  -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
   transition: all 0.4s ease 0s;
   font-family: Rubik;
 }
@@ -126,5 +119,47 @@ textarea:focus {
 #grid-wrapper {
   display: grid;
   justify-content: center;
-} 
+}
 
+#taskOpenBtn {
+  cursor: pointer;
+}
+
+#inputs-wrapper {
+  display: grid;
+  grid-template-areas: "a b c d e f";
+}
+
+.input {
+  width: 160px;
+  padding: 5px;
+  outline: none;
+  direction: rtl;
+  border-radius: 4px;
+  border: solid 1px #ebebeb;
+  background-color: #fff;
+  transition: 0.5s;
+  font-size: 14px;
+  line-height: 1.43;
+  text-align: center;
+  color: #3b3b3b;
+  position: relative;
+  justify-self: center;
+}
+
+.input:hover {
+  border: solid 1px #afc514;
+}
+
+.input:focus {
+  border: solid 1px #afc514;
+}
+
+
+#location {
+  top: -20px;
+  width: 300px;
+}
+#phone {
+  top: 5px;
+}

@@ -126,6 +126,8 @@
 }
 
 .new-task-container {
+    display: flex;
+    justify-content: space-between;
     margin-bottom: 17px;
 }
 
