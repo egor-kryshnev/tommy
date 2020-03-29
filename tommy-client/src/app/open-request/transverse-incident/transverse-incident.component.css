@@ -16,20 +16,34 @@
   text-align: center;
 }
 
-.finish-button-container {
+.button-container {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 156px;
+  justify-content: space-between;
+  width: 216px;
   height: 46px;
   border-radius: 23px;
-  background-color: #3f9c67;
   cursor: pointer;
+  margin-top: 20px;
+  margin-left: 80px;
+}
+
+#new-incident-button-container {
+  background-color: #3f9c67;
+  color: white;
+}
+
+#home-button-container {
+  background-color: white;
+  border: 1px solid #3f9c67;
+  color: #3f9c67;
+}
+
+#home-icon {
+  background-color: #3f9c67;
 }
 
 .finish-text {
-  width: 29px;
-  height: 19px;
   font-family: Rubik;
   font-size: 16px;
   font-weight: 500;
@@ -37,9 +51,7 @@
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  text-align: right;
-  color: #ffffff;
-  margin-right: 30px;
+  margin-left: 30px;
 }
 
 .icon {
@@ -61,8 +73,13 @@ h1 {
 }
 
 p {
-  color: #3b3b3b;
   font-family: Rubik;
-  font-size: 16px;
-  margin: 20px
+  font-size: 15px;
+  font-weight: 200;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.25;
+  letter-spacing: normal;
+  text-align: center;
+  color: #3b3b3b;
 }
