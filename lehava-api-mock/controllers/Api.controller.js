@@ -62,12 +62,24 @@ module.exports = (app) => {
     // GET user active and non-active calls by user unique id
     app.get('/caisd-rest/cr', (req, res) => {
         if (validator.userCallsHeaderValidator(req)) {
-            if (req.query.WC.split("active=")[1] == 0) {
-                // Respond Non active calls
-                res.json(lehavaData.nonactivecalls[arraysearch("userUniqueId", req.query.WC.split("'")[1], lehavaData.nonactivecalls)].data);
-            } else if (req.query.WC.split("active=")[1] == 1) {
-                // Respond Active calls
-                res.json(lehavaData.activecalls[arraysearch("userUniqueId", req.query.WC.split("'")[1], lehavaData.activecalls)].data);
+            if (req.query.WC.startsWith('impact')) {
+                if(lehavaData.categoryWideProblems[arraysearch("categoryId", req.query.WC.split("category=")[1], lehavaData.categoryWideProblems)]) {
+                    res.json(lehavaData.categoryWideProblems[arraysearch("categoryId", req.query.WC.split("category=")[1], lehavaData.categoryWideProblems)].data);
+                } else {
+                    res.status(400).send( { error: "No Such Category Problem" })
+                }
+            } else {
+                if (lehavaData.nonactivecalls[arraysearch("userUniqueId", req.query.WC.split("'")[1], lehavaData.nonactivecalls)]) {
+                    if (req.query.WC.split("active=")[1] == 0) {
+                        // Respond Non active calls
+                        res.json(lehavaData.nonactivecalls[arraysearch("userUniqueId", req.query.WC.split("'")[1], lehavaData.nonactivecalls)].data)
+                    } else if (req.query.WC.split("active=")[1] == 1) {
+                        // Respond Active calls
+                        res.json(lehavaData.activecalls[arraysearch("userUniqueId", req.query.WC.split("'")[1], lehavaData.activecalls)].data);
+                    }
+                } else {
+                    res.status(400).send({ error: "No Such User" })
+                }
             }
         } else if (validator.updatesValidator(req)) {
             res.send(lehavaData.updates);
@@ -82,7 +94,7 @@ module.exports = (app) => {
             const userId = (req.body.cr.customer['@id'].split("'")[1]);
             const category = (req.body.cr.description.split("\n")[0]);
             const description = (req.body.cr.description.split("\n")[1]);
-            
+
             const newCall = new Call(userId, category, description);
             newCall.save();
             res.send(lehavaData.requests);
