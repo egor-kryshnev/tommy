@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import { NbThemeModule, NbLayoutModule, NbChatModule, NbCardModule, NbListModule } from '@nebular/theme';
 import { MatButtonModule } from '@angular/material/button';
 import { TasksComponent } from './tasks/tasks.component';
 import { MatGridListModule } from '@angular/material/grid-list';
