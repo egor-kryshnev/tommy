@@ -8,8 +8,8 @@
     <textarea id="subject" (keyup)="counter()" maxlength="500"
         placeholder="מוכנים להשקיע מספר דקות מזמנכם? לרשותך מדריך קצר שעשוי לעזור לפתור את הבעיה"></textarea>
     <p id="charCounter">{{ input }}/500</p>
-    <input type="text" class="input" id="location" placeholder="מיקום גיאוגרפי" maxlength="40">
-    <input type="tel" class="input" id="phone" placeholder="מספר טלפון נייד" maxlength="10">
+    <input type="text" class="input {{ locationWarning }}" id="location" placeholder="מיקום גיאוגרפי (חובה)" maxlength="40" (keyup)="setLocationInput($event)">
+    <input type="tel" maxlength="4" class="input {{ phoneWarning }}" id="phone" placeholder="מספר טלפון נייד (חובה)" maxlength="10" (keyup)="setPhoneInput($event)">
     <div class="button_cont" (click)="sendPost()" id="taskOpenBtn" align="center">
         <a class="example_b">פתיחת פניה</a>
     </div>
