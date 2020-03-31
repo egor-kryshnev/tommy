@@ -2,10 +2,10 @@
   "name": "access-token-service",
   "version": "1.0.0",
   "description": "A micro service for acquiring an access token",
-  "main": "dist/server.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "start": "tsc && node ./dist/server.js"
+    "start": "tsc && node ./dist/index.js"
   },
   "author": "Yoav Rozner",
   "license": "ISC",
