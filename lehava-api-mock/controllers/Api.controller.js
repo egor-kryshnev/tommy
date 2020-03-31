@@ -2,6 +2,7 @@ const lehavaData = require('../config/lehavaData')
 const validator = require('../validators/mainValidator')
 const arraysearch = require('../modules/arraysearch')
 const headerValidators = require('../routes/api.router')
+const Call = require('../modules/newCall');
 
 module.exports = (app) => {
 
@@ -77,8 +78,18 @@ module.exports = (app) => {
 
     // POSTing a new request and response back the new lehava request id
     app.post('/caisd-rest/cr', (req, res) => {
-        res.send(lehavaData.requests);
-        lehavaData.requests.cr['@COMMON_NAME'] += 1;
+        if (validator.newCallValidator(req)) {
+            const userId = (req.body.cr.customer['@id'].split("'")[1]);
+            const category = (req.body.cr.description.split("\n")[0]);
+            const description = (req.body.cr.description.split("\n")[1]);
+            
+            const newCall = new Call(userId, category, description);
+            newCall.save();
+            res.send(lehavaData.requests);
+            lehavaData.requests.cr['@COMMON_NAME'] += 1;
+        } else {
+            res.status(400).send({ error: "Bad Parameters" })
+        }
     });
 
 }

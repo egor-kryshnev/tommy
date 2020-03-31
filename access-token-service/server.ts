@@ -16,7 +16,7 @@ amqp.connect(config.rabbitmq.url, (error0: Error, connection) => {
       durable: false
     });
     channel.prefetch(1);
-    console.log(' [x] Awaiting RPC requests');
+    console.log(' [x] Awaiting RPC requests for access token service');
     channel.consume(queue, async (msg) => {
       if (msg) {
         const accessToken = await AccessTokenService.getAccessToken();

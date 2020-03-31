@@ -64,3 +64,17 @@ services:
         condition: service_healthy
       redis:
         condition: service_started
+
+  reverse-dns-service:
+    image: "reverse-dns-service"
+    container_name: "reverse-dns-service"
+    build:
+      context: ../reverse-dns-service
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: production
+      RABBITMQ_URL: "amqp://rabbitmq:5672"
+      REDIS_URL: 'redis://redis:6379'
+    depends_on:
+      rabbitmq:
+        condition: service_healthy

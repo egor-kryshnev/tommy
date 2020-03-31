@@ -30,7 +30,7 @@ export const GetAccessToken = async (): Promise<AccessToken> => {
                     }, {
                         noAck: true
                     });
-                    channel.sendToQueue(config.rabbitmq.queue_name, Buffer.from('Get Access Token'), {
+                    channel.sendToQueue(config.rabbitmq.access_token_queue_name, Buffer.from('Get Access Token'), {
                         correlationId: correlationId,
                         replyTo: q.queue
                     });

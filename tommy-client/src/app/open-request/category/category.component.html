@@ -1,0 +1,8 @@
+<app-return-button (selected)="onReturn()"></app-return-button>
+
+<app-page-top-title></app-page-top-title>
+
+<h4 id="kara">:בחרו קטגוריה בה הפניה</h4>
+
+<app-cards-list *ngIf="categoriesLoaded" [cardsList]="categoriesToDisplay" (selected)="selectedCategory($event)">
+</app-cards-list>

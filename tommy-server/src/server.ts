@@ -78,6 +78,8 @@ export class Server {
             saveUninitialized: true
         }));
 
+        this.app.set('trust proxy', true);
+
         this.app.all('*', (req: express.Request, res: express.Response, next: express.NextFunction) => {
             res.setHeader('Last-Modified', (new Date()).toUTCString());
             next();
