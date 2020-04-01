@@ -200,6 +200,7 @@ export class TasksComponent implements OnInit {
     const categoryStringArray = task.category.split(".");
     if(categoryStringArray[0]){
       return categoryStringArray[0];
-    } return categoryStringArray[1];
+    } 
+    return categoryStringArray[1];
   }
 }

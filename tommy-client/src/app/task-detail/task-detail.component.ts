@@ -9,11 +9,12 @@ import { taskModel1 } from '../apiget.service';
 })
 export class TaskDetailDialog {
   public statusList: string[] = ["ממתין לטיפול", "בטיפול צוות מחשוב", "בטיפול צוות טכני", "בטיפול אפסנאות", "טיפול הסתיים"];
-  
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   getDesc(): string {
+    console.log((this.data.task).description);
     return (this.data.task).description.length <= 200 ? (this.data.task).description : (this.data.task).description.substring(0, 200) + '...';
   }
 
@@ -22,11 +23,15 @@ export class TaskDetailDialog {
   }
 
   getCategory(): string {
-    return (this.data.task).category.split('.')[0];
+    const categoryStringArray = (this.data.task).category.split(".");
+    if (categoryStringArray[0]) {
+      return categoryStringArray[0];
+    }
+    return categoryStringArray[1];
   }
 
   getstatus(): boolean {
-    if(this.data.task.status === "פתוח") {
+    if (this.data.task.status === "פתוח") {
       return true;
     } else if (this.data.task.status === "סגור") {
       return false;
