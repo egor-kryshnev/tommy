@@ -186,7 +186,9 @@ export class TasksComponent implements OnInit {
 
   addTasksToDisplay(tasksArray: taskModel1[]) {
     tasksArray.forEach((task: taskModel1) => {
-      if ((task.category).includes(this.searchText)) {
+      if (this.getTaskCategory(task).includes(this.searchText) || (task.id).startsWith(this.searchText)) {
+        console.log(`${(task.category)} includes ${(this.searchText)} ? ${(task.category).includes(this.searchText)}`);
+        console.log(`${(task.id)} starts with ${(this.searchText)} ? ${(task.id).startsWith(this.searchText)}`);
         this.tasksToDisplay.push(task);
       }
     })
@@ -196,11 +198,11 @@ export class TasksComponent implements OnInit {
     return str.replace(/^\s+|\s+$/g, '');
   }
 
-  getTaskCategory(task: taskModel1){
+  getTaskCategory(task: taskModel1) {
     const categoryStringArray = task.category.split(".");
-    if(categoryStringArray[0]){
+    if (categoryStringArray[0]) {
       return categoryStringArray[0];
-    } 
+    }
     return categoryStringArray[1];
   }
 }
