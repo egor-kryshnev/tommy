@@ -10,13 +10,15 @@
   "author": "Yoav Rozner",
   "license": "ISC",
   "dependencies": {
-    "@types/amqplib": "^0.5.13",
-    "@types/axios": "^0.14.0",
-    "@types/redis": "^2.8.16",
     "amqplib": "^0.5.5",
     "axios": "^0.19.2",
     "redis": "^3.0.2",
-    "typescript": "^3.8.3",
     "util": "^0.12.2"
+  },
+  "devDependencies": {
+    "@types/amqplib": "^0.5.13",
+    "@types/axios": "^0.14.0",
+    "@types/redis": "^2.8.17",
+    "typescript": "^3.8.3"
   }
 }

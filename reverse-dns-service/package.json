@@ -10,9 +10,11 @@
   "author": "Yoav Rozner",
   "license": "ISC",
   "dependencies": {
-    "@types/amqplib": "^0.5.13",
     "amqplib": "^0.5.5",
-    "dns": "^0.2.2",
+    "dns": "^0.2.2"
+  },
+  "devDependencies": {
+    "@types/amqplib": "^0.5.13",
     "typescript": "^3.8.3"
   }
 }
