@@ -1,6 +1,7 @@
 import amqp from 'amqplib/callback_api';
 import { AccessToken } from './access-token.interface';
 import { config } from './../config';
+import { generateUuid } from '../utils/generate-uuid';
 
 export const GetAccessToken = async (): Promise<AccessToken> => {
     return new Promise((res, rej) => {
@@ -38,11 +39,4 @@ export const GetAccessToken = async (): Promise<AccessToken> => {
             });
         });
     });
-
-}
-
-function generateUuid() {
-    return Math.random().toString() +
-        Math.random().toString() +
-        Math.random().toString();
 }

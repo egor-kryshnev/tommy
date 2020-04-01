@@ -1,5 +1,6 @@
 import amqp from 'amqplib/callback_api';
 import { config } from './../config';
+import { generateUuid } from '../utils/generate-uuid';
 
 export const GetComputerName = async (ip: string): Promise<string> => {
     return new Promise((res, rej) => {
@@ -37,11 +38,4 @@ export const GetComputerName = async (ip: string): Promise<string> => {
             });
         });
     });
-
-}
-
-function generateUuid() {
-    return Math.random().toString() +
-        Math.random().toString() +
-        Math.random().toString();
 }
