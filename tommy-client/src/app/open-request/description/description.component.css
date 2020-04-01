@@ -131,7 +131,7 @@ textarea:focus {
 }
 
 .input {
-  width: 160px;
+  width: 180px;
   padding: 5px;
   outline: none;
   direction: rtl;
@@ -155,11 +155,20 @@ textarea:focus {
   border: solid 1px #afc514;
 }
 
-
 #location {
   top: -20px;
   width: 300px;
 }
+
 #phone {
   top: 5px;
+}
+
+.red-holder::placeholder {
+  color: #ff0000ba;
+}
+
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

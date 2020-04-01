@@ -15,6 +15,10 @@ import { FinishRequestComponent } from '../finish-request/finish-request.compone
 })
 export class DescriptionComponent implements OnInit {
 
+  locationWarning = "";
+  phoneWarning = "";
+  locationInput: string = "";
+  phoneInput: string = "";
   services: model1[];
   userUUID: string = '';
   userPhone: any;
@@ -38,22 +42,26 @@ export class DescriptionComponent implements OnInit {
   }
 
   sendPost() {
-    this.postReqService.descriptionInput = (<HTMLInputElement>document.getElementById("subject")).value;
-    this.postReqService.location = (<HTMLInputElement>document.getElementById("location")).value;
-    this.postReqService.phoneNumber = (<HTMLInputElement>document.getElementById("phone")).value;
-    this.postReqService.postRequest()
-      .subscribe((res: PostResponse) => {
-        const requestId = this.postReqService.getRequestId(res);
-        console.log(`request id: ${requestId}`);
-        const finishRequestDialog = this.dialog.open(FinishRequestComponent, {
-          width: '430px',
-          height: '466px',
-          data: requestId
-        });
-        finishRequestDialog.afterClosed().subscribe(result => {
-          this.router.navigateByUrl('/', { relativeTo: this.route });
-        });
-      })
+    if (this.locationInput && this.phoneInput) {
+      this.postReqService.descriptionInput = (<HTMLInputElement>document.getElementById("subject")).value;
+      this.postReqService.location = (<HTMLInputElement>document.getElementById("location")).value;
+      this.postReqService.phoneNumber = (<HTMLInputElement>document.getElementById("phone")).value;
+      this.postReqService.postRequest()
+        .subscribe((res: PostResponse) => {
+          const requestId = this.postReqService.getRequestId(res);
+          console.log(`request id: ${requestId}`);
+          const finishRequestDialog = this.dialog.open(FinishRequestComponent, {
+            width: '430px',
+            height: '466px',
+            data: requestId
+          });
+          finishRequestDialog.afterClosed().subscribe(result => {
+            this.router.navigateByUrl('/', { relativeTo: this.route });
+          });
+        })
+    } else {
+      this.inputPlaceholderChanger();
+    }
   }
 
   counter() {
@@ -61,8 +69,23 @@ export class DescriptionComponent implements OnInit {
     // console.log(this.input);
   }
 
+  setPhoneInput(event: KeyboardEvent) {
+    this.phoneInput = (event.target as HTMLInputElement).value;
+  }
 
+  setLocationInput(event: KeyboardEvent) {
+    this.locationInput = (event.target as HTMLInputElement).value;
+  }
 
-
+  inputPlaceholderChanger() {
+    if (!this.locationInput && !this.phoneInput) {
+      this.locationWarning = "red-holder";
+      this.phoneWarning = "red-holder";
+    } else if (!this.locationInput && this.phoneInput) {
+      this.locationWarning = "red-holder";
+    } else if (this.locationInput && !this.phoneInput) {
+      this.phoneWarning = "red-holder";
+    }
+  }
 
 }
