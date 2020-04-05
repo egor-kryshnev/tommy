@@ -1,0 +1,26 @@
+.date {
+  font-family: 'Rubik';
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: right;
+  color: #696969;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+
+.name {
+  font-size: 14px;
+  font-weight: 300;
+  font-family: Rubik;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: right;
+  color: #696969;
+}

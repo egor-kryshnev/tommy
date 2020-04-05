@@ -11,5 +11,4 @@ ENV NODE_ENV=production
 COPY --from=build ./usr/src/app/dist ./dist
 COPY --from=build ./usr/src/app/package.json ./
 RUN npm install --production --silent
-EXPOSE 80
 CMD npm start
