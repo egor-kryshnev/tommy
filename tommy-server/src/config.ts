@@ -19,15 +19,8 @@ export const config = {
         host: process.env.REDIS_URL || 'redis://localhost:6379',
     },
     lehava_api: {
-        request: {
-            method: 'POST',
-            url: process.env.LEHAVA_API_URL || "http://lehava-api-mock:8050/caisd-rest/rest_access",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-                "Authorization": "Basic c2VydmljZWRlc2s6U0RBZG1pbjAx"
-            }
-        }
+        host: process.env.LEHAVA_API_HOST || "lehava-api-mock",
+        port: process.env.LEHAVA_API_PORT || "8050"
     },
     rabbitmq: {
         url: process.env.RABBITMQ_URL || "amqp://rabbitmq:5672",
