@@ -31,6 +31,8 @@ services:
       CLIENT_URL: http://tommy-client:4200
       REDIS_URL: 'redis://redis:6379'
       RABBITMQ_URL: "amqp://rabbitmq:5672"
+      LEHAVA_API_HOST: "lehava-api-mock"
+      LEHAVA_API_PORT: "8050"
     ports:
       - 80:80
     depends_on:
