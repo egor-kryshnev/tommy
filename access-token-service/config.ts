@@ -1,7 +1,4 @@
 export const config = {
-    redis: {
-        host: process.env.REDIS_URL || 'redis://redis:6379',
-    },
     lehava_api: {
         request: {
             url: process.env.LEHAVA_API_URL || "http://lehava-api-mock:8050/caisd-rest/rest_access",

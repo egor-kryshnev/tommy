@@ -1,10 +1,10 @@
-import { Router, Request, Response, NextFunction } from "express";
+import { Router, Request, Response } from "express";
 import { AuthorizationMiddleware } from "./authorization/middleware";
 import { AccessTokenProvider } from './access-token/access-token-service';
-// import { Proxy } from 'axios-express-proxy';
 import axios, { Method } from 'axios';
 import { IpMiddleware } from './utils/middlewares/ip-middleware';
 import { ComputerNameMiddleware } from './utils/middlewares/computer-name-middleware';
+import { config } from './config';
 
 const AppRouter: Router = Router();
 
@@ -13,15 +13,15 @@ AppRouter.get('/isalive', (req: Request, res: Response) => res.status(200).send(
 AppRouter.post('*', AuthorizationMiddleware.postAuthorization, IpMiddleware, ComputerNameMiddleware);
 
 AppRouter.all('*', async (req: Request, res: Response) => {
-    console.log(req.method, `http:/${req.url}`);
+    const url = `http://${config.lehava_api.host}:${config.lehava_api.port}${req.url}`;
+    console.log(req.method, url);
     try {
         const apiHeaders = { ...req.headers };
         apiHeaders['X-AccessKey'] = await AccessTokenProvider.getAccessToken();
-        req.headers = apiHeaders;
 
         const apiRes = await axios({
             method: req.method as Method,
-            url: `http:/${req.url}`,
+            url,
             params: req.params,
             headers: apiHeaders,
             data: req.body
@@ -30,7 +30,7 @@ AppRouter.all('*', async (req: Request, res: Response) => {
         res.status(apiRes.status).send(apiRes.data);
     } catch (e) {
         console.error(`error\n${e.message}`);
-        res.send(e.data);
+        res.send(e.message);
     }
 })
 
