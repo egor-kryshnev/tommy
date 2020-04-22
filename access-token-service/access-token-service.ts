@@ -7,7 +7,8 @@ export class AccessTokenService {
     private static accessToken: AccessToken;
 
     public static async getAccessToken(): Promise<AccessToken> {
-        if (!this.accessToken || this.accessToken.expiration_date - new Date().getMilliseconds() <= 0) {
+        if (!AccessTokenService.accessToken ||
+            (AccessTokenService.accessToken.rest_access.expiration_date - new Date().getTime() <= 0)) {
             const apiRes = await axios(config.lehava_api.request.url,
                 {
                     headers: {
@@ -21,8 +22,8 @@ export class AccessTokenService {
                     },
                 });
             console.log(`Access Key brought from lehava api: ${JSON.stringify(apiRes.data)}`)
-            this.accessToken = apiRes.data;
+            AccessTokenService.accessToken = apiRes.data;
         }
-        return this.accessToken;
+        return AccessTokenService.accessToken;
     }
 }
