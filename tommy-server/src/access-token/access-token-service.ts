@@ -6,9 +6,10 @@ export class AccessTokenProvider {
     private static accessToken: AccessToken;
 
     public static async getAccessToken(): Promise<string> {
-        if (!this.accessToken || this.accessToken.expiration_date - new Date().getMilliseconds() <= 0) {
+        if (!AccessTokenProvider.accessToken ||
+            (AccessTokenProvider.accessToken.rest_access.expiration_date - new Date().getTime() <= 0)) {
             this.accessToken = await GetAccessToken();
         }
-        return String(this.accessToken['access_key']);
+        return String(AccessTokenProvider.accessToken.rest_access.access_key);
     }
 }

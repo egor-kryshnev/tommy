@@ -45,11 +45,12 @@ export class Server {
 
     private configureMiddlewares() {
         this.app.use(helmet());
-        // this.app.disable('etag');
 
         this.app.get('/isalive', function (req: express.Request, res: express.Response, next: express.NextFunction) {
             res.status(200).send('Server Is Up');
         });
+
+        this.app.use(cors());
 
         this.app.use(function (req: express.Request, res: express.Response, next: express.NextFunction) {
             res.setHeader('Access-Control-Allow-Credentials', 'true');
@@ -59,8 +60,6 @@ export class Server {
 
             return next();
         });
-
-        this.app.use(cors());
 
         if (process.env.NODE_ENV === 'development') {
             this.app.use(morgan('dev'));
