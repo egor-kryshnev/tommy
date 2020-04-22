@@ -5,12 +5,16 @@
 <h4 id="kara">לא הצלחת לתפעל את התקלה? מצורף טופס לתיאור התקלה</h4>
 
 <div id="grid-wrapper">
-    <textarea id="subject" (keyup)="counter()" maxlength="500"
-        placeholder="מוכנים להשקיע מספר דקות מזמנכם? לרשותך מדריך קצר שעשוי לעזור לפתור את הבעיה"></textarea>
-    <p id="charCounter">{{ input }}/500</p>
-    <input type="text" class="input {{ locationWarning }}" id="location" placeholder="מיקום גיאוגרפי (חובה)" maxlength="40" (keyup)="setLocationInput($event)">
-    <input type="tel" maxlength="4" class="input {{ phoneWarning }}" id="phone" placeholder="מספר טלפון נייד (חובה)" maxlength="10" (keyup)="setPhoneInput($event)">
-    <div class="button_cont" (click)="sendPost()" id="taskOpenBtn" align="center">
-        <a class="example_b">פתיחת פניה</a>
-    </div>
+  <textarea id="subject" (keyup)="counter()" maxlength="500"
+    placeholder="מוכנים להשקיע מספר דקות מזמנכם? לרשותך מדריך קצר שעשוי לעזור לפתור את הבעיה"></textarea>
+  <p id="charCounter">{{ input }}/500</p>
+  <input type="text" class="input {{ locationWarning }}" id="location" placeholder="מיקום גיאוגרפי (חובה)"
+    maxlength="40" (input)="setLocationInput($event.target.value)">
+  <input type="tel" maxlength="4" class="input {{ phoneWarning }}" id="phone" placeholder="מספר טלפון נייד (חובה)"
+    maxlength="10" (input)="setPhoneInput($event.target.value)">
+  <input type="text" class="input {{ locationWarning }}" placeholder="שם המחשב (חובה)" maxlength="40"
+    (input)="setComputerNameInput($event.target.value)">
+  <div class="button_cont" (click)="sendPost()" id="taskOpenBtn" align="center">
+    <a class="example_b">פתיחת פניה</a>
+  </div>
 </div>

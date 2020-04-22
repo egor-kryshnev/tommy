@@ -33,6 +33,7 @@ export class PostReqService {
   descriptionCategory: string;
   descriptionInput: string;
   location: string;
+  computerName: string;
 
   postRequest() {
     const description = this.appendDescriptions();
@@ -53,7 +54,7 @@ export class PostReqService {
         },
         "z_ipaddress": "1.1.1.1",
         "z_username": this.userT,
-        "z_computer_name": "computer_name",
+        "z_computer_name": this.computerName,
         "z_current_loc": this.location,
         "z_network":
         {
