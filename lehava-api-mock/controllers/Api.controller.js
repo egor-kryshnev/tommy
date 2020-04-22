@@ -11,7 +11,11 @@ module.exports = (app) => {
 
     // get access key by POST request (access key is valid for one week only)
     app.post('/caisd-rest/rest_access', (req, res) => {
-        res.json(lehavaData.restaccess);
+        if(validator.accessKeyValidator(req)) {
+            res.json(lehavaData.restaccess);
+        } else {
+            res.status(400).send({ error: "Body is not set properly" });
+        }
     });
 
     // GET all networks details

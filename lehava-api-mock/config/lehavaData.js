@@ -1,10 +1,12 @@
 module.exports = {
     restaccess: {
-        "@id": "400051",
-        "@REL_ATTR": "400051",
-        "@COMMON_NAME": "1835377188",
-        "access_key": 59975677,
-        "expiration_date": 1584368529
+        "rest_access": {
+            "@id": "400051",
+            "@REL_ATTR": "400051",
+            "@COMMON_NAME": "1835377188",
+            "access_key": 59975677,
+            "expiration_date": 1584368529
+        }
     },
 
     all_networks: {
