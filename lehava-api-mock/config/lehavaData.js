@@ -1921,47 +1921,21 @@ module.exports = {
                 collection_cr: {
                     cr: [{
                             "@COMMON_NAME": "186611",
-                            "description": "בדיקת תקינות שקעים",
+                            "description": "היי לא עובד לי המייל",
                             "status": {
                                 "@COMMON_NAME": "סגור"
                             },
-                            "category": {
-                                "@COMMON_NAME": "צרורות. אין רשת במחשב"
-                            },
+                            "summary": "תקלת דפדפן - לא נפתח",
                             "open_date": 1577822600000
                         },
                         {
-                            "@COMMON_NAME": "224333",
-                            "description": "בדיקת תקינות שקעים",
+                            "@COMMON_NAME": "186322",
+                            "description": "קלט משתמש והערות",
                             "status": {
                                 "@COMMON_NAME": "סגור"
                             },
-                            "category": {
-                                "@COMMON_NAME": "שדה קוצים. תקלה ביוזר TORSER"
-                            },
-                            "open_date": 1577823600000
-                        },
-                        {
-                            "@COMMON_NAME": "186611",
-                            "description": "הזמנת כבל",
-                            "status": {
-                                "@COMMON_NAME": "סגור"
-                            },
-                            "category": {
-                                "@COMMON_NAME": "YNET. השבתה זמנית של אפליקציית AIRPORT"
-                            },
-                            "open_date": 1577825600000
-                        },
-                        {
-                            "@COMMON_NAME": "224333",
-                            "description": "התקנת עמדה",
-                            "status": {
-                                "@COMMON_NAME": "סגור"
-                            },
-                            "category": {
-                                "@COMMON_NAME": "YNET. השבתה זמנית של אפליקציית AIRPORT"
-                            },
-                            "open_date": 1577822100000
+                            "summary": "תקלת מיילים",
+                            "open_date": 1577822500000
                         }
                     ]
                 }
