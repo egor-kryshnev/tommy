@@ -23,11 +23,7 @@ export class TaskDetailDialog {
   }
 
   getCategory(): string {
-    const categoryStringArray = (this.data.task).category.split(".");
-    if (categoryStringArray[0]) {
-      return categoryStringArray[0];
-    }
-    return categoryStringArray[1];
+    return this.data.task.category;
   }
 
   getstatus(): boolean {

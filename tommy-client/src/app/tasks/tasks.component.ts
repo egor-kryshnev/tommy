@@ -39,27 +39,6 @@ export class TasksComponent implements OnInit {
     this._eventEmmitter.dataStr.subscribe(data => {
       this._eventEmmitter.str = data;
       console.log("data = " + data);
-      this.aPIgetService.getOpenTasks(data).subscribe((res: any) => {
-        console.log(res);
-        this.tasksArray = res.collection_cr.cr;
-        this.tasksArray.forEach((element: any) => {
-          let current_datetime = new Date(element.open_date);
-          let formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear()
-          this.tasksByIdArray.push(
-            {
-              "id": element["@COMMON_NAME"],
-              "description": element.description,
-              "status": element.status["@COMMON_NAME"],
-              "category": element.category["@COMMON_NAME"],
-              "open_date": formatted_date,
-              "icon": this.iconGenerator()
-            } as taskModel1
-          );
-        })
-        this.tasksToDisplay = this.tasksByIdArray;
-        console.log("in get open by id" + this.tasksByIdArray);
-        console.log("in get open to display" + this.tasksToDisplay);
-      });
       this.getopen();
       this.getClosed();
     });
@@ -81,7 +60,7 @@ export class TasksComponent implements OnInit {
             "id": element["@COMMON_NAME"],
             "description": element.description,
             "status": element.status["@COMMON_NAME"],
-            "category": element.category["@COMMON_NAME"],
+            "category": element.summary,
             "open_date": formatted_date,
             "icon": this.iconGenerator()
           } as taskModel1
@@ -106,7 +85,7 @@ export class TasksComponent implements OnInit {
               "id": element["@COMMON_NAME"],
               "description": element.description,
               "status": element.status["@COMMON_NAME"],
-              "category": element.category["@COMMON_NAME"],
+              "category": element.summary,
               "open_date": formatted_date,
               "icon": this.iconGenerator()
             } as taskModel1
@@ -129,7 +108,7 @@ export class TasksComponent implements OnInit {
             "id": element["@COMMON_NAME"],
             "description": element.description,
             "status": element.status["@COMMON_NAME"],
-            "category": element.category["@COMMON_NAME"],
+            "category": element.summary,
             "open_date": formatted_date,
             "icon": this.iconGenerator()
           } as taskModel1
@@ -152,7 +131,7 @@ export class TasksComponent implements OnInit {
               "id": element["@COMMON_NAME"],
               "description": element.description,
               "status": element.status["@COMMON_NAME"],
-              "category": element.category["@COMMON_NAME"],
+              "category": element.summary,
               "open_date": formatted_date,
               "icon": this.iconGenerator()
             } as taskModel1
@@ -222,10 +201,6 @@ export class TasksComponent implements OnInit {
   }
 
   getTaskCategory(task: taskModel1) {
-    const categoryStringArray = task.category.split(".");
-    if (categoryStringArray[0]) {
-      return categoryStringArray[0];
-    }
-    return categoryStringArray[1];
+    return task.category;
   }
 }
