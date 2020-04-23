@@ -25,6 +25,5 @@ export const config = {
     rabbitmq: {
         url: process.env.RABBITMQ_URL || "amqp://rabbitmq:5672",
         access_token_queue_name: "access_token_rpc_queue",
-        reverse_dns_queue_name: "reverse_dns_rpc_queue",
     }
 }
