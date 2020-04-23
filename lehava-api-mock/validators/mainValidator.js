@@ -4,7 +4,7 @@ const arraysearch = require('../modules/arraysearch')
 module.exports = {
 
     headerValidator: (req) => {
-        if (req.header('X-AccessKey') == lehavaData.restaccess.access_key && req.header('Accept') == 'application/json') {
+        if (req.header('X-AccessKey') == lehavaData.restaccess.rest_access.access_key && req.header('Accept') == 'application/json') {
             return true;
         } return false;
     },

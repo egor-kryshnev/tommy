@@ -26,6 +26,8 @@ export class UpdatingComponent implements OnInit {
     this.apiget.getUpdates().subscribe((res: any) => {
       this.updatesArrayRes = res.collection_cr.cr;
       this.updatesObjectRes = res.collection_cr.cr;
+      console.log("updatesArrayRes" + this.updatesArrayRes);
+      console.log("updatesObjectRes" + this.updatesObjectRes);
       this.array = Array.isArray(this.updatesArrayRes);
       if(this.array) {
         this.updatesArrayRes.forEach((element: any) => {
@@ -39,6 +41,7 @@ export class UpdatingComponent implements OnInit {
             } as updatesModel
           )
         });
+        console.log("array filtered " + this.updatesArrayFiltered);
       }
       else {
         this.updatesObject = {
@@ -49,5 +52,4 @@ export class UpdatingComponent implements OnInit {
       }
     });
   }
-
 }
