@@ -17,8 +17,10 @@ export class DescriptionComponent implements OnInit {
 
   locationWarning = "";
   phoneWarning = "";
+  computerNameWarning = "";
   locationInput: string = "";
   phoneInput: string = "";
+  computerNameInput: string = "";
   services: model1[];
   userUUID: string = '';
   userPhone: any;
@@ -42,10 +44,11 @@ export class DescriptionComponent implements OnInit {
   }
 
   sendPost() {
-    if (this.locationInput && this.phoneInput) {
+    if (this.locationInput && this.phoneInput && this.computerNameInput) {
       this.postReqService.descriptionInput = (<HTMLInputElement>document.getElementById("subject")).value;
-      this.postReqService.location = (<HTMLInputElement>document.getElementById("location")).value;
-      this.postReqService.phoneNumber = (<HTMLInputElement>document.getElementById("phone")).value;
+      this.postReqService.location = this.locationInput;
+      this.postReqService.phoneNumber = this.phoneInput;
+      this.postReqService.computerName = this.computerNameInput;
       this.postReqService.postRequest()
         .subscribe((res: PostResponse) => {
           const requestId = this.postReqService.getRequestId(res);
@@ -66,26 +69,24 @@ export class DescriptionComponent implements OnInit {
 
   counter() {
     this.input = (<HTMLInputElement>document.getElementById("subject")).value.length;
-    // console.log(this.input);
   }
 
-  setPhoneInput(event: KeyboardEvent) {
-    this.phoneInput = (event.target as HTMLInputElement).value;
+  setPhoneInput(phoneInput: string) {
+    this.phoneInput = phoneInput;
   }
 
-  setLocationInput(event: KeyboardEvent) {
-    this.locationInput = (event.target as HTMLInputElement).value;
+  setComputerNameInput(computerName: string) {
+    this.computerNameInput = computerName;
+  }
+
+  setLocationInput(location: string) {
+    this.locationInput = location;
   }
 
   inputPlaceholderChanger() {
-    if (!this.locationInput && !this.phoneInput) {
-      this.locationWarning = "red-holder";
-      this.phoneWarning = "red-holder";
-    } else if (!this.locationInput && this.phoneInput) {
-      this.locationWarning = "red-holder";
-    } else if (this.locationInput && !this.phoneInput) {
-      this.phoneWarning = "red-holder";
-    }
+    this.locationWarning = !this.locationInput ? "red-holder" : "";
+    this.phoneWarning = !this.phoneInput ? "red-holder" : "";
+    this.computerNameWarning = !this.computerNameInput ? "red-holder" : "";
   }
 
 }
