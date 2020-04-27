@@ -60,7 +60,7 @@ export class TasksComponent implements OnInit {
             "id": element["@COMMON_NAME"],
             "description": element.description,
             "status": element.status["@COMMON_NAME"],
-            "category": element.summary,
+            "category": element.description,
             "open_date": formatted_date,
             "icon": this.iconGenerator()
           } as taskModel1
@@ -186,12 +186,8 @@ export class TasksComponent implements OnInit {
 
   addTasksToDisplay(tasksArray: taskModel1[]) {
     tasksArray.forEach((task: taskModel1) => {
-      if (this.getTaskCategory(task).includes(this.searchText) || (task.id).startsWith(this.searchText)) {
-        console.log(`${(task.category)} includes ${(this.searchText)} ? ${(task.category).includes(this.searchText)}`);
-        console.log(`${(task.id)} starts with ${(this.searchText)} ? ${(task.id).startsWith(this.searchText)}`);
+      if (this.getTaskTitle(task).includes(this.searchText) || (task.id).startsWith(this.searchText)) {
         this.tasksToDisplay.push(task);
-        console.log("in search" + this.tasksToDisplay);
-
       }
     })
   }
@@ -200,7 +196,8 @@ export class TasksComponent implements OnInit {
     return str.replace(/^\s+|\s+$/g, '');
   }
 
-  getTaskCategory(task: taskModel1) {
-    return task.category;
+  getTaskTitle(task: taskModel1) {
+    const taskDescription = (task.category).split("\n")[1];
+    return taskDescription.length <= 30 ? taskDescription : '...' + taskDescription.substring(0, 30);
   }
 }
