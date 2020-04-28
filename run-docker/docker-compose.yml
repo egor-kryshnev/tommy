@@ -3,6 +3,9 @@ version: "2.1"
 services:
   tommy-client:
     image: tommy-client
+    build:
+      context: ./
+      dockerfile: Dockerfile
     environment:
       NODE_ENV: production
     ports:
@@ -32,7 +35,7 @@ services:
       - '6379:6379'
 
   rabbitmq:
-    image: 'rabbitmq'
+    image: 'compose_rabbitmq'
     hostname: rabbitmq
     ports:
       - "5672:5672"
