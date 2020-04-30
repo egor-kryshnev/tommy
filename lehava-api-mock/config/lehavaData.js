@@ -1921,7 +1921,7 @@ module.exports = {
                 collection_cr: {
                     cr: [{
                             "@COMMON_NAME": "186611",
-                            "description": "היי לא עובד לי המייל",
+                            "description": "שם קטגורייה\n היי לא עובד לי הכרום בבקשה לתקן",
                             "status": {
                                 "@COMMON_NAME": "סגור"
                             },
@@ -1930,7 +1930,7 @@ module.exports = {
                         },
                         {
                             "@COMMON_NAME": "186322",
-                            "description": "קלט משתמש והערות",
+                            "description": "שם קטגורייה\n היי לא נפתח לי האווטלוק אשמח שתעזרו בהקדם האפשרי",
                             "status": {
                                 "@COMMON_NAME": "סגור"
                             },
@@ -2031,7 +2031,7 @@ module.exports = {
                 collection_cr: {
                     cr: [{
                             "@COMMON_NAME": "186318",
-                            "description": "מה שהמשתמש כתב",
+                            "description": "מערכת הפעלה\n היי לא עולה לי הווינדוס דחוף בבקשה",
                             "status": {
                                 "@COMMON_NAME": "פתוח"
                             },
@@ -2040,7 +2040,7 @@ module.exports = {
                         },
                         {
                             "@COMMON_NAME": "186322",
-                            "description": "קלט משתמש והערות",
+                            "description": "תקלת מייל\n היי לא נפתח לי האווטלוק אשמח שתעזרו בהקדם האפשרי",
                             "status": {
                                 "@COMMON_NAME": "פתוח"
                             },
@@ -2049,7 +2049,7 @@ module.exports = {
                         },
                         {
                             "@COMMON_NAME": "186324",
-                            "description": "מה שהמשתמש כתב",
+                            "description": "תקלת כרטיס מסך\n היי המסך שלי ברזולוצייה ממש נמוכה ולא נראה לי שהבעיה בהגדרות",
                             "status": {
                                 "@COMMON_NAME": "פתוח"
                             },
@@ -2058,7 +2058,7 @@ module.exports = {
                         },
                         {
                             "@COMMON_NAME": "186375",
-                            "description": "קלט קלט קלט קלט",
+                            "description": "תקלת דרייברים\n המחשב לא מזהה את המקלדת נראה לי שזה דרייברים",
                             "status": {
                                 "@COMMON_NAME": "פתוח"
                             },
