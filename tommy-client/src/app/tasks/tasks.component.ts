@@ -39,27 +39,6 @@ export class TasksComponent implements OnInit {
     this._eventEmmitter.dataStr.subscribe(data => {
       this._eventEmmitter.str = data;
       console.log("data = " + data);
-      this.aPIgetService.getOpenTasks(data).subscribe((res: any) => {
-        console.log(res);
-        this.tasksArray = res.collection_cr.cr;
-        this.tasksArray.forEach((element: any) => {
-          let current_datetime = new Date(element.open_date);
-          let formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear()
-          this.tasksByIdArray.push(
-            {
-              "id": element["@COMMON_NAME"],
-              "description": element.description,
-              "status": element.status["@COMMON_NAME"],
-              "category": element.category["@COMMON_NAME"],
-              "open_date": formatted_date,
-              "icon": this.iconGenerator()
-            } as taskModel1
-          );
-        })
-        this.tasksToDisplay = this.tasksByIdArray;
-        console.log("in get open by id" + this.tasksByIdArray);
-        console.log("in get open to display" + this.tasksToDisplay);
-      });
       this.getopen();
       this.getClosed();
     });
@@ -81,7 +60,7 @@ export class TasksComponent implements OnInit {
             "id": element["@COMMON_NAME"],
             "description": element.description,
             "status": element.status["@COMMON_NAME"],
-            "category": element.category["@COMMON_NAME"],
+            "category": element.description,
             "open_date": formatted_date,
             "icon": this.iconGenerator()
           } as taskModel1
@@ -106,7 +85,7 @@ export class TasksComponent implements OnInit {
               "id": element["@COMMON_NAME"],
               "description": element.description,
               "status": element.status["@COMMON_NAME"],
-              "category": element.category["@COMMON_NAME"],
+              "category": element.summary,
               "open_date": formatted_date,
               "icon": this.iconGenerator()
             } as taskModel1
@@ -129,7 +108,7 @@ export class TasksComponent implements OnInit {
             "id": element["@COMMON_NAME"],
             "description": element.description,
             "status": element.status["@COMMON_NAME"],
-            "category": element.category["@COMMON_NAME"],
+            "category": element.summary,
             "open_date": formatted_date,
             "icon": this.iconGenerator()
           } as taskModel1
@@ -152,7 +131,7 @@ export class TasksComponent implements OnInit {
               "id": element["@COMMON_NAME"],
               "description": element.description,
               "status": element.status["@COMMON_NAME"],
-              "category": element.category["@COMMON_NAME"],
+              "category": element.summary,
               "open_date": formatted_date,
               "icon": this.iconGenerator()
             } as taskModel1
@@ -207,12 +186,8 @@ export class TasksComponent implements OnInit {
 
   addTasksToDisplay(tasksArray: taskModel1[]) {
     tasksArray.forEach((task: taskModel1) => {
-      if (this.getTaskCategory(task).includes(this.searchText) || (task.id).startsWith(this.searchText)) {
-        console.log(`${(task.category)} includes ${(this.searchText)} ? ${(task.category).includes(this.searchText)}`);
-        console.log(`${(task.id)} starts with ${(this.searchText)} ? ${(task.id).startsWith(this.searchText)}`);
+      if (this.getTaskTitle(task).includes(this.searchText) || (task.id).startsWith(this.searchText)) {
         this.tasksToDisplay.push(task);
-        console.log("in search" + this.tasksToDisplay);
-
       }
     })
   }
@@ -221,11 +196,8 @@ export class TasksComponent implements OnInit {
     return str.replace(/^\s+|\s+$/g, '');
   }
 
-  getTaskCategory(task: taskModel1) {
-    const categoryStringArray = task.category.split(".");
-    if (categoryStringArray[0]) {
-      return categoryStringArray[0];
-    }
-    return categoryStringArray[1];
+  getTaskTitle(task: taskModel1) {
+    const taskDescription = (task.category).split("\n")[1];
+    return taskDescription.length <= 30 ? taskDescription : '...' + taskDescription.substring(0, 30);
   }
 }

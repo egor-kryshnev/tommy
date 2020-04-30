@@ -1921,47 +1921,21 @@ module.exports = {
                 collection_cr: {
                     cr: [{
                             "@COMMON_NAME": "186611",
-                            "description": "בדיקת תקינות שקעים",
+                            "description": "היי לא עובד לי המייל",
                             "status": {
                                 "@COMMON_NAME": "סגור"
                             },
-                            "category": {
-                                "@COMMON_NAME": "צרורות. אין רשת במחשב"
-                            },
+                            "summary": "תקלת דפדפן - לא נפתח",
                             "open_date": 1577822600000
                         },
                         {
-                            "@COMMON_NAME": "224333",
-                            "description": "בדיקת תקינות שקעים",
+                            "@COMMON_NAME": "186322",
+                            "description": "קלט משתמש והערות",
                             "status": {
                                 "@COMMON_NAME": "סגור"
                             },
-                            "category": {
-                                "@COMMON_NAME": "שדה קוצים. תקלה ביוזר TORSER"
-                            },
-                            "open_date": 1577823600000
-                        },
-                        {
-                            "@COMMON_NAME": "186611",
-                            "description": "הזמנת כבל",
-                            "status": {
-                                "@COMMON_NAME": "סגור"
-                            },
-                            "category": {
-                                "@COMMON_NAME": "YNET. השבתה זמנית של אפליקציית AIRPORT"
-                            },
-                            "open_date": 1577825600000
-                        },
-                        {
-                            "@COMMON_NAME": "224333",
-                            "description": "התקנת עמדה",
-                            "status": {
-                                "@COMMON_NAME": "סגור"
-                            },
-                            "category": {
-                                "@COMMON_NAME": "YNET. השבתה זמנית של אפליקציית AIRPORT"
-                            },
-                            "open_date": 1577822100000
+                            "summary": "תקלת מיילים",
+                            "open_date": 1577822500000
                         }
                     ]
                 }
@@ -2061,44 +2035,37 @@ module.exports = {
                             "status": {
                                 "@COMMON_NAME": "פתוח"
                             },
-                            "category": {
-                                "@COMMON_NAME": "התקנת עמדה. התקנת עמדת עד הסוף. דחוף"
-                            },
+                            "summary": "תקלת מערכת הפעלה",
                             "open_date": 1577822500000
                         },
                         {
-                            "@COMMON_NAME": "227996",
-                            "description": "טקסט משתמש",
+                            "@COMMON_NAME": "186322",
+                            "description": "קלט משתמש והערות",
                             "status": {
                                 "@COMMON_NAME": "פתוח"
                             },
-                            "category": {
-                                "@COMMON_NAME": "התקנת מערכת הפעלה. ווינדוס 10. דחוף"
-                            },
-                            "open_date": 1577822100000
+                            "summary": "תקלת מיילים",
+                            "open_date": 1577822500000
                         },
                         {
-                            "@COMMON_NAME": "123317",
-                            "description": "דסריפשן משתמש",
-                            "status": {
-                                "@COMMON_NAME": "נפתח מחדש"
-                            },
-                            "category": {
-                                "@COMMON_NAME": "תקלת מקלדת. מקלדת לא עובדת"
-                            },
-                            "open_date": 1577822100000
-                        },
-                        {
-                            "@COMMON_NAME": "291333",
-                            "description": "טקסט משתמש טקסט",
+                            "@COMMON_NAME": "186324",
+                            "description": "מה שהמשתמש כתב",
                             "status": {
                                 "@COMMON_NAME": "פתוח"
                             },
-                            "category": {
-                                "@COMMON_NAME": "תקלת מייל. אפליקציית מייל לא עולה. לא דחוף"
+                            "summary": "תקלת כרטיס מסך",
+                            "open_date": 1577822500000
+                        },
+                        {
+                            "@COMMON_NAME": "186375",
+                            "description": "קלט קלט קלט קלט",
+                            "status": {
+                                "@COMMON_NAME": "פתוח"
                             },
-                            "open_date": 1577822100000
-                        }
+                            "summary": "תקלת דרייבר למקלדת",
+                            "open_date": 1577822500000
+                        },
+                        
                     ]
                 }
             }

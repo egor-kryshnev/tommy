@@ -37,8 +37,8 @@
           <hr class="kav">
           <div id="taskNameDecorationOpen"></div>
           <p id="task-date">{{ task.open_date }}</p>
-          <p id="task-title">{{ getTaskCategory(task) }}</p>
-
+          <!-- <p id="task-title">{{ getTaskCategory(task) }}</p> -->
+          <p id="task-title">{{ getTaskTitle(task) }}</p>
           <p id="timeTillTreatment">זמן צפוי לטיפול יומיים</p>
           <p id="task-id">{{ task.id }}</p>
         </div>
@@ -52,7 +52,7 @@
           <hr class="kav">
           <div id="taskNameDecorationClosed"></div>
           <p id="task-date">{{ closedtask.open_date }}</p>
-          <p id="task-title">{{ getTaskCategory(closedtask) }}</p>
+          <p id="task-title">{{ getTaskTitle(closedtask) }}</p>
           <p id="timeTillTreatment">זמן צפוי לטיפול יומיים</p>
           <p id="task-id">{{ closedtask.id }}</p>
         </div>
