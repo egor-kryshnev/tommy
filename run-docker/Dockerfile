@@ -1,7 +1,11 @@
-# Stage 2 build files from image
+#Stage 1 - copy dir from local computer
+FROM node:13-alpine as base
+COPY ./app/app .
+
+# Stage 2 - build files from image
 FROM node:13-alpine as build
 WORKDIR /usr/src/app
-COPY --from=tommy-client /usr/src/app /usr/src/app
+COPY --from=base /usr/src/app /usr/src/app
 RUN cd /usr/src/app
 RUN npm run build:prod
 
