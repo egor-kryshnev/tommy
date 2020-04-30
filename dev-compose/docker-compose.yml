@@ -5,7 +5,7 @@ services:
     image: tommy-client
     build: 
       context: ../tommy-client
-      dockerfile: Dockerfile
+      dockerfile: dev.Dockerfile
 
   lehava-api-mock:
     image: lehava-api-mock
