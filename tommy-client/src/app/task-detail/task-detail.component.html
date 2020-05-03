@@ -6,7 +6,7 @@
       <img src="../../assets/timeUntilTreatment.svg">
     </div>
     <div>
-      <p class="inline" id="taskName">{{ getCategory() }}</p>
+      <p class="inline" id="taskName">{{ getTaskTitle() }}</p>
       <p class="inline title">פניה</p>
       <div *ngIf="getstatus(); else closed" id="taskNameDecoration"></div>
       <ng-template #closed>

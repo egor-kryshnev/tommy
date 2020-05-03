@@ -26,19 +26,18 @@ export class TasksComponent implements OnInit {
   tasksArrayClosed: taskModel1[] = [];
   tasksByIdArray: taskModel1[] = [];
   tasksByIdArrayClosed: taskModel1[] = [];
-
   tasksToDisplay: taskModel1[] = [];
   tasksToDisplayClosed: taskModel1[] = [];
   tasks: taskModel1[];
   open = true;
   searchText: string = "";
+  subscription : any;
 
   constructor(private router: Router, private route: ActivatedRoute, public aPIgetService: ApigetService, public _eventEmmitter: EventEmiterService, public authService: AuthService, public taskDetailDialog: MatDialog) { }
 
   ngOnInit() {
     this._eventEmmitter.dataStr.subscribe(data => {
       this._eventEmmitter.str = data;
-      console.log("data = " + data);
       this.getopen();
       this.getClosed();
     });
@@ -49,12 +48,13 @@ export class TasksComponent implements OnInit {
 
 
   getopen() {
-    this.aPIgetService.getOpenTasks(this._eventEmmitter.str).subscribe((res: any) => {
+    this.subscription = this.aPIgetService.getOpenTasks(this._eventEmmitter.str).subscribe((res: any) => {
       console.log(res);
       this.tasksArray = res.collection_cr.cr;
       this.tasksArray.forEach((element: any) => {
         let current_datetime = new Date(element.open_date);
         let formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear()
+        console.log(element);
         this.tasksByIdArray.push(
           {
             "id": element["@COMMON_NAME"],
@@ -67,15 +67,14 @@ export class TasksComponent implements OnInit {
         );
       })
       this.tasksToDisplay = this.tasksByIdArray;
-      console.log("in get open by id" + this.tasksByIdArray);
-      console.log("in get open to display" + this.tasksToDisplay);
+      console.log("open = " + open);
     });
   }
 
-  getOpenInReturn(event) {
+  async getOpenInReturn(event) {
     if (event) {
       this.tasksByIdArray = [];
-      this.aPIgetService.getOpenTasks(event).subscribe((res: any) => {
+      await this.aPIgetService.getOpenTasks(event).subscribe((res: any) => {
         this.tasksArray = res.collection_cr.cr;
         this.tasksArray.forEach((element: any) => {
           let current_datetime = new Date(element.open_date);
@@ -96,9 +95,9 @@ export class TasksComponent implements OnInit {
     }
   }
 
-  getClosed() {
-    this.aPIgetService.getClosedTasks(this._eventEmmitter.str).subscribe((res: any) => {
-      console.log(res);
+  async getClosed() {
+    await this.aPIgetService.getClosedTasks(this._eventEmmitter.str).subscribe((res: any) => {
+      // console.log(res);
       this.tasksArrayClosed = res.collection_cr.cr;
       this.tasksArrayClosed.forEach((element: any) => {
         let current_datetime = new Date(element.open_date);
@@ -117,11 +116,10 @@ export class TasksComponent implements OnInit {
     });
   }
 
-  getClosedinReturn(event) {
+  async getClosedinReturn(event) {
     if (event) {
       this.tasksByIdArrayClosed = [];
-      this.aPIgetService.getClosedTasks(event).subscribe((res: any) => {
-        console.log(res);
+      await this.aPIgetService.getClosedTasks(event).subscribe((res: any) => {
         this.tasksArrayClosed = res.collection_cr.cr;
         this.tasksArrayClosed.forEach((element: any) => {
           let current_datetime = new Date(element.open_date);
@@ -197,7 +195,13 @@ export class TasksComponent implements OnInit {
   }
 
   getTaskTitle(task: taskModel1) {
-    const taskDescription = (task.category).split("\n")[1];
+    let taskDescription = task.description
+    if((task.description).split("\n")[1]){
+      taskDescription = (task.description).split("\n")[1];
+    }
     return taskDescription.length <= 30 ? taskDescription : '...' + taskDescription.substring(0, 30);
+  }
+
+  ngOnDestroy() {
   }
 }
