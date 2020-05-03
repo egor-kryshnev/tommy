@@ -59,7 +59,8 @@ export class DescriptionComponent implements OnInit {
             data: requestId
           });
           finishRequestDialog.afterClosed().subscribe(result => {
-            this.router.navigateByUrl('/', { relativeTo: this.route });
+            // this.router.navigateByUrl('/', { relativeTo: this.route });
+            this.router.navigate(['/']);
           });
         })
     } else {

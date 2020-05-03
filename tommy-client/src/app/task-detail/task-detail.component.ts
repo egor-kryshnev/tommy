@@ -14,10 +14,11 @@ export class TaskDetailDialog {
   }
 
   getDesc(): string {
-    console.log((this.data.task).description);
-    let description = (this.data.task).description.split("\n")[1];
-    return description.length <= 200 ? description : description.substring(0, 200) + '...';
-    // return (this.data.task).description.length <= 200 ? (this.data.task).description : (this.data.task).description.substring(0, 200) + '...';
+    let taskDescription = (this.data.task).description
+    if(((this.data.task).description).split("\n")[1]){
+      taskDescription = ((this.data.task).description).split("\n")[1];
+    }
+    return taskDescription.length <= 200 ? taskDescription : taskDescription.substring(0, 200) + '...';
   }
 
   getOpenDate(): string {
@@ -26,6 +27,14 @@ export class TaskDetailDialog {
 
   getCategory(): string {
     const taskDescription = (this.data.task).category.split("\n")[1];
+    return taskDescription.length <= 30 ? taskDescription : '...' + taskDescription.substring(0, 30);
+  }
+
+  getTaskTitle() {
+    let taskDescription = (this.data.task).description
+    if(((this.data.task).description).split("\n")[1]){
+      taskDescription = ((this.data.task).description).split("\n")[1];
+    }
     return taskDescription.length <= 30 ? taskDescription : '...' + taskDescription.substring(0, 30);
   }
 
