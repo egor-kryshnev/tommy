@@ -40,13 +40,13 @@ export class CategoryService {
 
   getCategoriesOfIncidents(serviceId: string) {
     return this.http.get(config.GET_CATEGORIES_OF_INCIDENTS_URL_FUNCTION(serviceId),
-      { headers: this.categoriesRequestHeaders }
+      { headers: this.categoriesRequestHeaders, withCredentials: true }
     );
   }
 
   getCategoriesOfRequests(serviceId: string) {
     return this.http.get(config.GET_CATEGORIES_OF_REQUESTS_URL_FUNCTION(serviceId),
-      { headers: this.categoriesRequestHeaders }
+      { headers: this.categoriesRequestHeaders, withCredentials: true }
     );
   }
 

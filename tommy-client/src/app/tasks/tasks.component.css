@@ -277,6 +277,12 @@
     display: none;
 }
 
+.iframe {
+  position: absolute;
+  left: 0;
+  height: 100%;
+}
+
 /* #timeTillTreatment {
     font-family: rubik-light;
     margin-left: 20px;

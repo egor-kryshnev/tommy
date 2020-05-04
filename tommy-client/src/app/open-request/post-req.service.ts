@@ -77,7 +77,7 @@ export class PostReqService {
     }
     console.log(requestBody);
     return this.http.post(config.POST_NEW_REQUEST, requestBody,
-      { headers: this.requestHead }
+      { headers: this.requestHead, withCredentials: true }
       );
   }
 
