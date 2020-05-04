@@ -9,6 +9,10 @@ mat-list-item {
   cursor: context-menu;
 }
 
+#rtl{
+  direction: rtl;
+}
+
 @font-face {
   font-family: Rubik;
   src: url(../../assets/Rubik-Medium.ttf);

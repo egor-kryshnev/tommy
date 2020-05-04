@@ -74,6 +74,7 @@
     background-color: #ffffff;
     margin-bottom: 20px;
     transition: 0.2s;
+    position: relative;
     cursor: pointer;
 }
 
@@ -84,8 +85,8 @@
 
 .task #task-title {
     float: right;
-    right: -13px;
-    position: relative;
+    right: 136px;
+    position: absolute;
     top: 7px;
     font-family: Rubik;
     color: #3b3b3b;
