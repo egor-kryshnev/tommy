@@ -32,6 +32,9 @@ export class TasksComponent implements OnInit {
   open = true;
   searchText: string = "";
   subscription : any;
+  taskobj: any;
+  isArrayOpen: boolean = false;
+
 
   constructor(private router: Router, private route: ActivatedRoute, public aPIgetService: ApigetService, public _eventEmmitter: EventEmiterService, public authService: AuthService, public taskDetailDialog: MatDialog) { }
 
@@ -41,8 +44,10 @@ export class TasksComponent implements OnInit {
       this.getopen();
       this.getClosed();
     });
-    this.getOpenInReturn(this._eventEmmitter.str);
-    this.getClosedinReturn(this._eventEmmitter.str);
+    if(this._eventEmmitter.str){
+      this.getopen();
+      this.getClosed();
+    }
   }
 
 
@@ -50,9 +55,12 @@ export class TasksComponent implements OnInit {
   getopen() {
     this.subscription = this.aPIgetService.getOpenTasks(this._eventEmmitter.str).subscribe((res: any) => {
       console.log(res);
+      this.taskobj = res.collection_cr.cr;
       this.tasksArray = res.collection_cr.cr;
+      this.isArrayOpen = Array.isArray(this.tasksArray);
+      if(this.isArrayOpen){
       this.tasksArray.forEach((element: any) => {
-        let current_datetime = new Date(element.open_date);
+        let current_datetime = new Date(element.open_date + 1585699200000);
         let formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear()
         console.log(element);
         this.tasksByIdArray.push(
@@ -67,7 +75,21 @@ export class TasksComponent implements OnInit {
         );
       })
       this.tasksToDisplay = this.tasksByIdArray;
-      console.log("open = " + open);
+    }
+    else{
+      let current_datetime = new Date(this.taskobj.open_date);
+        let formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear()
+      this.tasksToDisplay.push(
+        {
+          "id": this.taskobj["@COMMON_NAME"],
+          "description": this.taskobj.description,
+          "status": this.taskobj.status["@COMMON_NAME"],
+          "category": this.taskobj.description,
+          "open_date": formatted_date,
+          "icon": this.iconGenerator()
+        } as taskModel1
+      );
+    }
     });
   }
 
@@ -77,7 +99,7 @@ export class TasksComponent implements OnInit {
       await this.aPIgetService.getOpenTasks(event).subscribe((res: any) => {
         this.tasksArray = res.collection_cr.cr;
         this.tasksArray.forEach((element: any) => {
-          let current_datetime = new Date(element.open_date);
+          let current_datetime = new Date(element.open_date + 1585699200000);
           let formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear()
           this.tasksByIdArray.push(
             {
@@ -89,7 +111,7 @@ export class TasksComponent implements OnInit {
               "icon": this.iconGenerator()
             } as taskModel1
           );
-        })
+        });
         this.tasksToDisplay = this.tasksByIdArray;
       });
     }
@@ -97,10 +119,9 @@ export class TasksComponent implements OnInit {
 
   async getClosed() {
     await this.aPIgetService.getClosedTasks(this._eventEmmitter.str).subscribe((res: any) => {
-      // console.log(res);
       this.tasksArrayClosed = res.collection_cr.cr;
       this.tasksArrayClosed.forEach((element: any) => {
-        let current_datetime = new Date(element.open_date);
+        let current_datetime = new Date(element.open_date + 1585699200000);
         let formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear()
         this.tasksByIdArrayClosed.push(
           {
@@ -122,7 +143,7 @@ export class TasksComponent implements OnInit {
       await this.aPIgetService.getClosedTasks(event).subscribe((res: any) => {
         this.tasksArrayClosed = res.collection_cr.cr;
         this.tasksArrayClosed.forEach((element: any) => {
-          let current_datetime = new Date(element.open_date);
+          let current_datetime = new Date(element.open_date + 1585699200000);
           let formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear()
           this.tasksByIdArrayClosed.push(
             {

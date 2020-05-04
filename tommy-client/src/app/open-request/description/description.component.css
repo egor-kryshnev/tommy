@@ -162,11 +162,12 @@ textarea:focus {
 
 #phone {
   top: 5px;
-  width: 250px;
+  width: 300px;
 }
 
 #computerName {
   top: 25px;
+  width: 300px;
 }
 
 .red-holder::placeholder {
