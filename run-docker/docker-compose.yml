@@ -57,3 +57,9 @@ services:
         condition: service_healthy
       redis:
         condition: service_started
+
+  nginx:
+    image: 'nginx:alpine'
+  
+  node:
+    image: 'node:13-alpine'

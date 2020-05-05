@@ -54,7 +54,7 @@ export class ApigetService {
   constructor(private http: HttpClient) { }
 
   httpOptions = {
-    headers: new HttpHeaders({
+    withCredentials: true, headers: new HttpHeaders({
       'Content-type': 'application/json',
       'X-AccessKey': this.accessKey,
       'Accept': 'application/json'
@@ -92,7 +92,7 @@ export class ApigetService {
   getNetworks() {
     this.networksByIdArray = [];
     return this.http.get(config.GET_NETWORKS_URL,
-      { headers: this.head }
+      { withCredentials: true, headers: this.head }
     );
     //console.log(this.networksByIdArray);
     //return this.networksByIdArray;
@@ -100,19 +100,19 @@ export class ApigetService {
 
   getUUID(UUID) {
     return this.http.get(config.GET_UUID_URL_FUNCTION(UUID),
-      { headers: this.servicesHeaders });
+      { withCredentials: true, headers: this.servicesHeaders });
   }
 
   getUpdates() {
     return this.http.get(config.GET_UPDATES,
-      { headers: this.updatesHeaders })
+      { withCredentials: true, headers: this.updatesHeaders })
   }
 
 
   getServices(id) {
     this.servicesByIdArray = [];
     return this.http.get(config.GET_SERVICES_URL_FUNCTION(id),
-      { headers: this.servicesHeaders }
+      { withCredentials: true, headers: this.servicesHeaders }
     );
   }
 
@@ -121,12 +121,12 @@ export class ApigetService {
   getOpenTasks(UUID) {
     console.log("in get open tasks get");
     return this.http.get(config.GET_OPEN_TASKS_URL_FUNCTION(UUID),
-      { headers: this.tasksHeaders })
+      { withCredentials: true, headers: this.tasksHeaders })
   }
 
   getClosedTasks(UUID) {
     return this.http.get(config.GET_CLOSED_TASKS_URL_FUNCTION(UUID),
-      { headers: this.tasksHeaders })
+      { withCredentials: true, headers: this.tasksHeaders })
   }
 
   post(uuid, phone, userT, network, service, description) {

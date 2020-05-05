@@ -18,7 +18,7 @@ export class AuthService {
   constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router, public api: ApigetService) { }
 
   login() {
-    this.http.get(`/user`).subscribe((res: any) => {
+    this.http.get(`/user`, { withCredentials: true }).subscribe((res: any) => {
       console.log(res);
       this.user = res;
       this.userName = res.name.firstName + " " + res.name.lastName;
@@ -32,7 +32,7 @@ export class AuthService {
   }
 
   public loginSub() {
-    return this.http.get(`/user`);
+    return this.http.get(`/user`, { withCredentials: true });
   }
 
   public getUser() {
