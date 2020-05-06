@@ -61,7 +61,7 @@ export class TasksComponent implements OnInit {
       this.isArrayOpen = Array.isArray(this.tasksArray);
       if (this.isArrayOpen) {
         this.tasksArray.forEach((element: any) => {
-          let current_datetime = new Date(element.open_date + 1585699200000);
+          let current_datetime = new Date(element.open_date * 1000);
           let formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear()
           console.log(element);
           this.tasksByIdArray.push(
@@ -71,7 +71,7 @@ export class TasksComponent implements OnInit {
               "status": element.status["@COMMON_NAME"],
               "category": element.description,
               "open_date": formatted_date,
-              "icon": this.iconGenerator()
+              "icon": `../../assets/status${element.status["@id"]}.png`
             } as taskModel1
           );
         })
@@ -87,7 +87,7 @@ export class TasksComponent implements OnInit {
             "status": this.taskobj.status["@COMMON_NAME"],
             "category": this.taskobj.description,
             "open_date": formatted_date,
-            "icon": this.iconGenerator()
+            "icon": `../../assets/status${this.taskobj.status["@id"]}.png`
           } as taskModel1
         );
       }
@@ -100,7 +100,7 @@ export class TasksComponent implements OnInit {
       await this.aPIgetService.getOpenTasks(event).subscribe((res: any) => {
         this.tasksArray = res.collection_cr.cr;
         this.tasksArray.forEach((element: any) => {
-          let current_datetime = new Date(element.open_date + 1585699200000);
+          let current_datetime = new Date(element.open_date * 1000);
           let formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear()
           this.tasksByIdArray.push(
             {
@@ -109,7 +109,7 @@ export class TasksComponent implements OnInit {
               "status": element.status["@COMMON_NAME"],
               "category": element.summary,
               "open_date": formatted_date,
-              "icon": this.iconGenerator()
+              "icon": `../../assets/status${element.status["@id"]}.png`
             } as taskModel1
           );
         });
@@ -122,7 +122,7 @@ export class TasksComponent implements OnInit {
     await this.aPIgetService.getClosedTasks(this._eventEmmitter.str).subscribe((res: any) => {
       this.tasksArrayClosed = res.collection_cr.cr;
       this.tasksArrayClosed.forEach((element: any) => {
-        let current_datetime = new Date(element.open_date + 1585699200000);
+        let current_datetime = new Date(element.open_date * 1000);
         let formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear()
         this.tasksByIdArrayClosed.push(
           {
@@ -131,7 +131,7 @@ export class TasksComponent implements OnInit {
             "status": element.status["@COMMON_NAME"],
             "category": element.summary,
             "open_date": formatted_date,
-            "icon": this.iconById()
+            "icon": `../../assets/status${element.status["@id"]}.png`
           } as taskModel1
         );
       })
@@ -144,7 +144,7 @@ export class TasksComponent implements OnInit {
       await this.aPIgetService.getClosedTasks(event).subscribe((res: any) => {
         this.tasksArrayClosed = res.collection_cr.cr;
         this.tasksArrayClosed.forEach((element: any) => {
-          let current_datetime = new Date(element.open_date + 1585699200000);
+          let current_datetime = new Date(element.open_date * 1000);
           let formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear()
           this.tasksByIdArrayClosed.push(
             {
@@ -153,7 +153,7 @@ export class TasksComponent implements OnInit {
               "status": element.status["@COMMON_NAME"],
               "category": element.summary,
               "open_date": formatted_date,
-              "icon": this.iconById(element.status["@id"])
+              "icon": `../../assets/status${element.status["@id"]}.png`
             } as taskModel1
           );
         })
@@ -162,7 +162,7 @@ export class TasksComponent implements OnInit {
   }
 
   iconById(statusId) {
-    return `../../assets/status${statusId}.png`;
+      return `../../assets/status${statusId}.png`;
   }
 
   onOpenDialog() {
