@@ -2106,8 +2106,8 @@ module.exports = {
                     "@COMMON_NAME": 'ממתין לטיפול'
                 },
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE"
-            } 
-                {
+            },
+            {
                 "@COMMON_NAME": '596417',
                 category: {
                     "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
