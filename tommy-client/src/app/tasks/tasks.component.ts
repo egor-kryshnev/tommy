@@ -31,7 +31,7 @@ export class TasksComponent implements OnInit {
   tasks: taskModel1[];
   open = true;
   searchText: string = "";
-  subscription : any;
+  subscription: any;
   taskobj: any;
   isArrayOpen: boolean = false;
 
@@ -44,10 +44,11 @@ export class TasksComponent implements OnInit {
       this.getopen();
       this.getClosed();
     });
-    if(this._eventEmmitter.str){
+    if (this._eventEmmitter.str) {
       this.getopen();
       this.getClosed();
     }
+    console.log(this.tasksToDisplay);
   }
 
 
@@ -58,38 +59,38 @@ export class TasksComponent implements OnInit {
       this.taskobj = res.collection_cr.cr;
       this.tasksArray = res.collection_cr.cr;
       this.isArrayOpen = Array.isArray(this.tasksArray);
-      if(this.isArrayOpen){
-      this.tasksArray.forEach((element: any) => {
-        let current_datetime = new Date(element.open_date + 1585699200000);
+      if (this.isArrayOpen) {
+        this.tasksArray.forEach((element: any) => {
+          let current_datetime = new Date(element.open_date + 1585699200000);
+          let formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear()
+          console.log(element);
+          this.tasksByIdArray.push(
+            {
+              "id": element["@COMMON_NAME"],
+              "description": element.description,
+              "status": element.status["@COMMON_NAME"],
+              "category": element.description,
+              "open_date": formatted_date,
+              "icon": this.iconGenerator()
+            } as taskModel1
+          );
+        })
+        this.tasksToDisplay = this.tasksByIdArray;
+      }
+      else {
+        let current_datetime = new Date(this.taskobj.open_date);
         let formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear()
-        console.log(element);
-        this.tasksByIdArray.push(
+        this.tasksToDisplay.push(
           {
-            "id": element["@COMMON_NAME"],
-            "description": element.description,
-            "status": element.status["@COMMON_NAME"],
-            "category": element.description,
+            "id": this.taskobj["@COMMON_NAME"],
+            "description": this.taskobj.description,
+            "status": this.taskobj.status["@COMMON_NAME"],
+            "category": this.taskobj.description,
             "open_date": formatted_date,
             "icon": this.iconGenerator()
           } as taskModel1
         );
-      })
-      this.tasksToDisplay = this.tasksByIdArray;
-    }
-    else{
-      let current_datetime = new Date(this.taskobj.open_date);
-        let formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear()
-      this.tasksToDisplay.push(
-        {
-          "id": this.taskobj["@COMMON_NAME"],
-          "description": this.taskobj.description,
-          "status": this.taskobj.status["@COMMON_NAME"],
-          "category": this.taskobj.description,
-          "open_date": formatted_date,
-          "icon": this.iconGenerator()
-        } as taskModel1
-      );
-    }
+      }
     });
   }
 
@@ -130,7 +131,7 @@ export class TasksComponent implements OnInit {
             "status": element.status["@COMMON_NAME"],
             "category": element.summary,
             "open_date": formatted_date,
-            "icon": this.iconGenerator()
+            "icon": this.iconById()
           } as taskModel1
         );
       })
@@ -152,7 +153,7 @@ export class TasksComponent implements OnInit {
               "status": element.status["@COMMON_NAME"],
               "category": element.summary,
               "open_date": formatted_date,
-              "icon": this.iconGenerator()
+              "icon": this.iconById(element.status["@id"])
             } as taskModel1
           );
         })
@@ -160,10 +161,8 @@ export class TasksComponent implements OnInit {
     }
   }
 
-  iconGenerator() {
-    let imgNumber = Math.floor(Math.random() * 3) + 1;;
-    let statusIcon = "../../assets/status" + imgNumber + ".png";
-    return statusIcon;
+  iconById(statusId) {
+    return `../../assets/status${statusId}.png`;
   }
 
   onOpenDialog() {
@@ -217,7 +216,7 @@ export class TasksComponent implements OnInit {
 
   getTaskTitle(task: taskModel1) {
     let taskDescription = task.description
-    if((task.description).split("\n")[1]){
+    if ((task.description).split("\n")[1]) {
       taskDescription = (task.description).split("\n")[1];
     }
     return taskDescription.length <= 30 ? taskDescription : '...' + taskDescription.substring(0, 30);
