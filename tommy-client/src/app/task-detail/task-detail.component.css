@@ -3,7 +3,10 @@ p {
   cursor: context-menu;
 }
 
-h3 {cursor: context-menu;}
+h3 {
+  cursor: context-menu;
+  font-family: rubik;
+}
 
 #closeButton {
   border: none;
