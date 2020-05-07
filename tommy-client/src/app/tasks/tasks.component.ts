@@ -78,7 +78,7 @@ export class TasksComponent implements OnInit {
         this.tasksToDisplay = this.tasksByIdArray;
       }
       else {
-        let current_datetime = new Date(this.taskobj.open_date);
+        let current_datetime = new Date(this.taskobj.open_date * 1000);
         let formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear()
         this.tasksToDisplay.push(
           {
@@ -162,7 +162,7 @@ export class TasksComponent implements OnInit {
   }
 
   iconById(statusId) {
-      return `../../assets/status${statusId}.png`;
+    return `../../assets/status${statusId}.png`;
   }
 
   onOpenDialog() {

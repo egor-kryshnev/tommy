@@ -31,7 +31,7 @@ export class UpdatingComponent implements OnInit {
       this.array = Array.isArray(this.updatesArrayRes);
       if(this.array) {
         this.updatesArrayRes.forEach((element: any) => {
-          let current_datetime = new Date (element.open_date + 1585699200000);
+          let current_datetime = new Date (element.open_date * 1000);
           let formatted_date = current_datetime.getHours() + ":" + current_datetime.getMinutes() + "\xa0\xa0·\xa0\xa0" + current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear();
           this.updatesArrayFiltered.push(
             {

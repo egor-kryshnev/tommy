@@ -2,7 +2,7 @@
 <mat-dialog-content class="mat-typography">
   <div id="topContainer">
     <div>
-      <p class="inline" id="timeTillTreatment">זמן צפוי לטיפול יומיים</p>
+      <p class="inline" id="timeTillTreatment">זמן צפוי לטיפול לא ידוע</p>
       <img src="../../assets/timeUntilTreatment.svg">
     </div>
     <div>
@@ -25,10 +25,10 @@
     </div>
   </div>
   <div id="bottomContainer">
-    <div id="statusProgressContainer">
+    <!-- <div id="statusProgressContainer">
       <app-status-progress *ngFor="let status of statusList; let i = index" [status]="status" [number]="i+1"
         [isPressed]="status===data.status"></app-status-progress>
-    </div>
+    </div> -->
     <div id="descriptionContainer">
       <h3>תיאור הבעיה</h3>
       <p id="description">{{ getDesc() }}</p>

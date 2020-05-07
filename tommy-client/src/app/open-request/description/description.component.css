@@ -18,7 +18,7 @@
   text-align: center;
   left: 20vh;
   font-family: Rubik;
-  margin-top: 8vh;
+  margin-top: 5vh;
   font-size: 1.5rem;
 }
 
@@ -65,7 +65,7 @@
 
 textarea {
   width: 600px;
-  height: 200px;
+  height: 180px;
   padding: 10px;
   outline: none;
   direction: rtl;
@@ -75,11 +75,8 @@ textarea {
   background-color: #ffffff;
   transition: 0.5s;
   font-size: 14px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
+  font-family: rubik;
   line-height: 1.43;
-  letter-spacing: normal;
   text-align: right;
   color: #3b3b3b;
 }
@@ -98,7 +95,7 @@ textarea:focus {
   text-decoration: none;
   background: #3f9c67;
   padding: 20px;
-  margin-top: 5vh;
+  margin-top: 5.2vh;
   font-family: Rubik;
   width: 20vh;
   border-radius: 50px;
