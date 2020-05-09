@@ -125,7 +125,7 @@ export class TasksComponent implements OnInit {
   clickedOpenTasks() {
     if (!this.open) {
       this.open = true;
-      this.tasksToDisplay = this.tasksByIdArray;
+      this.tasksToDisplay = this.tasksByIdArray.reverse();
       this.searchTextChanged(this.searchText);
       if (!this.selectedOpenTasks) this.selectedOpenTasks = true;
     }
