@@ -75,7 +75,7 @@ export class TasksComponent implements OnInit {
             } as taskModel1
           );
         })
-        this.tasksToDisplay = this.tasksByIdArray;
+        this.tasksToDisplay = this.tasksByIdArray.reverse();
       }
       else {
         let current_datetime = new Date(this.taskobj.open_date * 1000);
@@ -92,30 +92,6 @@ export class TasksComponent implements OnInit {
         );
       }
     });
-  }
-
-  async getOpenInReturn(event) {
-    if (event) {
-      this.tasksByIdArray = [];
-      await this.aPIgetService.getOpenTasks(event).subscribe((res: any) => {
-        this.tasksArray = res.collection_cr.cr;
-        this.tasksArray.forEach((element: any) => {
-          let current_datetime = new Date(element.open_date * 1000);
-          let formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear()
-          this.tasksByIdArray.push(
-            {
-              "id": element["@COMMON_NAME"],
-              "description": element.description,
-              "status": element.status["@COMMON_NAME"],
-              "category": element.summary,
-              "open_date": formatted_date,
-              "icon": `../../assets/status${element.status["@id"]}.png`
-            } as taskModel1
-          );
-        });
-        this.tasksToDisplay = this.tasksByIdArray;
-      });
-    }
   }
 
   async getClosed() {
@@ -138,29 +114,6 @@ export class TasksComponent implements OnInit {
     });
   }
 
-  async getClosedinReturn(event) {
-    if (event) {
-      this.tasksByIdArrayClosed = [];
-      await this.aPIgetService.getClosedTasks(event).subscribe((res: any) => {
-        this.tasksArrayClosed = res.collection_cr.cr;
-        this.tasksArrayClosed.forEach((element: any) => {
-          let current_datetime = new Date(element.open_date * 1000);
-          let formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear()
-          this.tasksByIdArrayClosed.push(
-            {
-              "id": element["@COMMON_NAME"],
-              "description": element.description,
-              "status": element.status["@COMMON_NAME"],
-              "category": element.summary,
-              "open_date": formatted_date,
-              "icon": `../../assets/status${element.status["@id"]}.png`
-            } as taskModel1
-          );
-        })
-      });
-    }
-  }
-
   iconById(statusId) {
     return `../../assets/status${statusId}.png`;
   }
@@ -181,7 +134,7 @@ export class TasksComponent implements OnInit {
   clickedClosedTasks() {
     if (this.open) {
       this.open = false;
-      this.tasksToDisplay = this.tasksByIdArrayClosed;
+      this.tasksToDisplay = this.tasksByIdArrayClosed.reverse();
       this.searchTextChanged(this.searchText);
       if (this.selectedOpenTasks) this.selectedOpenTasks = false;
     }
