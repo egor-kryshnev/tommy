@@ -13,7 +13,7 @@ export class AccessTokenService {
 
     public static async getAccessToken(): Promise<AccessToken> {
         if (!AccessTokenService.accessToken ||
-            (AccessTokenService.accessToken.rest_access.expiration_date - new Date().getTime() <= 0)) {
+            (AccessTokenService.accessToken.rest_access.expiration_date - (new Date().getTime() / 1000) <= 0)) {
             const redisAccessToken = await this.getAccessTokenRedis('X-AccessKey');
 
             if (redisAccessToken) {
