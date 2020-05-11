@@ -5,7 +5,7 @@ module.exports = {
             "@REL_ATTR": "400051",
             "@COMMON_NAME": "1835377188",
             "access_key": 59975677,
-            "expiration_date": new Date() + 100000
+            "expiration_date": new Date() / 1000 + 604800
         }
     },
 
