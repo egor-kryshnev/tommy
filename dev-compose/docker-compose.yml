@@ -21,7 +21,7 @@ services:
     container_name: tommy-server
     build:
       context: ../tommy-server
-      dockerfile: Dockerfile
+      dockerfile: dev.Dockerfile
     environment:
       NODE_TLS_REJECT_UNAUTHORIZED: 0
       NODE_ENV: development
