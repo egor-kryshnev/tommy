@@ -1,6 +1,6 @@
 .preloader {
     z-index: 999;
-    background: radial-gradient(#fff, #777777);
+    background: radial-gradient(#fff, #dbffde);
     background-size: cover;
     -webkit-transform-origin: top;
     transform-origin: top;

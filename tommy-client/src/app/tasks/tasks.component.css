@@ -50,7 +50,7 @@
     display: inline-block;
     position: relative;
     float: right;
-    right: 48px;
+    right: 25px;
     top: 28px;
 }
 
@@ -63,7 +63,7 @@
     display: inline-block;
     position: relative;
     float: right;
-    right: 48px;
+    right: 25px;
     top: 28px;
 }
 
@@ -85,7 +85,7 @@
 
 .task #task-title {
     float: right;
-    right: 136px;
+    right: 145px;
     position: absolute;
     top: 7px;
     font-family: Rubik;
@@ -95,7 +95,7 @@
 .StatusImg {
     position: relative;
     float: right;
-    right: 35px;
+    right: 30px;
     top: 20px;
     width: 36px;
 }
@@ -104,7 +104,7 @@
     float: left;
     position: relative;
     top: 44px;
-    right: 75px;
+    right: 80px;
     font-family: Rubik;
     font-size: 14px;
     color: #3b3b3b;
@@ -113,7 +113,7 @@
 #task-date {
     position: relative;
     float: right;
-    right: 56px;
+    right: 43px;
     font-family: Rubik;
     font-size: 14px;
     font-weight: normal;
@@ -133,16 +133,14 @@
 }
 
 #task-status {
-    width: 38px;
+    width: 55px;
     font-family: Rubik-light;
-    height: 30px;
     float: right;
     position: relative;
     top: 55px;
     text-align: center;
-    max-width: 31px;
-    line-height: 1.08;
-    right: 2px;
+    line-height: 0.98;
+    right: -15px;
     font-size: 14px;
 }
 
@@ -170,7 +168,6 @@
 .kav {
     position: relative;
     float: right;
-    right: 30px;
     width: 1px;
     height: 70px;
     background-color: #d8d8d8;
@@ -278,9 +275,9 @@
 }
 
 .iframe {
-  position: absolute;
-  left: 0;
-  height: 100%;
+    position: absolute;
+    left: 0;
+    height: 100%;
 }
 
 /* #timeTillTreatment {

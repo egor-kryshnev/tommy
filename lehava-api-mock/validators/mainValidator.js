@@ -48,7 +48,7 @@ module.exports = {
     },
     updatesValidator: (req) => {
         if (req.header('Content-Type') == 'application/json' && req.header('X-Obj-Attrs') == 'category, description, open_date') {
-            if (req.query.WC == "type='I' and active=1 and impact=0") {
+            if (req.query.WC == "type='I' and active=1 and impact=1") {
                 return true;
             }
         } return false;

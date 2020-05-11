@@ -39,10 +39,6 @@ export class TaskDetailDialog {
   }
 
   getstatus(): boolean {
-    if (this.data.task.status === "פתוח") {
-      return true;
-    } else if (this.data.task.status === "סגור") {
-      return false;
-    }
+    return this.data.status;
   }
 }
