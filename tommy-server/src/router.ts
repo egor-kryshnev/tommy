@@ -4,10 +4,24 @@ import { AccessTokenProvider } from './access-token/access-token-service';
 import axios, { Method } from 'axios';
 import { IpMiddleware } from './utils/middlewares/ip-middleware';
 import { config } from './config';
+import { Chat } from './chat/chat'
+// const { createGroup, setRoomMembers, closeGroup, renameGroup, sendMessageToGroup, getAuthHeaders } = require("./chat/chatJs");
+
 
 const AppRouter: Router = Router();
 
 AppRouter.get('/isalive', (req: Request, res: Response) => res.status(200).send('Server Is Up'));
+
+AppRouter.get('/hichat', async (req: Request, res: Response) => {
+    try {
+        let chat = new Chat();
+        let headers = await chat.getAuthHeaders();
+        console.log(headers);
+    } catch (err) {
+        console.log(err);
+    }
+
+});
 
 AppRouter.post('*', AuthorizationMiddleware.postAuthorization, IpMiddleware);
 
