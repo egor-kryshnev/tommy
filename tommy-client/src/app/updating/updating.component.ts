@@ -33,16 +33,17 @@ export class UpdatingComponent implements OnInit {
           let formatted_date = current_datetime.getHours() + ":" + current_datetime.getMinutes() + "\xa0\xa0·\xa0\xa0" + current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear();
           this.updatesArrayFiltered.push(
             {
-              "name": element.category["@COMMON_NAME"],
+              "name": element.category["@COMMON_NAME"].replace(/\./g, ' '),
               "description": element.summary,
               "open_date": formatted_date
             } as updatesModel
           )
         });
+        this.updatesArrayFiltered = this.updatesArrayFiltered.reverse();
       }
       else {
         this.updatesObject = {
-          "name": this.updatesObjectRes.category["@COMMON_NAME"],
+          "name": this.updatesObjectRes.category["@COMMON_NAME"].replace(/\./g, ' '),
           "description": this.updatesObjectRes.summary,
           "open_date": this.updatesObjectRes.open_date
         }
