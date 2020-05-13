@@ -11,14 +11,11 @@ export class Chat {
     authToken: any;
     cache: any;
 
-    // wrappedAxiosPost = trycatch(axios.post);
-    // wrappedAxiosGet = trycatch(axios.get);
-
     async login(): Promise<any> {
         if (this.userId && this.authToken)
             return { userId: this.userId, authToken: this.authToken };
         let result = await axios ({
-            Method: 'post',
+            method: 'post',
             url: `${config.chat.chatUrl}/${config.chat.chatLoginUrl}`,
             data: {
                 username: config.chat.loginUser,
