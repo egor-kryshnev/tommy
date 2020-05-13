@@ -4,9 +4,73 @@ services:
   tommy-client:
     image: tommy-client
     build:
-      context: ./run-docker
-      dockerfile: Dockerfile
+      context: ./
+      dockerfile: tommy-client.Dockerfile
     environment:
       NODE_ENV: production
     ports:
       - 4200:4200
+
+  tommy-server:
+    image: tommy-server
+    build:
+      context: ./
+      dockerfile: tommy-server.Dockerfile
+    environment:
+      NODE_TLS_REJECT_UNAUTHORIZED: 0
+      NODE_ENV: production
+      AUTH_CALLBACK_URL: /auth/callback
+      PORT: 80
+      SHRAGA_URL: https://shraga.prod.services.idf
+      CLIENT_URL: http://tommy-client:4200
+      REDIS_URL: 'redis://redis:6379'
+      LEHAVA_API_HOST: "lehava-api-mock"
+      LEHAVA_API_PORT: "8050"
+      CHAT_URL: http://localhost/api/v1
+      HI_CHAT_URL: http://localhost
+      CHAT_GROUP_URL: groups
+      CHAT_LOGIN_URL: login
+      CHAT_MESSAGE_URL: chat
+      LOGIN_USER: tommy
+      LOGIN_PASS: Aa123456
+
+    ports:
+      - 80:80
+    depends_on:
+      - tommy-client
+      - redis
+  
+  redis:
+    image: 'redis:alpine'
+    ports:
+      - '6379:6379'
+
+  rabbitmq:
+    image: 'compose_rabbitmq'
+    hostname: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://rabbitmq:15672"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    
+  access-token-service:
+    image: "access-token-service"
+    environment:
+      NODE_ENV: production
+      RABBITMQ_URL: "amqp://rabbitmq:5672"
+      REDIS_URL: 'redis://redis:6379'
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      redis:
+        condition: service_started
+
+  nginx:
+    image: 'nginx:alpine'
+  
+  node:
+    image: 'node:13-alpine'

@@ -11,24 +11,25 @@ export class Chat {
     authToken: any;
     cache: any;
 
-    // wrappedAxiosPost = trycatch(axios.post);
-    // wrappedAxiosGet = trycatch(axios.get);
-
     async login(): Promise<any> {
         if (this.userId && this.authToken)
             return { userId: this.userId, authToken: this.authToken };
-        const { result } = await axios.post(`${config.chat.chatUrl}/${config.chat.chatLoginUrl}`,
-            { username: config.chat.loginUser, password: config.chat.loginPass });
+        let result = await axios ({
+            method: 'post',
+            url: `${config.chat.chatUrl}/${config.chat.chatLoginUrl}`,
+            data: {
+                username: config.chat.loginUser,
+                password: config.chat.loginPass
+            }
+        });
 
-        // const { result } = await wrappedAxiosPost(`${config.chat.chatUrl}/${config.chat.chatLoginUrl}`,
-        // { username: config.chat.loginUser, password: config.chat.loginPass });
         if (result) {
             if (result.data && result.data.status === "success") {
                 const { data } = result;
                 const { userId, authToken } = data.data;
                 this.userId = userId;
                 this.authToken = authToken;
-                return [userId, authToken];
+                return { userId, authToken };
             } else {
                 console.error(result);
             }
@@ -36,7 +37,7 @@ export class Chat {
     }
 
     async getAuthHeaders() {
-        const [userId, authToken] = await this.login();
+        const { userId, authToken } = await this.login();
         const headers = {
             'X-Auth-Token': "authToken",
             'X-User-Id': "userId"
@@ -61,25 +62,36 @@ export class Chat {
         return this.cache[title];
     }
 
-    async createGroup(groupName: string, members: any) {
+    async createGroup(groupName: string, members: string[]) {
         const authHeaders = await this.getAuthHeaders();
         const name = this.getAllowedGroupTitleFromText(groupName);
-        const { result } = await axios.post(`${config.chat.chatUrl}/${config.chat.chatGroupUrl}.create`, { name, members }, { headers: { ...authHeaders } });
+        let result = await axios({
+            method: 'post',
+            url: `${config.chat.chatUrl}/${config.chat.chatGroupUrl}.create`,
+            data: {
+                name: name,
+                members: members
+            },
+            headers: { ...authHeaders }
 
-        // const { result } = await wrappedAxiosPost(`${config.chat.chatUrl}/${config.chat.chatGroupUrl}.create`, { name, members }, { headers: { ...authHeaders } });
+        });
         if (result) {
             const { _id: groupId } = result.data.group;
-            return groupId;
+            return result;
         }
     };
 
     async getGroupMembers(roomId: string) {
         const authHeaders = await this.getAuthHeaders();
-        const { result } = await axios.get(`${config.chat.chatUrl}/${config.chat.chatGroupUrl}.info?roomId=${roomId}`, { headers: { ...authHeaders } });
 
-        // const { result } = await wrappedAxiosGet(`${config.chat.chatUrl}/${config.chat.chatGroupUrl}.info?roomId=${roomId}`, { headers: { ...authHeaders } });
+        let result = await axios({
+            method: 'get',
+            url: `${config.chat.chatUrl}/${config.chat.chatGroupUrl}.info?roomId=${roomId}`,
+            headers: { ...authHeaders }
+        });
+
         if (result && result.data) {
-            const { usernames } = result.data.group;
+            const usernames = result.data.group.usernames;
             return usernames;
         }
         return false;
@@ -88,10 +100,7 @@ export class Chat {
 
     async addMemberToGroupFactory(roomId: string, member: string) {
         const authHeaders = await this.getAuthHeaders();
-        const { result } = await axios.post(`${config.chat.chatUrl}/${config.chat.chatGroupUrl}.invite`, { roomId, username: member }, { headers: authHeaders });
-
-        // const { result } = await wrappedAxiosPost(`${config.chat.chatUrl}/${config.chat.chatGroupUrl}.invite`, { roomId, username: member }, { headers: authHeaders });
-
+        const result = await axios.post(`${config.chat.chatUrl}/${config.chat.chatGroupUrl}.invite`, { roomId, username: member }, { headers: authHeaders });
         return result;
     }
 
@@ -138,7 +147,7 @@ export class Chat {
         return symmetricDifference;
     };
 
-    async setRoomMembers(roomId: string, members: any) {
+    async setRoomMembers(roomId: string, members: string[]) {
         const currentGroupMembers = await this.getGroupMembers(roomId);
         if (currentGroupMembers && currentGroupMembers.length > 0) {
             const membersToRemove = this.getNonItercectingItems(currentGroupMembers, members);
@@ -150,9 +159,7 @@ export class Chat {
 
     async closeGroup(roomId: string) {
         const authHeaders = await this.getAuthHeaders();
-        const { result } = await axios.post(`${config.chat.chatUrl}/${config.chat.chatGroupUrl}.archive`, { roomId }, { headers: { ...authHeaders } });
-
-        // const { result } = await wrappedAxiosPost(`${config.chat.chatUrl}/${config.chat.chatGroupUrl}.archive`, { roomId }, { headers: { ...authHeaders } });
+        const { result } = await axios.post(`${config.chat.chatUrl}/${config.chat.chatGroupUrl}.archive`, { roomId }, { headers: { ...authHeaders } })
         return result;
     }
 
@@ -160,19 +167,12 @@ export class Chat {
         const authHeaders = await this.getAuthHeaders();
         const name = this.getAllowedGroupTitleFromText(groupName);
         const { result } = await axios.post(`${config.chat.chatUrl}/${config.chat.chatGroupUrl}.rename`, { roomId, name }, { headers: { ...authHeaders } });
-
-        // const { result } = await wrappedAxiosPost(`${config.chat.chatUrl}/${config.chat.chatGroupUrl}.rename`, { roomId, name }, { headers: { ...authHeaders } });
         return result;
     }
 
     async sendMessageToGroup(roomId: string, text: string) {
         const authHeaders = await this.getAuthHeaders();
         const { result } = await axios.post(`${config.chat.chatUrl}/${config.chat.chatMessageUrl}.postMessage`, { channel: `#${roomId}`, text }, { headers: { ...authHeaders } });
-
-        // const { result } = await wrappedAxiosPost(`${config.chat.chatUrl}/${config.chat.chatMessageUrl}.postMessage`, { channel: `#${roomId}`, text }, { headers: { ...authHeaders } });
         return result;
     }
 }
-
-
-// module.exports = { createGroup, setRoomMembers, closeGroup, renameGroup, sendMessageToGroup };

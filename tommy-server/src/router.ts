@@ -12,16 +12,16 @@ const AppRouter: Router = Router();
 
 AppRouter.get('/isalive', (req: Request, res: Response) => res.status(200).send('Server Is Up'));
 
-AppRouter.get('/hichat', async (req: Request, res: Response) => {
-    try {
-        let chat = new Chat();
-        let headers = await chat.getAuthHeaders();
-        console.log(headers);
-    } catch (err) {
-        console.log(err);
-    }
+// AppRouter.get('/hichat', async (req: Request, res: Response) => {
+//     try {
+//         let chat = new Chat();
+//         let headers = await chat.getAuthHeaders();
+//         console.log(headers);
+//     } catch (err) {
+//         console.log(err);
+//     }
 
-});
+// });
 
 AppRouter.post('*', AuthorizationMiddleware.postAuthorization, IpMiddleware);
 

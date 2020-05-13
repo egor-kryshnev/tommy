@@ -28,11 +28,12 @@ export const config = {
     },
 
     chat: {
-        chatUrl: process.env.chatUrl || 'http://localhost:8080',
-        chatGroupUrl: process.env.chatGroupUrl || 'group',
-        chatLoginUrl: process.env.chatLoginUrl || 'login',
-        chatMessageUrl: process.env.chatMessageUrl || 'chat',
-        loginUser: process.env.loginUser || 'user',
-        loginPass: process.env.loginPass || 'pass'
+        chatUrl: process.env.CHAT_URL || 'http://localhost:8080',
+        hiChatUrl: process.env.HI_CHAT_URL || 'http://localhost:8080',
+        chatGroupUrl: process.env.CHAT_GROUP_URL || 'groups',
+        chatLoginUrl: process.env.CHAT_LOGIN_URL || 'login',
+        chatMessageUrl: process.env.CHAT_MESSAGE_URL || 'chat',
+        loginUser: process.env.LOGIN_USER || 'user',
+        loginPass: process.env.LOGIN_PASS || 'pass'
     }
 }
