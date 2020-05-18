@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
 
   chatTag() {
     this.chatDisplayFlag = !this.chatDisplayFlag;
-    document.querySelector("iframe").style.display = this.chatDisplayFlag ? "none" : "block";
+    document.getElementById("iframe-container").style.display = this.chatDisplayFlag ? "none" : "block";
   }
 
 }

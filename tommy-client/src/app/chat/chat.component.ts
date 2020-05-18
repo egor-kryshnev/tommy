@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApigetService } from '../apiget.service';
 import { EventEmiterService } from '../event.emmiter.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
@@ -9,25 +10,23 @@ import { EventEmiterService } from '../event.emmiter.service';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
-
-  constructor( public ApigetService: ApigetService, public _eventEmmitter: EventEmiterService ) { }
-
+    
+  constructor( public ApigetService: ApigetService, public _eventEmmitter: EventEmiterService, private sanitizer: DomSanitizer ) { }
+  
+  tUser: string;
   iframeUrl: any;
 
   ngOnInit() {
     this._eventEmmitter.tUser.subscribe(data => {
-      console.log(data);
+      this.tUser = data;
+      console.log("User T: " + this.tUser)
+      this.getHichatUrl(this.tUser);
     });
-    this.getHichatUrl('aaa');
-    setTimeout(() => {
-      console.log(this.iframeUrl)
-    }, 2000);
-
   }
 
   getHichatUrl(userT) {
     this.ApigetService.getHichatIframe(userT).subscribe((res: any) => {
-      this.iframeUrl = res.url;
+      this.iframeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(res.url);
     });
 
 

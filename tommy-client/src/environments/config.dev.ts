@@ -8,6 +8,5 @@ export const config = {
     GET_UUID_URL_FUNCTION: (userT: string) => `/api/caisd-rest/cnt?WC=userid%3D'${userT}'`,
     GET_UPDATES: "/api/caisd-rest/cr?WC=type%3D'I'%20and%20active%3D1%20and%20impact%3D1",
     POST_NEW_REQUEST: "/api/caisd-rest/cr",
-    // GET_HICHAT_IFRAME_URL_FUNCTION: (userT: string) => `/hichat?user=${userT}`
-    GET_HICHAT_IFRAME_URL_FUNCTION: (userT: string) => `http://localhost:8050/hichat/exampleurl`
+    GET_HICHAT_IFRAME_URL_FUNCTION: (userT: string) => `/hichat?user=${userT}`
 };
