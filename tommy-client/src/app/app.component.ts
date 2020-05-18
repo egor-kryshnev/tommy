@@ -31,6 +31,7 @@ export class AppComponent {
       this.authService.setUser(this.userT);
       this.authService.setUserShraga(res);
       this._eventEmmiter.sendUser(res);
+      this._eventEmmiter.sendTuser(this.userT);
       this.apigetService.getUUID(this.userT).subscribe((res: any) => {
         if (Array.isArray(res.collection_cnt.cnt)) {
           this.userUUID = res.collection_cnt.cnt[1]['@id'];
