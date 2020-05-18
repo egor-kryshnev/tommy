@@ -28,6 +28,7 @@ export interface taskModel1 {
   "category": string;
   "open_date": string;
   "icon": string;
+  "group": string;
 }
 
 export interface updatesModel {
@@ -81,7 +82,7 @@ export class ApigetService {
     .set('Content-type', 'application/json')
     .set('X-AccessKey', this.accessKey)
     .set('Accept', 'application/json')
-    .set('X-Obj-Attrs', 'status, summary, description, open_date');
+    .set('X-Obj-Attrs', 'status, summary, description, open_date, group');
 
   updatesHeaders = new HttpHeaders()
     .set('Content-type', 'application/json')

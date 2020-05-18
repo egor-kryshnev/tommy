@@ -8,7 +8,9 @@ import { taskModel1 } from '../apiget.service';
   styleUrls: ['./task-detail.component.css']
 })
 export class TaskDetailDialog {
-  public statusList: string[] = ["ממתין לטיפול", "בטיפול צוות מחשוב", "בטיפול צוות טכני", "בטיפול אפסנאות", "טיפול הסתיים"];
+
+  taskGroup = (this.data.task).group;
+  statusList: string[] = [this.taskGroup];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
   }
@@ -28,6 +30,11 @@ export class TaskDetailDialog {
   getCategory(): string {
     const taskDescription = (this.data.task).category.split("\n")[1];
     return taskDescription.length <= 30 ? taskDescription : '...' + taskDescription.substring(0, 30);
+  }
+
+  getGroup() {
+    let taskGroup = (this.data.task).group;
+    this.statusList.push(taskGroup);
   }
 
   getTaskTitle() {

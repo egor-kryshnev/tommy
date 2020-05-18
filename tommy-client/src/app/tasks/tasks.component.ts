@@ -71,6 +71,7 @@ export class TasksComponent implements OnInit {
               "status": element.status["@COMMON_NAME"],
               "category": element.description,
               "open_date": formatted_date,
+              "group": element.group["@COMMON_NAME"],
               "icon": `../../assets/status${element.status["@id"]}.png`
             } as taskModel1
           );
@@ -107,6 +108,7 @@ export class TasksComponent implements OnInit {
             "status": element.status["@COMMON_NAME"],
             "category": element.summary,
             "open_date": formatted_date,
+            "group": element.group["@COMMON_NAME"],
             "icon": `../../assets/status${element.status["@id"]}.png`
           } as taskModel1
         );

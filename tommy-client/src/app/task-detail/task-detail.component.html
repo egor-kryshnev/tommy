@@ -25,10 +25,11 @@
     </div>
   </div>
   <div id="bottomContainer">
-    <!-- <div id="statusProgressContainer">
-      <app-status-progress *ngFor="let status of statusList; let i = index" [status]="status" [number]="i+1"
-        [isPressed]="status===data.status"></app-status-progress>
-    </div> -->
+    <div id="statusProgressContainer">
+      <p>בטיפול: {{ taskGroup }}</p>
+      <!-- <app-status-progress *ngFor="let status of statusList; let i = index" [status]="status"
+        [isPressed]="status===data.status"></app-status-progress> -->
+    </div>
     <div id="descriptionContainer">
       <h3>תיאור הבעיה</h3>
       <p id="description">{{ getDesc() }}</p>
