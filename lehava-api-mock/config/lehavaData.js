@@ -1927,7 +1927,7 @@ module.exports = {
                         "@id": "5201"
                     },
                     "group": {
-                        "@COMMON_NAME": "צוות מחשוב דולפין \/8747"
+                        "@COMMON_NAME": "צוות מחשוב כריש \/8997"
                     },
                     "category": {
                         "@COMMON_NAME": "צרורות. אין רשת במחשב"
@@ -1942,7 +1942,7 @@ module.exports = {
                         "@id": "5201"
                     },
                     "group": {
-                        "@COMMON_NAME": "צוות מחשוב דולפין \/8747"
+                        "@COMMON_NAME": "צוות מחשוב כריש \/8997"
                     },
                     "category": {
                         "@COMMON_NAME": "שדה קוצים. תקלה ביוזר TORSER"
@@ -1957,7 +1957,7 @@ module.exports = {
                         "@id": "5212"
                     },
                     "group": {
-                        "@COMMON_NAME": "צוות מחשוב דולפין \/8747"
+                        "@COMMON_NAME": "צוות מחשוב כריש \/8997"
                     },
                     "category": {
                         "@COMMON_NAME": "YNET. השבתה זמנית של אפליקציית AIRPORT"
@@ -1972,7 +1972,7 @@ module.exports = {
                         "@id": "5212"
                     },
                     "group": {
-                        "@COMMON_NAME": "צוות מחשוב דולפין \/8747"
+                        "@COMMON_NAME": "צוות מחשוב כריש \/8997"
                     },
                     "category": {
                         "@COMMON_NAME": "YNET. השבתה זמנית של אפליקציית AIRPORT"
@@ -2079,7 +2079,7 @@ module.exports = {
                         "@id": "5200"
                     },
                     "group": {
-                        "@COMMON_NAME": "צוות מחשוב דולפין \/8747"
+                        "@COMMON_NAME": "צוות מחשוב כריש \/8997"
                     },
                     "summary": "תקלת מערכת הפעלה",
                     "open_date": 1577822500
@@ -2092,7 +2092,7 @@ module.exports = {
                         "@id": "5208"
                     },
                     "group": {
-                        "@COMMON_NAME": "צוות מחשוב דולפין \/8747"
+                        "@COMMON_NAME": "צוות מחשוב כריש \/8997"
                     },
                     "summary": "תקלת מיילים",
                     "open_date": 1577822500
@@ -2105,7 +2105,7 @@ module.exports = {
                         "@id": "5211"
                     },
                     "group": {
-                        "@COMMON_NAME": "צוות מחשוב דולפין \/8747"
+                        "@COMMON_NAME": "צוות מחשוב כריש \/8997"
                     },
                     "summary": "תקלת כרטיס מסך",
                     "open_date": 1577822500
@@ -2118,7 +2118,7 @@ module.exports = {
                         "@id": "10006"
                     },
                     "group": {
-                        "@COMMON_NAME": "צוות מחשוב דולפין \/8747"
+                        "@COMMON_NAME": "צוות מחשוב כריש \/8997"
                     },
                     "summary": "תקלת דרייבר למקלדת",
                     "open_date": 1577822500
@@ -2131,7 +2131,7 @@ module.exports = {
                         "@id": "400007"
                     },
                     "group": {
-                        "@COMMON_NAME": "צוות מחשוב דולפין \/8747"
+                        "@COMMON_NAME": "צוות מחשוב כריש \/8997"
                     },
                     "summary": "תקלת קורא כרטיס",
                     "open_date": 1577822500
@@ -2144,7 +2144,7 @@ module.exports = {
                         "@id": "400008"
                     },
                     "group": {
-                        "@COMMON_NAME": "צוות מחשוב דולפין \/8747"
+                        "@COMMON_NAME": "צוות מחשוב כריש \/8997"
                     },
                     "summary": "תקלת תוכנת אופיס",
                     "open_date": 1577822500
