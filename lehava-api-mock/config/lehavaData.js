@@ -1926,6 +1926,9 @@ module.exports = {
                         "@COMMON_NAME": "סגור",
                         "@id": "5201"
                     },
+                    "group": {
+                        "@COMMON_NAME": "צוות מחשוב דולפין \/8747"
+                    },
                     "category": {
                         "@COMMON_NAME": "צרורות. אין רשת במחשב"
                     },
@@ -1937,6 +1940,9 @@ module.exports = {
                     "status": {
                         "@COMMON_NAME": "סגור",
                         "@id": "5201"
+                    },
+                    "group": {
+                        "@COMMON_NAME": "צוות מחשוב דולפין \/8747"
                     },
                     "category": {
                         "@COMMON_NAME": "שדה קוצים. תקלה ביוזר TORSER"
@@ -1950,6 +1956,9 @@ module.exports = {
                         "@COMMON_NAME": "טופל",
                         "@id": "5212"
                     },
+                    "group": {
+                        "@COMMON_NAME": "צוות מחשוב דולפין \/8747"
+                    },
                     "category": {
                         "@COMMON_NAME": "YNET. השבתה זמנית של אפליקציית AIRPORT"
                     },
@@ -1961,6 +1970,9 @@ module.exports = {
                     "status": {
                         "@COMMON_NAME": "טופל",
                         "@id": "5212"
+                    },
+                    "group": {
+                        "@COMMON_NAME": "צוות מחשוב דולפין \/8747"
                     },
                     "category": {
                         "@COMMON_NAME": "YNET. השבתה זמנית של אפליקציית AIRPORT"
@@ -2066,6 +2078,9 @@ module.exports = {
                         "@COMMON_NAME": "פתוח",
                         "@id": "5200"
                     },
+                    "group": {
+                        "@COMMON_NAME": "צוות מחשוב דולפין \/8747"
+                    },
                     "summary": "תקלת מערכת הפעלה",
                     "open_date": 1577822500
                 },
@@ -2075,6 +2090,9 @@ module.exports = {
                     "status": {
                         "@COMMON_NAME": "בטיפול",
                         "@id": "5208"
+                    },
+                    "group": {
+                        "@COMMON_NAME": "צוות מחשוב דולפין \/8747"
                     },
                     "summary": "תקלת מיילים",
                     "open_date": 1577822500
@@ -2086,6 +2104,9 @@ module.exports = {
                         "@COMMON_NAME": "השהייה",
                         "@id": "5211"
                     },
+                    "group": {
+                        "@COMMON_NAME": "צוות מחשוב דולפין \/8747"
+                    },
                     "summary": "תקלת כרטיס מסך",
                     "open_date": 1577822500
                 },
@@ -2095,6 +2116,9 @@ module.exports = {
                     "status": {
                         "@COMMON_NAME": "פתיחה מחדש",
                         "@id": "10006"
+                    },
+                    "group": {
+                        "@COMMON_NAME": "צוות מחשוב דולפין \/8747"
                     },
                     "summary": "תקלת דרייבר למקלדת",
                     "open_date": 1577822500
@@ -2106,6 +2130,9 @@ module.exports = {
                         "@COMMON_NAME": "ממתין לתגובת לקוח",
                         "@id": "400007"
                     },
+                    "group": {
+                        "@COMMON_NAME": "צוות מחשוב דולפין \/8747"
+                    },
                     "summary": "תקלת קורא כרטיס",
                     "open_date": 1577822500
                 },
@@ -2115,6 +2142,9 @@ module.exports = {
                     "status": {
                         "@COMMON_NAME": "ממתין לתקלה/שינוי",
                         "@id": "400008"
+                    },
+                    "group": {
+                        "@COMMON_NAME": "צוות מחשוב דולפין \/8747"
                     },
                     "summary": "תקלת תוכנת אופיס",
                     "open_date": 1577822500
