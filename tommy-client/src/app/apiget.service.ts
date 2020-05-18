@@ -169,4 +169,11 @@ export class ApigetService {
       }
     }
   }
+
+  getHichatIframe(userT) {
+    console.log("ApiGet Service: Getting HichatIframe");
+    return this.http.get(config.GET_HICHAT_IFRAME_URL_FUNCTION(userT),
+      { withCredentials: true })
+  }
+
 };

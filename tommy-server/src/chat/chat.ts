@@ -39,8 +39,8 @@ export class Chat {
     async getAuthHeaders() {
         const { userId, authToken } = await this.login();
         const headers = {
-            'X-Auth-Token': "authToken",
-            'X-User-Id': "userId"
+            'X-Auth-Token': authToken,
+            'X-User-Id': userId
         };
         return headers;
     };

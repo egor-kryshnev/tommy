@@ -24,6 +24,7 @@ import { StatusProgressComponent } from './task-detail/status-progress/status-pr
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { ChatComponent } from './chat/chat.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { FormsModule } from '@angular/forms';
     PreloaderComponent,
     StatusProgressComponent,
     TaskDetailDialog,
-    SearchBarComponent
+    SearchBarComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
