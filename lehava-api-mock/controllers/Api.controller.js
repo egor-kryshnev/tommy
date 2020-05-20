@@ -1,4 +1,5 @@
 const lehavaData = require('../config/lehavaData')
+const hiData = require('../config/hichat.credentials')
 const validator = require('../validators/mainValidator')
 const arraysearch = require('../modules/arraysearch')
 const headerValidators = require('../routes/api.router')
@@ -55,12 +56,17 @@ module.exports = (app) => {
         }
     });
 
-    // GET user Unique id by T username
+    // Lehava | GET user Unique id by T username
+    // Lehava | GET Supporters List
     app.get('/caisd-rest/cnt', (req, res) => {
-        if (validator.userExistsValidator(req)) {
-            res.json(lehavaData.users[arraysearch("T", req.query.WC.split("'")[1], lehavaData.users)].data);
+        if (req.query.WC.split("=")[0] = "z_pri_grp") {
+            res.json(lehavaData.supporters);
         } else {
-            res.status(400).send({ error: `User:${req.query.WC.split("'")[1]} Doesn't Exist` });
+            if (validator.userExistsValidator(req)) {
+                res.json(lehavaData.users[arraysearch("T", req.query.WC.split("'")[1], lehavaData.users)].data);
+            } else {
+                res.status(400).send({ error: `User:${req.query.WC.split("'")[1]} Doesn't Exist` });
+            }
         }
     });
 
@@ -108,6 +114,8 @@ module.exports = (app) => {
             res.status(400).send({ error: "Bad Parameters" })
         }
     });
+
+
 
     // HiChat | Server Response Mock For GET HichatUrl
     app.get('/hichat/exampleurl', (req, res) => {
