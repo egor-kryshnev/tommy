@@ -2566,6 +2566,42 @@ module.exports = {
             }
         }
     }
-    ]
+    ],
+    supporters: {
+        collection_cnt: {
+            cnt: [
+                {
+                    "@id": "U'40654A5604SADDC03654'",
+                    "@COMMON_NAME": "באלשוי, ויטה ",
+                    "userid": "M70220177"
+                },
+                {
+                    "@id": "U'40654A5604SADDC03654'",
+                    "@COMMON_NAME": "עבט, רון ",
+                    "userid": "M70220177"
+                },
+                {
+                    "@id": "U'40654A5604SADDC03654'",
+                    "@COMMON_NAME": "באלטון, חוד ",
+                    "userid": "M70220177"
+                },
+                {
+                    "@id": "U'40654A5604SADDC03654'",
+                    "@COMMON_NAME": "יותם, סויסה ",
+                    "userid": "M70220177"
+                },
+                {
+                    "@id": "U'40654A5604SADDC03654'",
+                    "@COMMON_NAME": "ליברמן, גבר ",
+                    "userid": "M70220177"
+                },
+                {
+                    "@id": "U'40654A5604SADDC03654'",
+                    "@COMMON_NAME": "מיקי, מוטי ",
+                    "userid": "M70220177"
+                },
+            ]
+        }
+    }
 
 }
