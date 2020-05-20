@@ -25,4 +25,8 @@ export class ChatComponent implements OnInit {
 
 
   }
+
+  getIframeUrl() {
+    return this.iframeUrl;
+  }
 }
