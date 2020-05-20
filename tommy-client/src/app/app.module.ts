@@ -25,7 +25,6 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { ChatComponent } from './chat/chat.component';
-import { SafePipe } from './safe.pipe'
 
 @NgModule({
   declarations: [
@@ -39,8 +38,7 @@ import { SafePipe } from './safe.pipe'
     StatusProgressComponent,
     TaskDetailDialog,
     SearchBarComponent,
-    ChatComponent,
-    SafePipe
+    ChatComponent
   ],
   imports: [
     BrowserModule,
