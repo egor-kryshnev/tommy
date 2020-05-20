@@ -62,5 +62,10 @@ module.exports = {
         if (req.body.rest_access == 'rest_access') {
             return true;
         } return false;
+    },
+    isUserSupporter: (req) => {
+        if (req.query.WC.split("=")[0] == "z_pri_grp") {
+            return true;
+        } return false;
     }
 }

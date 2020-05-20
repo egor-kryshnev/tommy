@@ -59,7 +59,7 @@ module.exports = (app) => {
     // Lehava | GET user Unique id by T username
     // Lehava | GET Supporters List
     app.get('/caisd-rest/cnt', (req, res) => {
-        if (req.query.WC.split("=")[0] = "z_pri_grp") {
+        if (validator.isUserSupporter(req)) {
             res.json(lehavaData.supporters);
         } else {
             if (validator.userExistsValidator(req)) {
