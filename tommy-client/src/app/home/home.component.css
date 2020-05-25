@@ -27,4 +27,15 @@
     bottom: 40px;
     right: 40px;
     background-color: #3f9c67;
+    z-index: 3;
+}
+
+@media (max-width:1300px) {
+    #btnChat {
+        display: none;
+    }
+    
+    #chatBox{
+        display: none;
+    }
 }

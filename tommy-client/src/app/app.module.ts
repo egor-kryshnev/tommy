@@ -9,6 +9,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { UpdatingComponent } from './updating/updating.component';
 import { MatListModule } from '@angular/material/list';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { DragDropModule } from '@angular/cdk/drag-drop'
 import { HomeComponent } from './home/home.component';
 import { TaskDetailDialog } from './task-detail/task-detail.component';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
@@ -25,7 +26,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { ChatComponent } from './chat/chat.component';
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -45,8 +46,6 @@ import { ChatComponent } from './chat/chat.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    // NbThemeModule.forRoot({ name: 'default' }),
-    // NbLayoutModule,
     MatExpansionModule,
     MatButtonModule,
     MatGridListModule,
@@ -58,7 +57,9 @@ import { ChatComponent } from './chat/chat.component';
     MatDialogModule,
     OpenRequestModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    DragDropModule,
+    FontAwesomeModule
   ],
   providers: [EventEmiterService, AuthService, { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } }],
   bootstrap: [AppComponent]

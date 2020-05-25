@@ -1,3 +1,7 @@
-<div id="iframe-container">
-    <iframe id="iframe" src="https://www.ynet.co.il/Ext/App/TalkBack/CdaViewOpenTalkBack/0,11382,L-3190779-3,00.html" scrolling="no"></iframe>
+<div id="cloack" class="hidden">
+    <div id="iframe-container" cdkDragBoundary=".boundary" [cdkDragFreeDragPosition]="dragPosition" cdkDrag>
+        <img id="drag-arrows" src="../../assets/arrows_move.svg">
+        <img id="x-icon" src="../../assets/x-icon.svg" (click)="closeChat()">
+        <iframe *ngIf="iframeUrl" id="iframe" [src]="getIframeUrl()" scrolling="no"></iframe>
+    </div>
 </div>

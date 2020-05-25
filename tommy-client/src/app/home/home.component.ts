@@ -8,15 +8,15 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  private chatDisplayFlag = true;
+  static chatDisplayFlag: Boolean;
   constructor(private router: Router, private route: ActivatedRoute) { }
-
+  
   ngOnInit(): void {
   }
 
   chatTag() {
-    this.chatDisplayFlag = !this.chatDisplayFlag;
-    document.querySelector("iframe").style.display = this.chatDisplayFlag ? "none" : "block";
+    document.getElementById("cloack").className = HomeComponent.chatDisplayFlag ? "hidden" : "visible";
+    HomeComponent.chatDisplayFlag = !HomeComponent.chatDisplayFlag;
   }
 
 }
