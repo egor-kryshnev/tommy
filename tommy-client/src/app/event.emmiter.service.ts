@@ -4,9 +4,10 @@ import { Injectable, EventEmitter } from "@angular/core";
 export class EventEmiterService {
     dataStr = new EventEmitter();
     tUser = new EventEmitter();
-    str: string;
     name = new EventEmitter();
     user = new EventEmitter();
+    phone = new EventEmitter();
+    str: string;
 
     constructor() {}
 
@@ -20,5 +21,9 @@ export class EventEmiterService {
 
     sendTuser(data: string){
       this.tUser.emit(data);
+    }
+
+    sendPhone(userphone: any){
+      this.phone.emit(userphone);
     }
 }
