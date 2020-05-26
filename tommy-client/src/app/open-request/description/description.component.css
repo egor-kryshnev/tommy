@@ -52,15 +52,14 @@
 }
 
 #charCounter {
-  position: relative;
   width: 20px;
-  left: 89%;
-  top: -43px;
   font-size: 14px;
   line-height: 1.43;
   letter-spacing: normal;
   text-align: right;
   color: #bfbfc0;
+  margin-left: 533px;
+  margin-top: -24px;
 }
 
 textarea {
@@ -113,8 +112,16 @@ textarea:focus {
   font-family: Rubik;
 }
 
+.grid{
+  display: grid;
+  justify-items: center;
+}
+
 #grid-wrapper {
   display: grid;
+  grid-template-columns: 300px 300px;
+  grid-gap: 20px;
+  padding: 10px;
   justify-content: center;
 }
 
@@ -128,7 +135,7 @@ textarea:focus {
 }
 
 .input {
-  width: 180px;
+  width: 280px;
   padding: 5px;
   outline: none;
   direction: rtl;
@@ -150,21 +157,6 @@ textarea:focus {
 
 .input:focus {
   border: solid 1px #afc514;
-}
-
-#location {
-  top: -20px;
-  width: 300px;
-}
-
-#phone {
-  top: 5px;
-  width: 300px;
-}
-
-#computerName {
-  top: 25px;
-  width: 300px;
 }
 
 .red-holder::placeholder {

@@ -20,6 +20,7 @@ export class DescriptionComponent implements OnInit {
   computerNameWarning = "";
   locationInput: string = "";
   phoneInput: string = "";
+  voip: string = "";
   computerNameInput: string = "";
   services: model1[];
   userUUID: string = '';
@@ -37,6 +38,8 @@ export class DescriptionComponent implements OnInit {
     this.postReqService.descriptionCategory = selectedCategories;
     this._eventEmmitter.user.subscribe(data => this.authService.setUserShraga(data));
     this._eventEmmitter.dataStr.subscribe(data => this.userUUID = data);
+    // this._eventEmmitter.phone.subscribe(phone =>  console.log(phone));
+    // console.log(this.userPhone);
   }
 
   onReturn() {
@@ -49,6 +52,7 @@ export class DescriptionComponent implements OnInit {
       this.postReqService.location = this.locationInput;
       this.postReqService.phoneNumber = this.phoneInput;
       this.postReqService.computerName = this.computerNameInput;
+      this.postReqService.voip = this.voip;
       this.postReqService.postRequest()
         .subscribe((res: PostResponse) => {
           const requestId = this.postReqService.getRequestId(res);
@@ -59,7 +63,6 @@ export class DescriptionComponent implements OnInit {
             data: requestId
           });
           finishRequestDialog.afterClosed().subscribe(result => {
-            // this.router.navigateByUrl('/', { relativeTo: this.route });
             this.router.navigate(['/']);
           });
         })
@@ -78,6 +81,10 @@ export class DescriptionComponent implements OnInit {
 
   setComputerNameInput(computerName: string) {
     this.computerNameInput = computerName;
+  }
+
+  setVOIPInput(voipInput: string){
+    this.voip = voipInput;
   }
 
   setLocationInput(location: string) {

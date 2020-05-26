@@ -34,6 +34,7 @@ export class PostReqService {
   descriptionInput: string;
   location: string;
   computerName: string;
+  voip: string;
 
   postRequest() {
     const description = this.appendDescriptions();
@@ -56,6 +57,7 @@ export class PostReqService {
         "z_username": this.userT,
         "z_computer_name": this.computerName,
         "z_current_loc": this.location,
+        "z_cst_red_phone": this.voip,
         "z_network":
         {
           "@id": this.networkId
@@ -83,6 +85,7 @@ export class PostReqService {
 
 
   appendDescriptions() {
+    this.descriptionInput = (this.descriptionInput).replace(/\n/g,'');
     return `${this.descriptionCategory}\n${this.descriptionInput}`
   }
 
