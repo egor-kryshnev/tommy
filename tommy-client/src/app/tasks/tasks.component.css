@@ -280,14 +280,40 @@
     height: 100%;
 }
 
-/* #timeTillTreatment {
-    font-family: rubik-light;
-    margin-left: 20px;
-    margin-top: 30px;
-    margin-bottom: 10px;
-} */
+#noTasks{
+  position: relative;
+  left: 47%;
+  top: 24px;
+  margin-top: 75px;
+  font-family: Rubik;
+  font-size: 24px;
+  font-weight: bold;
+  color: #696969ad;
+}
 
-/* #task-id {
-    margin-left: 50px;
-    margin-top: 0px;
-} */
+#task-id {
+  float: left;
+  position: relative;
+  top: 44px;
+  right: 80px;
+  font-family: Rubik;
+  font-size: 14px;
+  color: #3b3b3b;
+}
+
+#task-date {
+  position: relative;
+  float: right;
+  right: 43px;
+  font-family: Rubik;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: right;
+  color: #3b3b3ba6;
+  top: 45px;
+}
+

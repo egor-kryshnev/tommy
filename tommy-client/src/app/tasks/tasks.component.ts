@@ -64,7 +64,7 @@ export class TasksComponent implements OnInit {
           let current_datetime = new Date(element.open_date * 1000);
           let formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear() + "  " + current_datetime.getHours() + ":" + current_datetime.getMinutes();
           if(formatted_date.split(":")[1].length === 1){
-            formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear() + "  " + current_datetime.getHours() + ":0" + current_datetime.getMinutes();
+            formatted_date = current_datetime.getHours() + ":0" + current_datetime.getMinutes() + "  " + formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear();
           }
           // console.log(formatted_date.split(":")[1]);
           this.tasksByIdArray.push(
@@ -130,7 +130,7 @@ export class TasksComponent implements OnInit {
   clickedOpenTasks() {
     if (!this.open) {
       this.open = true;
-      this.tasksToDisplay = this.tasksByIdArray.reverse();
+      this.tasksToDisplay = this.tasksByIdArray;
       this.searchTextChanged(this.searchText);
       if (!this.selectedOpenTasks) this.selectedOpenTasks = true;
     }
