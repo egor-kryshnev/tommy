@@ -4,7 +4,7 @@ const arraysearch = require('../modules/arraysearch')
 module.exports = {
 
     headerValidator: (req) => {
-        if (req.header('X-AccessKey') == lehavaData.restaccess.access_key && req.header('Accept') == 'application/json') {
+        if (req.header('X-AccessKey') == lehavaData.restaccess.rest_access.access_key && req.header('Accept') == 'application/json') {
             return true;
         } return false;
     },
@@ -15,7 +15,7 @@ module.exports = {
     },
     userCallsHeaderValidator: (req) => {
         if (req.header('X-Obj-Attrs')) {
-            if (req.header('X-Obj-Attrs') == "status, description, category, open_date") {
+            if (req.header('X-Obj-Attrs') == "status, summary, description, open_date, group") {
                 return true;
             }
         } return false;
@@ -47,14 +47,24 @@ module.exports = {
         } return false;
     },
     updatesValidator: (req) => {
-        if (req.header('Content-Type') == 'application/json' && req.header('X-Obj-Attrs') == 'category, description, open_date') {
-            if (req.query.WC == "type='I' and active=1 and impact=0") {
+        if (req.header('Content-Type') == 'application/json' && req.header('X-Obj-Attrs') == 'category, description, open_date, summary') {
+            if (req.query.WC == "type='I' and active=1 and impact=1") {
                 return true;
             }
         } return false;
     },
     newCallValidator: (req) => {
         if (req.body.cr && req.body.cr.customer && req.body.cr.customer['@id'] && req.body.cr.description && req.body.cr.description) {
+            return true;
+        } return false;
+    },
+    accessKeyValidator: (req) => {
+        if (req.body.rest_access == 'rest_access') {
+            return true;
+        } return false;
+    },
+    isUserSupporter: (req) => {
+        if (req.query.WC.split("=")[0] == "z_pri_grp") {
             return true;
         } return false;
     }

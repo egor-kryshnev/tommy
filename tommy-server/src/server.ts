@@ -6,7 +6,8 @@ import morgan from 'morgan';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
 import { config } from './config';
-import { AppRouter } from './router';
+import { LehavaRouter } from './lehava.router';
+import { HichatRouter } from './hichat.router';
 import { errorHandler } from './utils/errors/handler';
 import { AuthenticationHandler } from './authentication/handler';
 import { AuthenticationRouter } from './authentication/router';
@@ -28,7 +29,8 @@ export class Server {
         this.app = express();
         this.configureMiddlewares();
         this.initializeAuthenticator();
-        this.app.use('/api', AuthenticationMiddleware.requireAuth, AppRouter);
+        this.app.use('/api', AuthenticationMiddleware.requireAuth, LehavaRouter);
+        this.app.use('/hichat', AuthenticationMiddleware.requireAuth, HichatRouter);
         this.initializeErrorHandler();
         console.log(config.client.url);
         this.app.get('/user', AuthenticationMiddleware.requireAuth, (req: express.Request, res: express.Response, next: express.NextFunction) => res.send(req.user));
@@ -45,11 +47,12 @@ export class Server {
 
     private configureMiddlewares() {
         this.app.use(helmet());
-        // this.app.disable('etag');
 
         this.app.get('/isalive', function (req: express.Request, res: express.Response, next: express.NextFunction) {
             res.status(200).send('Server Is Up');
         });
+
+        this.app.use(cors());
 
         this.app.use(function (req: express.Request, res: express.Response, next: express.NextFunction) {
             res.setHeader('Access-Control-Allow-Credentials', 'true');
@@ -59,8 +62,6 @@ export class Server {
 
             return next();
         });
-
-        this.app.use(cors());
 
         if (process.env.NODE_ENV === 'development') {
             this.app.use(morgan('dev'));
@@ -77,6 +78,8 @@ export class Server {
             resave: false,
             saveUninitialized: true
         }));
+
+        this.app.set('trust proxy', true);
 
         this.app.all('*', (req: express.Request, res: express.Response, next: express.NextFunction) => {
             res.setHeader('Last-Modified', (new Date()).toUTCString());

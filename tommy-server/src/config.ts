@@ -19,14 +19,21 @@ export const config = {
         host: process.env.REDIS_URL || 'redis://localhost:6379',
     },
     lehava_api: {
-        request: {
-            method: 'POST',
-            url: process.env.LEHAVA_API_URL || "http://lehava-api-mock:8050/caisd-rest/rest_access",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-                "Authorization": "Basic c2VydmljZWRlc2s6U0RBZG1pbjAx"
-            }
-        }
+        host: process.env.LEHAVA_API_HOST || "lehava-api-mock",
+        port: process.env.LEHAVA_API_PORT || "8050"
+    },
+    rabbitmq: {
+        url: process.env.RABBITMQ_URL || "amqp://rabbitmq:5672",
+        access_token_queue_name: "access_token_rpc_queue",
+    },
+
+    chat: {
+        chatUrl: process.env.CHAT_URL || 'http://localhost:8080',
+        hiChatUrl: process.env.HI_CHAT_URL || 'http://localhost:8080',
+        chatGroupUrl: process.env.CHAT_GROUP_URL || 'groups',
+        chatLoginUrl: process.env.CHAT_LOGIN_URL || 'login',
+        chatMessageUrl: process.env.CHAT_MESSAGE_URL || 'chat',
+        loginUser: process.env.LOGIN_USER || 'user',
+        loginPass: process.env.LOGIN_PASS || 'pass'
     }
 }

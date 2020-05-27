@@ -3,6 +3,7 @@
     grid-auto-rows: 80px;
     grid-gap: 10px;
     justify-content: center;
+    direction: rtl;
 }
 
 .card{
