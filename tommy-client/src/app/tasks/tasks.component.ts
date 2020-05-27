@@ -62,11 +62,12 @@ export class TasksComponent implements OnInit {
       if (this.isArrayOpen) {
         this.tasksArray.forEach((element: any) => {
           let current_datetime = new Date(element.open_date * 1000);
-          let formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear() + "  " + current_datetime.getHours() + ":" + current_datetime.getMinutes();
-          if(formatted_date.split(":")[1].length === 1){
-            formatted_date = current_datetime.getHours() + ":0" + current_datetime.getMinutes() + "  " + formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear();
+          let formatted_date = current_datetime.getHours() + ":" + current_datetime.getMinutes() + "  " + current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear();
+          console.log(formatted_date.split(":")[1].split(" ")[0]);
+          if(formatted_date.split(":")[1].split(" ")[0].length === 1){
+            formatted_date = current_datetime.getHours() + ":0" + current_datetime.getMinutes() + "  " + current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear();
           }
-          // console.log(formatted_date.split(":")[1]);
+
           this.tasksByIdArray.push(
             {
               "id": element["@COMMON_NAME"],
