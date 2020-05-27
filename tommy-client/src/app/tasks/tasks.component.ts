@@ -67,7 +67,6 @@ export class TasksComponent implements OnInit {
           if(formatted_date.split(":")[1].split(" ")[0].length === 1){
             formatted_date = current_datetime.getHours() + ":0" + current_datetime.getMinutes() + "  " + current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear();
           }
-
           this.tasksByIdArray.push(
             {
               "id": element["@COMMON_NAME"],
