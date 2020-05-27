@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService, CategoryOfIncidents, CategoryOfRequests } from './category.service'
 import { PostReqService } from '../post-req.service';
+import { MatDialog } from '@angular/material/dialog';
+import { TransverseIncidentDialog } from '../transverse-incident/transverse-incident.component';
 
 @Component({
   selector: 'app-category',
@@ -14,7 +16,7 @@ export class CategoryComponent implements OnInit {
   categoriesLoaded: Promise<boolean>;
 
   constructor(public categoryService: CategoryService, public route: ActivatedRoute, private router: Router,
-    public postReqService: PostReqService) { }
+    public postReqService: PostReqService, public transverseIncidentDialog: MatDialog) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -30,6 +32,7 @@ export class CategoryComponent implements OnInit {
           dataArray.forEach(element => {
             let splited = element["@COMMON_NAME"].split(".");
             categoryList.push(splited);
+            console.log(element);
           });
         }
         this.setCategoriesOfRequests(id, categoryList);
@@ -55,6 +58,8 @@ export class CategoryComponent implements OnInit {
   selectedCategory(category: string) {
     this.categoryService.updateSelectedCategory(category);
     const selectedCategories: string = this.categoryService.getSelectedCategoryString();
+    // const incident = this.categoryService.getTransverseIncident(category);
+    // if (incident) { this.transverseIncidentDialog.open(TransverseIncidentDialog, {width: "430", height: "400", data: incident}) }
     if (this.categoryService.hasNextSubCategory()) {
       this.router.navigate(['/subcategories', selectedCategories], { relativeTo: this.route });
     } else {
