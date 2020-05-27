@@ -26,7 +26,6 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { ChatComponent } from './chat/chat.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -58,8 +57,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     OpenRequestModule,
     MatInputModule,
     FormsModule,
-    DragDropModule,
-    FontAwesomeModule
+    DragDropModule
   ],
   providers: [EventEmiterService, AuthService, { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } }],
   bootstrap: [AppComponent]
