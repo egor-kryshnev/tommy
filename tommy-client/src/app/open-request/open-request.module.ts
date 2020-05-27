@@ -20,8 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from '../app-routing.module';
-
-
+import { CardsloaderComponent } from './cardsloader/cardsloader.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +32,8 @@ import { AppRoutingModule } from '../app-routing.module';
     FinishRequestComponent,
     CardsListComponent,
     ReturnButtonComponent,
-    PageTopTitleComponent
+    PageTopTitleComponent,
+    CardsloaderComponent
   ],
   imports: [
     CommonModule,

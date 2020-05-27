@@ -5,5 +5,8 @@
 <h4 id="kara">?משהו קרה לסביבת העבודה שלכם</h4>
 <h4 id="loved">:אין בעיה, ספרו לנו מה לא עובד ובחרו רשת</h4>
 
-<app-cards-list *ngIf="networks" [cardsList]="getNetworksNames()" (selected)="onSelectedNetwork($event)">
+<app-cards-list *ngIf="networks; else cardsloader" [cardsList]="getNetworksNames()" (selected)="onSelectedNetwork($event)">
 </app-cards-list>
+<ng-template #cardsloader>
+    <app-cardsloader></app-cardsloader>
+</ng-template>

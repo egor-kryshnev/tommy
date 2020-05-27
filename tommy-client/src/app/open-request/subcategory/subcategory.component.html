@@ -4,5 +4,8 @@
 
 <h4 id="kara">:בחרו קטגוריה בה הפניה</h4>
 
-<app-cards-list *ngIf="categoriesToDisplay" [cardsList]="categoriesToDisplay" (selected)="selectedSubCategory($event)">
+<app-cards-list *ngIf="categoriesToDisplay; else cardsloader" [cardsList]="categoriesToDisplay" (selected)="selectedSubCategory($event)">
 </app-cards-list>
+<ng-template #cardsloader>
+    <app-cardsloader></app-cardsloader>
+</ng-template>
