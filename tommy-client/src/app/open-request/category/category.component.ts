@@ -34,11 +34,8 @@ export class CategoryComponent implements OnInit {
           dataArray.forEach(element => {
             let splited = element["@COMMON_NAME"].split(".");
             categoryList.push(splited);
-<<<<<<< HEAD
             // this.categoryIdList.push(element["@id"]);
-=======
             console.log(element);
->>>>>>> 541fb33
           });
         }
         this.setCategoriesOfRequests(id, categoryList);
