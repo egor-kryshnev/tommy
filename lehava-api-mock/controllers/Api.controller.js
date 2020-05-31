@@ -79,7 +79,7 @@ module.exports = (app) => {
                 if (pcatIdValue) {
                     res.json(lehavaData.categoryWideProblems[pcatId]);
                 } else {
-                    res.status(404).send({ error: "No Such Category Problem" })
+                    res.json(lehavaData.categoryWideProblemsEmpty);
                 }
             } else {
                 if (lehavaData.nonactivecalls[arraysearch("userUniqueId", req.query.WC.split("'")[1], lehavaData.nonactivecalls)]) {

@@ -2567,6 +2567,13 @@ module.exports = {
         }
     }
     ],
+    categoryWideProblemsEmpty: {
+        "collection_cr": {
+            "@COUNT": "0",
+            "@START": "0",
+            "@TOTAL_COUNT": "0",
+        }
+    },
     supporters: {
         collection_cnt: {
             cnt: [
