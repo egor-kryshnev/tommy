@@ -20,8 +20,20 @@ export interface CategoryOfRequests {
 }
 
 export interface TransverseIncident {
-  "description": string;
-  "open_date": string;
+  "@COUNT": String;
+  "@START": String;
+  "@TOTAL_COUNT": String;
+  "cr": [{
+    "@id": String;
+    "@REL_ATTR": String;
+    "@COMMON_NAME": String;
+    "link": {
+      "@href": String;
+      "@rel": String;
+    }
+    "description": String;
+    "open_date": Number;
+  }]
 }
 
 @Injectable({
