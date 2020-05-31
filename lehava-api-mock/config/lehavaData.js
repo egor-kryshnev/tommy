@@ -2447,7 +2447,7 @@ module.exports = {
     },
 
     categoryWideProblems: [{
-        categoryId: "1",
+        categoryId: "0",
         data: {
             collection_cr: {
                 cr: [{
@@ -2477,7 +2477,7 @@ module.exports = {
         }
     },
     {
-        categoryId: "2",
+        categoryId: "1",
         data: {
             collection_cr: {
                 cr: [{
@@ -2507,7 +2507,7 @@ module.exports = {
         }
     },
     {
-        categoryId: "3",
+        categoryId: "2",
         data: {
             collection_cr: {
                 cr: [{
@@ -2537,7 +2537,7 @@ module.exports = {
         }
     },
     {
-        categoryId: "4",
+        categoryId: "3",
         data: {
             collection_cr: {
                 cr: [{
