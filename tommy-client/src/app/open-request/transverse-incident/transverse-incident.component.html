@@ -2,10 +2,9 @@
 <mat-dialog-content class="mat-typography">
   <div id="contentContainer">
     <div>
-      <h1>עדכונים ותקלות רוחביות</h1>
+      <h1 id="title">עדכונים ותקלות רוחביות</h1>
       <p>לתשומת לבך</p>
-      <p>בשעה...</p>
-      <!-- <p>בשעה { data.time }...</p> -->
+      <p>בתאריך: {{ open_date }}, נפתחה תקלה רוחבית על: {{ description }}</p>
       <p>אין צורך לדווח על תקלה זו</p>
     </div>
     <div (click)="onHomeClick()" id="home-button-container" class="button-container">

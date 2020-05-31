@@ -10,10 +10,15 @@
   left: -20px;
 }
 
+#title {
+  padding-bottom: 10px;
+}
+
 #contentContainer {
   display: flex;
   flex-direction: column;
   text-align: center;
+  width: 370px;
 }
 
 .button-container {

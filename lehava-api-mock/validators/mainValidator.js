@@ -17,6 +17,8 @@ module.exports = {
         if (req.header('X-Obj-Attrs')) {
             if (req.header('X-Obj-Attrs') == "status, summary, description, open_date, group") {
                 return true;
+            } else if (req.header('X-Obj-Attrs') == "description, open_date") {
+                return true;
             }
         } return false;
     },

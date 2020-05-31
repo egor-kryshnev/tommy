@@ -6,6 +6,7 @@ import { config } from '../../../environments/config.dev';
 export interface CategoryOfIncidents {
   "collection_pcat": {
     "pcat": {
+      "@id": string;
       "@COMMON_NAME": string
     }[];
   }
@@ -14,26 +15,29 @@ export interface CategoryOfIncidents {
 export interface CategoryOfRequests {
   "collection_chgcat": {
     "chgcat": {
+      "@id": string;
       "@COMMON_NAME": string
     }[];
   }
 }
 
 export interface TransverseIncident {
-  "@COUNT": String;
-  "@START": String;
-  "@TOTAL_COUNT": String;
-  "cr": [{
-    "@id": String;
-    "@REL_ATTR": String;
-    "@COMMON_NAME": String;
-    "link": {
-      "@href": String;
-      "@rel": String;
-    }
-    "description": String;
-    "open_date": Number;
-  }]
+  "collection_cr": {
+    "@COUNT": String;
+    "@START": String;
+    "@TOTAL_COUNT": String;
+    cr?: [{
+      "@id": String;
+      "@REL_ATTR": String;
+      "@COMMON_NAME": String;
+      "link": {
+        "@href": String;
+        "@rel": String;
+      }
+      "description": String;
+      "open_date": number;
+    }]
+  }
 }
 
 @Injectable({

@@ -34,7 +34,7 @@ export class CategoryComponent implements OnInit {
           dataArray.forEach(element => {
             let splited = element["@COMMON_NAME"].split(".");
             categoryList.push(splited);
-            // this.categoryIdList.push(element["@id"]);
+            this.categoryIdList.push(element["@id"]);
             console.log(element);
           });
         }
@@ -50,7 +50,7 @@ export class CategoryComponent implements OnInit {
           dataArray.forEach(element => {
             let splited = element["@COMMON_NAME"].split(".");
             categoryList.push(splited);
-            // this.categoryIdList.push(element["@id"]);
+            this.categoryIdList.push(element["@id"]);
           });
         }
         this.categoryService.buildData(categoryList);
@@ -61,9 +61,22 @@ export class CategoryComponent implements OnInit {
 
   selectedCategory(category: string) {
     this.categoryService.updateSelectedCategory(category);
+    try {
+      const categoryId = this.categoryIdList[this.categoriesToDisplay.indexOf(category)];
+      this.categoryService.getTransverseIncident(categoryId).subscribe((incident: TransverseIncident) => {
+        if (incident.collection_cr.cr && (incident.collection_cr.cr.length > 0)) {
+          this.transverseIncidentDialog.open(TransverseIncidentDialog, { width: "430", height: "400", data: incident })
+        } else {
+          this.proceedToNextPage();
+        }
+      });
+    } catch (e) {
+      this.proceedToNextPage();
+    }
+  }
+
+  proceedToNextPage() {
     const selectedCategories: string = this.categoryService.getSelectedCategoryString();
-    // const incident = this.categoryService.getTransverseIncident(category);
-    // if (incident) { this.transverseIncidentDialog.open(TransverseIncidentDialog, {width: "430", height: "400", data: incident}) }
     if (this.categoryService.hasNextSubCategory()) {
       this.router.navigate(['/subcategories', selectedCategories], { relativeTo: this.route });
     } else {
