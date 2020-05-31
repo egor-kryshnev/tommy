@@ -26,35 +26,49 @@
 
   </div>
 
-
-  <cdk-virtual-scroll-viewport *ngIf="tasksToDisplay" id="scrollerComponents" itemSize="50" class="viewport">
+  <cdk-virtual-scroll-viewport id="scrollerComponents" itemSize="50" class="viewport">
     <div *ngIf="open; else closed">
-      <div *ngFor="let task of tasksToDisplay">
-        <div class="task" (click)="openTaskDetailDialog(task, true)">
-          <img class="StatusImg" src="{{ task.icon }}">
-          <p id="task-status">{{ task.status }}</p>
-          <hr class="kav">
-          <div id="taskNameDecorationOpen"></div>
-          <p id="task-date">{{ task.open_date }}</p>
-          <p id="task-title">{{ getTaskTitle(task) }}</p>
-          <!-- <p id="timeTillTreatment">זמן צפוי לטיפול לא ידוע</p> -->
-          <p id="task-id">{{ task.id }}</p>
+      <div *ngIf="tasksToDisplay.length > 1; else noTasks">
+        <div *ngFor="let task of tasksToDisplay">
+          <div class="task" (click)="openTaskDetailDialog(task, true)">
+            <img class="StatusImg" src="{{ task.icon }}">
+            <p id="task-status">{{ task.status }}</p>
+            <hr class="kav">
+            <div id="taskNameDecorationOpen"></div>
+            <p id="task-date">{{ task.open_date }}</p>
+            <p id="task-title">{{ getTaskTitle(task) }}</p>
+            <!-- <p id="timeTillTreatment">זמן צפוי לטיפול לא ידוע</p> -->
+            <p id="task-id">פניה מס' {{ task.id }}</p>
+          </div>
         </div>
       </div>
     </div>
-    <ng-template #closed>
-      <div *ngFor="let closedtask of tasksToDisplay">
-        <div class="task" (click)="openTaskDetailDialog(closedtask, false)">
-          <img class="StatusImg" src="{{ closedtask.icon }}">
-          <p id="task-status">{{ closedtask.status }}</p>
-          <hr class="kav">
-          <div id="taskNameDecorationClosed"></div>
-          <p id="task-date">{{ closedtask.open_date }}</p>
-          <p id="task-title">{{ getTaskTitle(closedtask) }}</p>
-          <!-- <p id="timeTillTreatment">זמן צפוי לטיפול לא ידוע</p> -->
-          <p id="task-id">{{ closedtask.id }}</p>
-        </div>
+    <ng-template #noTasks>
+      <div class="noTasks">
+        <p>אין פניות פתוחות</p>
       </div>
     </ng-template>
+    <ng-template #closed>
+      <div *ngIf="tasksToDisplay.length > 1; else noTasks">
+        <div *ngFor="let closedtask of tasksToDisplay">
+          <div class="task" (click)="openTaskDetailDialog(closedtask, false)">
+            <img class="StatusImg" src="{{ closedtask.icon }}">
+            <p id="task-status">{{ closedtask.status }}</p>
+            <hr class="kav">
+            <div id="taskNameDecorationClosed"></div>
+            <p id="task-date">{{ closedtask.open_date }}</p>
+            <p id="task-title">{{ getTaskTitle(closedtask) }}</p>
+            <!-- <p id="timeTillTreatment">זמן צפוי לטיפול לא ידוע</p> -->
+            <p id="task-id">{{ closedtask.id }}</p>
+          </div>
+        </div>
+      </div>
+      <ng-template #noTasks>
+        <div class="noTasks">
+          <p>אין פניות סגורות</p>
+        </div>
+      </ng-template>
+    </ng-template>
+
   </cdk-virtual-scroll-viewport>
 </div>

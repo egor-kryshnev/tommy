@@ -103,8 +103,8 @@
 #task-id {
     float: left;
     position: relative;
-    top: 44px;
-    right: 80px;
+    top: 30px;
+    left: 45px;
     font-family: Rubik;
     font-size: 14px;
     color: #3b3b3b;
@@ -291,16 +291,6 @@
   color: #696969ad;
 }
 
-#task-id {
-  float: left;
-  position: relative;
-  top: 44px;
-  right: -45px;
-  font-family: Rubik;
-  font-size: 14px;
-  color: #3b3b3b;
-}
-
 #task-date {
   position: relative;
   float: right;
@@ -317,3 +307,11 @@
   top: 45px;
 }
 
+.noTasks {
+    text-align: center;
+    font-family: Rubik;
+    color: #808080;
+    margin-top: 50px;
+    font-size: 20px;
+    cursor: context-menu;
+}
