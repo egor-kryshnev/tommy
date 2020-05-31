@@ -52,14 +52,13 @@ export class TasksComponent implements OnInit {
     console.log(this.tasksByIdArrayClosed);
     console.log(this.tasksArrayClosed);
     console.log(this.tasksToDisplayClosed);
-
   }
 
 
 
   getopen() {
     this.subscription = this.aPIgetService.getOpenTasks(this._eventEmmitter.str).subscribe((res: any) => {
-      console.log(res);
+      console.log(res.collection_cr.cr[0].z_network["@COMMON_NAME"]);
       this.taskobj = res.collection_cr.cr;
       this.tasksArray = res.collection_cr.cr;
       this.isArrayOpen = Array.isArray(this.tasksArray);
@@ -79,6 +78,8 @@ export class TasksComponent implements OnInit {
               "category": element.description,
               "open_date": formatted_date,
               "group": element.group["@COMMON_NAME"],
+              "network": element.z_network["@COMMON_NAME"],
+              "service": element.z_impact_service["@COMMON_NAME"],
               "icon": `../../assets/status${element.status["@id"]}.png`
             } as taskModel1
           );
@@ -95,6 +96,9 @@ export class TasksComponent implements OnInit {
             "status": this.taskobj.status["@COMMON_NAME"],
             "category": this.taskobj.description,
             "open_date": formatted_date,
+            "group": this.taskobj.group["@COMMON_NAME"],
+            "service": this.taskobj.z_impact_service["@COMMON_NAME"],
+            "network": this.taskobj.z_network["@COMMON_NAME"],
             "icon": `../../assets/status${this.taskobj.status["@id"]}.png`
           } as taskModel1
         );
@@ -116,6 +120,8 @@ export class TasksComponent implements OnInit {
             "category": element.summary,
             "open_date": formatted_date,
             "group": element.group["@COMMON_NAME"],
+            "network": element.z_network["@COMMON_NAME"],
+            "service": element.z_impact_service["@COMMON_NAME"],
             "icon": `../../assets/status${element.status["@id"]}.png`
           } as taskModel1
         );

@@ -10,6 +10,8 @@ import { taskModel1 } from '../apiget.service';
 export class TaskDetailDialog {
 
   taskGroup = (this.data.task).group;
+  taskNetwork = (this.data.task).network;
+  taskService = (this.data.task).service;
   statusList: string[] = [this.taskGroup];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
@@ -30,6 +32,11 @@ export class TaskDetailDialog {
   getCategory(): string {
     const taskDescription = (this.data.task).category.split("\n")[1];
     return taskDescription.length <= 30 ? taskDescription : '...' + taskDescription.substring(0, 30);
+  }
+
+  getNetwork(): string {
+    const taskNetwork = (this.data.task).network;
+    return taskNetwork;
   }
 
   getGroup() {
