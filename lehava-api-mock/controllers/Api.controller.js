@@ -73,11 +73,13 @@ module.exports = (app) => {
     // GET user active and non-active calls by user unique id
     app.get('/caisd-rest/cr', (req, res) => {
         if (validator.userCallsHeaderValidator(req)) {
-            if (req.query.WC.startsWith('impact')) {
-                if (lehavaData.categoryWideProblems[arraysearch("categoryId", req.query.WC.split("category=")[1], lehavaData.categoryWideProblems)]) {
-                    res.json(lehavaData.categoryWideProblems[arraysearch("categoryId", req.query.WC.split("category=")[1], lehavaData.categoryWideProblems)].data);
+            if (req.query.WC.startsWith('category')) {
+                const pcatId = String(parseInt(req.query.WC.split(':').pop().split("'")[0]));
+                const pcatIdValue = lehavaData.categoryWideProblems[arraysearch("categoryId", pcatId, lehavaData.categoryWideProblems)]
+                if (pcatIdValue) {
+                    res.json(lehavaData.categoryWideProblems[pcatId]);
                 } else {
-                    res.status(400).send({ error: "No Such Category Problem" })
+                    res.status(404).send({ error: "No Such Category Problem" })
                 }
             } else {
                 if (lehavaData.nonactivecalls[arraysearch("userUniqueId", req.query.WC.split("'")[1], lehavaData.nonactivecalls)]) {
