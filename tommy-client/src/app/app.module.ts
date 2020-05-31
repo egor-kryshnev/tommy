@@ -3,13 +3,13 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import { NbThemeModule, NbLayoutModule, NbChatModule, NbCardModule, NbListModule } from '@nebular/theme';
 import { MatButtonModule } from '@angular/material/button';
 import { TasksComponent } from './tasks/tasks.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { UpdatingComponent } from './updating/updating.component';
 import { MatListModule } from '@angular/material/list';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { DragDropModule } from '@angular/cdk/drag-drop'
 import { HomeComponent } from './home/home.component';
 import { TaskDetailDialog } from './task-detail/task-detail.component';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
@@ -22,6 +22,10 @@ import { HeaderComponent } from './header/header.component';
 import { PreloaderComponent } from './preloader/preloader.component';
 import { OpenRequestModule } from './open-request/open-request.module';
 import { StatusProgressComponent } from './task-detail/status-progress/status-progress.component';
+import { SearchBarComponent } from './search-bar/search-bar.component';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -33,14 +37,14 @@ import { StatusProgressComponent } from './task-detail/status-progress/status-pr
     HeaderComponent,
     PreloaderComponent,
     StatusProgressComponent,
-    TaskDetailDialog
+    TaskDetailDialog,
+    SearchBarComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    // NbThemeModule.forRoot({ name: 'default' }),
-    // NbLayoutModule,
     MatExpansionModule,
     MatButtonModule,
     MatGridListModule,
@@ -50,7 +54,10 @@ import { StatusProgressComponent } from './task-detail/status-progress/status-pr
     MatDialogModule,
     CommonModule,
     MatDialogModule,
-    OpenRequestModule
+    OpenRequestModule,
+    MatInputModule,
+    FormsModule,
+    DragDropModule
   ],
   providers: [EventEmiterService, AuthService, { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } }],
   bootstrap: [AppComponent]

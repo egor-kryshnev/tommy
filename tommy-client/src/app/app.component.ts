@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { ApigetService } from './apiget.service';
 import { EventEmiterService } from './event.emmiter.service';
 import { PostReqService } from './open-request/post-req.service';
+import { isArray } from 'util';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,7 @@ export class AppComponent {
   userName: string;
   messages: any[] = [];
   openChat: boolean = false;
+  phoneNumber: string;
   userT: string;
   @Output() exampleOutput = new EventEmitter<string>();
   userUUID: string;
@@ -28,9 +30,12 @@ export class AppComponent {
       console.log(res);
       this.userName = res.name.firstName + " " + res.name.lastName;
       this.userT = res.adfsId.split("@")[0];
+      this.phoneNumber = res.phoneNumbers;
       this.authService.setUser(this.userT);
       this.authService.setUserShraga(res);
       this._eventEmmiter.sendUser(res);
+      this._eventEmmiter.sendTuser(this.userT);
+      this._eventEmmiter.sendPhone(this.phoneNumber);
       this.apigetService.getUUID(this.userT).subscribe((res: any) => {
         if (Array.isArray(res.collection_cnt.cnt)) {
           this.userUUID = res.collection_cnt.cnt[1]['@id'];
@@ -50,6 +55,16 @@ export class AppComponent {
 
   onHome() {
     this.router.navigateByUrl('/', { relativeTo: this.route });
+  }
+
+  phoneFilter(phone: string){
+   if(Array.isArray(phone)){
+     phone = "0" + phone[1];
+     return phone;
+   }
+   else{
+    return phone;
+   }
   }
 
 

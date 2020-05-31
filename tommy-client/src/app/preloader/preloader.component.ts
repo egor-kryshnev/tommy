@@ -12,7 +12,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 export class PreloaderComponent implements OnInit {
 
   constructor(private rd: Renderer2, private elmRef: ElementRef) { }
-
+  
   ngOnInit(): void {
     
     setTimeout(() => {

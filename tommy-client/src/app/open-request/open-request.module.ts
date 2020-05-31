@@ -20,9 +20,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from '../app-routing.module';
+<<<<<<< HEAD
 import { TransverseIncidentDialog } from './transverse-incident/transverse-incident.component';
 
 
+=======
+import { CardsloaderComponent } from './cardsloader/cardsloader.component';
+>>>>>>> dev
 
 @NgModule({
   declarations: [
@@ -35,7 +39,11 @@ import { TransverseIncidentDialog } from './transverse-incident/transverse-incid
     CardsListComponent,
     ReturnButtonComponent,
     PageTopTitleComponent,
+<<<<<<< HEAD
     TransverseIncidentDialog
+=======
+    CardsloaderComponent
+>>>>>>> dev
   ],
   imports: [
     CommonModule,

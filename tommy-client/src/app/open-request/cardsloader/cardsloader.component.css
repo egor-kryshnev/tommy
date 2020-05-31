@@ -1,0 +1,9 @@
+.data-loader {
+    display: grid;
+    justify-content: center;
+    margin-top: 7%;
+}
+.data-loader svg path, svg rect{
+    fill: #afc514;
+}
+  

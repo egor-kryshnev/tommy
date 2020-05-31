@@ -3,17 +3,27 @@ import { Injectable, EventEmitter } from "@angular/core";
 @Injectable()
 export class EventEmiterService {
     dataStr = new EventEmitter();
-    str: string;
+    tUser = new EventEmitter();
     name = new EventEmitter();
     user = new EventEmitter();
+    phone = new EventEmitter();
+    str: string;
 
     constructor() {}
 
     sendMsg(data: string) {
-        this.dataStr.emit(data);
+      this.dataStr.emit(data);
     }
 
     sendUser(user: any) {
         this.user.emit(user);
+    }
+
+    sendTuser(data: string){
+      this.tUser.emit(data);
+    }
+
+    sendPhone(userphone: any){
+      this.phone.emit(userphone);
     }
 }

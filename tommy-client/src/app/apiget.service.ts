@@ -28,6 +28,7 @@ export interface taskModel1 {
   "category": string;
   "open_date": string;
   "icon": string;
+  "group": string;
 }
 
 export interface updatesModel {
@@ -54,7 +55,7 @@ export class ApigetService {
   constructor(private http: HttpClient) { }
 
   httpOptions = {
-    headers: new HttpHeaders({
+    withCredentials: true, headers: new HttpHeaders({
       'Content-type': 'application/json',
       'X-AccessKey': this.accessKey,
       'Accept': 'application/json'
@@ -81,18 +82,18 @@ export class ApigetService {
     .set('Content-type', 'application/json')
     .set('X-AccessKey', this.accessKey)
     .set('Accept', 'application/json')
-    .set('X-Obj-Attrs', 'status, description, category, open_date');
+    .set('X-Obj-Attrs', 'status, summary, description, open_date, group');
 
   updatesHeaders = new HttpHeaders()
     .set('Content-type', 'application/json')
     .set('X-AccessKey', this.accessKey)
     .set('Accept', 'application/json')
-    .set('X-Obj-Attrs', 'category, description, open_date');
+    .set('X-Obj-Attrs', 'category, description, open_date, summary');
 
   getNetworks() {
     this.networksByIdArray = [];
     return this.http.get(config.GET_NETWORKS_URL,
-      { headers: this.head }
+      { withCredentials: true, headers: this.head }
     );
     //console.log(this.networksByIdArray);
     //return this.networksByIdArray;
@@ -100,32 +101,33 @@ export class ApigetService {
 
   getUUID(UUID) {
     return this.http.get(config.GET_UUID_URL_FUNCTION(UUID),
-      { headers: this.servicesHeaders });
+      { withCredentials: true, headers: this.servicesHeaders });
   }
 
   getUpdates() {
     return this.http.get(config.GET_UPDATES,
-      { headers: this.updatesHeaders })
+      { withCredentials: true, headers: this.updatesHeaders })
   }
 
 
   getServices(id) {
     this.servicesByIdArray = [];
     return this.http.get(config.GET_SERVICES_URL_FUNCTION(id),
-      { headers: this.servicesHeaders }
+      { withCredentials: true, headers: this.servicesHeaders }
     );
   }
 
 
 
   getOpenTasks(UUID) {
+    console.log("in get open tasks get");
     return this.http.get(config.GET_OPEN_TASKS_URL_FUNCTION(UUID),
-      { headers: this.tasksHeaders })
+      { withCredentials: true, headers: this.tasksHeaders })
   }
 
   getClosedTasks(UUID) {
     return this.http.get(config.GET_CLOSED_TASKS_URL_FUNCTION(UUID),
-      { headers: this.tasksHeaders })
+      { withCredentials: true, headers: this.tasksHeaders })
   }
 
   post(uuid, phone, userT, network, service, description) {
@@ -168,4 +170,11 @@ export class ApigetService {
       }
     }
   }
+
+  getHichatIframe() {
+    console.log("ApiGet Service: Getting HichatIframe");
+    return this.http.get(config.GET_HICHAT_IFRAME_URL,
+      { withCredentials: true })
+  }
+
 };

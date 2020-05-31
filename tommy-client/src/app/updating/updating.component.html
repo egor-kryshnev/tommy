@@ -4,7 +4,7 @@
     class="viewport">
     <mat-list role="list">
       <div *ngIf="array">
-      <mat-list-item role="listitem" *ngFor="let update of updatesArrayFiltered" style="width: 433px;">
+      <mat-list-item role="listitem" id="rtl" *ngFor="let update of updatesArrayFiltered" style="width: 433px;">
         <span class="date" matLine>{{ update.open_date }}</span>
         <p class="name" matLine> {{ update.name }}</p>
         <p class="name" matLine>{{ update.description }}</p>

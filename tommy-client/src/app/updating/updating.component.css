@@ -9,6 +9,10 @@ mat-list-item {
   cursor: context-menu;
 }
 
+#rtl{
+  direction: rtl;
+}
+
 @font-face {
   font-family: Rubik;
   src: url(../../assets/Rubik-Medium.ttf);
@@ -29,7 +33,7 @@ mat-list-item {
 #updatesHeadline {
   font-size: 22px;
   font-family: Rubik;
-  font-weight: 500;
+  font-weight: normal;
   text-align: right;
   padding-top: 5vh;
   padding-right: 40px;
@@ -49,7 +53,7 @@ mat-list-item {
 
 .date{
   font-size: 8px;
-  font-weight: normal;
+  font-weight: bold;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.43;

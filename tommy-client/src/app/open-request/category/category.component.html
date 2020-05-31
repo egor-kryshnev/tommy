@@ -2,7 +2,10 @@
 
 <app-page-top-title></app-page-top-title>
 
-<h4 id="kara">:בחרו קטגוריה בה התקלה</h4>
+<h4 id="kara">:בחרו קטגוריה בה הפניה</h4>
 
-<app-cards-list *ngIf="categoriesLoaded" [cardsList]="categoriesToDisplay" (selected)="selectedCategory($event)">
+<app-cards-list *ngIf="categoriesLoaded; else cardsloader" [cardsList]="categoriesToDisplay" (selected)="selectedCategory($event)">
 </app-cards-list>
+<ng-template #cardsloader>
+    <app-cardsloader></app-cardsloader>
+</ng-template>

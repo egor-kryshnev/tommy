@@ -1,2 +1,0 @@
-docker save $(docker ps --format '{{.Image}}') -o mydockersimages.tar
-//Remember to replace the dev config to prod config in the client

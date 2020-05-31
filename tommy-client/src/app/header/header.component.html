@@ -1,10 +1,10 @@
-<div class="header-wrapper">
+<div class="header-wrapper" *ngIf="userName">
     <div id="recContainer">
         <div id="leftRec"></div>
         <div id="midRec"></div>
         <div id="rightRec"></div>
     </div>
     <img src="./assets/group.svg" (click)="onHome()" id="tommy-logo">
-    <span id="username"> {{ userName }} </span>
+    <span id="username">{{ greeting }}, {{ userName }} </span>
     <img src="./assets/group-17.svg" id="one-logo">
 </div>
