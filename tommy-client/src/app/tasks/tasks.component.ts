@@ -49,6 +49,10 @@ export class TasksComponent implements OnInit {
       this.getClosed();
     }
     console.log(this.tasksToDisplay);
+    console.log(this.tasksByIdArrayClosed);
+    console.log(this.tasksArrayClosed);
+    console.log(this.tasksToDisplayClosed);
+
   }
 
 

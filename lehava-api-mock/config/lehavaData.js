@@ -1919,67 +1919,7 @@ module.exports = {
         userUniqueId: "3",
         data: {
             collection_cr: {
-                cr: [{
-                    "@COMMON_NAME": "186611",
-                    "description": "בדיקת תקינות שקעים",
-                    "status": {
-                        "@COMMON_NAME": "סגור",
-                        "@id": "5201"
-                    },
-                    "group": {
-                        "@COMMON_NAME": "צוות מחשוב כריש \/8997"
-                    },
-                    "category": {
-                        "@COMMON_NAME": "צרורות. אין רשת במחשב"
-                    },
-                    "open_date": 1577822600
-                },
-                {
-                    "@COMMON_NAME": "224333",
-                    "description": "בדיקת תקינות שקעים",
-                    "status": {
-                        "@COMMON_NAME": "סגור",
-                        "@id": "5201"
-                    },
-                    "group": {
-                        "@COMMON_NAME": "צוות מחשוב כריש \/8997"
-                    },
-                    "category": {
-                        "@COMMON_NAME": "שדה קוצים. תקלה ביוזר TORSER"
-                    },
-                    "open_date": 1577823600
-                },
-                {
-                    "@COMMON_NAME": "186611",
-                    "description": "הזמנת כבל",
-                    "status": {
-                        "@COMMON_NAME": "טופל",
-                        "@id": "5212"
-                    },
-                    "group": {
-                        "@COMMON_NAME": "צוות מחשוב כריש \/8997"
-                    },
-                    "category": {
-                        "@COMMON_NAME": "YNET. השבתה זמנית של אפליקציית AIRPORT"
-                    },
-                    "open_date": 1577825600
-                },
-                {
-                    "@COMMON_NAME": "224333",
-                    "description": "התקנת עמדה",
-                    "status": {
-                        "@COMMON_NAME": "טופל",
-                        "@id": "5212"
-                    },
-                    "group": {
-                        "@COMMON_NAME": "צוות מחשוב כריש \/8997"
-                    },
-                    "category": {
-                        "@COMMON_NAME": "YNET. השבתה זמנית של אפליקציית AIRPORT"
-                    },
-                    "open_date": 1577822100
-                }
-                ]
+                cr: []
             }
         }
     }
@@ -2451,6 +2391,7 @@ module.exports = {
         data: {
             collection_cr: {
                 cr: [{
+                    "@id": "0",
                     "@COMMON_NAME": "112",
                     "description": "תיאור של תקלה 1 ברוחבית של מקלדות",
                     "status": {
@@ -2462,6 +2403,7 @@ module.exports = {
                     "open_date": 1577822500000
                 },
                 {
+                    "@id": "0",
                     "@COMMON_NAME": "113",
                     "description": "תיאור של תקלה 2 ברוחבית של מקלדות",
                     "status": {
@@ -2481,6 +2423,7 @@ module.exports = {
         data: {
             collection_cr: {
                 cr: [{
+                    "@id": "1",
                     "@COMMON_NAME": "114",
                     "description": "תיאור של תקלה 1 ברוחבית של עכברים",
                     "status": {
@@ -2492,6 +2435,7 @@ module.exports = {
                     "open_date": 1577822500000
                 },
                 {
+                    "@id": "1",
                     "@COMMON_NAME": "113",
                     "description": "תיאור של תקלה 2 ברוחבית של עכברים",
                     "status": {
@@ -2511,6 +2455,7 @@ module.exports = {
         data: {
             collection_cr: {
                 cr: [{
+                    "@id": "2",
                     "@COMMON_NAME": "1233",
                     "description": "תיאור של תקלה 1 ברוחבית של מיילים",
                     "status": {
@@ -2522,6 +2467,7 @@ module.exports = {
                     "open_date": 1577822500000
                 },
                 {
+                    "@id": "2",
                     "@COMMON_NAME": "189232",
                     "description": "תיאור של תקלה 2 ברוחבית של מיילים",
                     "status": {
@@ -2541,6 +2487,7 @@ module.exports = {
         data: {
             collection_cr: {
                 cr: [{
+                    "@id": "3",
                     "@COMMON_NAME": "1233",
                     "description": "תיאור של תקלה 1 ברוחבית של שירות הורדות",
                     "status": {
@@ -2552,6 +2499,7 @@ module.exports = {
                     "open_date": 1577822500000
                 },
                 {
+                    "@id": "3",
                     "@COMMON_NAME": "189232",
                     "description": "תיאור של תקלה 2 ברוחבית של שירות הורדות",
                     "status": {
