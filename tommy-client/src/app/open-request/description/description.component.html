@@ -10,7 +10,7 @@
   <p id="charCounter">{{ input }}/500</p>
 </div>
   <div id="grid-wrapper">
-  <input type="number" maxlength="4" class="input {{ phoneWarning }}"  pattern="/^-?\d+\.?\d*$/"
+  <input maxlength="4" class="input {{ phoneWarning }}" [value]='userPhone' pattern="/^-?\d+\.?\d*$/"
     placeholder="מספר טלפון נייד (חובה)" onkeypress="if(this.value.length>12) return false;"
     (input)="setPhoneInput($event.target.value)">
   <input type="number" maxlength="4" class="input"  pattern="/^-?\d+\.?\d*$/"
@@ -21,7 +21,6 @@
   <input type="text" class="input {{ locationWarning }}"  placeholder="מיקום גיאוגרפי (חובה)"
   maxlength="40" (input)="setLocationInput($event.target.value)">
   </div>
-
   <div class="button_cont" (click)="sendPost()" id="taskOpenBtn" align="center">
     <a class="example_b">פתיחת פניה</a>
 

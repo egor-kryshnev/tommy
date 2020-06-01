@@ -1,4 +1,5 @@
 import { Injectable, EventEmitter } from "@angular/core";
+import { Subject } from 'rxjs';
 
 @Injectable()
 export class EventEmiterService {
@@ -8,6 +9,7 @@ export class EventEmiterService {
     user = new EventEmitter();
     phone = new EventEmitter();
     str: string;
+    phoneSubject: Subject<string>= new Subject();
 
     constructor() {}
 
