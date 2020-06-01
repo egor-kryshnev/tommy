@@ -13,10 +13,11 @@ export class AccessTokenService {
 
     public static async getAccessToken(): Promise<AccessToken> {
         if (!AccessTokenService.accessToken ||
-            (AccessTokenService.accessToken.rest_access.expiration_date - (new Date().getTime() / 1000) <= 0)) {
+            !this.isValidExpirationDate(AccessTokenService.accessToken.rest_access.expiration_date)) {
             const redisAccessToken = await this.getAccessTokenRedis('X-AccessKey');
 
-            if (redisAccessToken) {
+            if (redisAccessToken &&
+                this.isValidExpirationDate(JSON.parse(redisAccessToken).rest_access.expiration_date)) {
                 console.log(`Access Key brought from redis: ${redisAccessToken}`)
                 this.accessToken = JSON.parse(redisAccessToken);
             } else {
@@ -38,5 +39,9 @@ export class AccessTokenService {
             }
         }
         return AccessTokenService.accessToken;
+    }
+
+    private static isValidExpirationDate(dateInSeconds: number): boolean {
+        return dateInSeconds - (new Date().getTime() / 1000) > 100;
     }
 }
