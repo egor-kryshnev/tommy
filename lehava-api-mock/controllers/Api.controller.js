@@ -72,12 +72,15 @@ module.exports = (app) => {
 
     // GET user active and non-active calls by user unique id
     app.get('/caisd-rest/cr', (req, res) => {
+        console.log(req.query.WC);
         if (validator.userCallsHeaderValidator(req)) {
             if (req.query.WC.startsWith('category')) {
                 const pcatId = String(parseInt(req.query.WC.split(':').pop().split("'")[0]));
                 const pcatIdValue = lehavaData.categoryWideProblems[arraysearch("categoryId", pcatId, lehavaData.categoryWideProblems)]
+                console.log(pcatId);
+                console.log(pcatIdValue);
                 if (pcatIdValue) {
-                    res.json(lehavaData.categoryWideProblems[pcatId]);
+                    res.json(lehavaData.categoryWideProblems[pcatId].data);
                 } else {
                     res.json(lehavaData.categoryWideProblemsEmpty);
                 }

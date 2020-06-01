@@ -6,6 +6,7 @@ import { config } from '../../../environments/config.dev';
 export interface CategoryOfIncidents {
   "collection_pcat": {
     "pcat": {
+      "@id": string;
       "@COMMON_NAME": string
     }[];
   }
@@ -14,12 +15,30 @@ export interface CategoryOfIncidents {
 export interface CategoryOfRequests {
   "collection_chgcat": {
     "chgcat": {
+      "@id": string;
       "@COMMON_NAME": string
     }[];
   }
 }
 
-
+export interface TransverseIncident {
+  "collection_cr": {
+    "@COUNT": String;
+    "@START": String;
+    "@TOTAL_COUNT": String;
+    cr?: [{
+      "@id": String;
+      "@REL_ATTR": String;
+      "@COMMON_NAME": String;
+      "link": {
+        "@href": String;
+        "@rel": String;
+      }
+      "description": String;
+      "open_date": number;
+    }]
+  }
+}
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +56,14 @@ export class CategoryService {
     .set('X-AccessKey', this.accessKey)
     .set('Accept', 'application/json')
 
+  transverseIncidentHeaders = new HttpHeaders()
+    .set('Content-type', 'application/json')
+    .set('X-Obj-Attrs', 'description, open_date')
+    .set('Accept', 'application/json')
+
+  getTransverseIncident(categoryId: string) {
+    return this.http.get(config.GET_TRANSVERSE_URL_FUNCTION(categoryId), { headers: this.transverseIncidentHeaders });
+  }
 
   getCategoriesOfIncidents(serviceId: string) {
     return this.http.get(config.GET_CATEGORIES_OF_INCIDENTS_URL_FUNCTION(serviceId),
