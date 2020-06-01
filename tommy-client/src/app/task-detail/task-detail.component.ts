@@ -9,45 +9,45 @@ import { taskModel1 } from '../apiget.service';
 })
 export class TaskDetailDialog {
 
-  taskGroup = (this.data.task).group;
-  taskNetwork = (this.data.task).network;
-  taskService = (this.data.task).service;
-  statusList: string[] = [this.taskGroup];
+  // taskGroup = (this.data.task).group;
+  // taskNetwork = (this.data.task).network;
+  // taskService = (this.data.task).service;
+  // statusList: string[] = [this.taskGroup];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   getDesc(): string {
-    let taskDescription = (this.data.task).description
-    if(((this.data.task).description).split("\n")[1]){
-      taskDescription = ((this.data.task).description).split("\n")[1];
+    let taskDescription = this.data.description;
+    if (this.data.description.split("\n")[1]) {
+      taskDescription = ((this.data.description).split("\n")[1]);
     }
     return taskDescription.length <= 200 ? taskDescription : taskDescription.substring(0, 200) + '...';
   }
 
   getOpenDate(): string {
-    return (this.data.task).open_date;
+    return this.data.open_date;
   }
 
-  getCategory(): string {
-    const taskDescription = (this.data.task).category.split("\n")[1];
-    return taskDescription.length <= 30 ? taskDescription : '...' + taskDescription.substring(0, 30);
-  }
+  // getCategory(): string {
+  //   const taskDescription = (this.data.task).description.split("\n")[1];
+  //   return taskDescription.length <= 30 ? taskDescription : '...' + taskDescription.substring(0, 30);
+  // }
 
-  getNetwork(): string {
-    const taskNetwork = (this.data.task).network;
-    return taskNetwork;
-  }
+  // getNetwork(): string {
+  //   const taskNetwork = (this.data.task).network;
+  //   return taskNetwork;
+  // }
 
-  getGroup() {
-    let taskGroup = (this.data.task).group;
-    this.statusList.push(taskGroup);
-  }
+  // getGroup() {
+  //   let taskGroup = (this.data.task).group;
+  //   this.statusList.push(taskGroup);
+  // }
 
   getTaskTitle() {
-    let taskDescription = (this.data.task).description
-    if(((this.data.task).description).split("\n")[1]){
-      taskDescription = ((this.data.task).description).split("\n")[1];
+    let taskDescription = (this.data.description);
+    if (this.data.description.split("\n")[1]) {
+      taskDescription = ((this.data.description).split("\n")[1]);
     }
     return taskDescription.length <= 30 ? taskDescription : '...' + taskDescription.substring(0, 30);
   }

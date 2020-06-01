@@ -67,64 +67,7 @@
     top: 28px;
 }
 
-.task {
-    height: 110px;
-    border-radius: 5px;
-    border: solid 2px #9b98984b;
-    background-color: #ffffff;
-    margin-bottom: 20px;
-    transition: 0.2s;
-    position: relative;
-    cursor: pointer;
-}
 
-.task:hover {
-    border-radius: 4px;
-    border: solid 1px #afc514;
-}
-
-.task #task-title {
-    float: right;
-    right: 145px;
-    position: absolute;
-    top: 7px;
-    font-family: Rubik;
-    color: #3b3b3b;
-}
-
-.StatusImg {
-    position: relative;
-    float: right;
-    right: 30px;
-    top: 20px;
-    width: 36px;
-}
-
-#task-id {
-    float: left;
-    position: relative;
-    top: 30px;
-    left: 45px;
-    font-family: Rubik;
-    font-size: 14px;
-    color: #3b3b3b;
-}
-
-#task-date {
-    position: relative;
-    float: right;
-    right: 43px;
-    font-family: Rubik;
-    font-size: 14px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.43;
-    letter-spacing: normal;
-    text-align: right;
-    color: #3b3b3b;
-    top: 45px;
-}
 
 .new-task-container {
     display: flex;
@@ -132,17 +75,6 @@
     margin-bottom: 17px;
 }
 
-#task-status {
-    width: 55px;
-    font-family: Rubik-light;
-    float: right;
-    position: relative;
-    top: 55px;
-    text-align: center;
-    line-height: 0.98;
-    right: -15px;
-    font-size: 14px;
-}
 
 .new-task-button:hover {
     cursor: pointer;
@@ -163,16 +95,6 @@
 .new-task-button:hover {
     box-shadow: 0 5px 14px 0 rgba(206, 206, 206, 0.5);
     background-color: #afc514;
-}
-
-.kav {
-    position: relative;
-    float: right;
-    width: 1px;
-    height: 70px;
-    background-color: #d8d8d8;
-    border: none;
-    top: 0.5vh;
 }
 
 .new-task-button #button-text {
@@ -291,21 +213,7 @@
   color: #696969ad;
 }
 
-#task-date {
-  position: relative;
-  float: right;
-  right: 43px;
-  font-family: Rubik;
-  font-size: 14px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.43;
-  letter-spacing: normal;
-  text-align: right;
-  color: #3b3b3ba6;
-  top: 45px;
-}
+
 
 .noTasks {
     text-align: center;

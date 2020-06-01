@@ -5,6 +5,7 @@ import { ApigetService, taskModel1, model1 } from '../apiget.service';
 import { AuthService } from '../auth.service';
 import { EventEmiterService } from '../event.emmiter.service';
 import { TaskDetailDialog } from './../task-detail/task-detail.component';
+import * as moment from 'moment';
 
 export interface Pnia {
   title: string;
@@ -21,175 +22,128 @@ export interface Pnia {
 })
 export class TasksComponent implements OnInit {
 
-  selectedOpenTasks: Boolean = true;
-  tasksArray: taskModel1[] = [];
-  tasksArrayClosed: taskModel1[] = [];
-  tasksByIdArray: taskModel1[] = [];
-  tasksByIdArrayClosed: taskModel1[] = [];
-  tasksToDisplay: taskModel1[] = [];
-  tasksToDisplayClosed: taskModel1[] = [];
-  tasks: taskModel1[];
-  open = true;
-  searchText: string = "";
-  subscription: any;
-  taskobj: any;
-  isArrayOpen: boolean = false;
-
+  openTasksArr: taskModel1[] = [];
+  closedTasksArr: taskModel1[] = [];
+  displayedTasks: taskModel1[] = [];
+  openTasksFlag: boolean = true;
 
   constructor(private router: Router, private route: ActivatedRoute, public aPIgetService: ApigetService, public _eventEmmitter: EventEmiterService, public authService: AuthService, public taskDetailDialog: MatDialog) { }
 
   ngOnInit() {
     this._eventEmmitter.dataStr.subscribe(data => {
       this._eventEmmitter.str = data;
-      this.getopen();
-      this.getClosed();
+      this.getOpenTasksArr();
+      this.getClosedTasksArr();
+      this.setDisplayedTasks();
     });
-    if (this._eventEmmitter.str) {
-      this.getopen();
-      this.getClosed();
+  }
+
+  getOpenTasksArr() {
+    this.aPIgetService.getOpenTasks(this._eventEmmitter.str).subscribe((res: any) => {
+      if (Array.isArray(res.collection_cr.cr)) {
+        this.openTasksArr = res.collection_cr.cr;
+      } else {
+        this.openTasksArr[0] = res.collection_cr.cr;
+      }
+      this.openTasksArr = this.arrParser(this.openTasksArr);
+    });
+  }
+
+  getClosedTasksArr() {
+    this.aPIgetService.getClosedTasks(this._eventEmmitter.str).subscribe((res: any) => {
+      if (Array.isArray(res.collection_cr.cr)) {
+        this.closedTasksArr = res.collection_cr.cr;
+      } else {
+        this.closedTasksArr[0] = res.collection_cr.cr;
+      }
+      this.closedTasksArr = this.arrParser(this.closedTasksArr);
+    });
+  }
+
+  jsonParser(taskObject) {
+    const formatted_date = moment(taskObject.open_date * 1000).format('hh:mm DD.MM.YYYY');
+    return {
+      "id": taskObject["@COMMON_NAME"],
+      "description": taskObject.description,
+      "status": taskObject.status["@COMMON_NAME"],
+      "open_date": formatted_date,
+      "network": taskObject.z_network["@COMMON_NAME"],
+      "service": taskObject.z_impact_service["@COMMON_NAME"],
+      "summary": taskObject.summary,
+      // "group": taskObject.group["@COMMON_NAME"],
+      "icon": `../../assets/status${taskObject.status["@id"]}.png`
     }
-    console.log(this.tasksToDisplay);
-    console.log(this.tasksByIdArrayClosed);
-    console.log(this.tasksArrayClosed);
-    console.log(this.tasksToDisplayClosed);
   }
 
-
-
-  getopen() {
-    this.subscription = this.aPIgetService.getOpenTasks(this._eventEmmitter.str).subscribe((res: any) => {
-      console.log(res.collection_cr.cr[0].z_network["@COMMON_NAME"]);
-      this.taskobj = res.collection_cr.cr;
-      this.tasksArray = res.collection_cr.cr;
-      this.isArrayOpen = Array.isArray(this.tasksArray);
-      if (this.isArrayOpen) {
-        this.tasksArray.forEach((element: any) => {
-          let current_datetime = new Date(element.open_date * 1000);
-          let formatted_date = current_datetime.getHours() + ":" + current_datetime.getMinutes() + "  " + current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear();
-          console.log(formatted_date.split(":")[1].split(" ")[0]);
-          if(formatted_date.split(":")[1].split(" ")[0].length === 1){
-            formatted_date = current_datetime.getHours() + ":0" + current_datetime.getMinutes() + "  " + current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear();
-          }
-          this.tasksByIdArray.push(
-            {
-              "id": element["@COMMON_NAME"],
-              "description": element.description,
-              "status": element.status["@COMMON_NAME"],
-              "category": element.description,
-              "open_date": formatted_date,
-              "group": element.group["@COMMON_NAME"],
-              "network": element.z_network["@COMMON_NAME"],
-              "service": element.z_impact_service["@COMMON_NAME"],
-              "icon": `../../assets/status${element.status["@id"]}.png`
-            } as taskModel1
-          );
-        })
-        this.tasksToDisplay = this.tasksByIdArray.reverse();
-      }
-      else {
-        let current_datetime = new Date(this.taskobj.open_date * 1000);
-        let formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear()
-        this.tasksToDisplay.push(
-          {
-            "id": this.taskobj["@COMMON_NAME"],
-            "description": this.taskobj.description,
-            "status": this.taskobj.status["@COMMON_NAME"],
-            "category": this.taskobj.description,
-            "open_date": formatted_date,
-            "group": this.taskobj.group["@COMMON_NAME"],
-            "service": this.taskobj.z_impact_service["@COMMON_NAME"],
-            "network": this.taskobj.z_network["@COMMON_NAME"],
-            "icon": `../../assets/status${this.taskobj.status["@id"]}.png`
-          } as taskModel1
-        );
-      }
-    });
+  arrParser(tasksArray) {
+    return tasksArray.map((element) => this.jsonParser(element));
   }
 
-  async getClosed() {
-    await this.aPIgetService.getClosedTasks(this._eventEmmitter.str).subscribe((res: any) => {
-      this.tasksArrayClosed = res.collection_cr.cr;
-      this.tasksArrayClosed.forEach((element: any) => {
-        let current_datetime = new Date(element.open_date * 1000);
-        let formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear()
-        this.tasksByIdArrayClosed.push(
-          {
-            "id": element["@COMMON_NAME"],
-            "description": element.description,
-            "status": element.status["@COMMON_NAME"],
-            "category": element.summary,
-            "open_date": formatted_date,
-            "group": element.group["@COMMON_NAME"],
-            "network": element.z_network["@COMMON_NAME"],
-            "service": element.z_impact_service["@COMMON_NAME"],
-            "icon": `../../assets/status${element.status["@id"]}.png`
-          } as taskModel1
-        );
-      })
-    });
+  setDisplayedTasks() {
+    this.displayedTasks = this.openTasksFlag ? this.openTasksArr : this.closedTasksArr;
   }
 
-  iconById(statusId) {
-    return `../../assets/status${statusId}.png`;
-  }
-
-  onOpenDialog() {
+  openRequest() {
     this.router.navigateByUrl('newtask', { relativeTo: this.route });
   }
 
-  clickedOpenTasks() {
-    if (!this.open) {
-      this.open = true;
-      this.tasksToDisplay = this.tasksByIdArray;
-      this.searchTextChanged(this.searchText);
-      if (!this.selectedOpenTasks) this.selectedOpenTasks = true;
-    }
+  flipOpenTasksFlag() {
+    this.openTasksFlag = !this.openTasksFlag;
+    this.setDisplayedTasks();
   }
 
-  clickedClosedTasks() {
-    if (this.open) {
-      this.open = false;
-      this.tasksToDisplay = this.tasksByIdArrayClosed.reverse();
-      this.searchTextChanged(this.searchText);
-      if (this.selectedOpenTasks) this.selectedOpenTasks = false;
-    }
-  }
+  // clickedOpenTasks() {
+  //   if (!this.open) {
+  //     this.open = true;
+  //     this.tasksToDisplay = this.tasksByIdArray;
+  //     this.searchTextChanged(this.searchText);
+  //     if (!this.selectedOpenTasks) this.selectedOpenTasks = true;
+  //   }
+  // }
 
-  openTaskDetailDialog(task: taskModel1, status: boolean) {
-    let dataObj = {
-      "task": task,
-      "status": status
-    };
-    this.taskDetailDialog.open(TaskDetailDialog, { width: "720px", height: "400px", data: dataObj });
-  }
+  // clickedClosedTasks() {
+  //   if (this.open) {
+  //     this.open = false;
+  //     this.tasksToDisplay = this.tasksByIdArrayClosed.reverse();
+  //     this.searchTextChanged(this.searchText);
+  //     if (this.selectedOpenTasks) this.selectedOpenTasks = false;
+  //   }
+  // }
 
-  searchTextChanged(text: string) {
-    this.searchText = this.stripWhiteSpaces(text);
-    this.tasksToDisplay = [];
-    this.open ? this.addTasksToDisplay(this.tasksByIdArray) : this.addTasksToDisplay(this.tasksByIdArrayClosed);
+  // openTaskDetailDialog(task: taskModel1, status: boolean) {
+  //   let dataObj = {
+  //     "task": task,
+  //     "status": status
+  //   };
+  //   this.taskDetailDialog.open(TaskDetailDialog, { width: "720px", height: "400px", data: dataObj });
+  // }
 
-  }
+  // searchTextChanged(text: string) {
+  //   this.searchText = this.stripWhiteSpaces(text);
+  //   this.tasksToDisplay = [];
+  //   this.open ? this.addTasksToDisplay(this.tasksByIdArray) : this.addTasksToDisplay(this.tasksByIdArrayClosed);
 
-  addTasksToDisplay(tasksArray: taskModel1[]) {
-    tasksArray.forEach((task: taskModel1) => {
-      if (this.getTaskTitle(task).includes(this.searchText) || (task.id).startsWith(this.searchText)) {
-        this.tasksToDisplay.push(task);
-      }
-    })
-  }
+  // }
 
-  stripWhiteSpaces(str) {
-    return str.replace(/^\s+|\s+$/g, '');
-  }
+  // addTasksToDisplay(tasksArray: taskModel1[]) {
+  //   tasksArray.forEach((task: taskModel1) => {
+  //     if (this.getTaskTitle(task).includes(this.searchText) || (task.id).startsWith(this.searchText)) {
+  //       this.tasksToDisplay.push(task);
+  //     }
+  //   })
+  // }
 
-  getTaskTitle(task: taskModel1) {
-    let taskDescription = task.description
-    if ((task.description).split("\n")[1]) {
-      taskDescription = (task.description).split("\n")[1];
-    }
-    return taskDescription.length <= 30 ? taskDescription : '...' + taskDescription.substring(0, 30);
-  }
+  // stripWhiteSpaces(str) {
+  //   return str.replace(/^\s+|\s+$/g, '');
+  // }
 
-  ngOnDestroy() {
-  }
+  // getTaskTitle(task: taskModel1) {
+  //   let taskDescription = task.description
+  //   if ((task.description).split("\n")[1]) {
+  //     taskDescription = (task.description).split("\n")[1];
+  //   }
+  //   return taskDescription.length <= 30 ? taskDescription : '...' + taskDescription.substring(0, 30);
+  // }
+
+  // ngOnDestroy() {
 }

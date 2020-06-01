@@ -1919,7 +1919,24 @@ module.exports = {
         userUniqueId: "3",
         data: {
             collection_cr: {
-                cr: []
+                cr: {
+                    "@COMMON_NAME": "291333",
+                    "description": "התקנת עמדה",
+                    "status": {
+                        "@id": "5201",
+                        "@COMMON_NAME": "סגור"
+                    },
+                    "category": {
+                        "@COMMON_NAME": "YNET. השבתה זמנית של אפליקציית AIRPORT"
+                    },
+                    "open_date": 1577822100,
+                    "z_impact_service": {
+                        "@COMMON_NAME": "Youtube"
+                    },
+                    "z_network": {
+                        "@COMMON_NAME": "Internet"
+                    }
+                }
             }
         }
     }
@@ -2012,117 +2029,39 @@ module.exports = {
         data: {
             collection_cr: {
                 cr: [{
-                    "@COMMON_NAME": "186318",
-                    "description": "מערכת הפעלה\n היי לא עולה לי הווינדוס דחוף בבקשה",
+                    "@COMMON_NAME": "291333",
+                    "description": "התקנת עמדה",
                     "status": {
-                        "@COMMON_NAME": "פתוח",
-                        "@id": "5200"
+                        "@id": "5200",
+                        "@COMMON_NAME": "פתוח"
                     },
-                    "group": {
-                        "@COMMON_NAME": "צוות מחשוב כריש \/8997"
+                    "category": {
+                        "@COMMON_NAME": "YNET. השבתה זמנית של אפליקציית AIRPORT"
                     },
-                    "summary": "תקלת מערכת הפעלה",
-                    "open_date": 1577822500,
+                    "open_date": 1577822100,
                     "z_impact_service": {
-                        "@COMMON_NAME": "אמא של ויטלי"
+                        "@COMMON_NAME": "Youtube"
                     },
                     "z_network": {
-                        "@COMMON_NAME": "אמא של אדר"
+                        "@COMMON_NAME": "Internet"
                     }
                 },
                 {
-                    "@COMMON_NAME": "186322",
-                    "description": "תקלת מייל\n היי לא נפתח לי האווטלוק אשמח שתעזרו בהקדם האפשרי",
+                    "@COMMON_NAME": "291333",
+                    "description": "התקנת עמדה",
                     "status": {
-                        "@COMMON_NAME": "בטיפול",
-                        "@id": "5208"
+                        "@id": "5200",
+                        "@COMMON_NAME": "פתוח"
                     },
-                    "group": {
-                        "@COMMON_NAME": "צוות מחשוב כריש \/8997"
+                    "category": {
+                        "@COMMON_NAME": "YNET. השבתה זמנית של אפליקציית AIRPORT"
                     },
-                    "summary": "תקלת מיילים",
-                    "open_date": 1577822500,
+                    "open_date": 1577822100,
                     "z_impact_service": {
-                        "@COMMON_NAME": "אמא של ויטלי"
+                        "@COMMON_NAME": "Youtube"
                     },
                     "z_network": {
-                        "@COMMON_NAME": "אמא של אדר"
-                    }
-                },
-                {
-                    "@COMMON_NAME": "186324",
-                    "description": "תקלת כרטיס מסך\n היי המסך שלי ברזולוצייה ממש נמוכה ולא נראה לי שהבעיה בהגדרות",
-                    "status": {
-                        "@COMMON_NAME": "השהייה",
-                        "@id": "5211"
-                    },
-                    "group": {
-                        "@COMMON_NAME": "צוות מחשוב כריש \/8997"
-                    },
-                    "summary": "תקלת כרטיס מסך",
-                    "open_date": 1577822500,
-                    "z_impact_service": {
-                        "@COMMON_NAME": "אמא של ויטלי"
-                    },
-                    "z_network": {
-                        "@COMMON_NAME": "אמא של אדר"
-                    }
-                },
-                {
-                    "@COMMON_NAME": "186375",
-                    "description": "תקלת דרייברים\n המחשב לא מזהה את המקלדת נראה לי שזה דרייברים",
-                    "status": {
-                        "@COMMON_NAME": "פתיחה מחדש",
-                        "@id": "10006"
-                    },
-                    "group": {
-                        "@COMMON_NAME": "צוות מחשוב כריש \/8997"
-                    },
-                    "summary": "תקלת דרייבר למקלדת",
-                    "open_date": 1577822500,
-                    "z_impact_service": {
-                        "@COMMON_NAME": "אמא של ויטלי"
-                    },
-                    "z_network": {
-                        "@COMMON_NAME": "אמא של אדר"
-                    }
-                },
-                {
-                    "@COMMON_NAME": "186341",
-                    "description": "תקלת חומרה\n לא קורא לי את הכרטיס",
-                    "status": {
-                        "@COMMON_NAME": "ממתין לתגובת לקוח",
-                        "@id": "400007"
-                    },
-                    "group": {
-                        "@COMMON_NAME": "צוות מחשוב כריש \/8997"
-                    },
-                    "summary": "תקלת קורא כרטיס",
-                    "open_date": 1577822500,
-                    "z_impact_service": {
-                        "@COMMON_NAME": "אמא של ויטלי"
-                    },
-                    "z_network": {
-                        "@COMMON_NAME": "אמא של אדר"
-                    }
-                },
-                {
-                    "@COMMON_NAME": "186375",
-                    "description": "תקלת אופיס\n לא נפתח לי התוכנה של האקסל",
-                    "status": {
-                        "@COMMON_NAME": "ממתין לתקלה/שינוי",
-                        "@id": "400008"
-                    },
-                    "group": {
-                        "@COMMON_NAME": "צוות מחשוב כריש \/8997"
-                    },
-                    "summary": "תקלת תוכנת אופיס",
-                    "open_date": 1577822500,
-                    "z_impact_service": {
-                        "@COMMON_NAME": "אמא של ויטלי"
-                    },
-                    "z_network": {
-                        "@COMMON_NAME": "אמא של אדר"
+                        "@COMMON_NAME": "Internet"
                     }
                 }
                 ]

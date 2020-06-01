@@ -26,6 +26,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { ChatComponent } from './chat/chat.component';
+import { TasksListComponent } from './tasks/tasks-list/tasks-list.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ChatComponent } from './chat/chat.component';
     StatusProgressComponent,
     TaskDetailDialog,
     SearchBarComponent,
-    ChatComponent
+    ChatComponent,
+    TasksListComponent
   ],
   imports: [
     BrowserModule,

@@ -25,12 +25,12 @@ export interface taskModel1 {
   "id": string;
   "description": string;
   "status": string;
-  "category": string;
   "open_date": string;
   "icon": string;
   "group": string;
   "network": string;
   "service": string;
+  "summary": string;
 }
 
 export interface updatesModel {
@@ -84,7 +84,7 @@ export class ApigetService {
     .set('Content-type', 'application/json')
     .set('X-AccessKey', this.accessKey)
     .set('Accept', 'application/json')
-    .set('X-Obj-Attrs', 'status, summary, description, open_date, group');
+    .set('X-Obj-Attrs', 'status, summary, description, open_date, z_network, z_impact_service, group');
 
   updatesHeaders = new HttpHeaders()
     .set('Content-type', 'application/json')
@@ -122,7 +122,6 @@ export class ApigetService {
 
 
   getOpenTasks(UUID) {
-    console.log("in get open tasks get");
     return this.http.get(config.GET_OPEN_TASKS_URL_FUNCTION(UUID),
       { withCredentials: true, headers: this.tasksHeaders })
   }

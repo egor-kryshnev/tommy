@@ -15,7 +15,7 @@ module.exports = {
     },
     userCallsHeaderValidator: (req) => {
         if (req.header('X-Obj-Attrs')) {
-            if (req.header('X-Obj-Attrs') == "status, summary, description, open_date, group") {
+            if (req.header('X-Obj-Attrs') == "status, summary, description, open_date, z_network, z_impact_service, group") {
                 return true;
             }
         } return false;
