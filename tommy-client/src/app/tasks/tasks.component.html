@@ -28,7 +28,7 @@
 
   <cdk-virtual-scroll-viewport id="scrollerComponents" itemSize="50" class="viewport">
     <div *ngIf="open; else closed">
-      <div *ngIf="tasksToDisplay.length > 1; else noTasks">
+      <!-- <div *ngIf="tasksToDisplay.length > 1; else noTasks"> -->
         <div *ngFor="let task of tasksToDisplay">
           <div class="task" (click)="openTaskDetailDialog(task, true)">
             <img class="StatusImg" src="{{ task.icon }}">
@@ -42,14 +42,14 @@
           </div>
         </div>
       </div>
-    </div>
-    <ng-template #noTasks>
+    <!-- </div> -->
+    <!-- <ng-template #noTasks>
       <div class="noTasks">
         <p>אין פניות פתוחות</p>
       </div>
-    </ng-template>
+    </ng-template> -->
     <ng-template #closed>
-      <div *ngIf="tasksToDisplay.length > 1; else noTasks">
+      <!-- <div *ngIf="tasksToDisplay.length > 1; else noTasks"> -->
         <div *ngFor="let closedtask of tasksToDisplay">
           <div class="task" (click)="openTaskDetailDialog(closedtask, false)">
             <img class="StatusImg" src="{{ closedtask.icon }}">
@@ -62,12 +62,12 @@
             <p id="task-id">{{ closedtask.id }}</p>
           </div>
         </div>
-      </div>
-      <ng-template #noTasks>
+      <!-- </div> -->
+      <!-- <ng-template #noTasks>
         <div class="noTasks">
           <p>אין פניות סגורות</p>
         </div>
-      </ng-template>
+      </ng-template> -->
     </ng-template>
 
   </cdk-virtual-scroll-viewport>

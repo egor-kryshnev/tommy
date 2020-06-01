@@ -52,11 +52,10 @@ export class DescriptionComponent implements OnInit {
     if(phone){
       if(phone.length > 1){
         console.log("0" + phone[1]);
-        return "0" + phone[1];
+        return phone[1];
       }
       else if(phone.length === 1){
-        console.log("0" + phone[0]);
-        return "0"+ phone[0];
+        return phone[0];
       }
     }
     return "";
@@ -66,6 +65,7 @@ export class DescriptionComponent implements OnInit {
     if (this.locationInput && this.phoneInput && this.computerNameInput) {
       this.postReqService.descriptionInput = (<HTMLInputElement>document.getElementById("subject")).value;
       this.postReqService.location = this.locationInput;
+      console.log(this.phoneInput);
       this.postReqService.phoneNumber = this.phoneInput;
       this.postReqService.computerName = this.computerNameInput;
       this.postReqService.voip = this.voip;
