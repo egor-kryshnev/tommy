@@ -2342,7 +2342,13 @@ module.exports = {
                                 "@COMMON_NAME": "צוות מחשוב כריש \/8997"
                             },
                             "summary": "תקלת מערכת הפעלה",
-                            "open_date": 1577822500
+                            "open_date": 1577822500,
+                            "z_impact_service": {
+                                "@COMMON_NAME": "אמא של ויטלי"
+                            },
+                            "z_network": {
+                                "@COMMON_NAME": "אמא של אדר"
+                            }
                         },
                         {
                             "@COMMON_NAME": "186322",
@@ -2355,7 +2361,13 @@ module.exports = {
                                 "@COMMON_NAME": "צוות מחשוב כריש \/8997"
                             },
                             "summary": "תקלת מיילים",
-                            "open_date": 1577822500
+                            "open_date": 1577822500,
+                            "z_impact_service": {
+                                "@COMMON_NAME": "אמא של ויטלי"
+                            },
+                            "z_network": {
+                                "@COMMON_NAME": "אמא של אדר"
+                            }
                         },
                         {
                             "@COMMON_NAME": "186324",
@@ -2368,7 +2380,13 @@ module.exports = {
                                 "@COMMON_NAME": "צוות מחשוב כריש \/8997"
                             },
                             "summary": "תקלת כרטיס מסך",
-                            "open_date": 1577822500
+                            "open_date": 1577822500,
+                            "z_impact_service": {
+                                "@COMMON_NAME": "אמא של ויטלי"
+                            },
+                            "z_network": {
+                                "@COMMON_NAME": "אמא של אדר"
+                            }
                         },
                         {
                             "@COMMON_NAME": "186375",
@@ -2381,7 +2399,13 @@ module.exports = {
                                 "@COMMON_NAME": "צוות מחשוב כריש \/8997"
                             },
                             "summary": "תקלת דרייבר למקלדת",
-                            "open_date": 1577822500
+                            "open_date": 1577822500,
+                            "z_impact_service": {
+                                "@COMMON_NAME": "אמא של ויטלי"
+                            },
+                            "z_network": {
+                                "@COMMON_NAME": "אמא של אדר"
+                            }
                         },
                         {
                             "@COMMON_NAME": "186341",
@@ -2394,7 +2418,13 @@ module.exports = {
                                 "@COMMON_NAME": "צוות מחשוב כריש \/8997"
                             },
                             "summary": "תקלת קורא כרטיס",
-                            "open_date": 1577822500
+                            "open_date": 1577822500,
+                            "z_impact_service": {
+                                "@COMMON_NAME": "אמא של ויטלי"
+                            },
+                            "z_network": {
+                                "@COMMON_NAME": "אמא של אדר"
+                            }
                         },
                         {
                             "@COMMON_NAME": "186375",
@@ -2407,7 +2437,13 @@ module.exports = {
                                 "@COMMON_NAME": "צוות מחשוב כריש \/8997"
                             },
                             "summary": "תקלת תוכנת אופיס",
-                            "open_date": 1577822500
+                            "open_date": 1577822500,
+                            "z_impact_service": {
+                                "@COMMON_NAME": "אמא של ויטלי"
+                            },
+                            "z_network": {
+                                "@COMMON_NAME": "אמא של אדר"
+                            }
                         }
                     ]
                 }

@@ -29,6 +29,8 @@ export interface taskModel1 {
   "open_date": string;
   "icon": string;
   "group": string;
+  "network": string;
+  "service": string;
 }
 
 export interface updatesModel {
