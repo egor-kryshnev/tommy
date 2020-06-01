@@ -1,0 +1,23 @@
+<button mat-dialog-close id="closeButton">X</button>
+<mat-dialog-content class="mat-typography">
+  <div id="contentContainer">
+    <div>
+      <h1 id="title">עדכונים ותקלות רוחביות</h1>
+      <p>לתשומת לבך</p>
+      <p>בתאריך: {{ open_date }}, נפתחה תקלה רוחבית על: {{ description }}</p>
+      <p>אין צורך לדווח על תקלה זו</p>
+    </div>
+    <div (click)="onHomeClick()" id="home-button-container" class="button-container">
+      <div class="finish-text">חזרה לעמוד הראשי</div>
+      <div class="icon" id="home-icon">
+        <img src="../../../assets/home.svg" alt="check-icon">
+      </div>
+    </div>
+    <div (click)="onOpenNewIncident()" id="new-incident-button-container" class="button-container">
+      <div class="finish-text">פתיחת תקלה חדשה</div>
+      <div class="icon">
+        <img src="../../../assets/plus.svg" alt="check-icon">
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
