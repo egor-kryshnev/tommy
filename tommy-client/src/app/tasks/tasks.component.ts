@@ -34,7 +34,7 @@ export class TasksComponent implements OnInit {
       this._eventEmmitter.str = data;
       this.getOpenTasksArr();
       this.getClosedTasksArr();
-      this.setDisplayedTasks();
+      // this.setDisplayedTasks(); OnChange
     });
   }
 

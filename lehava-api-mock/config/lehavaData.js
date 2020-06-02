@@ -2044,7 +2044,8 @@ module.exports = {
                     },
                     "z_network": {
                         "@COMMON_NAME": "Internet"
-                    }
+                    },
+                    "summary": "לא עובד האווטלוק"
                 },
                 {
                     "@COMMON_NAME": "291333",
@@ -2062,7 +2063,8 @@ module.exports = {
                     },
                     "z_network": {
                         "@COMMON_NAME": "Internet"
-                    }
+                    },
+                    "summary": "לא עובד האווטלוק"
                 }
                 ]
             }
