@@ -59,7 +59,7 @@
     line-height: 1.43;
     letter-spacing: normal;
     text-align: right;
-    color: #3b3b3b;
+    color: rgba(59, 59, 59, .65);
     top: 45px;
 }
 
@@ -87,11 +87,17 @@
     border: solid 1px #afc514;
 }
 
-.task #task-title {
+.task-title {
     float: right;
     right: 145px;
     position: absolute;
     top: 7px;
     font-family: Rubik;
     color: #3b3b3b;
+}
+
+#noTasks {
+    font-family: rubik;
+    color: #3a3a3a3a;
+    text-align: center;
 }

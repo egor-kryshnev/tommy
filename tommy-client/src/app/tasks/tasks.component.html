@@ -1,13 +1,13 @@
 <div id="task-container">
   <div class="open-closed-tasks">
     <div [ngClass]="{'selected-tasks': openTasksFlag, 'unselected-tasks' : !openTasksFlag}"
-      (click)="flipOpenTasksFlag()">
+      (click)="flipOpenTasksFlag(true)">
       <p id="text">פניות פתוחות</p>
       <p id="seprate-line"></p>
     </div>
 
     <div [ngClass]="{'selected-tasks': !openTasksFlag, 'unselected-tasks' : openTasksFlag}"
-      (click)="flipOpenTasksFlag()">
+      (click)="flipOpenTasksFlag(false)">
       <p id="text">פניות סגורות</p>
       <p id="seprate-line"></p>
     </div>

@@ -32,34 +32,23 @@ export class TasksComponent implements OnInit {
   ngOnInit() {
     this._eventEmmitter.dataStr.subscribe(data => {
       this._eventEmmitter.str = data;
-      this.getOpenTasksArr();
-      this.getClosedTasksArr();
-      // this.setDisplayedTasks(); OnChange
+      this.getTaskArr("openTasksArr", "getOpenTasks");
+      this.getTaskArr("closedTasksArr", "getClosedTasks");
     });
   }
 
-  getOpenTasksArr() {
-    this.aPIgetService.getOpenTasks(this._eventEmmitter.str).subscribe((res: any) => {
+  getTaskArr(arrName: string, functionName: string) {
+    this.aPIgetService[functionName](this._eventEmmitter.str).subscribe((res: any) => {
       if (Array.isArray(res.collection_cr.cr)) {
-        this.openTasksArr = res.collection_cr.cr;
+        this[arrName] = res.collection_cr.cr;
       } else {
-        this.openTasksArr[0] = res.collection_cr.cr;
+        this[arrName][0] = res.collection_cr.cr;
       }
-      this.openTasksArr = this.arrParser(this.openTasksArr);
+      this[arrName] = this.arrParser(this[arrName]);
+      this.setDisplayedTasks();
     });
   }
-
-  getClosedTasksArr() {
-    this.aPIgetService.getClosedTasks(this._eventEmmitter.str).subscribe((res: any) => {
-      if (Array.isArray(res.collection_cr.cr)) {
-        this.closedTasksArr = res.collection_cr.cr;
-      } else {
-        this.closedTasksArr[0] = res.collection_cr.cr;
-      }
-      this.closedTasksArr = this.arrParser(this.closedTasksArr);
-    });
-  }
-
+  
   jsonParser(taskObject) {
     const formatted_date = moment(taskObject.open_date * 1000).format('hh:mm DD.MM.YYYY');
     return {
@@ -80,17 +69,18 @@ export class TasksComponent implements OnInit {
   }
 
   setDisplayedTasks() {
-    this.displayedTasks = this.openTasksFlag ? this.openTasksArr : this.closedTasksArr;
+    this.displayedTasks = this.openTasksFlag ? this.openTasksArr.concat() : this.closedTasksArr.concat();
   }
 
   openRequest() {
     this.router.navigateByUrl('newtask', { relativeTo: this.route });
   }
 
-  flipOpenTasksFlag() {
-    this.openTasksFlag = !this.openTasksFlag;
+  flipOpenTasksFlag(isOpen: boolean) {
+    this.openTasksFlag = isOpen;
     this.setDisplayedTasks();
   }
+
 
   // clickedOpenTasks() {
   //   if (!this.open) {

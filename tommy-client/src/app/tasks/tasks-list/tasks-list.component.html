@@ -1,11 +1,16 @@
-<div *ngFor="let task of tasks">
-    <div class="task" (click)="openTaskDetailDialog()">
-        <img class="StatusImg" src="{{ task.icon }}">
-        <p class="task-status">{{ task.status }}</p>
-        <hr class="kav">
-        <!-- <div class="taskNameDecorationClosed"></div> -->
-        <p class="task-date">{{ task.open_date }}</p>
-        <p class="task-title">{{ task.summary }}</p>
-        <p class="task-id">פניה מס' {{ task.id }}</p>
+<div *ngIf="tasks; else noTasks">
+    <div *ngFor="let task of tasks">
+        <div class="task" (click)="openTaskDetailDialog()">
+            <img class="StatusImg" src="{{ task.icon }}">
+            <p class="task-status">{{ task.status }}</p>
+            <hr class="kav">
+            <!-- <div class="taskNameDecorationClosed"></div> -->
+            <p class="task-date">{{ task.open_date }}</p>
+            <p class="task-title">{{ task.summary }}</p>
+            <p class="task-id">פניה מס' {{ task.id }}</p>
+        </div>
     </div>
 </div>
+<ng-template #noTasks>
+    <h2 id="noTasks">אין פניות</h2>
+</ng-template>
