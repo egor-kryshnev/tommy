@@ -11,6 +11,7 @@ import { TaskDetailDialog } from '../../task-detail/task-detail.component';
 export class TasksListComponent {
 
   @Input() tasks: taskModel1[];
+  @Input() tasksFlag: boolean;
   constructor(public taskDetailDialog: MatDialog) { }
 
   openTaskDetailDialog() {

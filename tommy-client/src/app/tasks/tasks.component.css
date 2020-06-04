@@ -41,34 +41,6 @@
     top: 5px;
 }
 
-#taskNameDecorationOpen {
-    width: 9px;
-    height: 9px;
-    border: solid 1px #37c306;
-    border-radius: 10px;
-    background-color: #d7ffc9;
-    display: inline-block;
-    position: relative;
-    float: right;
-    right: 25px;
-    top: 28px;
-}
-
-#taskNameDecorationClosed {
-    width: 9px;
-    height: 9px;
-    border: solid 1px #ff2323;
-    border-radius: 10px;
-    background-color: #ffb7b7;
-    display: inline-block;
-    position: relative;
-    float: right;
-    right: 25px;
-    top: 28px;
-}
-
-
-
 .new-task-container {
     display: flex;
     justify-content: space-between;

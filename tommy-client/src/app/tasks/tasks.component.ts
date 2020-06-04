@@ -1,10 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApigetService, taskModel1, model1 } from '../apiget.service';
+import { ApigetService, taskModel1 } from '../apiget.service';
 import { AuthService } from '../auth.service';
 import { EventEmiterService } from '../event.emmiter.service';
-import { TaskDetailDialog } from './../task-detail/task-detail.component';
 import * as moment from 'moment';
 
 export interface Pnia {
@@ -39,16 +38,11 @@ export class TasksComponent implements OnInit {
 
   getTaskArr(arrName: string, functionName: string) {
     this.aPIgetService[functionName](this._eventEmmitter.str).subscribe((res: any) => {
-      if (Array.isArray(res.collection_cr.cr)) {
-        this[arrName] = res.collection_cr.cr;
-      } else {
-        this[arrName][0] = res.collection_cr.cr;
-      }
-      this[arrName] = this.arrParser(this[arrName]);
+      this[arrName] = this.arrParser(Array.isArray(res.collection_cr.cr) ? res.collection_cr.cr : [res.collection_cr.cr]);
       this.setDisplayedTasks();
     });
   }
-  
+
   jsonParser(taskObject) {
     const formatted_date = moment(taskObject.open_date * 1000).format('hh:mm DD.MM.YYYY');
     return {
