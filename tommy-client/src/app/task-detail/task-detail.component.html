@@ -1,12 +1,12 @@
 <button mat-dialog-close id="closeButton">X</button>
 <mat-dialog-content class="mat-typography">
   <div id="topContainer">
-    <div>
+    <!-- <div>
       <p class="inline" id="timeTillTreatment">זמן צפוי לטיפול לא ידוע</p>
       <img src="../../assets/timeUntilTreatment.svg">
-    </div>
+    </div> -->
     <div>
-      <p class="inline" id="taskName">{{ getTaskTitle() }}</p>
+      <p class="inline" id="taskName">{{ getTitle() }}</p>
       <p class="inline title">פניה</p>
       <div *ngIf="getstatus(); else closed" id="taskNameDecoration"></div>
       <ng-template #closed>
@@ -16,7 +16,7 @@
   </div>
   <div id="midContainer">
     <div>
-      <h4 class="inline" id="taskId">{{ data.task.id }}</h4>
+      <h4 class="inline" id="taskId">{{ task.id }}</h4>
       <p class="inline title">קריאה</p>
     </div>
     <div>
@@ -26,15 +26,13 @@
   </div>
   <div id="bottomContainer">
     <div id="statusProgressContainer">
-      <!-- <p>בטיפול: {{ taskGroup }}</p> -->
-      <!-- <p>רשת: {{ taskNetwork }}</p>
-      <p>שירות: {{ taskService }}</p> -->
-      <!-- <app-status-progress *ngFor="let status of statusList; let i = index" [status]="status"
-        [isPressed]="status===data.status"></app-status-progress> -->
+      <p *ngIf="getGroup()">{{ getGroup() }}</p>
+      <p *ngIf="getNetwork()">{{ getNetwork() }}</p>
+      <p *ngIf="getService()">{{ getService() }}</p>
     </div>
     <div id="descriptionContainer">
       <h3>תיאור הבעיה</h3>
-      <p id="description">{{ getDesc() }}</p>
+      <p id="description" *ngIf="getDesc()">{{ getDesc() }}</p>
     </div>
   </div>
 </mat-dialog-content>

@@ -30,6 +30,7 @@ export class TasksComponent implements OnInit {
 
   ngOnInit() {
     this._eventEmmitter.dataStr.subscribe(data => {
+      console.log(data);
       this._eventEmmitter.str = data;
       this.getTaskArr("openTasksArr", "getOpenTasks");
       this.getTaskArr("closedTasksArr", "getClosedTasks");
@@ -46,15 +47,15 @@ export class TasksComponent implements OnInit {
   jsonParser(taskObject) {
     const formatted_date = moment(taskObject.open_date * 1000).format('hh:mm DD.MM.YYYY');
     return {
-      "id": taskObject["@COMMON_NAME"],
-      "description": taskObject.description,
-      "status": taskObject.status["@COMMON_NAME"],
-      "open_date": formatted_date,
-      "network": taskObject.z_network["@COMMON_NAME"],
-      "service": taskObject.z_impact_service["@COMMON_NAME"],
-      "summary": taskObject.summary,
-      // "group": taskObject.group["@COMMON_NAME"],
-      "icon": `../../assets/status${taskObject.status["@id"]}.png`
+      "id": taskObject ? taskObject["@COMMON_NAME"] : false,
+      "description": taskObject.description || false,
+      "status": taskObject.status ? taskObject.status["@COMMON_NAME"] : false,
+      "open_date": formatted_date || false,
+      "network": taskObject.z_network ? taskObject.z_network["@COMMON_NAME"] : false,
+      "service": taskObject.z_impact_service ? taskObject.z_impact_service["@COMMON_NAME"] : false,
+      "summary": taskObject.summary || false,
+      "group": taskObject.group ? taskObject.group["@COMMON_NAME"] : false,
+      "icon": `../../assets/status${taskObject.status["@id"]}.svg`
     }
   }
 

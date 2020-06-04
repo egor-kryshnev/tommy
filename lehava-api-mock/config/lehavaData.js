@@ -2045,7 +2045,10 @@ module.exports = {
                     "z_network": {
                         "@COMMON_NAME": "Internet"
                     },
-                    "summary": "לא עובד האווטלוק"
+                    "summary": "לא עובד האווטלוק",
+                    "group": {
+                        "@COMMON_NAME": "צוות קופים"
+                    }
                 },
                 {
                     "@COMMON_NAME": "291333",
@@ -2058,9 +2061,6 @@ module.exports = {
                         "@COMMON_NAME": "YNET. השבתה זמנית של אפליקציית AIRPORT"
                     },
                     "open_date": 1577822100,
-                    "z_impact_service": {
-                        "@COMMON_NAME": "Youtube"
-                    },
                     "z_network": {
                         "@COMMON_NAME": "Internet"
                     },

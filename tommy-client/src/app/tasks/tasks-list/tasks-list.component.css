@@ -1,39 +1,21 @@
-.task-date {
-  position: relative;
-  float: right;
-  right: 43px;
-  font-family: Rubik;
-  font-size: 14px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.43;
-  letter-spacing: normal;
-  text-align: right;
-  color: #3b3b3ba6;
-  top: 45px;
-}
-
 .task-status {
   width: 55px;
   font-family: Rubik-light;
-  float: right;
-  position: relative;
+  position: absolute;
   top: 55px;
   text-align: center;
-  line-height: 0.98;
-  right: -15px;
   font-size: 14px;
+  right: 10px;
 }
 
 .kav {
-  position: relative;
-  float: right;
+  position: absolute;
   width: 1px;
   height: 70px;
   background-color: #d8d8d8;
   border: none;
   top: 0.5vh;
+  right: 80px;
 }
 
 
@@ -48,33 +30,24 @@
 }
 
 .task-date {
-  position: relative;
-  float: right;
-  right: 43px;
-  font-family: Rubik;
+  position: absolute;
+  right: 136px;
+  font-family: rubik;
   font-size: 14px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.43;
-  letter-spacing: normal;
-  text-align: right;
   color: rgba(59, 59, 59, .65);
-  top: 45px;
+  top: 50px;
 }
 
 .StatusImg {
-  position: relative;
-  float: right;
-  right: 30px;
+  position: absolute;
+  right: 20px;
   top: 20px;
-  width: 36px;
 }
 
 .task {
   height: 110px;
   border-radius: 5px;
-  border: solid 2px #9b98984b;
+  border: solid 1px #9b98984b;
   background-color: #ffffff;
   margin-bottom: 20px;
   transition: 0.2s;
@@ -88,16 +61,15 @@
 }
 
 .task-title {
-  float: right;
-  right: 145px;
+  right: 135px;
   position: absolute;
   top: 7px;
-  font-family: Rubik;
+  font-family: rubik;
   color: #3b3b3b;
 }
 
 #noTasks {
-  font-family: rubik;
+  
   color: #3a3a3a3a;
   text-align: center;
 }
@@ -108,10 +80,8 @@
   border: solid 1px #37c306;
   border-radius: 10px;
   background-color: #d7ffc9;
-  display: inline-block;
-  position: relative;
-  float: right;
-  right: 25px;
+  position: absolute;
+  right: 105px;
   top: 28px;
 }
 
@@ -124,6 +94,6 @@
   display: inline-block;
   position: relative;
   float: right;
-  right: 25px;
+  right: 105px;
   top: 28px;
 }
