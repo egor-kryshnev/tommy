@@ -62,7 +62,8 @@ export class CategoryService {
     .set('Accept', 'application/json')
 
   getTransverseIncident(categoryId: string) {
-    return this.http.get(config.GET_TRANSVERSE_URL_FUNCTION(categoryId), { headers: this.transverseIncidentHeaders });
+    return this.http.get(config.GET_TRANSVERSE_URL_FUNCTION(categoryId),
+      { headers: this.transverseIncidentHeaders, withCredentials: true });
   }
 
   getCategoriesOfIncidents(serviceId: string) {
