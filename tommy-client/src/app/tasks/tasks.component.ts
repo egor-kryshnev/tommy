@@ -25,20 +25,28 @@ export class TasksComponent implements OnInit {
   closedTasksArr: taskModel1[] = [];
   displayedTasks: taskModel1[] = [];
   openTasksFlag: boolean = true;
+  uUid: any;
 
   constructor(private router: Router, private route: ActivatedRoute, public aPIgetService: ApigetService, public _eventEmmitter: EventEmiterService, public authService: AuthService, public taskDetailDialog: MatDialog) { }
 
   ngOnInit() {
-    this._eventEmmitter.dataStr.subscribe(data => {
-      console.log(data);
-      this._eventEmmitter.str = data;
-      this.getTaskArr("openTasksArr", "getOpenTasks");
-      this.getTaskArr("closedTasksArr", "getClosedTasks");
-    });
+    if (this.uUid) {
+      this.setTasks();
+    } else {
+      this._eventEmmitter.dataStr.subscribe(data => {
+        this.uUid = data;
+        this.setTasks();
+      });
+    }
   }
 
-  getTaskArr(arrName: string, functionName: string) {
-    this.aPIgetService[functionName](this._eventEmmitter.str).subscribe((res: any) => {
+  setTasks() {
+    this.setTaskArr("openTasksArr", "getOpenTasks");
+    this.setTaskArr("closedTasksArr", "getClosedTasks");
+  }
+
+  setTaskArr(arrName: string, functionName: string) {
+    this.aPIgetService[functionName](this.uUid).subscribe((res: any) => {
       this[arrName] = this.arrParser(Array.isArray(res.collection_cr.cr) ? res.collection_cr.cr : [res.collection_cr.cr]);
       this.setDisplayedTasks();
     });
@@ -56,7 +64,7 @@ export class TasksComponent implements OnInit {
       "summary": taskObject.summary || false,
       "group": taskObject.group ? taskObject.group["@COMMON_NAME"] : false,
       "icon": `../../assets/status${taskObject.status["@id"]}.svg`
-    }
+    } as taskModel1
   }
 
   arrParser(tasksArray) {
@@ -68,6 +76,7 @@ export class TasksComponent implements OnInit {
   }
 
   openRequest() {
+    this.insideFlag = !this.insideFlag
     this.router.navigateByUrl('newtask', { relativeTo: this.route });
   }
 

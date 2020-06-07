@@ -17,10 +17,9 @@ export class TaskDetailDialog implements OnInit {
 
   getDesc(): string {
     let taskDescription = this.task.description;
-    if (taskDescription && taskDescription !== null ) {
-      // taskDescription = taskDescription.split("\n")[1];
-      // return `בטיפול: ${taskDescription.length <= 200 ? taskDescription : taskDescription.substring(0, 200) + '...'}`;
-      return taskDescription;
+    if (taskDescription && taskDescription !== null) {
+      taskDescription = taskDescription.split("\n")[0] + " " + (taskDescription.split("\n")[1] ? taskDescription.split("\n")[1] : "");
+      return taskDescription.length <= 200 ? taskDescription : taskDescription.substring(0, 200) + '...';
     }
     return "לא צוין";
   }
@@ -31,7 +30,7 @@ export class TaskDetailDialog implements OnInit {
 
   getTitle(): string | boolean {
     const taskSummary = this.task.summary;
-    if(taskSummary && taskSummary !== null) {     
+    if (taskSummary && taskSummary !== null) {
       return taskSummary;
     }
     return "לא צוין";
@@ -53,7 +52,7 @@ export class TaskDetailDialog implements OnInit {
     return false;
   }
 
-  getGroup(): string | boolean{
+  getGroup(): string | boolean {
     const taskGroup = this.task.group;
     if (taskGroup && taskGroup !== null) {
       return `בטיפול: ${taskGroup}`;
