@@ -43,6 +43,7 @@ export class AppComponent {
         else {
           this.userUUID = res.collection_cnt.cnt['@id'];
         }
+        this.authService.setUUID(this.userUUID);
         this.postReqService.userT = this.userT;
         this.postReqService.userUUID = this.userUUID;
         console.log(this.userUUID);

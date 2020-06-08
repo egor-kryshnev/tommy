@@ -30,15 +30,12 @@ export class TasksComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute, public aPIgetService: ApigetService, public _eventEmmitter: EventEmiterService, public authService: AuthService, public taskDetailDialog: MatDialog) { }
 
+
   ngOnInit() {
-    if (this.uUid) {
-      this.setTasks();
-    } else {
-      this._eventEmmitter.dataStr.subscribe(data => {
-        this.uUid = data;
-        this.setTasks();
-      });
-    }
+    this.uUid = this.authService.getUuid();
+    this.setTasks()
+    
+    
   }
 
   setTasks() {

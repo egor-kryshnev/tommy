@@ -1,5 +1,5 @@
 <div class="flex-container">
-    <app-tasks class="task-component"></app-tasks>
+    <app-tasks *ngIf="this.authService.getUuid()" class="task-component"></app-tasks>
     <app-updating class="updating-component"></app-updating>
 </div>
 <button id="btnChat" (click)="chatTag()" mat-fab>
