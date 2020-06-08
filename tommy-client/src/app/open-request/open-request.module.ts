@@ -21,6 +21,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from '../app-routing.module';
 import { CardsloaderComponent } from './cardsloader/cardsloader.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { CardsloaderComponent } from './cardsloader/cardsloader.component';
     MatGridListModule,
     MatListModule,
     HttpClientModule,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule
   ],
   exports: [
     NetworksComponent,

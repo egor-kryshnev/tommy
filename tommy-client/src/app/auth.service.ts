@@ -15,6 +15,7 @@ export class AuthService {
   public userT: string;
   public userUUID: string;
   public phone: [];
+  public phoneNumbersArray: string[];
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router, public api: ApigetService) { }
 
@@ -27,7 +28,6 @@ export class AuthService {
       this.phone = res.phoneNumbers;
       this.api.getUUID(this.userT).subscribe((res: any) => {
         this.userUUID = res.collection_cnt.cnt['@id'];
-        
         console.log(this.userUUID);
       });
     });
@@ -40,7 +40,6 @@ export class AuthService {
   public setUUID(uuid) {
     this.userUUID = uuid;
     console.log("uuid", this.userUUID);
-    
   }
 
   public getUser() {
@@ -71,7 +70,12 @@ export class AuthService {
     return this.user;
   }
 
+  public setPhone(phoneNumbersArray: string[]) {
+    this.phoneNumbersArray = phoneNumbersArray;
+  }
+  
   public getPhone() {
+    return this.phoneNumbersArray;
   }
 
   public getUuid() {

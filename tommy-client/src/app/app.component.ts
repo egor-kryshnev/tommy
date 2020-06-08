@@ -18,7 +18,7 @@ export class AppComponent {
   userName: string;
   messages: any[] = [];
   openChat: boolean = false;
-  phoneNumber: string;
+  phoneNumber: string[];
   userT: string;
   @Output() exampleOutput = new EventEmitter<string>();
   userUUID: string;
@@ -49,6 +49,7 @@ export class AppComponent {
         console.log(this.userUUID);
         this._eventEmmiter.sendMsg(this.userUUID);
       });
+      this.authService.setPhone(this.phoneNumber);   
     });
     // console.clear();
   }
