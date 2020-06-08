@@ -33,9 +33,11 @@ export class AppComponent {
       this.phoneNumber = res.phoneNumbers;
       this.authService.setUser(this.userT);
       this.authService.setUserShraga(res);
+      this._eventEmmiter.phoneSubject.next(res.phoneNumbers[0]);
       this._eventEmmiter.sendUser(res);
       this._eventEmmiter.sendTuser(this.userT);
-      this._eventEmmiter.sendPhone(this.phoneNumber);
+      // console.log(this.phoneNumber[0]);
+      this._eventEmmiter.sendPhone("this.phoneNumber[0]");
       this.apigetService.getUUID(this.userT).subscribe((res: any) => {
         if (Array.isArray(res.collection_cnt.cnt)) {
           this.userUUID = res.collection_cnt.cnt[1]['@id'];
@@ -58,18 +60,4 @@ export class AppComponent {
   onHome() {
     this.router.navigateByUrl('/', { relativeTo: this.route });
   }
-
-  phoneFilter(phone: string){
-   if(Array.isArray(phone)){
-     phone = "0" + phone[1];
-     return phone;
-   }
-   else{
-    return phone;
-   }
-  }
-
-
-
-
 }

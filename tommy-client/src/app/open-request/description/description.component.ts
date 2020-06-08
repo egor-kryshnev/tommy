@@ -38,17 +38,30 @@ export class DescriptionComponent implements OnInit {
     this._eventEmmitter.user.subscribe(data => this.authService.setUserShraga(data));
     this.setPhoneFromShraga(this.authService.getPhone());
     this._eventEmmitter.dataStr.subscribe(data => this.userUUID = data);
-    // this._eventEmmitter.phone.subscribe(phone =>  console.log(phone));
   }
 
   onReturn() {
     this.router.navigate(['/categories', this.postReqService.serviceId], { relativeTo: this.route });
   }
 
+  phoneFilter(phone: Array<string>){
+    if(phone){
+      if(phone.length > 1){
+        console.log("0" + phone[1]);
+        return phone[1];
+      }
+      else if(phone.length === 1){
+        return phone[0];
+      }
+    }
+    return "";
+   }
+
   sendPost() {
     if (this.locationInput && this.phoneInput && this.computerNameInput) {
       this.postReqService.descriptionInput = (<HTMLInputElement>document.getElementById("subject")).value;
       this.postReqService.location = this.locationInput;
+      console.log(this.phoneInput);
       this.postReqService.phoneNumber = this.phoneInput;
       this.postReqService.computerName = this.computerNameInput;
       this.postReqService.voip = this.voip;

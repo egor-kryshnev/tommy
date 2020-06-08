@@ -20,6 +20,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from '../app-routing.module';
+import { TransverseIncidentDialog } from './transverse-incident/transverse-incident.component';
+
+
 import { CardsloaderComponent } from './cardsloader/cardsloader.component';
 import { FormsModule } from '@angular/forms';
 
@@ -34,6 +37,7 @@ import { FormsModule } from '@angular/forms';
     CardsListComponent,
     ReturnButtonComponent,
     PageTopTitleComponent,
+    TransverseIncidentDialog,
     CardsloaderComponent
   ],
   imports: [

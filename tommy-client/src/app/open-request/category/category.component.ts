@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CategoryService, CategoryOfIncidents, CategoryOfRequests } from './category.service'
+import { CategoryService, CategoryOfIncidents, CategoryOfRequests, TransverseIncident } from './category.service'
 import { PostReqService } from '../post-req.service';
+import { MatDialog } from '@angular/material/dialog';
+import { TransverseIncidentDialog } from '../transverse-incident/transverse-incident.component';
 
 @Component({
   selector: 'app-category',
@@ -11,12 +13,14 @@ import { PostReqService } from '../post-req.service';
 export class CategoryComponent implements OnInit {
 
   public categoriesToDisplay: Array<string>;
+  private categoryIdList: Array<string>;
   categoriesLoaded: Promise<boolean>;
 
   constructor(public categoryService: CategoryService, public route: ActivatedRoute, private router: Router,
-    public postReqService: PostReqService) { }
+    public postReqService: PostReqService, public transverseIncidentDialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.categoryIdList = [];
     const id = this.route.snapshot.paramMap.get('id');
     this.setCategoriesOfIncidents(id);
   }
@@ -30,6 +34,8 @@ export class CategoryComponent implements OnInit {
           dataArray.forEach(element => {
             let splited = element["@COMMON_NAME"].split(".");
             categoryList.push(splited);
+            this.categoryIdList.push(element["@id"]);
+            console.log(element);
           });
         }
         this.setCategoriesOfRequests(id, categoryList);
@@ -44,6 +50,7 @@ export class CategoryComponent implements OnInit {
           dataArray.forEach(element => {
             let splited = element["@COMMON_NAME"].split(".");
             categoryList.push(splited);
+            this.categoryIdList.push(element["@id"]);
           });
         }
         this.categoryService.buildData(categoryList);
@@ -54,6 +61,20 @@ export class CategoryComponent implements OnInit {
 
   selectedCategory(category: string) {
     this.categoryService.updateSelectedCategory(category);
+      const categoryId = this.categoryIdList[this.categoriesToDisplay.indexOf(category)];
+      this.categoryService.getTransverseIncident(categoryId).subscribe((incident: TransverseIncident) => {
+        if (incident.collection_cr.cr) {
+          incident.collection_cr.cr = Array.isArray(incident.collection_cr.cr) ? incident.collection_cr.cr: [incident.collection_cr.cr];
+          this.transverseIncidentDialog.open(TransverseIncidentDialog, { width: "430", height: "400", data: incident })
+        } else {
+          this.proceedToNextPage();
+        }
+      }, (e: Error) => {
+        this.proceedToNextPage();
+      });
+  }
+
+  proceedToNextPage() {
     const selectedCategories: string = this.categoryService.getSelectedCategoryString();
     if (this.categoryService.hasNextSubCategory()) {
       this.router.navigate(['/subcategories', selectedCategories], { relativeTo: this.route });
