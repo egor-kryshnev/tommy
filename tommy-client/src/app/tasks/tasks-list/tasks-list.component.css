@@ -1,0 +1,99 @@
+.task-status {
+  width: 55px;
+  font-family: Rubik-light;
+  position: absolute;
+  top: 55px;
+  text-align: center;
+  font-size: 14px;
+  right: 10px;
+}
+
+.kav {
+  position: absolute;
+  width: 1px;
+  height: 70px;
+  background-color: #d8d8d8;
+  border: none;
+  top: 0.5vh;
+  right: 80px;
+}
+
+
+.task-id {
+  float: left;
+  position: relative;
+  top: 30px;
+  left: 45px;
+  font-family: Rubik;
+  font-size: 14px;
+  color: #3b3b3b;
+}
+
+.task-date {
+  position: absolute;
+  right: 136px;
+  font-family: rubik;
+  font-size: 14px;
+  color: rgba(59, 59, 59, .65);
+  top: 50px;
+}
+
+.StatusImg {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.task {
+  height: 110px;
+  border-radius: 5px;
+  border: solid 1px #9b98984b;
+  background-color: #ffffff;
+  margin-bottom: 20px;
+  transition: 0.2s;
+  position: relative;
+  cursor: pointer;
+}
+
+.task:hover {
+  border-radius: 4px;
+  border: solid 1px #afc514;
+}
+
+.task-title {
+  right: 135px;
+  position: absolute;
+  top: 7px;
+  font-family: rubik;
+  color: #3b3b3b;
+}
+
+#noTasks {
+  
+  color: #3a3a3a3a;
+  text-align: center;
+}
+
+.taskNameDecorationOpen {
+  width: 9px;
+  height: 9px;
+  border: solid 1px #37c306;
+  border-radius: 10px;
+  background-color: #d7ffc9;
+  position: absolute;
+  right: 105px;
+  top: 28px;
+}
+
+.taskNameDecorationClosed {
+  width: 9px;
+  height: 9px;
+  border: solid 1px #ff2323;
+  border-radius: 10px;
+  background-color: #ffb7b7;
+  display: inline-block;
+  position: relative;
+  float: right;
+  right: 105px;
+  top: 28px;
+}

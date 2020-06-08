@@ -4,8 +4,9 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ApigetService } from './apiget.service';
 import { config } from './../environments/config.dev';
 
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
 export class AuthService {
 
@@ -14,6 +15,7 @@ export class AuthService {
   public userT: string;
   public userUUID: string;
   public phone: [];
+  public phoneNumbersArray: string[];
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router, public api: ApigetService) { }
 
@@ -33,6 +35,11 @@ export class AuthService {
 
   public loginSub() {
     return this.http.get(`/user`, { withCredentials: true });
+  }
+
+  public setUUID(uuid) {
+    this.userUUID = uuid;
+    console.log("uuid", this.userUUID);
   }
 
   public getUser() {
@@ -63,8 +70,16 @@ export class AuthService {
     return this.user;
   }
 
+  public setPhone(phoneNumbersArray: string[]) {
+    this.phoneNumbersArray = phoneNumbersArray;
+  }
+  
   public getPhone() {
+    return this.phoneNumbersArray;
   }
 
+  public getUuid() {
+    return this.userUUID;
+  }
 
 }

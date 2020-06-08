@@ -18,7 +18,7 @@ export class AppComponent {
   userName: string;
   messages: any[] = [];
   openChat: boolean = false;
-  phoneNumber: string;
+  phoneNumber: string[];
   userT: string;
   @Output() exampleOutput = new EventEmitter<string>();
   userUUID: string;
@@ -45,11 +45,13 @@ export class AppComponent {
         else {
           this.userUUID = res.collection_cnt.cnt['@id'];
         }
+        this.authService.setUUID(this.userUUID);
         this.postReqService.userT = this.userT;
         this.postReqService.userUUID = this.userUUID;
         console.log(this.userUUID);
         this._eventEmmiter.sendMsg(this.userUUID);
       });
+      this.authService.setPhone(this.phoneNumber);   
     });
     // console.clear();
   }

@@ -24,8 +24,7 @@ export class DescriptionComponent implements OnInit {
   computerNameInput: string = "";
   services: model1[];
   userUUID: string = '';
-  userPhone: any;
-  userT: any;
+  phoneNumbersArray: string[];
   input: number = 0;
 
   constructor(private router: Router, private route: ActivatedRoute, public _eventEmmitter: EventEmiterService,
@@ -37,11 +36,8 @@ export class DescriptionComponent implements OnInit {
     const selectedCategories = this.categoryService.getSelectedCategoryString();
     this.postReqService.descriptionCategory = selectedCategories;
     this._eventEmmitter.user.subscribe(data => this.authService.setUserShraga(data));
+    this.setPhoneFromShraga(this.authService.getPhone());
     this._eventEmmitter.dataStr.subscribe(data => this.userUUID = data);
-    this.authService.loginSub().subscribe((res: any) => {
-      console.log(res.phoneNumbers[0]);
-      this.userPhone = this.phoneFilter(res.phoneNumbers).replace("", '');
-    });
   }
 
   onReturn() {
@@ -99,7 +95,7 @@ export class DescriptionComponent implements OnInit {
     this.computerNameInput = computerName;
   }
 
-  setVOIPInput(voipInput: string){
+  setVOIPInput(voipInput: string) {
     this.voip = voipInput;
   }
 
@@ -113,4 +109,12 @@ export class DescriptionComponent implements OnInit {
     this.computerNameWarning = !this.computerNameInput ? "red-holder" : "";
   }
 
+  setPhoneFromShraga(phonesArray: string[]) {
+    this.phoneInput = phonesArray.filter(this.isMobile)[0] || "";
+  }
+
+  isMobile(numStr) {
+    const prefix = numStr.split("-")[0];
+    return prefix.startsWith("5") || prefix.startsWith("05")
+  }
 }

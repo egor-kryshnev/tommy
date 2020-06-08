@@ -24,6 +24,7 @@ import { TransverseIncidentDialog } from './transverse-incident/transverse-incid
 
 
 import { CardsloaderComponent } from './cardsloader/cardsloader.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { CardsloaderComponent } from './cardsloader/cardsloader.component';
     MatGridListModule,
     MatListModule,
     HttpClientModule,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule
   ],
   exports: [
     NetworksComponent,

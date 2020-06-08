@@ -122,7 +122,7 @@ h3 {
 
 #topContainer {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 
 .mat-typography {
