@@ -61,18 +61,17 @@ export class CategoryComponent implements OnInit {
 
   selectedCategory(category: string) {
     this.categoryService.updateSelectedCategory(category);
-    try {
       const categoryId = this.categoryIdList[this.categoriesToDisplay.indexOf(category)];
       this.categoryService.getTransverseIncident(categoryId).subscribe((incident: TransverseIncident) => {
-        if (incident.collection_cr.cr && (incident.collection_cr.cr.length > 0)) {
+        if (incident.collection_cr.cr) {
+          incident.collection_cr.cr = Array.isArray(incident.collection_cr.cr) ? incident.collection_cr.cr: [incident.collection_cr.cr];
           this.transverseIncidentDialog.open(TransverseIncidentDialog, { width: "430", height: "400", data: incident })
         } else {
           this.proceedToNextPage();
         }
+      }, (e: Error) => {
+        this.proceedToNextPage();
       });
-    } catch (e) {
-      this.proceedToNextPage();
-    }
   }
 
   proceedToNextPage() {

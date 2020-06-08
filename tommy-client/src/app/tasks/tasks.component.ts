@@ -58,6 +58,8 @@ export class TasksComponent implements OnInit {
 
   getopen() {
     this.subscription = this.aPIgetService.getOpenTasks(this._eventEmmitter.str).subscribe((res: any) => {
+      res.collection_cr.cr = Array.isArray(res.collection_cr.cr) ? res.collection_cr.cr.reverse() : res.collection_cr.cr;
+
       console.log(res.collection_cr.cr[0].z_network["@COMMON_NAME"]);
       this.taskobj = res.collection_cr.cr;
       this.tasksArray = res.collection_cr.cr;
