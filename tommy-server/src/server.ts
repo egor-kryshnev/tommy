@@ -2,13 +2,12 @@ import express from 'express';
 import http from 'http';
 import bodyParser from 'body-parser';
 import helmet from 'helmet';
-import morgan from 'morgan';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
 import { config } from './config';
 import { LehavaRouter } from './lehava.router';
 import { HichatRouter } from './hichat.router';
-import { errorHandler } from './utils/errors/handler';
+import { userErrorHandler, serverErrorHandler, unknownErrorHandler } from './utils/errors/handler';
 import { AuthenticationHandler } from './authentication/handler';
 import { AuthenticationRouter } from './authentication/router';
 import { AuthenticationMiddleware } from './authentication/middleware';
@@ -16,6 +15,7 @@ import { createProxyMiddleware } from 'http-proxy-middleware';
 import cors from 'cors';
 import * as redis from 'redis';
 import connectRedis from 'connect-redis';
+import { logger } from './utils/logger';
 
 export class Server {
     public app: express.Application;
@@ -29,6 +29,10 @@ export class Server {
         this.app = express();
         this.configureMiddlewares();
         this.initializeAuthenticator();
+        this.app.use(function (req: express.Request, res: express.Response, next: express.NextFunction) {
+            logger.info({ method: req.method, url: req.url, query: req.query, headers: req.headers, body: req.body, user: req.user });
+            next();
+        });
         this.app.use('/api', AuthenticationMiddleware.requireAuth, LehavaRouter);
         this.app.use('/hichat', AuthenticationMiddleware.requireAuth, HichatRouter);
         this.initializeErrorHandler();
@@ -63,10 +67,6 @@ export class Server {
             return next();
         });
 
-        if (process.env.NODE_ENV === 'development') {
-            this.app.use(morgan('dev'));
-        }
-
         const RedisStore = connectRedis(session);
         const redisClient = redis.createClient(config.redis.host);
         this.app.use(bodyParser.json());
@@ -88,7 +88,14 @@ export class Server {
     }
 
     private initializeErrorHandler() {
-        this.app.use(errorHandler);
+        this.app.use(function (error: Error, req: express.Request, res: express.Response, next: express.NextFunction) {
+            logger.error(error);
+            next();
+        });
+
+        this.app.use(userErrorHandler);
+        this.app.use(serverErrorHandler);
+        this.app.use(unknownErrorHandler);
     }
 
     private initializeAuthenticator() {

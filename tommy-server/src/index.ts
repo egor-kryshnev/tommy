@@ -1,14 +1,15 @@
 import { Server } from './server';
+import { logger } from './utils/logger';
 
 
 process.on('uncaughtException', (err: Error) => {
-    console.log('Unhandled Exception', err.message);
+    logger.error(err);
 });
 
 (async () => {
     const server: Server = Server.bootstrap();
 
     server.app.on('close', () => {
-        console.log('Server closed');
+        logger.info('Server closed');
     });
 })();
