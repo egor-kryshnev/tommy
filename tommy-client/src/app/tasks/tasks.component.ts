@@ -25,7 +25,8 @@ export class TasksComponent implements OnInit {
   closedTasksArr: taskModel1[] = [];
   displayedTasks: taskModel1[] = [];
   openTasksFlag: boolean = true;
-  uUid: any;
+  insideFlag: boolean = true;
+  uUid: string;
 
   constructor(private router: Router, private route: ActivatedRoute, public aPIgetService: ApigetService, public _eventEmmitter: EventEmiterService, public authService: AuthService, public taskDetailDialog: MatDialog) { }
 
