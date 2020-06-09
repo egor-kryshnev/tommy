@@ -24,7 +24,7 @@ LehavaRouter.all('*', async (req: Request, res: Response) => {
         const apiRes = await axios({
             method: req.method as Method,
             url,
-            params: req.query,
+            params: req.params,
             headers: apiHeaders,
             data: req.body
         });
