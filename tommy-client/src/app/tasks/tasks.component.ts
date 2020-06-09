@@ -34,8 +34,6 @@ export class TasksComponent implements OnInit {
   ngOnInit() {
     this.uUid = this.authService.getUuid();
     this.setTasks()
-    
-    
   }
 
   setTasks() {
