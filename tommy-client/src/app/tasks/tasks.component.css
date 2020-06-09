@@ -188,9 +188,9 @@
 .noTasks {
     text-align: center;
     font-family: Rubik;
-    color: #808080;
+    color: #80808061;
     margin-top: 50px;
-    font-size: 20px;
+    font-size: 25px;
     cursor: context-menu;
 }
 

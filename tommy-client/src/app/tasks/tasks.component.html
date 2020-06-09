@@ -25,6 +25,10 @@
   </div>
 
   <cdk-virtual-scroll-viewport id="scrollerComponents" itemSize="50" class="viewport">
-    <app-tasks-list [tasks]="displayedTasks" [tasksFlag]="openTasksFlag"></app-tasks-list>
+    <app-tasks-list [tasks]="displayedTasks" [tasksFlag]="openTasksFlag" *ngIf="displayedTasks.length > 0; else noTasks"></app-tasks-list>
   </cdk-virtual-scroll-viewport>
+  
+  <ng-template #noTasks>
+      <h2 class="noTasks">אין פניות</h2>
+  </ng-template>
 </div>

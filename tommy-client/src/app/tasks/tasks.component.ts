@@ -34,6 +34,7 @@ export class TasksComponent implements OnInit {
   ngOnInit() {
     this.uUid = this.authService.getUuid();
     this.setTasks()
+    setInterval(()=>{console.log(this.displayedTasks)},1000)
   }
 
   setTasks() {
@@ -81,38 +82,10 @@ export class TasksComponent implements OnInit {
     this.setDisplayedTasks();
   }
 
-
-  // clickedOpenTasks() {
-  //   if (!this.open) {
-  //     this.open = true;
-  //     this.tasksToDisplay = this.tasksByIdArray;
-  //     this.searchTextChanged(this.searchText);
-  //     if (!this.selectedOpenTasks) this.selectedOpenTasks = true;
-  //   }
-  // }
-
-  // clickedClosedTasks() {
-  //   if (this.open) {
-  //     this.open = false;
-  //     this.tasksToDisplay = this.tasksByIdArrayClosed.reverse();
-  //     this.searchTextChanged(this.searchText);
-  //     if (this.selectedOpenTasks) this.selectedOpenTasks = false;
-  //   }
-  // }
-
-  // openTaskDetailDialog(task: taskModel1, status: boolean) {
-  //   let dataObj = {
-  //     "task": task,
-  //     "status": status
-  //   };
-  //   this.taskDetailDialog.open(TaskDetailDialog, { width: "720px", height: "400px", data: dataObj });
-  // }
-
   // searchTextChanged(text: string) {
   //   this.searchText = this.stripWhiteSpaces(text);
   //   this.tasksToDisplay = [];
   //   this.open ? this.addTasksToDisplay(this.tasksByIdArray) : this.addTasksToDisplay(this.tasksByIdArrayClosed);
-
   // }
 
   // addTasksToDisplay(tasksArray: taskModel1[]) {
@@ -123,9 +96,9 @@ export class TasksComponent implements OnInit {
   //   })
   // }
 
-  // stripWhiteSpaces(str) {
-  //   return str.replace(/^\s+|\s+$/g, '');
-  // }
+  stripWhiteSpaces(str) {
+    return str.replace(/^\s+|\s+$/g, '');
+  }
 
   // getTaskTitle(task: taskModel1) {
   //   let taskDescription = task.description
