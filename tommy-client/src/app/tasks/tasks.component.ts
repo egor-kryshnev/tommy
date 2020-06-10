@@ -33,8 +33,7 @@ export class TasksComponent implements OnInit {
 
   ngOnInit() {
     this.uUid = this.authService.getUuid();
-    this.setTasks()
-    setInterval(()=>{console.log(this.displayedTasks)},1000)
+    this.setTasks();
   }
 
   setTasks() {
