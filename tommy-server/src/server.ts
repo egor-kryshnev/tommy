@@ -36,12 +36,11 @@ export class Server {
         this.app.use('/api', AuthenticationMiddleware.requireAuth, LehavaRouter);
         this.app.use('/hichat', AuthenticationMiddleware.requireAuth, HichatRouter);
         this.initializeErrorHandler();
-        console.log(config.client.url);
         this.app.get('/user', AuthenticationMiddleware.requireAuth, (req: express.Request, res: express.Response, next: express.NextFunction) => res.send(req.user));
         this.app.all('/*', AuthenticationMiddleware.requireAuth, createProxyMiddleware({ target: config.client.url, changeOrigin: false }));
         this.server = http.createServer(this.app);
         this.server.listen(config.server.port, () => {
-            console.log(`Server running in ${process.env.NODE_ENV || 'development'} environment on port ${config.server.port}`)
+            logger.info(`Server running in ${process.env.NODE_ENV || 'development'} environment on port ${config.server.port}`)
         });
     }
 

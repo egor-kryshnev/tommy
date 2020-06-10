@@ -23,7 +23,7 @@ export const config = {
         port: process.env.LEHAVA_API_PORT || "8050"
     },
     rabbitmq: {
-        url: process.env.RABBITMQ_URL || "amqp://rabbitmq:5672",
+        url: process.env.RABBITMQ_URL || "amqp://localhost:5672",
         access_token_queue_name: "access_token_rpc_queue",
     },
 

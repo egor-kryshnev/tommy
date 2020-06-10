@@ -3,28 +3,27 @@ version: "2.1"
 services:
   tommy-client:
     image: tommy-client
-    build:
-      context: ./
-      dockerfile: tommy-client.Dockerfile
+    build: 
+      context: ../../tommy-client
+      dockerfile: Dockerfile
     environment:
       NODE_ENV: production
-    ports:
-      - 4200:4200
 
   tommy-server:
     image: tommy-server
+    container_name: tommy-server
     build:
-      context: ./
-      dockerfile: tommy-server.Dockerfile
+      context: ../../tommy-server
+      dockerfile: Dockerfile
     environment:
       NODE_TLS_REJECT_UNAUTHORIZED: 0
       NODE_ENV: production
       AUTH_CALLBACK_URL: /auth/callback
       PORT: 80
-      SHRAGA_URL: https://shraga.prod.services.idf
+      SHRAGA_URL: http://shraga.prod.services.idf
       CLIENT_URL: http://tommy-client:4200
       REDIS_URL: 'redis://redis:6379'
-      LEHAVA_API_HOST: "lehava-api-mock"
+      LEHAVA_API_HOST: "221.181.0.10"
       LEHAVA_API_PORT: "8050"
     ports:
       - 80:80
@@ -38,19 +37,26 @@ services:
       - '6379:6379'
 
   rabbitmq:
-    image: 'compose_rabbitmq'
+    container_name: 'rabbitmq'
+    build:
+      context: ../
+      dockerfile: rabbitmq.Dockerfile
     hostname: rabbitmq
     ports:
       - "5672:5672"
       - "15672:15672"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://rabbitmq:15672"]
-      interval: 30s
+      interval: 10s
       timeout: 10s
-      retries: 5
+      retries: 15
     
   access-token-service:
     image: "access-token-service"
+    container_name: "access-token-service"
+    build:
+      context: ../../access-token-service
+      dockerfile: Dockerfile
     environment:
       NODE_ENV: production
       RABBITMQ_URL: "amqp://rabbitmq:5672"
@@ -60,9 +66,3 @@ services:
         condition: service_healthy
       redis:
         condition: service_started
-
-  nginx:
-    image: 'nginx:alpine'
-  
-  node:
-    image: 'node:13-alpine'

@@ -1,34 +1,44 @@
 version: "2.1"
 
 services:
-  tommy-client:
-    image: tommy-client
-    build: 
-      context: ../tommy-client
-      dockerfile: dev.Dockerfile
+  # tommy-client:
+  #   image: tommy-client
+  #   build: 
+  #     context: ../../tommy-client
+  #     dockerfile: Dockerfile
 
   lehava-api-mock:
     image: lehava-api-mock
     container_name: lehava-api-mock
     build:
-      context: ../lehava-api-mock
+      context: ../../lehava-api-mock
       dockerfile: Dockerfile
     ports:
       - 8050:8050
+
+  nginx-tommy-client:
+    container_name: nginx-tommy-client
+    image: nginx:latest
+    volumes:
+      - ../../tommy-client/nginx.dev.conf:/etc/nginx/nginx.conf
+    ports:
+      - "3000:3000"
+    depends_on:
+      - tommy-server
 
   tommy-server:
     image: tommy-server
     container_name: tommy-server
     build:
-      context: ../tommy-server
-      dockerfile: dev.Dockerfile
+      context: ../../tommy-server
+      dockerfile: Dockerfile
     environment:
       NODE_TLS_REJECT_UNAUTHORIZED: 0
       NODE_ENV: development
       AUTH_CALLBACK_URL: /auth/callback
       PORT: 80
       SHRAGA_URL: http://13.79.7.3
-      CLIENT_URL: http://tommy-client:4200
+      CLIENT_URL: http://nginx-tommy-client:3000
       REDIS_URL: 'redis://redis:6379'
       RABBITMQ_URL: "amqp://rabbitmq:5672"
       LEHAVA_API_HOST: "lehava-api-mock"
@@ -36,8 +46,10 @@ services:
     ports:
       - 80:80
     depends_on:
-      - tommy-client
-      - redis
+      rabbitmq:
+        condition: service_healthy
+      redis:
+        condition: service_started
   
   redis:
     container_name: 'redis'
@@ -48,23 +60,23 @@ services:
   rabbitmq:
     container_name: 'rabbitmq'
     build:
-      context: ../rabbitmq
-      dockerfile: Dockerfile
+      context: ../
+      dockerfile: rabbitmq.Dockerfile
     hostname: rabbitmq
     ports:
       - "5672:5672"
       - "15672:15672"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://rabbitmq:15672"]
-      interval: 30s
+      interval: 10s
       timeout: 10s
-      retries: 5
+      retries: 15
     
   access-token-service:
     image: "access-token-service"
     container_name: "access-token-service"
     build:
-      context: ../access-token-service
+      context: ../../access-token-service
       dockerfile: Dockerfile
     environment:
       NODE_ENV: production
