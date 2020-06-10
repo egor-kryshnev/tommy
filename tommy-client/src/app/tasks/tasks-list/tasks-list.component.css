@@ -6,6 +6,7 @@
   text-align: center;
   font-size: 14px;
   right: 10px;
+  line-height: 0.9;
 }
 
 .kav {
@@ -66,12 +67,6 @@
   top: 7px;
   font-family: rubik;
   color: #3b3b3b;
-}
-
-#noTasks {
-  
-  color: #3a3a3a3a;
-  text-align: center;
 }
 
 .taskNameDecorationOpen {

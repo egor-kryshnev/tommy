@@ -1,4 +1,4 @@
-<div *ngIf="tasks; else noTasks">
+<div *ngIf="tasks">
     <div *ngFor="let task of tasks">
         <div class="task" (click)="openTaskDetailDialog(task)">
             <img class="StatusImg" src="{{ task.icon }}">
@@ -11,6 +11,3 @@
         </div>
     </div>
 </div>
-<ng-template #noTasks>
-    <h2 id="noTasks">אין פניות</h2>
-</ng-template>
