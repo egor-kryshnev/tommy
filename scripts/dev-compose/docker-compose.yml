@@ -1,11 +1,13 @@
 version: "2.1"
 
 services:
-  # tommy-client:
-  #   image: tommy-client
-  #   build: 
-  #     context: ../../tommy-client
-  #     dockerfile: Dockerfile
+  tommy-client:
+    image: tommy-client
+    build: 
+      context: ../../tommy-client
+      dockerfile: Dockerfile
+    ports:
+      - 4200:4200
 
   lehava-api-mock:
     image: lehava-api-mock
@@ -16,40 +18,40 @@ services:
     ports:
       - 8050:8050
 
-  nginx-tommy-client:
-    container_name: nginx-tommy-client
-    image: nginx:latest
-    volumes:
-      - ../../tommy-client/nginx.dev.conf:/etc/nginx/nginx.conf
-    ports:
-      - "3000:3000"
-    depends_on:
-      - tommy-server
+  # nginx-tommy-client:
+  #   container_name: nginx-tommy-client
+  #   image: nginx:latest
+  #   volumes:
+  #     - ../../tommy-client/nginx.dev.conf:/etc/nginx/nginx.conf
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - tommy-server
 
-  tommy-server:
-    image: tommy-server
-    container_name: tommy-server
-    build:
-      context: ../../tommy-server
-      dockerfile: Dockerfile
-    environment:
-      NODE_TLS_REJECT_UNAUTHORIZED: 0
-      NODE_ENV: development
-      AUTH_CALLBACK_URL: /auth/callback
-      PORT: 80
-      SHRAGA_URL: http://13.79.7.3
-      CLIENT_URL: http://nginx-tommy-client:3000
-      REDIS_URL: 'redis://redis:6379'
-      RABBITMQ_URL: "amqp://rabbitmq:5672"
-      LEHAVA_API_HOST: "lehava-api-mock"
-      LEHAVA_API_PORT: "8050"
-    ports:
-      - 80:80
-    depends_on:
-      rabbitmq:
-        condition: service_healthy
-      redis:
-        condition: service_started
+  # tommy-server:
+  #   image: tommy-server
+  #   container_name: tommy-server
+  #   build:
+  #     context: ../../tommy-server
+  #     dockerfile: Dockerfile
+  #   environment:
+  #     NODE_TLS_REJECT_UNAUTHORIZED: 0
+  #     NODE_ENV: development
+  #     AUTH_CALLBACK_URL: /auth/callback
+  #     PORT: 80
+  #     SHRAGA_URL: http://13.79.7.3
+  #     CLIENT_URL: http://nginx-tommy-client:3000
+  #     REDIS_URL: 'redis://redis:6379'
+  #     RABBITMQ_URL: "amqp://rabbitmq:5672"
+  #     LEHAVA_API_HOST: "lehava-api-mock"
+  #     LEHAVA_API_PORT: "8050"
+  #   ports:
+  #     - 80:80
+  #   depends_on:
+  #     rabbitmq:
+  #       condition: service_healthy
+  #     redis:
+  #       condition: service_started
   
   redis:
     container_name: 'redis'

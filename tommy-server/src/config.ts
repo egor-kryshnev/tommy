@@ -19,7 +19,7 @@ export const config = {
         host: process.env.REDIS_URL || 'redis://localhost:6379',
     },
     lehava_api: {
-        host: process.env.LEHAVA_API_HOST || "lehava-api-mock",
+        host: process.env.LEHAVA_API_HOST || "localhost",
         port: process.env.LEHAVA_API_PORT || "8050"
     },
     rabbitmq: {
