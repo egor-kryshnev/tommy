@@ -84,6 +84,10 @@ export class Server {
             res.setHeader('Last-Modified', (new Date()).toUTCString());
             next();
         });
+
+        this.app.get('/config', (req: express.Request, res: express.Response, next: express.NextFunction) => {
+            res.status(200).send(config.client.requests);
+        });
     }
 
     private initializeErrorHandler() {
