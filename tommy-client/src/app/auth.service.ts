@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { ApigetService } from './apiget.service';
-import { config } from './../environments/config.private.prod';
+import { config } from './../environments/config.dev';
+
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
 export class AuthService {
 
@@ -15,33 +15,31 @@ export class AuthService {
   public userT: string;
   public userUUID: string;
   public phone: [];
+  public phoneNumbersArray: string[];
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router, public api: ApigetService) { }
 
   login() {
-    // this.user = new People(user.genesisId, user.name.firstName + " " + user.name.lastName, user.personalNumber, [''], [new DomainUser(user.adfsId, user.email)], user.email);
-    this.http.get(`${config.SERVER_URL}/user`).subscribe((res: any) => {
+    this.http.get(`/user`, { withCredentials: true }).subscribe((res: any) => {
       console.log(res);
       this.user = res;
       this.userName = res.name.firstName + " " + res.name.lastName;
-      this.userT = res.id.split("@")[0];
+      this.userT = res.adfsId.split("@")[0];
       this.phone = res.phoneNumbers;
       this.api.getUUID(this.userT).subscribe((res: any) => {
-        // if(Array.isArray(res.collection_cnt.cnt)){
-        //       console.log(res.collection_cnt.cnt[0]['@id'])
-        //       this.userUUID = res.collection_cnt.cnt[0]['@id'];            
-        //     }
-        // else{
         this.userUUID = res.collection_cnt.cnt['@id'];
         console.log(this.userUUID);
-        // }
       });
     });
-
   }
 
   public loginSub() {
-    return this.http.get(`${config.SERVER_URL}/user`);
+    return this.http.get(`/user`, { withCredentials: true });
+  }
+
+  public setUUID(uuid) {
+    this.userUUID = uuid;
+    console.log("uuid", this.userUUID);
   }
 
   public getUser() {
@@ -72,9 +70,16 @@ export class AuthService {
     return this.user;
   }
 
+  public setPhone(phoneNumbersArray: string[]) {
+    this.phoneNumbersArray = phoneNumbersArray;
+  }
+  
   public getPhone() {
-    // retunr
+    return this.phoneNumbersArray;
   }
 
+  public getUuid() {
+    return this.userUUID;
+  }
 
 }

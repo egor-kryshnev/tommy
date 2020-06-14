@@ -1,3 +1,4 @@
+import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -8,11 +9,15 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-  constructor(private router: Router, private route: ActivatedRoute) { }
-
+  static chatDisplayFlag: Boolean;
+  constructor(private router: Router, private route: ActivatedRoute, public authService: AuthService) { }
+  
   ngOnInit(): void {
   }
 
+  chatTag() {
+    document.getElementById("cloack").className = HomeComponent.chatDisplayFlag ? "hidden" : "visible";
+    HomeComponent.chatDisplayFlag = !HomeComponent.chatDisplayFlag;
+  }
 
 }

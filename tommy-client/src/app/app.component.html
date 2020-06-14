@@ -1,15 +1,5 @@
-
-<nb-layout>
-  <nb-layout-header fixed style="direction: rtl;">
-    <img src="./assets/group.svg" (click)="onHome()" class="Group">
-  <img src="./assets/group-17.svg"
-     class="Group-17">
-    <span class="name"> היי {{ userName }} </span>
-  </nb-layout-header>
-  <nb-layout-column>
-  <!-- <button id="btnChat" mat-fab (click)="onOpenChat()" style="background-color: #2d9889;">Chat</button> -->
-  <router-outlet></router-outlet>
-  </nb-layout-column>
-  <!-- <nb-layout-footer fixed> -->
-  <!-- </nb-layout-footer> -->
-</nb-layout>
+<div class="boundary">
+    <app-preloader></app-preloader>
+    <app-header [userName]="userName"></app-header>
+    <router-outlet></router-outlet>
+</div>

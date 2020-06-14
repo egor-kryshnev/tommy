@@ -2,17 +2,20 @@ import express from 'express';
 import http from 'http';
 import bodyParser from 'body-parser';
 import helmet from 'helmet';
-import morgan from 'morgan';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
 import { config } from './config';
-import { AppRouter } from './router';
-import { errorHandler } from './utils/errors/handler';
+import { LehavaRouter } from './lehava.router';
+import { HichatRouter } from './hichat.router';
+import { userErrorHandler, serverErrorHandler, unknownErrorHandler } from './utils/errors/handler';
 import { AuthenticationHandler } from './authentication/handler';
 import { AuthenticationRouter } from './authentication/router';
 import { AuthenticationMiddleware } from './authentication/middleware';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 import cors from 'cors';
+import * as redis from 'redis';
+import connectRedis from 'connect-redis';
+import { logger } from './utils/logger';
 
 export class Server {
     public app: express.Application;
@@ -26,14 +29,18 @@ export class Server {
         this.app = express();
         this.configureMiddlewares();
         this.initializeAuthenticator();
-        this.app.use('/api', AppRouter);
+        this.app.use(function (req: express.Request, res: express.Response, next: express.NextFunction) {
+            logger.info({ method: req.method, url: req.url, query: req.query, headers: req.headers, body: req.body, user: req.user });
+            next();
+        });
+        this.app.use('/api', AuthenticationMiddleware.requireAuth, LehavaRouter);
+        this.app.use('/hichat', AuthenticationMiddleware.requireAuth, HichatRouter);
         this.initializeErrorHandler();
-        console.log(config.client.url);
         this.app.get('/user', AuthenticationMiddleware.requireAuth, (req: express.Request, res: express.Response, next: express.NextFunction) => res.send(req.user));
         this.app.all('/*', AuthenticationMiddleware.requireAuth, createProxyMiddleware({ target: config.client.url, changeOrigin: false }));
         this.server = http.createServer(this.app);
         this.server.listen(config.server.port, () => {
-            console.log(`Server running in ${process.env.NODE_ENV || 'development'} environment on port ${config.server.port}`)
+            logger.info(`Server running in ${process.env.NODE_ENV || 'development'} environment on port ${config.server.port}`)
         });
     }
 
@@ -47,7 +54,9 @@ export class Server {
         this.app.get('/isalive', function (req: express.Request, res: express.Response, next: express.NextFunction) {
             res.status(200).send('Server Is Up');
         });
-        
+
+        this.app.use(cors());
+
         this.app.use(function (req: express.Request, res: express.Response, next: express.NextFunction) {
             res.setHeader('Access-Control-Allow-Credentials', 'true');
             res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -57,24 +66,35 @@ export class Server {
             return next();
         });
 
-        this.app.use(cors());
-
-        if (process.env.NODE_ENV === 'development') {
-            this.app.use(morgan('dev'));
-        }
-
+        const RedisStore = connectRedis(session);
+        const redisClient = redis.createClient(config.redis.host);
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: true }));
         this.app.use(cookieParser());
         this.app.use(session({
+            store: new RedisStore({ client: redisClient }),
             secret: config.auth.secret,
             resave: false,
             saveUninitialized: true
         }));
+
+        this.app.set('trust proxy', true);
+
+        this.app.all('*', (req: express.Request, res: express.Response, next: express.NextFunction) => {
+            res.setHeader('Last-Modified', (new Date()).toUTCString());
+            next();
+        });
     }
 
     private initializeErrorHandler() {
-        this.app.use(errorHandler);
+        this.app.use(function (error: Error, req: express.Request, res: express.Response, next: express.NextFunction) {
+            logger.error(error);
+            next();
+        });
+
+        this.app.use(userErrorHandler);
+        this.app.use(serverErrorHandler);
+        this.app.use(unknownErrorHandler);
     }
 
     private initializeAuthenticator() {

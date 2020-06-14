@@ -1,0 +1,30 @@
+.search-box{
+    display: flex;
+    justify-content: flex-end;
+    width: 240px;
+    height: 40px;
+    border-radius: 20px;
+    border: solid 1px #ebebeb;
+}
+
+.input-box{
+    border-color: transparent;
+    width: 75%;
+    background-color: transparent;
+    direction: rtl;
+    outline: none;
+    font-family: rubik-regular;
+    font-size: 14px;
+    margin-right: 10px;
+    line-height: 1.43;
+}
+
+.icon-box{
+    margin-top: 10px;
+    margin-right: 15px;
+    object-fit: contain;
+}
+
+.search-box:hover {
+    border: solid 1px #afc514;
+}

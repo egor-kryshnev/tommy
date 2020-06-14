@@ -1,0 +1,90 @@
+#closeButton {
+  border: none;
+  border-radius: 40px;
+  background-color: white;
+  color: rgb(105, 105, 105);
+  cursor: pointer;
+  padding: 10px;
+  position: relative;
+  top: -20px;
+  left: -20px;
+}
+
+#title {
+  padding-bottom: 10px;
+}
+
+#contentContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 370px;
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 216px;
+  height: 46px;
+  border-radius: 23px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-left: 80px;
+}
+
+#new-incident-button-container {
+  background-color: #3f9c67;
+  color: white;
+}
+
+#home-button-container {
+  background-color: white;
+  border: 1px solid #3f9c67;
+  color: #3f9c67;
+}
+
+#home-icon {
+  background-color: #3f9c67;
+}
+
+.finish-text {
+  font-family: Rubik;
+  font-size: 16px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  margin-left: 30px;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 13.9px;
+  background-color: rgba(255, 255, 255, 0.3);
+  margin-right: 10px;
+}
+
+h1 {
+  font-family: Rubik;
+  font-weight: 500;
+  font-size: 24px;
+  color: #3b3b3b;
+  margin-bottom: 15px;
+}
+
+p {
+  font-family: Rubik;
+  font-size: 15px;
+  font-weight: 200;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.25;
+  letter-spacing: normal;
+  text-align: center;
+  color: #3b3b3b;
+}

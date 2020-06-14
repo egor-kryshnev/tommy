@@ -1,34 +1,54 @@
-/* @import url('https://fonts.googleapis.com/css?family=Rubik&display=swap'); */
+#task-container {
+    margin-top: 12vh;
+    margin-right: 5vh;
+}
+
+@font-face {
+    font-family: Varela;
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local('Varela Round Regular'), local('VarelaRound-Regular'), url(../../assets/Varela-Round.woff2) format('woff2');
+    unicode-range: U+0590-05FF, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+
+@font-face {
+    font-family: Rubik-light;
+    font-style: normal;
+    font-weight: 400;
+    src: local('Rubik'), local('Rubik-Regular'), url(../../assets/rubik-light.woff2) format('woff2');
+    unicode-range: U+0590-05FF, U+20AA, U+25CC, U+FB1D-FB4F;
+}
 
 @font-face {
     font-family: Rubik;
     src: url(../../assets/Rubik-Medium.ttf);
 }
-  
-.task {
-    width: 800px;
-    height: 100px;
-    border-radius: 4px;
-    border: solid 1px #afc514;
-    background-color: #ffffff;
-    margin-bottom: 20px;
-    transition: 0.5s;
+
+#timeTillTreatment {
+    font-family: rubik-light;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.43;
+    letter-spacing: normal;
+    text-align: right;
+    color: #696969;
+    float: left;
+    position: relative;
+    left: 10px;
+    top: 5px;
 }
 
-.task #task-title{
-    float: right;
-    font-family: Rubik;
-}
-
-.new-task-container{
+.new-task-container {
+    display: flex;
+    justify-content: space-between;
     margin-bottom: 17px;
 }
 
-#task-status{
-    font-family: Rubik;
-} 
 
-.new-task-button:hover{
+.new-task-button:hover {
     cursor: pointer;
 }
 
@@ -42,15 +62,14 @@
     border-radius: 23px;
     background-color: #3f9c67;
     transition: ease-in 0.3s;
-
 }
 
-.new-task-button:hover{
+.new-task-button:hover {
     box-shadow: 0 5px 14px 0 rgba(206, 206, 206, 0.5);
     background-color: #afc514;
 }
 
-.new-task-button #button-text{
+.new-task-button #button-text {
     width: 88px;
     height: 19px;
     font-family: Rubik;
@@ -80,24 +99,24 @@
     margin-top: 8px;
 }
 
-.open-closed-tasks{
+.open-closed-tasks {
     display: flex;
     flex-direction: row-reverse;
 }
 
-.open-closed-tasks #text{
+.open-closed-tasks #text {
     margin-left: 5px;
 }
 
 .selected-tasks:hover {
-    cursor: pointer;
+    cursor: context-menu;
 }
 
-.unselected-tasks:hover{
-    cursor: pointer;
+.unselected-tasks:hover {
+    cursor: pointer!important;
 }
 
-.selected-tasks #text{
+.selected-tasks #text {
     width: 112px;
     height: 24px;
     font-family: Rubik;
@@ -111,14 +130,14 @@
     color: #3f9c67;
 }
 
-.selected-tasks #seprate-line{
+.selected-tasks #seprate-line {
     width: 122px;
     height: 3px;
     border-radius: 1.5px;
     background-color: #3f9c67;
 }
 
-.unselected-tasks #seprate-line{
+.unselected-tasks #seprate-line {
     width: 122px;
     height: 3px;
     border-radius: 1.5px;
@@ -126,7 +145,7 @@
     visibility: hidden;
 }
 
-.unselected-tasks #text{
+.unselected-tasks #text {
     width: 112px;
     height: 24px;
     font-family: Rubik;
@@ -140,34 +159,41 @@
     color: #696969;
 }
 
-#scrollBar {
-    margin-right: 10px;
-  }
-  
-  #scrollBar::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    background-color: rgba(63, 156, 103, 0.3);
-  }
-  
-  #scrollBar::-webkit-scrollbar {
-    width: 4px;
-    height: 10px;
-    background-color: rgba(63, 156, 103, 0.3);
-  }
-  
-  #scrollBar::-webkit-scrollbar-thumb {
-    border-radius: 1.5px;
-    /* size: 10px; */
-    height: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-    background-color: #3f9c67;
-  }
-  
+#scrollerComponents {
+    height: 675px;
+    width: 60vw;
+}
 
+#scrollerComponents::-webkit-scrollbar {
+    display: none;
+}
 
-  
+.iframe {
+    position: absolute;
+    left: 0;
+    height: 100%;
+}
 
+#noTasks{
+  position: relative;
+  left: 47%;
+  top: 24px;
+  margin-top: 75px;
+  font-family: Rubik;
+  font-size: 24px;
+  font-weight: bold;
+  color: #696969ad;
+}
 
+.noTasks {
+    text-align: center;
+    font-family: Rubik;
+    color: #80808061;
+    margin-top: 50px;
+    font-size: 25px;
+    cursor: context-menu;
+}
 
-
+.plus {
+    margin-top: 8px;
+}

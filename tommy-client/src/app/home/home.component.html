@@ -1,6 +1,8 @@
-
 <div class="flex-container">
-    <app-updating></app-updating>
-    <app-tasks style="margin-left: 36px;"></app-tasks>
+    <app-tasks *ngIf="this.authService.getUuid()" class="task-component"></app-tasks>
+    <app-updating class="updating-component"></app-updating>
 </div>
-
+<button id="btnChat" (click)="chatTag()" mat-fab>
+    <img class="chatImg" src="../assets/chat.png">
+</button>
+<app-chat id="chatBox"></app-chat>

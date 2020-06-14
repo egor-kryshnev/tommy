@@ -1,10 +1,12 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
 import { DOCUMENT } from '@angular/common'
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { HttpClient } from '@angular/common/http';
-
-
+import { ApigetService } from '../apiget.service';
+import { EventEmiterService } from '../event.emmiter.service';
+import { PostReqService } from '../open-request/post-req.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-header',
@@ -12,18 +14,36 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  userName: string;
-  constructor(@Inject(DOCUMENT) document, private router: Router, private route: ActivatedRoute, private http: HttpClient, public authService: AuthService) {}
+  @Input() userName: string;
+  userT: string;
+  userUUID: string;
+  greeting: string;
+  constructor(@Inject(DOCUMENT) document, public apigetService: ApigetService, private router: Router, private route: ActivatedRoute, private http: HttpClient, public authService: AuthService, public _eventEmmiter: EventEmiterService, private postReqService: PostReqService) { }
 
   ngOnInit() {
-    this.authService.login();
-    this.userName = this.authService.getName();
+    this.setGreeting(moment());
+    console.log()
   }
 
-  onHome(){
+  onHome() {
     this.router.navigateByUrl('', { relativeTo: this.route });
-    console.log(this.authService.getName());
   }
 
+  setGreeting (m) {
+    let g = null;
+    let afternoon = 12;
+    let evening = 18;
+    let currentHour = parseFloat(m.format("HH"));
+    
+    if(currentHour >= afternoon && currentHour <= evening) {
+      g = "צהריים טובים";
+    } else if(currentHour >= evening) {
+      g = "ערב טוב";
+    } else {
+      g = "בוקר טוב";
+    }
+
+    this.greeting = g;
+  }
 
 }

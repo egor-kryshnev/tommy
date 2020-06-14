@@ -1,1 +1,38 @@
-
+<button mat-dialog-close id="closeButton">X</button>
+<mat-dialog-content class="mat-typography">
+  <div id="topContainer">
+    <!-- <div>
+      <p class="inline" id="timeTillTreatment">זמן צפוי לטיפול לא ידוע</p>
+      <img src="../../assets/timeUntilTreatment.svg">
+    </div> -->
+    <div>
+      <p class="inline" id="taskName">{{ getTitle() }}</p>
+      <p class="inline title">פניה</p>
+      <div *ngIf="getstatus(); else closed" id="taskNameDecoration"></div>
+      <ng-template #closed>
+        <div id="taskNameDecorationClosed"></div>
+      </ng-template>
+    </div>
+  </div>
+  <div id="midContainer">
+    <div>
+      <h4 class="inline" id="taskId">{{ task.id }}</h4>
+      <p class="inline title">קריאה</p>
+    </div>
+    <div>
+      <p class="inline" id="taskOpenDate">{{ getOpenDate() }}</p>
+      <p class="inline title">נפתחה ב </p>
+    </div>
+  </div>
+  <div id="bottomContainer">
+    <div id="statusProgressContainer">
+      <p *ngIf="getGroup()">{{ getGroup() }}</p>
+      <p *ngIf="getNetwork()">{{ getNetwork() }}</p>
+      <p *ngIf="getService()">{{ getService() }}</p>
+    </div>
+    <div id="descriptionContainer">
+      <h3>תיאור הבעיה</h3>
+      <p id="description" *ngIf="getDesc()">{{ getDesc() }}</p>
+    </div>
+  </div>
+</mat-dialog-content>

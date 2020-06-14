@@ -1,13 +1,13 @@
 <div id="updatesContainer">
   <h1 id="updatesHeadline">עדכונים</h1>
-  <cdk-virtual-scroll-viewport id="scrollBar" style="height: 600px; width: 300px; background-color: white;" itemSize="250"
+  <cdk-virtual-scroll-viewport id="scrollBar" itemSize="250"
     class="viewport">
     <mat-list role="list">
-      <div *ngIf="array; else noArray">
-      <mat-list-item role="listitem" *ngFor="let update of updatesArrayFiltered" style="width: 283px;">
-        <p class="date" matLine> {{ update.date }}</p>
-        <div class="Oval"></div>
-        <p class="time" matLine>{{ update.text }}</p>
+      <div *ngIf="array">
+      <mat-list-item role="listitem" id="rtl" *ngFor="let update of updatesArrayFiltered" style="width: 433px;">
+        <span class="date" matLine>{{ update.open_date }}</span>
+        <p class="name" matLine> {{ update.name }}</p>
+        <p class="name" matLine>{{ update.description }}</p>
       </mat-list-item>
     </div>
     <ng-template #noArray>
@@ -16,8 +16,8 @@
         <div class="Oval"></div>
         <p class="time" matLine>{{ updatesObject.description }}</p>
       </mat-list-item>
-
     </ng-template>
     </mat-list>
   </cdk-virtual-scroll-viewport>
 </div>
+<div id="fade-block"></div>

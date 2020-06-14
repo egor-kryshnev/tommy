@@ -1,0 +1,58 @@
+version: "2.1"
+
+services:
+  tommy-client:
+    image: tommy-client
+    environment:
+      NODE_ENV: production
+    ports:
+      - 4200:4200
+    depends_on:
+      - tommy-server
+
+  tommy-server:
+    image: tommy-server
+    environment:
+      NODE_TLS_REJECT_UNAUTHORIZED: 0
+      NODE_ENV: production
+      AUTH_CALLBACK_URL: /auth/callback
+      PORT: 80
+      # SHRAGA_URL: shraga url
+      CLIENT_URL: http://tommy-client:4200
+      REDIS_URL: 'redis://redis:6379'
+    ports:
+      - 80:80
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      redis:
+        condition: service_started
+  
+  redis:
+    image: 'redis:alpine'
+    ports:
+      - '6379:6379'
+
+  rabbitmq:
+    image: 'compose_rabbitmq'
+    hostname: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://rabbitmq:15672"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    
+  access-token-service:
+    image: "access-token-service"
+    environment:
+      NODE_ENV: production
+      RABBITMQ_URL: "amqp://rabbitmq:5672"
+      REDIS_URL: 'redis://redis:6379'
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      redis:
+        condition: service_started

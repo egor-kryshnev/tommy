@@ -1,7 +1,41 @@
 .flex-container {
-    display: flex;
     align-items: center;
-    justify-content: center;
-    flex-wrap: nowrap;
+    display: grid;
+    grid-template-areas: "a b c d e";
+    grid-template-columns: repeat(5, 1fr);
+    background-color: #f9fafb;
+    height: 100%;
 }
 
+.task-component {
+    grid-area: c;
+}
+
+.updating-component {
+    grid-area: a;
+    height: 100%;
+    background-color: #fff;
+}
+
+.chatImg {
+    width: 26px;
+    height: 26px;
+}
+
+#btnChat {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    background-color: #3f9c67;
+    z-index: 3;
+}
+
+@media (max-width:1300px) {
+    #btnChat {
+        display: none;
+    }
+    
+    #chatBox{
+        display: none;
+    }
+}

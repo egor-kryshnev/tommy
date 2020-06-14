@@ -1,33 +1,28 @@
 const lehavaData = require('../config/lehavaData')
-const validator = require('../validators')
+const hiData = require('../config/hichat.credentials')
+const validator = require('../validators/mainValidator')
 const arraysearch = require('../modules/arraysearch')
+const headerValidators = require('../routes/api.router')
+const Call = require('../modules/newCall');
+const hichatTools = require('../modules/hichat.tools')
 
 module.exports = (app) => {
 
-    // Middlewares
-    app.post('/caisd-rest/*', (req, res, next) => {
-        if (validator.basicHeaderValidator(req)) {
-            next();
-        } else {
-            res.status(400).send({ error: "Headers not sent properly" });
-        }
-    });
-    app.get('/caisd-rest/*', (req, res, next) => {
-        if (validator.headerValidator(req)) {
-            next();
-        } else {
-            res.status(400).send({ error: "Headers not sent properly" });
-        }
-    });
+    // Header Values Middleware-Validator
+    app.use('/caisd-rest', headerValidators);
 
     // get access key by POST request (access key is valid for one week only)
     app.post('/caisd-rest/rest_access', (req, res) => {
-        res.json(lehavaData.restaccess);
+        if (validator.accessKeyValidator(req)) {
+            res.json(lehavaData.restaccess);
+        } else {
+            res.status(400).send({ error: "Body is not set properly" });
+        }
     });
 
     // GET all networks details
     app.get('/caisd-rest/nr', (req, res) => {
-        if (req.query.WC == 'class=1000792 and delete_flag=0') {
+        if (validator.allNetworksWCValidator(req)) {
             res.json(lehavaData.all_networks);
         } else {
             res.status(400).send({ error: "WC Parameter not set properly" });
@@ -61,24 +56,48 @@ module.exports = (app) => {
         }
     });
 
-    // GET user Unique id by T username
+    // Lehava | GET user Unique id by T username
+    // Lehava | GET Supporters List
     app.get('/caisd-rest/cnt', (req, res) => {
-        res.json(lehavaData.users[arraysearch("T", req.query.WC.split("'")[1], lehavaData.users)].data);
+        if (validator.isUserSupporter(req)) {
+            res.json(lehavaData.supporters);
+        } else {
+            if (validator.userExistsValidator(req)) {
+                res.json(lehavaData.users[arraysearch("T", req.query.WC.split("'")[1], lehavaData.users)].data);
+            } else {
+                res.status(400).send({ error: `User:${req.query.WC.split("'")[1]} Doesn't Exist` });
+            }
+        }
     });
 
     // GET user active and non-active calls by user unique id
     app.get('/caisd-rest/cr', (req, res) => {
+        console.log(req.query.WC);
         if (validator.userCallsHeaderValidator(req)) {
-            if (req.query.WC.split("active=")[1] == 0) {
-                // respond Non active calls
-                res.json(lehavaData.nonactivecalls[arraysearch("userUniqueId", req.query.WC.split("'")[1], lehavaData.nonactivecalls)].data);
-            } else if (req.query.WC.split("active=")[1] == 1) {
-                // respond active calls
-                res.json(lehavaData.activecalls[arraysearch("userUniqueId", req.query.WC.split("'")[1], lehavaData.activecalls)].data);
+            if (req.query.WC.startsWith('category')) {
+                const pcatId = String(parseInt(req.query.WC.split(':').pop().split("'")[0]));
+                const pcatIdValue = lehavaData.categoryWideProblems[arraysearch("categoryId", pcatId, lehavaData.categoryWideProblems)]
+                console.log(pcatId);
+                console.log(pcatIdValue);
+                if (pcatIdValue) {
+                    res.json(lehavaData.categoryWideProblems[pcatId].data);
+                } else {
+                    res.json(lehavaData.categoryWideProblemsEmpty);
+                }
             } else {
-                res.status(400).send("Bad GET Parameters");
+                if (lehavaData.nonactivecalls[arraysearch("userUniqueId", req.query.WC.split("'")[1], lehavaData.nonactivecalls)]) {
+                    if (req.query.WC.split("active=")[1] == 0) {
+                        // Respond Non active calls
+                        res.json(lehavaData.nonactivecalls[arraysearch("userUniqueId", req.query.WC.split("'")[1], lehavaData.nonactivecalls)].data)
+                    } else if (req.query.WC.split("active=")[1] == 1) {
+                        // Respond Active calls
+                        res.json(lehavaData.activecalls[arraysearch("userUniqueId", req.query.WC.split("'")[1], lehavaData.activecalls)].data);
+                    }
+                } else {
+                    res.status(400).send({ error: "No Such User" })
+                }
             }
-        } if (validator.updatesValidator(req)) {
+        } else if (validator.updatesValidator(req)) {
             res.send(lehavaData.updates);
         } else {
             res.status(400).send({ error: "Header is not sent in your request" });
@@ -87,8 +106,46 @@ module.exports = (app) => {
 
     // POSTing a new request and response back the new lehava request id
     app.post('/caisd-rest/cr', (req, res) => {
-        res.send(lehavaData.requests);
-        lehavaData.requests.cr['@COMMON_NAME'] += 1;
+        if (validator.newCallValidator(req)) {
+            const userId = (req.body.cr.customer['@id'].split("'")[1]);
+            const category = (req.body.cr.description.split("\n")[0]);
+            const description = (req.body.cr.description.split("\n")[1]);
+
+            const newCall = new Call(userId, category, description);
+            newCall.save();
+            res.send(lehavaData.requests);
+            lehavaData.requests.cr['@COMMON_NAME'] += 1;
+        } else {
+            res.status(400).send({ error: "Bad Parameters" })
+        }
     });
+
+
+
+    // HiChat | Server Response Mock For GET HichatUrl
+    app.get('/hichat/exampleurl', (req, res) => {
+        res.send({ url: 'https://www.ynet.co.il/Ext/App/TalkBack/CdaViewOpenTalkBack/0,11382,L-3190779-3,00.html' });
+    });
+
+    // HiChat | Base route => Checking if content-type = application/json
+    app.use('/api/v1', (req, res, next) => {
+        hichatTools.contentTypeCheck(req, res, next);
+    });
+
+    // HiChat | Login credentials checker
+    app.post('/api/v1/login', (req, res) => {
+        hichatTools.loginAuth(req, res);
+    });
+
+    // HiChat | Create a new group
+    app.post('/api/v1/groups.create', (req, res) => {
+        hichatTools.groupsCreate(req, res);
+    });
+
+    // HiChat | Add members to group
+    app.post('/api/v1/groups.invite', (req, res) => {
+        hichatTools.groupsInvite(req, res);
+    });
+
 
 }

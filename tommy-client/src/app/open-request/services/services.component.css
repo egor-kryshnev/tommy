@@ -1,0 +1,44 @@
+*{
+    box-sizing: border-box;
+  }
+
+  @font-face {
+    font-family: Rubik;
+    src: url(../../../assets/Rubik-Medium.ttf);
+  }
+
+  #kara{
+    text-align: center;
+    font-family: Rubik;
+    left: 20vh;
+    margin-top: 8vh;
+    font-size: 1.5rem;
+    font-weight: normal;
+  }
+
+
+.container3{
+  display: flex;
+  margin-right: auto;
+  margin-left: auto;
+  justify-content: center;
+}
+
+
+#loved{
+  text-align: center;
+  left: 20vh;
+  font-family: Rubik;
+  font-size: 0.95rem;
+}
+
+.potrim {
+  text-align: center;
+  left: 20vh;
+  font-family: Rubik;
+  font-size: 2.8rem;
+  margin-top: 14vh;
+  margin-bottom: 1vh;
+  font-weight: 500;
+}
+
