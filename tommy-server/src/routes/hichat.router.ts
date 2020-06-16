@@ -1,7 +1,7 @@
 import { Router, Request, Response } from "express";
-import { AuthorizationMiddleware } from "./authorization/middleware";
-import { config } from './config';
-import { Chat } from './chat/chat'
+import { AuthorizationMiddleware } from "../authorization/middleware";
+import { config } from '../config';
+import { Chat } from '../chat/chat'
 
 const HichatRouter: Router = Router();
 

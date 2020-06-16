@@ -16,9 +16,6 @@ export class AuthenticationHandler {
         passport.use(new Strategy(config.auth, (profile: any, done: any) => {
             done(null, profile);
         }));
-
-        return passport.initialize();
-
     }
 
     static authenticate() {

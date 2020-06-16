@@ -1,11 +1,9 @@
 import { Router, Request, Response } from "express";
-import { AuthorizationMiddleware } from "./authorization/middleware";
-import { AccessTokenProvider } from './access-token/access-token-service';
+import { AuthorizationMiddleware } from "../authorization/middleware";
+import { AccessTokenProvider } from '../access-token/access-token-service';
 import axios, { Method } from 'axios';
-import { IpMiddleware } from './utils/middlewares/ip-middleware';
-import { config } from './config';
-import { Chat } from './chat/chat'
-// const { createGroup, setRoomMembers, closeGroup, renameGroup, sendMessageToGroup, getAuthHeaders } = require("./chat/chatJs");
+import { IpMiddleware } from '../utils/middlewares/ip-middleware';
+import { config } from '../config';
 
 
 const LehavaRouter: Router = Router();
@@ -15,7 +13,7 @@ LehavaRouter.get('/isalive', (req: Request, res: Response) => res.status(200).se
 LehavaRouter.post('*', AuthorizationMiddleware.postAuthorization, IpMiddleware);
 
 LehavaRouter.all('*', async (req: Request, res: Response) => {
-    const url = `http://${config.lehava_api.host}:${config.lehava_api.port}${req.url}`;
+    const url = `${config.lehava_api.host}${req.url}`;
     console.log(req.method, url);
     try {
         const apiHeaders = { ...req.headers };
