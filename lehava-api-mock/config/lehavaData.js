@@ -2428,7 +2428,10 @@ module.exports = {
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
-                    summary: "בוצע REPORT על WH - ניתן VAC"
+                    summary: "בוצע REPORT על WH - ניתן VAC",
+                    z_network: {
+                        "@COMMON_NAME": "עד הקצה"
+                    }
                 },
                 {
                     "@COMMON_NAME": '458525',
@@ -2440,7 +2443,10 @@ module.exports = {
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
-                    summary: "בוצע COOLDOWN לשרתי SILVER ELITE"
+                    summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
+                    z_network: {
+                        "@COMMON_NAME": "עד הקצה"
+                    }
                 },
                 {
                     "@COMMON_NAME": '596417',
@@ -2452,7 +2458,10 @@ module.exports = {
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
-                    summary: "בוצע REPORT על WH - ניתן VAC"
+                    summary: "בוצע REPORT על WH - ניתן VAC",
+                    z_network: {
+                        "@COMMON_NAME": "עד הקצה"
+                    }
                 },
                 {
                     "@COMMON_NAME": '458525',
@@ -2464,7 +2473,10 @@ module.exports = {
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
-                    summary: "בוצע COOLDOWN לשרתי SILVER ELITE"
+                    summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
+                    z_network: {
+                        "@COMMON_NAME": "עד הקצה"
+                    }
                 },
                 {
                     "@COMMON_NAME": '458525',
@@ -2476,7 +2488,10 @@ module.exports = {
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
-                    summary: "בוצע COOLDOWN לשרתי SILVER ELITE"
+                    summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
+                    z_network: {
+                        "@COMMON_NAME": "עד הקצה"
+                    }
                 },
                 {
                     "@COMMON_NAME": '458525',
@@ -2488,7 +2503,10 @@ module.exports = {
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
-                    summary: "בוצע COOLDOWN לשרתי SILVER ELITE"
+                    summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
+                    z_network: {
+                        "@COMMON_NAME": "עד הקצה"
+                    }
                 },
                 {
                     "@COMMON_NAME": '458525',
@@ -2500,7 +2518,10 @@ module.exports = {
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
-                    summary: "בוצע COOLDOWN לשרתי SILVER ELITE"
+                    summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
+                    z_network: {
+                        "@COMMON_NAME": "עד הקצה"
+                    }
                 },
                 {
                     "@COMMON_NAME": '458525',
@@ -2512,7 +2533,10 @@ module.exports = {
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
-                    summary: "בוצע COOLDOWN לשרתי SILVER ELITE"
+                    summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
+                    z_network: {
+                        "@COMMON_NAME": "עד הקצה"
+                    }
                 },
                 {
                     "@COMMON_NAME": '458525',
@@ -2524,7 +2548,10 @@ module.exports = {
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
-                    summary: "בוצע COOLDOWN לשרתי SILVER ELITE"
+                    summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
+                    z_network: {
+                        "@COMMON_NAME": "עד הקצה"
+                    }
                 },
                 {
                     "@COMMON_NAME": '458525',
@@ -2536,7 +2563,10 @@ module.exports = {
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
-                    summary: "בוצע COOLDOWN לשרתי SILVER ELITE"
+                    summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
+                    z_network: {
+                        "@COMMON_NAME": "עד הקצה"
+                    }
                 },
                 {
                     "@COMMON_NAME": '458525',
@@ -2548,7 +2578,10 @@ module.exports = {
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
-                    summary: "בוצע COOLDOWN לשרתי SILVER ELITE"
+                    summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
+                    z_network: {
+                        "@COMMON_NAME": "עד הקצה"
+                    }
                 },
                 {
                     "@COMMON_NAME": '458525',
@@ -2560,7 +2593,10 @@ module.exports = {
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
-                    summary: "בוצע COOLDOWN לשרתי SILVER ELITE"
+                    summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
+                    z_network: {
+                        "@COMMON_NAME": "עד הקצה"
+                    }
                 },
                 {
                     "@COMMON_NAME": '458525',
@@ -2572,7 +2608,10 @@ module.exports = {
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
-                    summary: "בוצע COOLDOWN לשרתי SILVER ELITE"
+                    summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
+                    z_network: {
+                        "@COMMON_NAME": "עד הקצה"
+                    }
                 },
                 {
                     "@COMMON_NAME": '458525',
@@ -2584,7 +2623,10 @@ module.exports = {
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
-                    summary: "בוצע COOLDOWN לשרתי SILVER ELITE"
+                    summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
+                    z_network: {
+                        "@COMMON_NAME": "עד הקצה"
+                    }
                 },
                 {
                     "@COMMON_NAME": '458525',
@@ -2596,7 +2638,10 @@ module.exports = {
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
-                    summary: "בוצע COOLDOWN לשרתי SILVER ELITE"
+                    summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
+                    z_network: {
+                        "@COMMON_NAME": "עד הקצה"
+                    }
                 },
                 {
                     "@COMMON_NAME": '458525',
