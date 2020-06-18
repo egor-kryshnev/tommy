@@ -14,8 +14,8 @@ export interface Update {
 })
 export class UpdatingComponent implements OnInit {
 
-  updatesArrayFiltered: updatesModel[] = [];
-  updatesArrayRes: updatesModel[] = [];
+  updatesArrayFiltered: any = [];
+  updatesArrayRes: any = [];
   updatesObjectRes: any;
   array: boolean = true;
   updatesObject: any;
@@ -35,8 +35,9 @@ export class UpdatingComponent implements OnInit {
             {
               "name": element.category["@COMMON_NAME"].replace(/\./g, ' '),
               "description": element.summary,
-              "open_date": formatted_date
-            } as updatesModel
+              "open_date": formatted_date,
+              "z_network": element.z_network["@COMMON_NAME"] ? element.z_network["@COMMON_NAME"] : "",
+            }
           )
         });
         this.updatesArrayFiltered = this.updatesArrayFiltered.reverse();
@@ -45,7 +46,8 @@ export class UpdatingComponent implements OnInit {
         this.updatesObject = {
           "name": this.updatesObjectRes.category["@COMMON_NAME"].replace(/\./g, ' '),
           "description": this.updatesObjectRes.summary,
-          "open_date": this.updatesObjectRes.open_date
+          "open_date": this.updatesObjectRes.open_date,
+          "z_network": this.updatesObjectRes.z_network["@COMMON_NAME"]
         }
       }
     });
