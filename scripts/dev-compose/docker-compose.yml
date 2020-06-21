@@ -21,6 +21,7 @@ services:
     image: nginx:latest
     volumes:
       - ../../tommy-client/nginx.dev.conf:/etc/nginx/nginx.conf
+      - ../../tommy-client/dist/tommy/:/usr/share/nginx/html/
     ports:
       - "3000:3000"
     depends_on:
