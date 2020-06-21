@@ -22,23 +22,20 @@ export class UpdatingComponent implements OnInit {
 
     this.apiget.getUpdates().subscribe((res: any) => {
       let updatesArrayResponse = res.collection_cr.cr;
-      console.log(updatesArrayResponse)
       if (updatesArrayResponse) {
-        setTimeout(() => {
-          updatesArrayResponse.map((element: any) => {
-            let updateDate = new Date(element.open_date * 1000);
-            let formatted_date = updateDate.getHours() + ":" + updateDate.getMinutes() + "\xa0\xa0·\xa0\xa0" + updateDate.getDate() + "." + (updateDate.getMonth() + 1) + "." + updateDate.getFullYear();
-            this.updatesArray.push(
-              {
-                "name": element.category["@COMMON_NAME"].replace(/\./g, ' ') || null,
-                "description": element.summary || null,
-                "open_date": formatted_date || null,
-                "z_network": element.z_network ? element.z_network["@COMMON_NAME"] ? element.z_network["@COMMON_NAME"] : false : false,
-              }
-            )
-          });
-          this.updatesArray = this.updatesArray.reverse();
-        }, 1000);
+        updatesArrayResponse.map((element: any) => {
+          let updateDate = new Date(element.open_date * 1000);
+          let formatted_date = updateDate.getHours() + ":" + updateDate.getMinutes() + "\xa0\xa0·\xa0\xa0" + updateDate.getDate() + "." + (updateDate.getMonth() + 1) + "." + updateDate.getFullYear();
+          this.updatesArray.push(
+            {
+              "name": element.category["@COMMON_NAME"].replace(/\./g, ' ') || null,
+              "description": element.summary || null,
+              "open_date": formatted_date || null,
+              "z_network": element.z_network ? (element.z_network["@COMMON_NAME"] || false) : false,
+            }
+          )
+        });
+        this.updatesArray = this.updatesArray.reverse();
       }
     });
   }
