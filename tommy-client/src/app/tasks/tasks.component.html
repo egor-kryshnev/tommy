@@ -21,8 +21,7 @@
       </span>
     </div>
 
-    <!-- <app-search-bar (textChanged)="searchTextChanged($event)"></app-search-bar> -->
-  </div>
+  <app-search-bar (textChanged)="searchTextChanged($event)"></app-search-bar>
 
   <cdk-virtual-scroll-viewport id="scrollerComponents" itemSize="50" class="viewport">
     <ng-container *ngIf="displayedTasks; else loader">
@@ -41,5 +40,5 @@
       <app-cardsloader></app-cardsloader>
     </div>
   </ng-template>
-
+   
 </div>

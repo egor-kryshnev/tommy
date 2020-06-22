@@ -27,6 +27,7 @@ export class TasksComponent implements OnInit {
   openTasksFlag: boolean = true;
   insideFlag: boolean = true;
   uUid: string;
+  searchText: string = "";
 
   constructor(private router: Router, private route: ActivatedRoute, public aPIgetService: ApigetService, public _eventEmmitter: EventEmiterService, public authService: AuthService, public taskDetailDialog: MatDialog) { }
 
@@ -81,31 +82,31 @@ export class TasksComponent implements OnInit {
     this.setDisplayedTasks();
   }
 
-  // searchTextChanged(text: string) {
-  //   this.searchText = this.stripWhiteSpaces(text);
-  //   this.tasksToDisplay = [];
-  //   this.open ? this.addTasksToDisplay(this.tasksByIdArray) : this.addTasksToDisplay(this.tasksByIdArrayClosed);
-  // }
+  searchTextChanged(text: string) {
+    this.searchText = this.stripWhiteSpaces(text);
+    this.displayedTasks = [];
+    this.openTasksFlag ? this.addTasksToDisplay(this.openTasksArr) : this.addTasksToDisplay(this.closedTasksArr);
+  }
 
-  // addTasksToDisplay(tasksArray: taskModel1[]) {
-  //   tasksArray.forEach((task: taskModel1) => {
-  //     if (this.getTaskTitle(task).includes(this.searchText) || (task.id).startsWith(this.searchText)) {
-  //       this.tasksToDisplay.push(task);
-  //     }
-  //   })
-  // }
+  addTasksToDisplay(tasksArray: taskModel1[]) {
+    tasksArray.forEach((task: taskModel1) => {
+      if (this.getTaskTitle(task).includes(this.searchText) || (task.id).startsWith(this.searchText)) {
+        this.displayedTasks.push(task);
+      }
+    })
+  }
 
   stripWhiteSpaces(str) {
     return str.replace(/^\s+|\s+$/g, '');
   }
 
-  // getTaskTitle(task: taskModel1) {
-  //   let taskDescription = task.description
-  //   if ((task.description).split("\n")[1]) {
-  //     taskDescription = (task.description).split("\n")[1];
-  //   }
-  //   return taskDescription.length <= 30 ? taskDescription : '...' + taskDescription.substring(0, 30);
-  // }
+  getTaskTitle(task: taskModel1) {
+    let taskDescription = task.description
+    if ((task.description).split("\n")[0]) {
+      taskDescription = (task.description).split("\n")[0];
+    }
+    return taskDescription.length <= 30 ? taskDescription : '...' + taskDescription.substring(0, 30);
+  }
 
   // ngOnDestroy() {
 }
