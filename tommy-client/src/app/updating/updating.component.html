@@ -1,24 +1,21 @@
 <div id="updatesContainer">
   <h1 id="updatesHeadline">עדכונים</h1>
-  <cdk-virtual-scroll-viewport id="scrollBar" itemSize="250"
-    class="viewport">
-    <mat-list role="list">
-      <mat-list-item role="listitem" id="rtl" *ngFor="let update of updatesArray" style="width: 433px;">
-        <span class="date" matLine>{{ update.open_date }}</span>
-        <p class="name" matLine *ngIf="update.z_network">{{ update.z_network }}</p>
-        <p class="name" matLine> {{ update.name }}</p>
-        <p class="name" matLine>{{ update.description }}</p>
-      </mat-list-item>
-    <!-- <ng-template #noArray>
-      <mat-list-item role="listitem" bstyle="width: 283px;">
-        <p class="date" matLine> {{ updatesObject.name }}</p>
-        <div class="Oval"></div>
-        <p class="name" matLine> רשת: {{ updatesObject.z_network }} </p>
-        <p class="name" matLine> {{ updatesObject.name }}</p>
-        <p class="time" matLine>{{ updatesObject.description }}</p>
-      </mat-list-item>
-    </ng-template> -->
-    </mat-list>
-  </cdk-virtual-scroll-viewport>
+  <ng-container *ngIf="updatesArray">
+    <cdk-virtual-scroll-viewport id="scrollBar" itemSize="250" class="viewport">
+      <mat-list role="list">
+        <mat-list-item role="listitem" id="rtl" *ngFor="let update of updatesArray" style="width: 433px;">
+          <span class="date" matLine>{{ update.open_date }}</span>
+          <p class="name" matLine *ngIf="update.z_network">{{ update.z_network }}</p>
+          <p class="name" matLine> {{ update.name }}</p>
+          <p class="name" matLine>{{ update.description }}</p>
+        </mat-list-item>
+      </mat-list>
+    </cdk-virtual-scroll-viewport>
+  </ng-container>
+  <ng-container #noUpdates>
+    <div class="loader">
+      <app-cardsloader></app-cardsloader>
+    </div>
+  </ng-container>
 </div>
 <div id="fade-block"></div>

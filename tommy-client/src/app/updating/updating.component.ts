@@ -14,30 +14,44 @@ export interface Update {
 })
 export class UpdatingComponent implements OnInit {
 
-  updatesArray: any[] = [];
+  updatesArray: any[];
 
   constructor(public apiget: ApigetService) { }
 
   ngOnInit() {
-    this.getUpdates();
+    this.setUpdates();
   }
 
-  getUpdates() {
+  setUpdates() {
     this.apiget.getUpdates().subscribe((res: any) => {
-      let updatesArrayResponse = res.collection_cr.cr;
-      if (updatesArrayResponse) {
-        updatesArrayResponse.map((element: any) => {
-          let updateDate = new Date(element.open_date * 1000);
-          let formatted_date = updateDate.getHours() + ":" + updateDate.getMinutes() + "\xa0\xa0·\xa0\xa0" + updateDate.getDate() + "." + (updateDate.getMonth() + 1) + "." + updateDate.getFullYear();
-          this.updatesArray.push(
-            {
-              "name": element.category["@COMMON_NAME"].replace(/\./g, ' ') || null,
-              "description": element.summary || null,
-              "open_date": formatted_date || null,
-              "z_network": element.z_network ? (element.z_network["@COMMON_NAME"] || false) : false,
-            }
-          )
-        });
+      let Response = res.collection_cr.cr;
+      if (Response) {
+        this.updatesArray = [];
+        if (Array.isArray(Response)) {
+          Response.map((update: any) => {
+            let updateDate = new Date(update.open_date * 1000);
+            let formatted_date = updateDate.getHours() + ":" + updateDate.getMinutes() + "\xa0\xa0·\xa0\xa0" + updateDate.getDate() + "." + (updateDate.getMonth() + 1) + "." + updateDate.getFullYear();
+            this.updatesArray.push(
+              {
+                "name": update.category["@COMMON_NAME"].replace(/\./g, ' ') || null,
+                "description": update.summary || null,
+                "open_date": formatted_date || null,
+                "z_network": update.z_network ? (update.z_network["@COMMON_NAME"] || false) : false,
+              }
+            )
+          });
+        } else {
+          let updateDate = new Date(Response.open_date * 1000);
+            let formatted_date = updateDate.getHours() + ":" + updateDate.getMinutes() + "\xa0\xa0·\xa0\xa0" + updateDate.getDate() + "." + (updateDate.getMonth() + 1) + "." + updateDate.getFullYear();
+            this.updatesArray.push(
+              {
+                "name": Response.category["@COMMON_NAME"].replace(/\./g, ' ') || null,
+                "description": Response.summary || null,
+                "open_date": formatted_date || null,
+                "z_network": Response.z_network ? (Response.z_network["@COMMON_NAME"] || false) : false,
+              }
+            )
+        }
         this.updatesArray = this.updatesArray.reverse();
       }
     });

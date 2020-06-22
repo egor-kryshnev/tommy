@@ -27,6 +27,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { ChatComponent } from './chat/chat.component';
 import { TasksListComponent } from './tasks/tasks-list/tasks-list.component';
+import { SharedModule } from './shared.module';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { TasksListComponent } from './tasks/tasks-list/tasks-list.component';
     OpenRequestModule,
     MatInputModule,
     FormsModule,
-    DragDropModule
+    DragDropModule,
+    SharedModule
   ],
   providers: [EventEmiterService, AuthService, { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } }],
   bootstrap: [AppComponent]
