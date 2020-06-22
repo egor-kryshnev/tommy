@@ -38,6 +38,6 @@
     "passport-shraga": "^1.4.0",
     "redis": "^3.0.2",
     "tslib": "^1.11.0",
-    "winston": "^3.2.1"
+    "winston": "3.2.1"
   }
 }
