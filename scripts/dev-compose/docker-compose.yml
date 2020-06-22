@@ -6,6 +6,8 @@ services:
   #   build: 
   #     context: ../../tommy-client
   #     dockerfile: Dockerfile
+  #   ports:
+  #     - 4200:4200
 
   lehava-api-mock:
     image: lehava-api-mock
