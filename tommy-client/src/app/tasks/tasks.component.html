@@ -27,7 +27,7 @@
   <cdk-virtual-scroll-viewport id="scrollerComponents" itemSize="50" class="viewport">
     <ng-container *ngIf="displayedTasks; else loader">
       <app-tasks-list [tasks]="displayedTasks" [tasksFlag]="openTasksFlag"
-        *ngIf="displayedTasks.length != 0; else noTasks">
+        *ngIf="displayedTasks != []; else noTasks">
       </app-tasks-list>
     </ng-container>
   </cdk-virtual-scroll-viewport>
