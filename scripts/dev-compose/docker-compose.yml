@@ -18,7 +18,7 @@ services:
 
   nginx-tommy-client:
     container_name: nginx-tommy-client
-    image: nginx:latest
+    image: nginx
     volumes:
       - ../../tommy-client/nginx.dev.conf:/etc/nginx/nginx.conf
       - ../../tommy-client/dist/tommy/:/usr/share/nginx/html/
