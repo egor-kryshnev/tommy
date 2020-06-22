@@ -23,7 +23,7 @@ export class TasksComponent implements OnInit {
 
   openTasksArr: taskModel1[] = [];
   closedTasksArr: taskModel1[] = [];
-  displayedTasks: taskModel1[] = [];
+  displayedTasks: taskModel1[];
   openTasksFlag: boolean = true;
   insideFlag: boolean = true;
   uUid: string;
