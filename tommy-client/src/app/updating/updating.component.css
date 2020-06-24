@@ -4,6 +4,7 @@ mat-list-item {
 
 #updatesContainer {
   height: 92%;
+  width: 460px;
   grid-area: auto;
   margin-top: 8vh;
   cursor: context-menu;
@@ -110,4 +111,8 @@ mat-list-item {
   bottom: 0px;
   width: 460px;
   background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
+}
+
+.loader{
+  margin-top: 60%;
 }

@@ -1,2 +1,38 @@
 #!/bin/bash
-docker save $(docker ps --format "{{.Image}}" -a) -o tommyImages.tar
+declare -a repos=(
+"alphawolfsforce/tommy-client:latest"
+"alphawolfsforce/tommy-server:latest"
+"alphawolfsforce/access-token-service:latest"
+"alphawolfsforce/rabbitmq:latest"
+"redis:latest"
+)
+
+
+PARENT_DIR="images"
+IMAGES=""
+
+
+if [ -d $PARENT_DIR ]; then
+    cd $PARENT_DIR
+else
+    mkdir $PARENT_DIR
+    cd $PARENT_DIR
+fi
+
+for repo in "${repos[@]}";
+    do
+		tmp=${repo##*/}
+        DIRECTORY=${tmp%:*}
+        IMAGES="${IMAGES} ${repo}"
+        echo $IMAGES
+        echo "Pulling ${repo}"
+        docker pull $repo
+	done
+docker image save $IMAGES -o "./images.tar"
+
+unamestr='not Linux'
+if [[ "$unamestr" == 'Linux' ]]; then 
+	7z a -t7z -r "./images.7z" "./*"
+else 
+	'C:\Program Files\7-Zip\7z' a -t7z -r "./images.7z" "./*"
+fi

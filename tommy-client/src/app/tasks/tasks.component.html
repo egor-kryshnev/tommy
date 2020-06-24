@@ -20,16 +20,26 @@
         <img src="../../assets/plus.svg" class="plus">
       </span>
     </div>
-
     <app-search-bar (textChanged)="searchTextChanged($event)"></app-search-bar>
   </div>
 
+
   <cdk-virtual-scroll-viewport id="scrollerComponents" itemSize="50" class="viewport">
-    <app-tasks-list [tasks]="displayedTasks" [tasksFlag]="openTasksFlag"
-      *ngIf="displayedTasks.length > 0; else noTasks"></app-tasks-list>
+    <ng-container *ngIf="displayedTasks; else loader">
+      <app-tasks-list [tasks]="displayedTasks" [tasksFlag]="openTasksFlag"
+        *ngIf="displayedTasks.length != 0; else noTasks">
+      </app-tasks-list>
+    </ng-container>
   </cdk-virtual-scroll-viewport>
 
   <ng-template #noTasks>
     <h2 class="noTasks">אין פניות</h2>
   </ng-template>
+
+  <ng-template #loader>
+    <div class="loader">
+      <app-cardsloader></app-cardsloader>
+    </div>
+  </ng-template>
+
 </div>

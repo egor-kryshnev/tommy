@@ -23,7 +23,7 @@ export class TasksComponent implements OnInit {
 
   openTasksArr: taskModel1[] = [];
   closedTasksArr: taskModel1[] = [];
-  displayedTasks: taskModel1[] = [];
+  displayedTasks: taskModel1[];
   openTasksFlag: boolean = true;
   insideFlag: boolean = true;
   uUid: string;
@@ -84,13 +84,13 @@ export class TasksComponent implements OnInit {
 
   searchTextChanged(text: string) {
     this.searchText = this.stripWhiteSpaces(text);
-    this.displayedTasks = [];
     this.openTasksFlag ? this.addTasksToDisplay(this.openTasksArr) : this.addTasksToDisplay(this.closedTasksArr);
   }
 
   addTasksToDisplay(tasksArray: taskModel1[]) {
     tasksArray.forEach((task: taskModel1) => {
       if (this.getTaskTitle(task).includes(this.searchText) || (task.id).startsWith(this.searchText)) {
+        if(this.displayedTasks) this.displayedTasks = []; 
         this.displayedTasks.push(task);
       }
     })
