@@ -90,7 +90,7 @@ export class ApigetService {
     .set('Content-type', 'application/json')
     .set('X-AccessKey', this.accessKey)
     .set('Accept', 'application/json')
-    .set('X-Obj-Attrs', 'category, description, open_date, summary');
+    .set('X-Obj-Attrs', 'category, description, open_date, summary, z_network');
 
   getNetworks() {
     this.networksByIdArray = [];
