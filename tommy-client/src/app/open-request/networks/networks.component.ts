@@ -50,18 +50,16 @@ export class NetworksComponent implements OnInit {
   }
 
   searchTextChanged(text: string){
-    console.log(`text: ${text}`);
     this.searchText = this.stripWhiteSpaces(text);
-    console.log(`filter service: ${this.filterNetworks}`);
-    this.addNetworkToDisplay(this.filterNetworks);
+    this.addNetworkToDisplay();
   }
 
   stripWhiteSpaces(str) {
     return str.replace(/^\s+|\s+$/g, "");
   }
 
-  
-  addNetworkToDisplay(filterArray: model1[]) {
+
+  addNetworkToDisplay() {
     this.filterNetworks = this.networks.filter((network: model1) => {
       return network.value.includes(this.searchText);
     });

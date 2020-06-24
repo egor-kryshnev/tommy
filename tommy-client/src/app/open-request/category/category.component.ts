@@ -91,13 +91,11 @@ export class CategoryComponent implements OnInit {
   }
 
   searchTextChanged(text: string) {
-    console.log(`text: ${text}`);
     this.searchText = this.stripWhiteSpaces(text);
-    console.log(`filter service: ${this.filterCategories}`);
-    this.addCategoryToDisplay(this.filterCategories);
+    this.addCategoryToDisplay();
   }
 
-  addCategoryToDisplay(filterArray: Array<string>) {
+  addCategoryToDisplay() {
     this.filterCategories = this.categoriesToDisplay.filter((category: string) => {
       return category.includes(this.searchText);
     });

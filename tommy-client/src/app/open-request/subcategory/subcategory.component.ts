@@ -13,7 +13,7 @@ export class SubcategoryComponent implements OnInit {
   public categoriesToDisplay: Array<string>;
   filterCategories: Array<string>;
   searchText = "";
-  
+
   constructor(public categoryService: CategoryService, public route: ActivatedRoute, private router: Router,
     public postReqService: PostReqService) { }
 
@@ -43,10 +43,10 @@ export class SubcategoryComponent implements OnInit {
     console.log(`text: ${text}`);
     this.searchText = this.stripWhiteSpaces(text);
     console.log(`filter service: ${this.filterCategories}`);
-    this.addCategoryToDisplay(this.filterCategories);
+    this.addCategoryToDisplay();
   }
 
-  addCategoryToDisplay(filterArray: Array<string>) {
+  addCategoryToDisplay() {
     this.filterCategories = this.categoriesToDisplay.filter((category: string) => {
       return category.includes(this.searchText);
     });

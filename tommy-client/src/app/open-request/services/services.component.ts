@@ -25,7 +25,7 @@ export class ServicesComponent implements OnInit {
     this.aPIgetService.getServices(id).subscribe((res: any) => {
       this.services = [];
       let servicesResponse =
-        res.collection_z_networks_to_service.z_networks_to_service;
+      res.collection_z_networks_to_service.z_networks_to_service;
       servicesResponse.forEach((element: any) => {
         const serviceObject = element.service;
         this.services.push({
@@ -56,13 +56,11 @@ export class ServicesComponent implements OnInit {
   }
 
   searchTextChanged(text: string) {
-    console.log(`text: ${text}`);
     this.searchText = this.stripWhiteSpaces(text);
-    console.log(`filter service: ${this.filterServices}`);
-    this.addServiceToDisplay(this.filterServices);
+    this.addServiceToDisplay();
   }
 
-  addServiceToDisplay(filterArray: model1[]) {
+  addServiceToDisplay() {
     this.filterServices = this.services.filter((service: model1) => {
       return service.value.includes(this.searchText);
     });
