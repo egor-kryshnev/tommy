@@ -91,13 +91,13 @@ export class CategoryComponent implements OnInit {
   }
 
   searchTextChanged(text: string) {
-    this.searchText = this.stripWhiteSpaces(text);
+    this.searchText = this.stripWhiteSpaces(text.toLowerCase());
     this.addCategoryToDisplay();
   }
 
   addCategoryToDisplay() {
     this.filterCategories = this.categoriesToDisplay.filter((category: string) => {
-      return category.includes(this.searchText);
+      return category.toLowerCase().includes(this.searchText);
     });
   }
 

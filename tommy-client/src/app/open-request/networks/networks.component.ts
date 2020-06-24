@@ -50,7 +50,7 @@ export class NetworksComponent implements OnInit {
   }
 
   searchTextChanged(text: string){
-    this.searchText = this.stripWhiteSpaces(text);
+    this.searchText = this.stripWhiteSpaces(text.toLowerCase());
     this.addNetworkToDisplay();
   }
 
@@ -61,7 +61,7 @@ export class NetworksComponent implements OnInit {
 
   addNetworkToDisplay() {
     this.filterNetworks = this.networks.filter((network: model1) => {
-      return network.value.includes(this.searchText);
+      return network.value.toLowerCase().includes(this.searchText);
     });
   }
 }
