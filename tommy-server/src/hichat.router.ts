@@ -9,15 +9,6 @@ const HichatRouter: Router = Router();
 HichatRouter.post('*', AuthorizationMiddleware.postAuthorization);
 
 // Simple Url Response for client-side development
-<<<<<<< HEAD
-HichatRouter.get('/', (req: Request, res: Response) => {
-    const chat = new Chat();
-    const user: any = req.user;
-    const userT: string = user.adfsId.split("@")[0];
-    const hichatUserT: string = `${userT}@aman`;
-    const groupName: string = chat.setGroupNam
-    // res.send({ url: 'https://www.ynet.co.il/Ext/App/TalkBack/CdaViewOpenTalkBack/0,11382,L-3190779-3,00.html' });
-=======
 HichatRouter.get('/', async (req: Request, res: Response) => {
     // const chat = new Chat();
     // const user: any = req.user;
@@ -41,7 +32,6 @@ HichatRouter.get('/', async (req: Request, res: Response) => {
     // }
 
     res.send({ url: 'https://www.ynet.co.il/Ext/App/TalkBack/CdaViewOpenTalkBack/0,11382,L-3190779-3,00.html' });
->>>>>>> 46718e90eb266accf51c71abbba26d17a8876e95
 });
 
 
