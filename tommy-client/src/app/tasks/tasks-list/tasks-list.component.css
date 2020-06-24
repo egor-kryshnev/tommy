@@ -67,6 +67,7 @@
   top: 7px;
   font-family: rubik;
   color: #3b3b3b;
+  direction: rtl;
 }
 
 .taskNameDecorationOpen {
