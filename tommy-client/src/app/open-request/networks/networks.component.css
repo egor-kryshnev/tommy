@@ -66,4 +66,10 @@
   box-sizing: border-box;
 }
 
+.search{
+  margin: auto;
+  width: fit-content;
+  /* margin-bottom: 20px; */
+}
+
 

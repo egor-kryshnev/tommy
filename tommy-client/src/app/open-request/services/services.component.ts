@@ -67,14 +67,6 @@ export class ServicesComponent implements OnInit {
       return service.value.includes(this.searchText);
     });
     console.log(this.filterServices);
-    // this.services.forEach((service: model1) => {
-    //   if (service.value.includes(this.searchText)) {
-    //     console.log(`service value: ${service.value} includes: ${this.searchText}`);
-    //     console.log("includeee");
-    //     if (this.filterServices) this.filterServices = [];
-    //     this.filterServices.push(service);
-    //   }
-    // });
   }
 
   stripWhiteSpaces(str) {

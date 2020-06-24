@@ -12,6 +12,8 @@ import { PostReqService } from '../post-req.service';
 export class NetworksComponent implements OnInit {
 
   networks: model1[];
+  filterNetworks: model1[];
+  searchText="";
   constructor(private router: Router, private route: ActivatedRoute, public aPIgetService: ApigetService, public postReqService: PostReqService) { }
 
   ngOnInit() {
@@ -25,7 +27,9 @@ export class NetworksComponent implements OnInit {
             "value": networkObject["@COMMON_NAME"]
           } as model1
         );
-      })
+      });
+      this.filterNetworks = this.networks;
+
     });
   }
 
@@ -42,6 +46,24 @@ export class NetworksComponent implements OnInit {
   }
 
   getNetworksNames() {
-    return this.networks.map(network => network.value);
+    return this.filterNetworks.map(network => network.value);
+  }
+
+  searchTextChanged(text: string){
+    console.log(`text: ${text}`);
+    this.searchText = this.stripWhiteSpaces(text);
+    console.log(`filter service: ${this.filterNetworks}`);
+    this.addNetworkToDisplay(this.filterNetworks);
+  }
+
+  stripWhiteSpaces(str) {
+    return str.replace(/^\s+|\s+$/g, "");
+  }
+
+  
+  addNetworkToDisplay(filterArray: model1[]) {
+    this.filterNetworks = this.networks.filter((network: model1) => {
+      return network.value.includes(this.searchText);
+    });
   }
 }
