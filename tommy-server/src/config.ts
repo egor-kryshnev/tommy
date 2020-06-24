@@ -1,3 +1,4 @@
+import { supportUsers } from './utils/supportUsers'
 process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0 as any;
 
 export const config = {
@@ -41,12 +42,13 @@ export const config = {
     },
 
     chat: {
-        chatUrl: process.env.CHAT_URL || 'http://localhost:8080',
-        hiChatUrl: process.env.HI_CHAT_URL || 'http://localhost:8080',
-        chatGroupUrl: process.env.CHAT_GROUP_URL || 'groups',
+        chatUrl: process.env.CHAT_URL || '',
+        hiChatUrl: process.env.HI_CHAT_URL || "http://lehava-api-mock:8050/api/v1",
+        chatGroupUrl: process.env.CHAT_GROUP_URL || "http://lehava-api-mock:8050/group",
         chatLoginUrl: process.env.CHAT_LOGIN_URL || 'login',
         chatMessageUrl: process.env.CHAT_MESSAGE_URL || 'chat',
-        loginUser: process.env.LOGIN_USER || 'user',
-        loginPass: process.env.LOGIN_PASS || 'pass'
+        loginUser: process.env.LOGIN_USER || 'tommy',
+        loginPass: process.env.LOGIN_PASS || 'Aa123456',
+        supportUsers: supportUsers
     }
 }

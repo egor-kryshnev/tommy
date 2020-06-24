@@ -10,7 +10,7 @@ import { HomeComponent } from '../home/home.component'
 })
 export class ChatComponent implements OnInit {
   iframeUrl: any;
-  dragPosition: object = { x: 1500, y: -550 };
+  dragPosition: object = { x: 0, y: 0 };
 
   constructor(public ApigetService: ApigetService, public _eventEmmitter: EventEmiterService, private sanitizer: DomSanitizer) { }
 

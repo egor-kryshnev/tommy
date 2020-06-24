@@ -84,13 +84,13 @@ export class TasksComponent implements OnInit {
 
   searchTextChanged(text: string) {
     this.searchText = this.stripWhiteSpaces(text);
-    this.displayedTasks = [];
     this.openTasksFlag ? this.addTasksToDisplay(this.openTasksArr) : this.addTasksToDisplay(this.closedTasksArr);
   }
 
   addTasksToDisplay(tasksArray: taskModel1[]) {
     tasksArray.forEach((task: taskModel1) => {
       if (this.getTaskTitle(task).includes(this.searchText) || (task.id).startsWith(this.searchText)) {
+        if(this.displayedTasks) this.displayedTasks = []; 
         this.displayedTasks.push(task);
       }
     })

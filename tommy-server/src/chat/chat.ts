@@ -14,9 +14,10 @@ export class Chat {
     async login(): Promise<any> {
         if (this.userId && this.authToken)
             return { userId: this.userId, authToken: this.authToken };
-        let result = await axios ({
+        const loginUrl = `${config.chat.chatUrl}/${config.chat.chatLoginUrl}`;
+        let result = await axios({
             method: 'post',
-            url: `${config.chat.chatUrl}/${config.chat.chatLoginUrl}`,
+            url: loginUrl,
             data: {
                 username: config.chat.loginUser,
                 password: config.chat.loginPass
@@ -65,9 +66,10 @@ export class Chat {
     async createGroup(groupName: string, members: string[]) {
         const authHeaders = await this.getAuthHeaders();
         const name = this.getAllowedGroupTitleFromText(groupName);
+        const sendUrl = `${config.chat.chatUrl}/${config.chat.chatGroupUrl}.create`;
         let result = await axios({
             method: 'post',
-            url: `${config.chat.chatUrl}/${config.chat.chatGroupUrl}.create`,
+            url: sendUrl,
             data: {
                 name: name,
                 members: members
@@ -83,7 +85,6 @@ export class Chat {
 
     async getGroupMembers(roomId: string) {
         const authHeaders = await this.getAuthHeaders();
-
         let result = await axios({
             method: 'get',
             url: `${config.chat.chatUrl}/${config.chat.chatGroupUrl}.info?roomId=${roomId}`,
@@ -174,5 +175,10 @@ export class Chat {
         const authHeaders = await this.getAuthHeaders();
         const { result } = await axios.post(`${config.chat.chatUrl}/${config.chat.chatMessageUrl}.postMessage`, { channel: `#${roomId}`, text }, { headers: { ...authHeaders } });
         return result;
+    }
+
+    setGroupName(userT: string){
+        const title = `Tommy Support Chat ${userT}`;
+        return this.getAllowedGroupTitleFromText(title);
     }
 }
