@@ -24,6 +24,8 @@ import { TransverseIncidentDialog } from './transverse-incident/transverse-incid
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared.module';
 
+
+
 @NgModule({
   declarations: [
     NetworksComponent,
@@ -35,7 +37,7 @@ import { SharedModule } from '../shared.module';
     CardsListComponent,
     ReturnButtonComponent,
     PageTopTitleComponent,
-    TransverseIncidentDialog,
+    TransverseIncidentDialog
   ],
   imports: [
     CommonModule,

@@ -15,7 +15,8 @@ export class CategoryComponent implements OnInit {
   public categoriesToDisplay: Array<string>;
   private categoryIdList: Array<string>;
   categoriesLoaded: Promise<boolean>;
-
+  filterCategories: Array<string>;
+  searchText = "";
   constructor(public categoryService: CategoryService, public route: ActivatedRoute, private router: Router,
     public postReqService: PostReqService, public transverseIncidentDialog: MatDialog) { }
 
@@ -56,22 +57,24 @@ export class CategoryComponent implements OnInit {
         this.categoryService.buildData(categoryList);
         this.categoriesToDisplay = this.categoryService.getCategoriesToDisplay();
         this.categoriesLoaded = Promise.resolve(true);
-      })
+        this.filterCategories = this.categoriesToDisplay;
+
+      });
   }
 
   selectedCategory(category: string) {
     this.categoryService.updateSelectedCategory(category);
-      const categoryId = this.categoryIdList[this.categoriesToDisplay.indexOf(category)];
-      this.categoryService.getTransverseIncident(categoryId).subscribe((incident: TransverseIncident) => {
-        if (incident.collection_cr.cr) {
-          incident.collection_cr.cr = Array.isArray(incident.collection_cr.cr) ? incident.collection_cr.cr: [incident.collection_cr.cr];
-          this.transverseIncidentDialog.open(TransverseIncidentDialog, { width: "430", height: "400", data: incident })
-        } else {
-          this.proceedToNextPage();
-        }
-      }, (e: Error) => {
+    const categoryId = this.categoryIdList[this.categoriesToDisplay.indexOf(category)];
+    this.categoryService.getTransverseIncident(categoryId).subscribe((incident: TransverseIncident) => {
+      if (incident.collection_cr.cr) {
+        incident.collection_cr.cr = Array.isArray(incident.collection_cr.cr) ? incident.collection_cr.cr : [incident.collection_cr.cr];
+        this.transverseIncidentDialog.open(TransverseIncidentDialog, { width: "430", height: "400", data: incident })
+      } else {
         this.proceedToNextPage();
-      });
+      }
+    }, (e: Error) => {
+      this.proceedToNextPage();
+    });
   }
 
   proceedToNextPage() {
@@ -85,6 +88,21 @@ export class CategoryComponent implements OnInit {
 
   onReturn() {
     this.router.navigate(['/services', this.postReqService.networkId], { relativeTo: this.route });
+  }
+
+  searchTextChanged(text: string) {
+    this.searchText = this.stripWhiteSpaces(text);
+    this.addCategoryToDisplay();
+  }
+
+  addCategoryToDisplay() {
+    this.filterCategories = this.categoriesToDisplay.filter((category: string) => {
+      return category.includes(this.searchText);
+    });
+  }
+
+  stripWhiteSpaces(str) {
+    return str.replace(/^\s+|\s+$/g, "");
   }
 
 }
