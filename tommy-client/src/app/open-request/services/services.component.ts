@@ -56,13 +56,13 @@ export class ServicesComponent implements OnInit {
   }
 
   searchTextChanged(text: string) {
-    this.searchText = this.stripWhiteSpaces(text);
+    this.searchText = this.stripWhiteSpaces(text.toLowerCase());
     this.addServiceToDisplay();
   }
 
   addServiceToDisplay() {
     this.filterServices = this.services.filter((service: model1) => {
-      return service.value.includes(this.searchText);
+      return service.value.toLowerCase().includes(this.searchText);
     });
     console.log(this.filterServices);
   }
