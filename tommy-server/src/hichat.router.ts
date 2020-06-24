@@ -9,7 +9,7 @@ const HichatRouter: Router = Router();
 HichatRouter.post('*', AuthorizationMiddleware.postAuthorization);
 
 HichatRouter.get('/sendmessage', async (req: Request, res: Response) => {
-    
+
 });
 
 
@@ -17,8 +17,7 @@ HichatRouter.get('/sendmessage', async (req: Request, res: Response) => {
 HichatRouter.get('/', async (req: Request, res: Response) => {
     const chat = new Chat();
     const user: any = req.user;
-    // const userT: string = user.adfsId.split("@")[0];
-    const userT: string = "t123456";
+    const userT: string = user.adfsId.split("@")[0];
     const hitchatUserT: string = `${userT}@aman`;
     const groupName: string = chat.setGroupName(userT);
 
@@ -32,11 +31,9 @@ HichatRouter.get('/', async (req: Request, res: Response) => {
         console.log(err);
     } finally {
         await chat.setRoomMembers(groupName, groupUsersToAdd);
-        res.json("url", `${config.chat.hiChatUrl}/${groupName}`)
+        res.json({ "url": `${config.chat.hiChatUrl}/${groupName}` })
         // TODO: pull support users from lehava and update in redis
     }
-
-    res.send({ url: 'https://www.ynet.co.il/Ext/App/TalkBack/CdaViewOpenTalkBack/0,11382,L-3190779-3,00.html' });
 });
 
 

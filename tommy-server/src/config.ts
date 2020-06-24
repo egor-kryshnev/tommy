@@ -1,4 +1,3 @@
-import { supportUsers } from './utils/supportUsers'
 process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0 as any;
 
 export const config = {
@@ -49,6 +48,6 @@ export const config = {
         chatMessageUrl: process.env.CHAT_MESSAGE_URL || 'chat',
         loginUser: process.env.LOGIN_USER || 'tommy',
         loginPass: process.env.LOGIN_PASS || 'Aa123456',
-        supportUsers: supportUsers
+        supportUsers: process.env.SUPPORT_USERS ? process.env.SUPPORT_USERS.split(',') : []
     }
 }
