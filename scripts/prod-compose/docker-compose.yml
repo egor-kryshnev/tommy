@@ -25,6 +25,13 @@ services:
       REDIS_URL: 'redis://redis:6379'
       LEHAVA_API_HOST: "221.181.0.10"
       LEHAVA_API_PORT: "8050"
+      CHAT_URL: "http://lehava-api-mock:8050/api/v1"
+      HI_CHAT_URL: "http://lehava-api-mock:8050/group"
+      CHAT_GROUP_URL: groups
+      CHAT_LOGIN_URL: login
+      CHAT_MESSAGE_URL: chat
+      LOGIN_USER: tommy
+      LOGIN_PASS: Aa123456
     ports:
       - 80:80
     depends_on:

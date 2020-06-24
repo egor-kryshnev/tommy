@@ -46,6 +46,14 @@ services:
       RABBITMQ_URL: "amqp://rabbitmq:5672"
       LEHAVA_API_HOST: "lehava-api-mock"
       LEHAVA_API_PORT: "8050"
+      CHAT_URL: "http://lehava-api-mock:8050/api/v1"
+      HI_CHAT_URL: "http://lehava-api-mock:8050/group"
+      CHAT_GROUP_URL: groups
+      CHAT_LOGIN_URL: login
+      CHAT_MESSAGE_URL: chat
+      LOGIN_USER: tommy
+      LOGIN_PASS: Aa123456
+      
     ports:
       - 80:80
     depends_on:
