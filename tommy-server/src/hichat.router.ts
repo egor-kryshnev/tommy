@@ -8,6 +8,11 @@ const HichatRouter: Router = Router();
 // ADFS Middleware
 HichatRouter.post('*', AuthorizationMiddleware.postAuthorization);
 
+HichatRouter.get('/sendmessage', async (req: Request, res: Response) => {
+
+});
+
+
 // Simple Url Response for client-side development
 HichatRouter.get('/', async (req: Request, res: Response) => {
     const chat = new Chat();
@@ -26,13 +31,20 @@ HichatRouter.get('/', async (req: Request, res: Response) => {
         console.log(err);
     } finally {
         await chat.setRoomMembers(groupName, groupUsersToAdd);
+<<<<<<< HEAD
         res.json({"url": `${config.chat.hiChatUrl}/${groupName}`});
         // TODO: pull support users from lehava and update in redis
     }
 
+=======
+        res.json({ "url": `${config.chat.hiChatUrl}/${groupName}` })
+        // TODO: pull support users from lehava and update in redis
+    }
+>>>>>>> 427668777d89040f1e5efcad7ddf86f958495263
 });
 
 
 HichatRouter.get('/isalive', (req: Request, res: Response) => res.status(200).send('Server Is Up'));
+
 
 export { HichatRouter };

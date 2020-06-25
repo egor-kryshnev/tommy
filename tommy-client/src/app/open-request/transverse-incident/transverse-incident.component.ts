@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { TransverseIncident } from '../category/category.service';
+import { TransverseIncident, CategoryService } from '../category/category.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,7 +12,10 @@ export class TransverseIncidentDialog implements OnInit {
   description: String;
   open_date: String;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: TransverseIncident, private router: Router, public dialogRef: MatDialogRef<TransverseIncidentDialog>) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: TransverseIncident,
+    private router: Router,
+    public dialogRef: MatDialogRef<TransverseIncidentDialog>,
+    public categoryService: CategoryService) { }
 
   ngOnInit() {
     this.description = this.data.collection_cr.cr[0].description;
@@ -25,7 +28,12 @@ export class TransverseIncidentDialog implements OnInit {
   }
 
   onOpenNewIncident() {
-    this.router.navigateByUrl('/newtask');
+    const selectedCategories: string = this.categoryService.getSelectedCategoryString();
+    if (this.categoryService.hasNextSubCategory()) {
+      this.router.navigate(['/subcategories', selectedCategories]);
+    } else {
+      this.router.navigate(['/description', selectedCategories]);
+    }
     this.dialogRef.close();
   }
 }

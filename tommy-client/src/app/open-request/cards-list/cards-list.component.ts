@@ -6,7 +6,7 @@ import { model1 } from '../../apiget.service'
   templateUrl: './cards-list.component.html',
   styleUrls: ['./cards-list.component.css']
 })
-export class CardsListComponent implements OnInit {
+export class CardsListComponent implements OnInit  {
 
   @Input() cardsList: string[];
   @Output() selected = new EventEmitter<string>();
@@ -22,6 +22,13 @@ export class CardsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.setCardListToDisplay();
+    this.gridColumnStyle = {
+      'grid-template-columns': `repeat(${this.getNumOfCoulmns()}, 300px)`
+    }
+  }
+
+  ngDoCheck(): void {
     this.setCardListToDisplay();
     this.gridColumnStyle = {
       'grid-template-columns': `repeat(${this.getNumOfCoulmns()}, 300px)`

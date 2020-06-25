@@ -11,12 +11,16 @@ import { PostReqService } from '../post-req.service';
 export class SubcategoryComponent implements OnInit {
 
   public categoriesToDisplay: Array<string>;
-  
+  filterCategories: Array<string>;
+  searchText = "";
+
   constructor(public categoryService: CategoryService, public route: ActivatedRoute, private router: Router,
     public postReqService: PostReqService) { }
 
   ngOnInit() {
     this.categoriesToDisplay = this.categoryService.getCategoriesToDisplay();
+    this.filterCategories = this.categoriesToDisplay;
+
   }
 
   selectedSubCategory(category: string) {
@@ -34,5 +38,23 @@ export class SubcategoryComponent implements OnInit {
   onReturn() {
     this.router.navigate(['/categories', this.postReqService.serviceId], { relativeTo: this.route });
   }
+
+  searchTextChanged(text: string) {
+    console.log(`text: ${text}`);
+    this.searchText = this.stripWhiteSpaces(text);
+    console.log(`filter service: ${this.filterCategories}`);
+    this.addCategoryToDisplay();
+  }
+
+  addCategoryToDisplay() {
+    this.filterCategories = this.categoriesToDisplay.filter((category: string) => {
+      return category.includes(this.searchText);
+    });
+  }
+
+  stripWhiteSpaces(str) {
+    return str.replace(/^\s+|\s+$/g, "");
+  }
+
 
 }

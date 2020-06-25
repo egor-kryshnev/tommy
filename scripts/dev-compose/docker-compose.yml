@@ -53,7 +53,7 @@ services:
       CHAT_MESSAGE_URL: chat
       LOGIN_USER: tommy
       LOGIN_PASS: Aa123456
-      
+      SUPPORT_USERS: "t1010101@aman,t11223344@aman,t12312300@aman"
     ports:
       - 80:80
     depends_on:

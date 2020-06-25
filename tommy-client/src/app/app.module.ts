@@ -22,7 +22,6 @@ import { HeaderComponent } from './header/header.component';
 import { PreloaderComponent } from './preloader/preloader.component';
 import { OpenRequestModule } from './open-request/open-request.module';
 import { StatusProgressComponent } from './task-detail/status-progress/status-progress.component';
-import { SearchBarComponent } from './search-bar/search-bar.component';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { ChatComponent } from './chat/chat.component';
@@ -40,7 +39,6 @@ import { SharedModule } from './shared.module';
     PreloaderComponent,
     StatusProgressComponent,
     TaskDetailDialog,
-    SearchBarComponent,
     ChatComponent,
     TasksListComponent
   ],

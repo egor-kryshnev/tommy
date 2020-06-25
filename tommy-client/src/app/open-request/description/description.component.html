@@ -11,7 +11,7 @@
 </div>
 <div id="grid-wrapper">
   <input maxlength="11" class="input {{ phoneWarning }}" pattern="/^-?\d+\.?\d*$/" placeholder="מספר טלפון נייד (חובה)"
-    onkeypress="if(this.value.length>12) return false;" [(ngModel)]="phoneInput" value="{{phoneInput}}">
+    onkeypress="if(this.value.length>12) return false;" value="{{phoneInput}}" (input)="setPhoneInput($event.target.value)">
   <input maxlength="11" class="input" pattern="/^-?\d+\.?\d*$/" placeholder="טלפון אדום/VoiP"
     onkeypress="if(this.value.length>12) return false;" (input)="setVOIPInput($event.target.value)">
   <input type="text" class="input {{ computerNameWarning }}" placeholder="שם המחשב (חובה)" maxlength="20"

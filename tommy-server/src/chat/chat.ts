@@ -23,7 +23,6 @@ export class Chat {
                 password: config.chat.loginPass
             }
         });
-
         if (result) {
             if (result.data && result.data.status === "success") {
                 const { data } = result;
@@ -83,11 +82,11 @@ export class Chat {
         }
     };
 
-    async getGroupMembers(roomId: string) {
+    async getGroupMembers(roomName: string) {
         const authHeaders = await this.getAuthHeaders();
         let result = await axios({
             method: 'get',
-            url: `${config.chat.chatUrl}/${config.chat.chatGroupUrl}.info?roomId=${roomId}`,
+            url: `${config.chat.chatUrl}/${config.chat.chatGroupUrl}.info?roomName=${roomName}`,
             headers: { ...authHeaders }
         });
 
@@ -99,14 +98,14 @@ export class Chat {
     };
 
 
-    async addMemberToGroupFactory(roomId: string, member: string) {
+    async addMemberToGroupFactory(roomName: string, member: string) {
         const authHeaders = await this.getAuthHeaders();
-        const result = await axios.post(`${config.chat.chatUrl}/${config.chat.chatGroupUrl}.invite`, { roomId, username: member }, { headers: authHeaders });
+        const result = await axios.post(`${config.chat.chatUrl}/${config.chat.chatGroupUrl}.invite`, { roomName, username: member }, { headers: authHeaders });
         return result;
     }
 
-    addMembersToGroup(roomId: string, members: string[]) {
-        const promises = members.map(member => this.addMemberToGroupFactory(roomId, member));
+    addMembersToGroup(roomName: string, members: string[]) {
+        const promises = members.map(member => this.addMemberToGroupFactory(roomName, member));
         return Promise.all(promises);
     }
 
@@ -123,15 +122,15 @@ export class Chat {
     //     return results.map(({ result }) => result);
     // };
 
-    async removeMemberFromGroupFactory(roomId: string, member: string) {
+    async removeMemberFromGroupFactory(roomName: string, member: string) {
         const authHeaders = await this.getAuthHeaders();
-        return member !== config.chat.loginUser ? await axios.post(`${config.chat.chatUrl}/${config.chat.chatGroupUrl}.kick`, { roomId, username: member }, { headers: { ...authHeaders } }) : true;
+        return member !== config.chat.loginUser ? await axios.post(`${config.chat.chatUrl}/${config.chat.chatGroupUrl}.kick`, { roomName, username: member }, { headers: { ...authHeaders } }) : true;
 
         // return member !== config.chat.loginUser ? await wrappedAxiosPost(`${config.chat.chatUrl}/${config.chat.chatGroupUrl}.kick`, { roomId, username: member }, { headers: { ...authHeaders } }) : true;
     };
 
-    removeMembersFromGroup(roomId: string, members: string[]) {
-        const promises = members.map(member => this.removeMemberFromGroupFactory(roomId, member));
+    removeMembersFromGroup(roomName: string, members: string[]) {
+        const promises = members.map(member => this.removeMemberFromGroupFactory(roomName, member));
         return Promise.all(promises);
     };
 
@@ -148,37 +147,37 @@ export class Chat {
         return symmetricDifference;
     };
 
-    async setRoomMembers(roomId: string, members: string[]) {
-        const currentGroupMembers = await this.getGroupMembers(roomId);
+    async setRoomMembers(roomName: string, members: string[]) {
+        const currentGroupMembers = await this.getGroupMembers(roomName);
         if (currentGroupMembers && currentGroupMembers.length > 0) {
             const membersToRemove = this.getNonItercectingItems(currentGroupMembers, members);
             const membersToAdd = this.getNonItercectingItems(members, currentGroupMembers);
-            await this.removeMembersFromGroup(roomId, membersToRemove);
-            await this.addMembersToGroup(roomId, membersToAdd);
+            await this.removeMembersFromGroup(roomName, membersToRemove);
+            await this.addMembersToGroup(roomName, membersToAdd);
         }
     };
 
-    async closeGroup(roomId: string) {
+    async closeGroup(roomName: string) {
         const authHeaders = await this.getAuthHeaders();
-        const { result } = await axios.post(`${config.chat.chatUrl}/${config.chat.chatGroupUrl}.archive`, { roomId }, { headers: { ...authHeaders } })
+        const { result } = await axios.post(`${config.chat.chatUrl}/${config.chat.chatGroupUrl}.archive`, { roomName }, { headers: { ...authHeaders } })
         return result;
     }
 
-    async renameGroup(roomId: string, groupName: string) {
+    async renameGroup(roomName: string, groupName: string) {
         const authHeaders = await this.getAuthHeaders();
         const name = this.getAllowedGroupTitleFromText(groupName);
-        const { result } = await axios.post(`${config.chat.chatUrl}/${config.chat.chatGroupUrl}.rename`, { roomId, name }, { headers: { ...authHeaders } });
+        const { result } = await axios.post(`${config.chat.chatUrl}/${config.chat.chatGroupUrl}.rename`, { roomName, name }, { headers: { ...authHeaders } });
         return result;
     }
 
-    async sendMessageToGroup(roomId: string, text: string) {
+    async sendMessageToGroup(roomName: string, text: string) {
         const authHeaders = await this.getAuthHeaders();
-        const { result } = await axios.post(`${config.chat.chatUrl}/${config.chat.chatMessageUrl}.postMessage`, { channel: `#${roomId}`, text }, { headers: { ...authHeaders } });
+        const { result } = await axios.post(`${config.chat.chatUrl}/${config.chat.chatMessageUrl}.postMessage`, { channel: `#${roomName}`, text }, { headers: { ...authHeaders } });
         return result;
     }
 
-    setGroupName(userT: string){
-        const title = `Tommy Support Chat ${userT}`;
+    setGroupName(userT: string) {
+        const title = `Tommy Support ${userT}`;
         return this.getAllowedGroupTitleFromText(title);
     }
 }
