@@ -2303,7 +2303,7 @@ module.exports = {
                                 "@COMMON_NAME": "אמא של ויטלי"
                             },
                             "z_network": {
-                                "@COMMON_NAME": "אמא של אדר"
+                                "@COMMON_NAME": "אמא של רון"
                             }
                         },
                         {
@@ -2322,7 +2322,7 @@ module.exports = {
                                 "@COMMON_NAME": "אמא של ויטלי"
                             },
                             "z_network": {
-                                "@COMMON_NAME": "אמא של אדר"
+                                "@COMMON_NAME": "אמא של רון"
                             }
                         },
                         {
@@ -2341,7 +2341,7 @@ module.exports = {
                                 "@COMMON_NAME": "אמא של ויטלי"
                             },
                             "z_network": {
-                                "@COMMON_NAME": "אמא של אדר"
+                                "@COMMON_NAME": "אמא של רון"
                             }
                         },
                         {
@@ -2360,7 +2360,7 @@ module.exports = {
                                 "@COMMON_NAME": "אמא של ויטלי"
                             },
                             "z_network": {
-                                "@COMMON_NAME": "אמא של אדר"
+                                "@COMMON_NAME": "אמא של רון"
                             }
                         },
                         {
@@ -2379,7 +2379,7 @@ module.exports = {
                                 "@COMMON_NAME": "אמא של ויטלי"
                             },
                             "z_network": {
-                                "@COMMON_NAME": "אמא של אדר"
+                                "@COMMON_NAME": "אמא של רון"
                             }
                         },
                         {
@@ -2398,7 +2398,7 @@ module.exports = {
                                 "@COMMON_NAME": "אמא של ויטלי"
                             },
                             "z_network": {
-                                "@COMMON_NAME": "אמא של אדר"
+                                "@COMMON_NAME": "אמא של רון"
                             }
                         }
                     ]

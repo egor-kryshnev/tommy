@@ -24,7 +24,7 @@ export const config = {
             GET_TRANSVERSE_URL_FUNCTION: (categoryId: string) => `/api/caisd-rest/cr?WC=category%3D'pcat:${categoryId}'%20and%20active%3D1%20and%20impact%3D1`,
             GET_UPDATES: "/api/caisd-rest/cr?WC=type%3D'I'%20and%20active%3D1%20and%20impact%3D1&SORT=open_date DESC",
             POST_NEW_REQUEST: "/api/caisd-rest/cr",
-            GET_HICHAT_IFRAME_URL: 'http://localhost:8050/hichat/exampleurl',
+            GET_HICHAT_IFRAME_URL: '/hichat',
         },
     },
     serviceName: 'tommy-server',

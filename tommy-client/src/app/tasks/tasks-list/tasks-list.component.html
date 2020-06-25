@@ -1,13 +1,16 @@
 <div *ngIf="tasks">
     <div *ngFor="let task of tasks">
-        <div class="task" (click)="openTaskDetailDialog(task)">
-            <img class="StatusImg" src="{{ task.icon }}">
-            <p class="task-status">{{ task.status }}</p>
-            <hr class="kav">
-            <div [ngClass]="{'taskNameDecorationOpen': tasksFlag, 'taskNameDecorationClosed' : !tasksFlag}"></div>
-            <p class="task-date">{{ task.open_date }}</p>
-            <p class="task-title">{{ getTitle(task) }}</p>
-            <p class="task-id">פניה מס' {{ task.id }}</p>
+        <div class="task">
+            <img class="chatImg" src="{{ chatIcon }}" (click)="sendTaskSumMsg(task)">
+            <div class="background" (click)="openTaskDetailDialog(task)">
+                <img class="StatusImg" src="{{ task.icon }}">
+                <p class="task-status">{{ task.status }}</p>
+                <hr class="kav">
+                <div [ngClass]="{'taskNameDecorationOpen': tasksFlag, 'taskNameDecorationClosed' : !tasksFlag}"></div>
+                <p class="task-date">{{ task.open_date }}</p>
+                <p class="task-title">{{ getTitle(task) }}</p>
+                <p class="task-id">פניה מס' {{ task.id }}</p>
+            </div>
         </div>
     </div>
 </div>
