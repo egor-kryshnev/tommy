@@ -69,3 +69,15 @@ span {cursor: context-menu;}
     font-size: 16px;
     width: 200px;
 }
+
+#sap-logo {
+    height: 30px;
+    position: absolute;
+    left: 70px;
+}
+
+#yeso-logo {
+    height: 30px;
+    position: absolute;
+    left: 20px;
+}

@@ -2424,7 +2424,7 @@ module.exports = {
                         "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                     },
                     description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                    open_date: 1577829600,
+                    open_date: 1592978575,
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
@@ -2439,7 +2439,7 @@ module.exports = {
                         "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                     },
                     description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                    open_date: 1577829600,
+                    open_date: 1592978575,
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
@@ -2454,7 +2454,7 @@ module.exports = {
                         "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                     },
                     description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                    open_date: 1577829600,
+                    open_date: 1592978575,
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
@@ -2469,7 +2469,7 @@ module.exports = {
                         "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                     },
                     description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                    open_date: 1577829600,
+                    open_date: 1592978575,
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
@@ -2484,7 +2484,7 @@ module.exports = {
                         "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                     },
                     description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                    open_date: 1577829600,
+                    open_date: 1592978575,
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
@@ -2499,7 +2499,7 @@ module.exports = {
                         "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                     },
                     description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                    open_date: 1577829600,
+                    open_date: 1592978575,
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
@@ -2514,7 +2514,7 @@ module.exports = {
                         "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                     },
                     description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                    open_date: 1577829600,
+                    open_date: 1592978575,
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
@@ -2529,7 +2529,7 @@ module.exports = {
                         "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                     },
                     description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                    open_date: 1577829600,
+                    open_date: 1592978575,
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
@@ -2544,7 +2544,7 @@ module.exports = {
                         "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                     },
                     description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                    open_date: 1577829600,
+                    open_date: 1592978575,
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
@@ -2559,7 +2559,7 @@ module.exports = {
                         "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                     },
                     description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                    open_date: 1577829600,
+                    open_date: 1592978575,
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
@@ -2574,7 +2574,7 @@ module.exports = {
                         "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                     },
                     description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                    open_date: 1577829600,
+                    open_date: 1592978575,
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
@@ -2589,7 +2589,7 @@ module.exports = {
                         "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                     },
                     description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                    open_date: 1577829600,
+                    open_date: 1592978575,
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
@@ -2604,7 +2604,7 @@ module.exports = {
                         "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                     },
                     description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                    open_date: 1577829600,
+                    open_date: 1592978575,
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
@@ -2619,7 +2619,7 @@ module.exports = {
                         "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                     },
                     description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                    open_date: 1577829600,
+                    open_date: 1592978575,
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
@@ -2634,7 +2634,7 @@ module.exports = {
                         "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                     },
                     description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                    open_date: 1577829600,
+                    open_date: 1592978575,
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
@@ -2649,7 +2649,7 @@ module.exports = {
                         "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                     },
                     description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                    open_date: 1577829600,
+                    open_date: 1592978575,
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
@@ -2661,7 +2661,7 @@ module.exports = {
                         "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                     },
                     description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                    open_date: 1577829600,
+                    open_date: 1592978575,
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
@@ -2673,7 +2673,7 @@ module.exports = {
                         "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                     },
                     description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                    open_date: 1577829600,
+                    open_date: 1592978575,
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
@@ -2685,7 +2685,7 @@ module.exports = {
                         "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                     },
                     description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                    open_date: 1577829600,
+                    open_date: 1592978575,
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
@@ -2697,7 +2697,7 @@ module.exports = {
                         "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                     },
                     description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                    open_date: 1577829600,
+                    open_date: 1592978575,
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
@@ -2709,7 +2709,7 @@ module.exports = {
                         "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                     },
                     description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                    open_date: 1577829600,
+                    open_date: 1592978575,
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
@@ -2721,7 +2721,7 @@ module.exports = {
                         "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                     },
                     description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                    open_date: 1577829600,
+                    open_date: 1592978575,
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },
@@ -2733,7 +2733,7 @@ module.exports = {
                         "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                     },
                     description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                    open_date: 1577829600,
+                    open_date: 1592978575,
                     status: {
                         "@COMMON_NAME": 'ממתין לטיפול'
                     },

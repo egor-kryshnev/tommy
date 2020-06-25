@@ -1,6 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { ApigetService, updatesModel } from '../apiget.service';
+import * as moment from "moment";
 
 
 export interface Update {
@@ -29,8 +30,9 @@ export class UpdatingComponent implements OnInit {
         this.updatesArray = [];
         if (Array.isArray(Response)) {
           Response.map((update: any) => {
-            let updateDate = new Date(update.open_date * 1000);
-            let formatted_date = updateDate.getHours() + ":" + updateDate.getMinutes() + "\xa0\xa0·\xa0\xa0" + updateDate.getDate() + "." + (updateDate.getMonth() + 1) + "." + updateDate.getFullYear();
+            const formatted_date = moment(update.open_date * 1000).format(
+              "hh:mm · DD.MM.YYYY"
+            );;
             this.updatesArray.push(
               {
                 "name": update.category["@COMMON_NAME"].replace(/\./g, ' ') || null,

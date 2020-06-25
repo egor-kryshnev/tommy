@@ -23,8 +23,8 @@ mat-list-item {
   src: url(../../assets/rubik-extra-light.woff2);
 }
 @font-face {
-  font-family: Rubiklight;
-  src: url(../../assets/rubik-light.woff2);
+  font-family: rubik-light;
+  src: url(../../assets/rubik-light.ttf);
 }
 @font-face {
   font-family: rubik-regular;
@@ -61,6 +61,7 @@ mat-list-item {
   letter-spacing: normal;
   text-align: right;
   color: #696969;
+  font-family: rubik-light;
 }
 
 
@@ -115,4 +116,12 @@ mat-list-item {
 
 .loader{
   margin-top: 60%;
+}
+
+.update-card:hover {
+  background-color: #f9fafb;
+}
+
+mat-list {
+  margin-right: 10px;
 }
