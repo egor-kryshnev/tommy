@@ -177,7 +177,7 @@ export class Chat {
     }
 
     setGroupName(userT: string) {
-        const title = `Tommy Support Chat ${userT}`;
+        const title = `Tommy Support ${userT}`;
         return this.getAllowedGroupTitleFromText(title);
     }
 }
