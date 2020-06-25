@@ -90,7 +90,12 @@ export class ApigetService {
     .set('Content-type', 'application/json')
     .set('X-AccessKey', this.accessKey)
     .set('Accept', 'application/json')
-    .set('X-Obj-Attrs', 'category, description, open_date, summary');
+    .set('X-Obj-Attrs', 'category, description, open_date, summary, z_network');
+
+  contentTypeJson = new HttpHeaders({
+      'Content-type': 'application/json',
+      'Accept': 'application/json'
+    })
 
   getNetworks() {
     this.networksByIdArray = [];
@@ -173,9 +178,12 @@ export class ApigetService {
   }
 
   getHichatIframe() {
-    console.log("ApiGet Service: Getting HichatIframe");
     return this.http.get(config.GET_HICHAT_IFRAME_URL,
       { withCredentials: true })
+  }
+
+  sendTaskSumMsg(msgObj: object) {
+    return this.http.post(config.POST_SEND_HICHAT_MSG, msgObj, { withCredentials: true, headers: this.contentTypeJson })
   }
 
 };

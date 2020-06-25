@@ -44,18 +44,18 @@ export class DescriptionComponent implements OnInit {
     this.router.navigate(['/categories', this.postReqService.serviceId], { relativeTo: this.route });
   }
 
-  phoneFilter(phone: Array<string>){
-    if(phone){
-      if(phone.length > 1){
+  phoneFilter(phone: Array<string>) {
+    if (phone) {
+      if (phone.length > 1) {
         console.log("0" + phone[1]);
         return phone[1];
       }
-      else if(phone.length === 1){
+      else if (phone.length === 1) {
         return phone[0];
       }
     }
     return "";
-   }
+  }
 
   sendPost() {
     if (this.locationInput && this.phoneInput && this.computerNameInput) {

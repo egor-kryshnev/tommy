@@ -11,13 +11,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   static chatDisplayFlag: Boolean;
   constructor(private router: Router, private route: ActivatedRoute, public authService: AuthService) { }
-  
+
   ngOnInit(): void {
   }
 
-  chatTag() {
-    document.getElementById("cloack").className = HomeComponent.chatDisplayFlag ? "hidden" : "visible";
-    HomeComponent.chatDisplayFlag = !HomeComponent.chatDisplayFlag;
+  public chatTag() {
+      document.getElementById("cloack").className = HomeComponent.chatDisplayFlag ? "hidden" : "visible";
+      HomeComponent.chatDisplayFlag = !HomeComponent.chatDisplayFlag;
   }
 
 }

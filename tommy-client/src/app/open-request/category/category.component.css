@@ -33,3 +33,11 @@
     margin-bottom: 1vh;
     font-weight: 500;
   }
+
+
+  .search{
+    margin: auto;
+    width: fit-content;
+    margin-bottom: 20px;
+  }
+  

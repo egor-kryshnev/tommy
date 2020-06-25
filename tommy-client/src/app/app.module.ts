@@ -22,11 +22,11 @@ import { HeaderComponent } from './header/header.component';
 import { PreloaderComponent } from './preloader/preloader.component';
 import { OpenRequestModule } from './open-request/open-request.module';
 import { StatusProgressComponent } from './task-detail/status-progress/status-progress.component';
-import { SearchBarComponent } from './search-bar/search-bar.component';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { ChatComponent } from './chat/chat.component';
 import { TasksListComponent } from './tasks/tasks-list/tasks-list.component';
+import { SharedModule } from './shared.module';
 
 @NgModule({
   declarations: [
@@ -39,7 +39,6 @@ import { TasksListComponent } from './tasks/tasks-list/tasks-list.component';
     PreloaderComponent,
     StatusProgressComponent,
     TaskDetailDialog,
-    SearchBarComponent,
     ChatComponent,
     TasksListComponent
   ],
@@ -59,7 +58,8 @@ import { TasksListComponent } from './tasks/tasks-list/tasks-list.component';
     OpenRequestModule,
     MatInputModule,
     FormsModule,
-    DragDropModule
+    DragDropModule,
+    SharedModule
   ],
   providers: [EventEmiterService, AuthService, { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } }],
   bootstrap: [AppComponent]
