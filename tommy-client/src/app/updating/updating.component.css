@@ -10,25 +10,22 @@ mat-list-item {
   cursor: context-menu;
 }
 
-#rtl{
-  direction: rtl;
-}
 
 @font-face {
   font-family: Rubik;
-  src: url(../../assets/Rubik-Medium.ttf);
+  src: url(/../../assets/Rubik-Medium.ttf);
 }
 @font-face {
   font-family: rubik-extra-light;
-  src: url(../../assets/rubik-extra-light.woff2);
+  src: url(/../../assets/rubik-extra-light.woff2);
 }
 @font-face {
-  font-family: rubik-light;
-  src: url(../../assets/rubik-light.ttf);
+  font-family: Rubik-Light;
+  src: url(/../../assets/Rubik-Light.ttf);
 }
 @font-face {
   font-family: rubik-regular;
-  src: url(../../assets/rubik-regular.woff2);
+  src: url(/../../assets/rubik-regular.woff2);
 }
 
 #updatesHeadline {
@@ -61,7 +58,7 @@ mat-list-item {
   letter-spacing: normal;
   text-align: right;
   color: #696969;
-  font-family: rubik-light;
+  font-family: Rubik-Light;
 }
 
 
@@ -72,6 +69,7 @@ mat-list-item {
   line-height: 1.43;
   letter-spacing: normal;
   text-align: right;
+  font-family: Rubik-Light;
   color: #000;
 }
 
@@ -116,6 +114,11 @@ mat-list-item {
 
 .loader{
   margin-top: 60%;
+}
+
+.update-card {
+  direction: rtl;
+  cursor: pointer;
 }
 
 .update-card:hover {
