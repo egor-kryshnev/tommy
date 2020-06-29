@@ -27,6 +27,8 @@ import { FormsModule } from '@angular/forms';
 import { ChatComponent } from './chat/chat.component';
 import { TasksListComponent } from './tasks/tasks-list/tasks-list.component';
 import { SharedModule } from './shared.module';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { BottomUpdateDetailSheet } from './updating/update-detail/update-detail.component'
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { SharedModule } from './shared.module';
     StatusProgressComponent,
     TaskDetailDialog,
     ChatComponent,
-    TasksListComponent
+    TasksListComponent,
+    BottomUpdateDetailSheet
   ],
   imports: [
     BrowserModule,
@@ -59,10 +62,10 @@ import { SharedModule } from './shared.module';
     MatInputModule,
     FormsModule,
     DragDropModule,
-    SharedModule
+    SharedModule,
+    MatBottomSheetModule
   ],
   providers: [EventEmiterService, AuthService, { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } }],
   bootstrap: [AppComponent]
-  // entryComponents: [FinishRequestComponent]
 })
 export class AppModule { }
