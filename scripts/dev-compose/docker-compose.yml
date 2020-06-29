@@ -1,14 +1,6 @@
 version: "2.1"
 
 services:
-  # tommy-client:
-  #   image: tommy-client
-  #   build: 
-  #     context: ../../tommy-client
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - 4200:4200
-
   lehava-api-mock:
     image: lehava-api-mock
     container_name: lehava-api-mock
@@ -18,8 +10,16 @@ services:
     ports:
       - 8050:8050
 
-  nginx-tommy-client:
-    container_name: nginx-tommy-client
+  client-builder:
+    container_name: client-builder
+    image: trion/ng-cli
+    working_dir: /usr/tommy-client/
+    volumes:
+      - ../../tommy-client/:/usr/tommy-client/
+    command: bash -c "ng build --watch"
+
+  client-nginx:
+    container_name: client-nginx
     image: nginx
     volumes:
       - ../../tommy-client/nginx.dev.conf:/etc/nginx/nginx.conf
@@ -41,7 +41,7 @@ services:
       AUTH_CALLBACK_URL: /auth/callback
       PORT: 80
       SHRAGA_URL: http://13.79.7.3
-      CLIENT_URL: http://nginx-tommy-client:3000
+      CLIENT_URL: http://client-nginx:3000
       REDIS_URL: 'redis://redis:6379'
       RABBITMQ_URL: "amqp://rabbitmq:5672"
       LEHAVA_API_HOST: "lehava-api-mock"

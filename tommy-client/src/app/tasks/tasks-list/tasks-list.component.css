@@ -100,7 +100,10 @@
   left: 5px;
   bottom: 5px;
   opacity: 0.5;
-  z-index: 10;
+}
+
+.chatImg:hover{
+  opacity: 1;
 }
 
 .background {

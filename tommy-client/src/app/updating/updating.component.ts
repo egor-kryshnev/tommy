@@ -1,7 +1,9 @@
 
 import { Component, OnInit } from '@angular/core';
-import { ApigetService, updatesModel } from '../apiget.service';
-
+import { ApigetService } from '../apiget.service';
+import * as moment from "moment";
+import { BottomUpdateDetailSheet } from './update-detail/update-detail.component'
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 
 export interface Update {
   date: string,
@@ -16,7 +18,7 @@ export class UpdatingComponent implements OnInit {
 
   updatesArray: any[];
 
-  constructor(public apiget: ApigetService) { }
+  constructor(public apiget: ApigetService, private _bottomSheet: MatBottomSheet) { }
 
   ngOnInit() {
     this.setUpdates();
@@ -29,32 +31,40 @@ export class UpdatingComponent implements OnInit {
         this.updatesArray = [];
         if (Array.isArray(Response)) {
           Response.map((update: any) => {
-            let updateDate = new Date(update.open_date * 1000);
-            let formatted_date = updateDate.getHours() + ":" + updateDate.getMinutes() + "\xa0\xa0·\xa0\xa0" + updateDate.getDate() + "." + (updateDate.getMonth() + 1) + "." + updateDate.getFullYear();
+            const formatted_date = moment(update.open_date * 1000).format(
+              "hh:mm · DD.MM.YYYY"
+            );
             this.updatesArray.push(
               {
                 "name": update.category["@COMMON_NAME"].replace(/\./g, ' ') || null,
-                "description": update.summary || null,
+                "summary": update.summary || null,
                 "open_date": formatted_date || null,
                 "z_network": update.z_network ? (update.z_network["@COMMON_NAME"] || false) : false,
+                "description": update.description || null
               }
             )
           });
         } else {
           let updateDate = new Date(Response.open_date * 1000);
-            let formatted_date = updateDate.getHours() + ":" + updateDate.getMinutes() + "\xa0\xa0·\xa0\xa0" + updateDate.getDate() + "." + (updateDate.getMonth() + 1) + "." + updateDate.getFullYear();
-            this.updatesArray.push(
-              {
-                "name": Response.category["@COMMON_NAME"].replace(/\./g, ' ') || null,
-                "description": Response.summary || null,
-                "open_date": formatted_date || null,
-                "z_network": Response.z_network ? (Response.z_network["@COMMON_NAME"] || false) : false,
-              }
-            )
+          const formatted_date = moment(Response.open_date * 1000).format(
+            "hh:mm · DD.MM.YYYY"
+          );
+          this.updatesArray.push(
+            {
+              "name": Response.category["@COMMON_NAME"].replace(/\./g, ' ') || null,
+              "summary": Response.summary || null,
+              "open_date": formatted_date || null,
+              "z_network": Response.z_network ? (Response.z_network["@COMMON_NAME"] || false) : false,
+              "description": Response.description || null
+            }
+          )
         }
-        this.updatesArray = this.updatesArray.reverse();
       }
     });
+  }
+
+  openBottomSheet(updateObj): void {
+    this._bottomSheet.open(BottomUpdateDetailSheet, { data: updateObj });
   }
 
 }
