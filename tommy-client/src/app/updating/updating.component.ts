@@ -59,7 +59,6 @@ export class UpdatingComponent implements OnInit {
             }
           )
         }
-        this.updatesArray = this.updatesArray.reverse();
       }
     });
   }

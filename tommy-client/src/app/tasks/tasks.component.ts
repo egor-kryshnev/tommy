@@ -58,9 +58,7 @@ export class TasksComponent implements OnInit {
   }
 
   jsonParser(taskObject) {
-    const formatted_date = moment(taskObject.open_date * 1000).format(
-      "hh:mm DD.MM.YYYY"
-    );
+    const formatted_date = taskObject ? moment(taskObject.open_date * 1000).format("hh:mm DD.MM.YYYY") : false;
     return {
       id: taskObject ? taskObject["@COMMON_NAME"] : false,
       description: taskObject.description || false,
