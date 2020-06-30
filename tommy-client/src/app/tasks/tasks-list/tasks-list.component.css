@@ -24,7 +24,7 @@
   float: left;
   position: relative;
   top: 30px;
-  left: 45px;
+  left: 50px;
   font-family: Rubik;
   font-size: 14px;
   color: #3b3b3b;
@@ -92,4 +92,21 @@
   float: right;
   right: 105px;
   top: 28px;
+}
+
+.chatImg {
+  height: 30px;
+  position: absolute;
+  left: 5px;
+  bottom: 5px;
+  opacity: 0.5;
+}
+
+.chatImg:hover{
+  opacity: 1;
+}
+
+.background {
+  height: 100%;
+  width: 100%;
 }

@@ -8,7 +8,7 @@
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: local('Varela Round Regular'), local('VarelaRound-Regular'), url(../../assets/Varela-Round.woff2) format('woff2');
+    src: local('Varela Round Regular'), local('VarelaRound-Regular'), url(/../../assets/Varela-Round.woff2) format('woff2');
     unicode-range: U+0590-05FF, U+20AA, U+25CC, U+FB1D-FB4F;
 }
 
@@ -16,13 +16,13 @@
     font-family: Rubik-light;
     font-style: normal;
     font-weight: 400;
-    src: local('Rubik'), local('Rubik-Regular'), url(../../assets/rubik-light.woff2) format('woff2');
+    src: local('Rubik'), local('Rubik-Regular'), url(/../../assets/rubik-light.woff2) format('woff2');
     unicode-range: U+0590-05FF, U+20AA, U+25CC, U+FB1D-FB4F;
 }
 
 @font-face {
     font-family: Rubik;
-    src: url(../../assets/Rubik-Medium.ttf);
+    src: url(/../../assets/Rubik-Medium.ttf);
 }
 
 #timeTillTreatment {
@@ -160,7 +160,7 @@
 }
 
 #scrollerComponents {
-    height: 675px;
+    height: 710px;
     width: 60vw;
 }
 
