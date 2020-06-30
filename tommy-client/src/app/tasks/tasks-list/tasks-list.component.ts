@@ -41,7 +41,7 @@ export class TasksListComponent {
 
   openChatBox() {
     document.getElementById("cloack").className = "visible";
-    HomeComponent.chatDisplayFlag = !HomeComponent.chatDisplayFlag;
+    HomeComponent.chatDisplayFlag = true;
   }
 
 }

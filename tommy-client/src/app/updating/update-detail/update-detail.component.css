@@ -17,8 +17,9 @@ h5 {
     text-align: center;
 }
 
-.update-description{
+.update-data{
     text-align: center;
     font-family: Rubik-Light;
     font-size: 15px;
+    direction: rtl;
 }
