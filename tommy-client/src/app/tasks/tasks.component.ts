@@ -34,7 +34,7 @@ export class TasksComponent implements OnInit {
     public _eventEmmitter: EventEmiterService,
     public authService: AuthService,
     public taskDetailDialog: MatDialog
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.uUid = this.authService.getUuid();
@@ -58,24 +58,24 @@ export class TasksComponent implements OnInit {
   }
 
   jsonParser(taskObject) {
-    const formatted_date = moment(taskObject.open_date * 1000).format(
-      "hh:mm DD.MM.YYYY"
-    );
-    return {
-      id: taskObject ? taskObject["@COMMON_NAME"] : false,
-      description: taskObject.description || false,
-      status: taskObject.status ? taskObject.status["@COMMON_NAME"] : false,
-      open_date: formatted_date || false,
-      network: taskObject.z_network
-        ? taskObject.z_network["@COMMON_NAME"]
-        : false,
-      service: taskObject.z_impact_service
-        ? taskObject.z_impact_service["@COMMON_NAME"]
-        : false,
-      summary: taskObject.summary || false,
-      group: taskObject.group ? taskObject.group["@COMMON_NAME"] : false,
-      icon: `../../assets/status${taskObject.status["@id"]}.svg`,
-    } as taskModel1;
+    if (taskObject) {
+      const formatted_date = moment(taskObject.open_date * 1000).format(
+        "hh:mm DD.MM.YYYY"
+      );
+      return {
+        id: taskObject ? taskObject["@COMMON_NAME"] : false,
+        description: taskObject.description || false,
+        status: taskObject.status ? taskObject.status["@COMMON_NAME"] : false,
+        open_date: formatted_date || false,
+        network: taskObject.z_network ? taskObject.z_network["@COMMON_NAME"] : false,
+        service: taskObject.z_impact_service ? taskObject.z_impact_service["@COMMON_NAME"] : false,
+        summary: taskObject.summary || false,
+        group: taskObject.group ? taskObject.group["@COMMON_NAME"] : false,
+        icon: `../../assets/status${taskObject.status["@id"]}.svg`,
+      } as taskModel1;
+    } else {
+      return false;
+    }
   }
 
   arrParser(tasksArray) {
