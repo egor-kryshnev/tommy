@@ -8,11 +8,10 @@ const HichatRouter: Router = Router();
 HichatRouter.post('/sendmsg', async (req: Request, res: Response) => {
     const chat = new Chat();
     const groupName = getGroupName(req.user);
-    const request = req.body;
-    const messageToSend = `Request title: ${request.taskSummary}, request id: ${request.taskId}, opened in: ${request.taskDate}`;
+    const messageToSend = config.chat.hiChatTaskMessageStructure(req.body.taskId, req.body.taskDate);
     try {
         await chat.sendMessageToGroup(groupName, messageToSend);
-        res.status(200).send(`Message ${messageToSend} sent to group ${groupName}`);
+        res.status(200).send("OK");
     } catch (err) {
         console.error(err);
         res.status(300).send(err);
@@ -20,26 +19,29 @@ HichatRouter.post('/sendmsg', async (req: Request, res: Response) => {
 });
 
 
-// Simple Url Response for client-side development
 HichatRouter.get('/', async (req: Request, res: Response) => {
     const chat = new Chat();
     const user: any = req.user;
     const userT: string = user.adfsId.split("@")[0];
     const hitchatUserT: string = `${userT}@aman`;
-    const groupName: string = chat.setGroupName(userT);
+    const groupName: string = chat.getAllowedGroupName(userT);
 
     //TODO: get support users from redis
     let groupUsersToAdd: string[] = (config.chat.supportUsers).slice(0);
-    const tommyUser = "tommy";
-    // groupUsersToAdd.push(hitchatUserT);
+    groupUsersToAdd.push(hitchatUserT);
 
     try {
-        await chat.createGroup(groupName, groupUsersToAdd.concat([hitchatUserT, tommyUser]));
+        await chat.createGroup(groupName, groupUsersToAdd);
     } catch (err) {
-        console.log(err);
+        console.error(err);
     } finally {
+        try{
+            await chat.setRoomMembers(groupName, groupUsersToAdd);
+        }catch(err){
+            console.error(err);
+        }
         await chat.setRoomMembers(groupName, groupUsersToAdd);
-        res.json({ "url": `${config.chat.hiChatUrl}/${groupName}` })
+        res.json({ "url": `${config.chat.hiChatUrl}/${groupName}` });
         // TODO: pull support users from lehava and update in redis
     }
 });
@@ -47,9 +49,7 @@ HichatRouter.get('/', async (req: Request, res: Response) => {
 function getGroupName(user: any) {
     const chat: Chat = new Chat();
     const userT: string = user.adfsId.split("@")[0];
-    const hitchatUserT: string = `${userT}@aman`;
-    const groupName: string = chat.setGroupName(userT);
-    return groupName;
+    return chat.getAllowedGroupName(userT);
 }
 
 

@@ -176,8 +176,8 @@ export class Chat {
         return result;
     }
 
-    setGroupName(userT: string) {
-        const title = `Tommy Support ${userT}`;
-        return this.getAllowedGroupTitleFromText(title);
+    getAllowedGroupName(userT: string) {
+        const groupName = config.chat.hiChatGroupTitle(userT);
+        return this.getAllowedGroupTitleFromText(groupName);
     }
 }
