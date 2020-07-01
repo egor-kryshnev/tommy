@@ -24,7 +24,7 @@ export const config = {
             GET_TRANSVERSE_URL_FUNCTION: (categoryId: string) => `/api/caisd-rest/cr?WC=category%3D'pcat:${categoryId}'%20and%20active%3D1%20and%20impact%3D1`,
             GET_UPDATES: "/api/caisd-rest/cr?WC=type%3D'I'%20and%20active%3D1%20and%20impact%3D1&SORT=open_date DESC",
             POST_NEW_REQUEST: "/api/caisd-rest/cr",
-            GET_HICHAT_IFRAME_URL: '/hichat',
+            GET_HICHAT_IFRAME_URL: '/hichat'
         },
     },
     serviceName: 'tommy-server',
@@ -48,6 +48,8 @@ export const config = {
         chatMessageUrl: process.env.CHAT_MESSAGE_URL || 'chat',
         loginUser: process.env.LOGIN_USER || 'tommy',
         loginPass: process.env.LOGIN_PASS || 'Aa123456',
-        supportUsers: process.env.SUPPORT_USERS ? process.env.SUPPORT_USERS.split(',') : []
+        supportUsers: process.env.SUPPORT_USERS ? process.env.SUPPORT_USERS.split(',') : [],
+        hiChatGroupTitle: (userT: string) => `Tom Support ${userT}`,
+        hiChatTaskMessageStructure: (taskId: string, taskDate: string) => `היי, מבקש עזרה עבור פנייה מספר: ${taskId}, אשר נפתחה ב ${taskDate}`
     }
 }
