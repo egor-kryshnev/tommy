@@ -55,10 +55,12 @@ module.exports = {
             }
         } return false;
     },
-    newCallValidator: (req) => {
-        if (req.body.cr && req.body.cr.customer && req.body.cr.customer['@id'] && req.body.cr.description && req.body.cr.description) {
-            return true;
-        } return false;
+    typeCheck: (req) => {
+        if (req.body.cr) {
+            return "cr";
+        } else if (req.body.chg) {
+            return "chg";
+        } else return false;
     },
     accessKeyValidator: (req) => {
         if (req.body.rest_access == 'rest_access') {

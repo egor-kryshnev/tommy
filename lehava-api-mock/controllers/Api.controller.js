@@ -106,15 +106,25 @@ module.exports = (app) => {
 
     // POSTing a new request and response back the new lehava request id
     app.post('/caisd-rest/cr', (req, res) => {
-        if (validator.newCallValidator(req)) {
+        if (validator.typeCheck(req) === "cr") {
             const userId = (req.body.cr.customer['@id'].split("'")[1]);
             const category = (req.body.cr.description.split("\n")[0]);
             const description = (req.body.cr.description.split("\n")[1]);
 
             const newCall = new Call(userId, category, description);
             newCall.save();
-            res.send(lehavaData.requests);
-            lehavaData.requests.cr['@COMMON_NAME'] += 1;
+            res.send(lehavaData.crRequests);
+            lehavaData.crRequests.cr['@COMMON_NAME'] += 1;
+        } 
+        else if (validator.typeCheck(req) === "chg") {
+            const userId = (req.body.chg.requestor['@id'].split("'")[1]);
+            const category = (req.body.chg.description.split("\n")[0]);
+            const description = (req.body.chg.description.split("\n")[1]);
+
+            const newCall = new Call(userId, category, description);
+            newCall.save();
+            res.send(lehavaData.chgRequests);
+            lehavaData.chgRequests.chg['@COMMON_NAME'] += 1;
         } else {
             res.status(400).send({ error: "Bad Parameters" })
         }
