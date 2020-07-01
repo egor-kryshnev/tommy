@@ -2,8 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { config } from 'src/environments/config.dev';
 
-export interface PostResponse {
-  "cr": {
+export type PostResponse = PostRequestResponse | PostIncidentResponse;
+
+interface PostRequestResponse {
+  cr: {
+    "@COMMON_NAME": string
+  }
+}
+
+interface PostIncidentResponse {
+  chg: {
     "@COMMON_NAME": string
   }
 }
@@ -113,6 +121,6 @@ export class PostReqService {
   }
 
   getRequestId(postRes: PostResponse) {
-    return postRes.cr["@COMMON_NAME"];
+    return ("cr" in postRes) ? postRes.cr["@COMMON_NAME"] : postRes.chg["@COMMON_NAME"];
   }
 }
