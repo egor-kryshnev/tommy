@@ -50,6 +50,6 @@ export const config = {
         loginPass: process.env.LOGIN_PASS || 'Aa123456',
         supportUsers: process.env.SUPPORT_USERS ? process.env.SUPPORT_USERS.split(',') : [],
         hiChatGroupTitle: (userT: string) => `Tom Support ${userT}`,
-        hiChatTaskMessageStructure: (taskId: string, taskDate: string) => `היי, מבקש עזרה עבור פנייה מספר: ${taskId}, אשר נפתחה ב ${taskDate}`
+        hiChatTaskMessageStructure: (taskId: string, taskDate: string) => `היי, אשמח לעזרה בפנייה מספר: ${taskId}, שנפתחה ב ${taskDate}`
     }
 }
