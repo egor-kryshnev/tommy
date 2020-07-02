@@ -1,7 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TransverseIncident, CategoryService } from '../category/category.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+
+export interface TransverseIncidentData extends TransverseIncident {
+  selectedCategories: string;
+}
 
 @Component({
   selector: 'app-transverse-incident',
@@ -12,10 +16,10 @@ export class TransverseIncidentDialog implements OnInit {
   description: String;
   open_date: String;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: TransverseIncident,
+  constructor(@Inject(MAT_DIALOG_DATA) public data: TransverseIncidentData,
     private router: Router,
-    public dialogRef: MatDialogRef<TransverseIncidentDialog>,
-    public categoryService: CategoryService) { }
+    public route: ActivatedRoute,
+    public dialogRef: MatDialogRef<TransverseIncidentDialog>) { }
 
   ngOnInit() {
     this.description = this.data.collection_cr.cr[0].description;
@@ -28,12 +32,8 @@ export class TransverseIncidentDialog implements OnInit {
   }
 
   onOpenNewIncident() {
-    const selectedCategories: string = this.categoryService.getSelectedCategoryString();
-    if (this.categoryService.hasNextSubCategory()) {
-      this.router.navigate(['/subcategories', selectedCategories]);
-    } else {
-      this.router.navigate(['/description', selectedCategories]);
-    }
+    const selectedCategories: string = this.data.selectedCategories;
+    this.router.navigate(['/description', selectedCategories], { relativeTo: this.route });
     this.dialogRef.close();
   }
 }
