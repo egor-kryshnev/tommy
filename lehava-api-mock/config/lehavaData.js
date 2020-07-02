@@ -2407,9 +2407,15 @@ module.exports = {
         }
     ],
 
-    requests: {
+    crRequests: {
         cr: {
             "@COMMON_NAME": 5000
+        }
+    },
+    
+    chgRequests: {
+        chg: {
+            "@COMMON_NAME": 2000
         }
     },
 

@@ -6,7 +6,8 @@ export class AuthorizationMiddleware {
         const user: any = req.user;
 
         try {
-            if (user.adfsId.split('@')[0] === req.body.cr.z_username) {
+            if ((req.body.cr && (user.adfsId.split('@')[0] === req.body.cr.z_username)) ||
+                (req.body.chg && (user.adfsId.split('@')[0] === req.body.chg.z_username))) {
                 next();
             } else {
                 throw new NotPermittedError;

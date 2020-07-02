@@ -4,7 +4,7 @@ module.exports = class Call {
     constructor(userId, category, description) {
         this.userId = userId;
         this.callObject = {
-            "@COMMON_NAME": `${lehavaData.requests.cr['@COMMON_NAME']}`,
+            "@COMMON_NAME": `${lehavaData.crRequests.cr['@COMMON_NAME']}`,
             "description": `${description}`,
             "status": {
                 "@COMMON_NAME": "פתוח"

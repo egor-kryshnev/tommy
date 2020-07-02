@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CategoryService, CategoryOfIncidents, CategoryOfRequests, TransverseIncident } from './category.service'
+import { CategoryService } from './category.service'
 import { PostReqService } from '../post-req.service';
-import { MatDialog } from '@angular/material/dialog';
-import { TransverseIncidentDialog } from '../transverse-incident/transverse-incident.component';
+
 
 @Component({
   selector: 'app-category',
@@ -12,81 +11,36 @@ import { TransverseIncidentDialog } from '../transverse-incident/transverse-inci
 })
 export class CategoryComponent implements OnInit {
 
-  public categoriesToDisplay: Array<string>;
-  private categoryIdList: Array<string>;
-  categoriesLoaded: Promise<boolean>;
+  categoriesLoaded: boolean = false;
   filterCategories: Array<string>;
   searchText = "";
-  constructor(public categoryService: CategoryService, public route: ActivatedRoute, private router: Router,
-    public postReqService: PostReqService, public transverseIncidentDialog: MatDialog) { }
+  constructor(public categoryService: CategoryService,
+    public route: ActivatedRoute,
+    private router: Router,
+    public postReqService: PostReqService) { }
 
   ngOnInit(): void {
-    this.categoryIdList = [];
     const id = this.route.snapshot.paramMap.get('id');
-    this.setCategoriesOfIncidents(id);
-  }
-
-  setCategoriesOfIncidents(id: string) {
-    let categoryList = []
-    this.categoryService.getCategoriesOfIncidents(id)
-      .subscribe((data: CategoryOfIncidents) => {
-        const dataArray = data.collection_pcat.pcat;
-        if (dataArray) {
-          dataArray.forEach(element => {
-            let splited = element["@COMMON_NAME"].split(".");
-            categoryList.push(splited);
-            this.categoryIdList.push(element["@id"]);
-            console.log(element);
-          });
-        }
-        this.setCategoriesOfRequests(id, categoryList);
-      });
-  }
-
-  setCategoriesOfRequests(id: string, categoryList: any) {
-    this.categoryService.getCategoriesOfRequests(id)
-      .subscribe((data: CategoryOfRequests) => {
-        const dataArray = data.collection_chgcat.chgcat;
-        if (dataArray) {
-          dataArray.forEach(element => {
-            let splited = element["@COMMON_NAME"].split(".");
-            categoryList.push(splited);
-            this.categoryIdList.push(element["@id"]);
-          });
-        }
-        this.categoryService.buildData(categoryList);
-        this.categoriesToDisplay = this.categoryService.getCategoriesToDisplay();
-        this.categoriesLoaded = Promise.resolve(true);
-        this.filterCategories = this.categoriesToDisplay;
-
-      });
+    this.categoryService.setCategories(id).then(() => {
+      this.filterCategories = this.categoryService.categoriesToDisplay;
+      this.categoriesLoaded = true;
+    });
+    this.categoryService.emptySelectedCategory();
   }
 
   selectedCategory(category: string) {
     this.categoryService.updateSelectedCategory(category);
-    const categoryId = this.categoryIdList[this.categoriesToDisplay.indexOf(category)];
-    this.categoryService.getTransverseIncident(categoryId).subscribe((incident: TransverseIncident) => {
-      if (incident.collection_cr.cr) {
-        incident.collection_cr.cr = Array.isArray(incident.collection_cr.cr) ? incident.collection_cr.cr : [incident.collection_cr.cr];
-        this.transverseIncidentDialog.open(TransverseIncidentDialog, { width: "430", height: "400", data: incident })
-      } else {
-        this.proceedToNextPage();
-      }
-    }, (e: Error) => {
-      this.proceedToNextPage();
-    });
-  }
-
-  proceedToNextPage() {
     const selectedCategories: string = this.categoryService.getSelectedCategoryString();
+
     if (this.categoryService.hasNextSubCategory()) {
       this.router.navigate(['/subcategories', selectedCategories], { relativeTo: this.route });
     } else {
-      this.router.navigate(['/description', selectedCategories], { relativeTo: this.route });
+      this.categoryService.openTrandverseIncidentDialog();
     }
   }
 
   onReturn() {
+    this.categoryService.emptySelectedCategory();
     this.router.navigate(['/services', this.postReqService.networkId], { relativeTo: this.route });
   }
 
@@ -96,13 +50,11 @@ export class CategoryComponent implements OnInit {
   }
 
   addCategoryToDisplay() {
-    this.filterCategories = this.categoriesToDisplay.filter((category: string) => {
-      return category.toLowerCase().includes(this.searchText);
-    });
+    this.filterCategories = this.categoryService.categoriesToDisplay.filter((category: string) =>
+      category.toLowerCase().includes(this.searchText));
   }
 
   stripWhiteSpaces(str) {
     return str.replace(/^\s+|\s+$/g, "");
   }
-
 }

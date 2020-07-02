@@ -65,7 +65,7 @@ export class DescriptionComponent implements OnInit {
       this.postReqService.phoneNumber = this.phoneInput;
       this.postReqService.computerName = this.computerNameInput;
       this.postReqService.voip = this.voip;
-      this.postReqService.postRequest()
+      this.postReqService.postAppeal()
         .subscribe((res: PostResponse) => {
           const requestId = this.postReqService.getRequestId(res);
           console.log(`request id: ${requestId}`);
