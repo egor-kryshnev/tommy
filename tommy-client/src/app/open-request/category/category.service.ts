@@ -5,7 +5,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TransverseIncidentDialog, TransverseIncidentData } from '../transverse-incident/transverse-incident.component';
 import { PostReqService } from '../post-req.service';
-import { data } from 'jquery';
 
 
 export interface CategoryOfIncidents {
@@ -41,6 +40,9 @@ export interface TransverseIncident {
       }
       "description": String;
       "open_date": number;
+      "z_network": {
+        "@id": String;
+      }
     }]
   }
 }
@@ -67,7 +69,7 @@ export class CategoryService {
 
   transverseIncidentHeaders = new HttpHeaders()
     .set('Content-type', 'application/json')
-    .set('X-Obj-Attrs', 'description, open_date')
+    .set('X-Obj-Attrs', 'description, open_date, z_network')
     .set('Accept', 'application/json')
 
   constructor(private http: HttpClient,
@@ -206,8 +208,11 @@ export class CategoryService {
       this.proceedToNextPage()
     } else {
       this.getTransverseIncident(categoryId).subscribe((incident: TransverseIncident) => {
-        if (incident.collection_cr.cr) {
-          incident.collection_cr.cr = Array.isArray(incident.collection_cr.cr) ? incident.collection_cr.cr : [incident.collection_cr.cr];
+        const isInNetwork = (arr: Array<{ "z_network": { "@id": String; } }>) =>
+          arr.some((trIncident) => trIncident.z_network["@id"] === this.postReqService.networkId);
+        if (incident.collection_cr.cr &&
+          ((Array.isArray(incident.collection_cr.cr) && isInNetwork(incident.collection_cr.cr)) ||
+            ((!Array.isArray(incident.collection_cr.cr)) && isInNetwork([incident.collection_cr.cr])))) {
           const data: TransverseIncidentData = { ...incident, selectedCategories };
           this.transverseIncidentDialog.open(TransverseIncidentDialog, { width: "430", height: "400", data: data })
           this.selectedCategory.pop();
