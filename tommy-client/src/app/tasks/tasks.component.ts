@@ -48,11 +48,13 @@ export class TasksComponent implements OnInit {
 
   setTaskArr(arrName: string, functionName: string) {
     this.aPIgetService[functionName](this.uUid).subscribe((res: any) => {
-      this[arrName] = this.arrParser(
-        Array.isArray(res.collection_cr.cr)
-          ? res.collection_cr.cr
-          : [res.collection_cr.cr]
-      );
+      if(res.collection_cr.cr) {
+        this[arrName] = this.arrParser(
+          Array.isArray(res.collection_cr.cr)
+            ? res.collection_cr.cr
+            : [res.collection_cr.cr]
+        );
+      }
       this.setDisplayedTasks();
     });
   }

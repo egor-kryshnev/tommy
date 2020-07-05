@@ -18,17 +18,6 @@ services:
       - ../../tommy-client/:/usr/tommy-client/
     command: bash -c "ng build --watch"
 
-  client-nginx:
-    container_name: client-nginx
-    image: nginx
-    volumes:
-      - ../../tommy-client/nginx.dev.conf:/etc/nginx/nginx.conf
-      - ../../tommy-client/dist/tommy/:/usr/share/nginx/html/
-    ports:
-      - "3000:3000"
-    depends_on:
-      - tommy-server
-
   tommy-server:
     image: tommy-server
     container_name: tommy-server
@@ -98,3 +87,14 @@ services:
         condition: service_healthy
       redis:
         condition: service_started
+  
+  client-nginx:
+    container_name: client-nginx
+    image: nginx
+    volumes:
+      - ../../tommy-client/nginx.dev.conf:/etc/nginx/nginx.conf
+      - ../../tommy-client/dist/tommy/:/usr/share/nginx/html/
+    ports:
+      - "3000:3000"
+    depends_on:
+      - tommy-server

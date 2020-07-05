@@ -26,6 +26,7 @@ export class DescriptionComponent implements OnInit {
   userUUID: string = '';
   phoneNumbersArray: string[];
   input: number = 0;
+  isPending: boolean = false;
 
   constructor(private router: Router, private route: ActivatedRoute, public _eventEmmitter: EventEmiterService,
     public authService: AuthService, public postReqService: PostReqService, public categoryService: CategoryService,
@@ -38,6 +39,7 @@ export class DescriptionComponent implements OnInit {
     this._eventEmmitter.user.subscribe(data => this.authService.setUserShraga(data));
     this.setPhoneFromShraga(this.authService.getPhone());
     this._eventEmmitter.dataStr.subscribe(data => this.userUUID = data);
+    this.isPending = false;
   }
 
   onReturn() {
@@ -47,18 +49,18 @@ export class DescriptionComponent implements OnInit {
   phoneFilter(phone: Array<string>) {
     if (phone) {
       if (phone.length > 1) {
-        console.log("0" + phone[1]);
-        return phone[1];
+        return phone[1].startsWith("0") ? phone[1] : "0" + phone[1];
       }
       else if (phone.length === 1) {
-        return phone[0];
+        return phone[0].startsWith("0") ? phone[0] : "0" + phone[0];
       }
     }
     return "";
   }
 
   sendPost() {
-    if (this.locationInput && this.phoneInput && this.computerNameInput) {
+    if (this.locationInput && this.phoneInput && this.computerNameInput && (!this.isPending)) {
+      this.isPending = true;
       this.postReqService.descriptionInput = (<HTMLInputElement>document.getElementById("subject")).value;
       this.postReqService.location = this.locationInput;
       console.log(this.phoneInput);

@@ -11,7 +11,7 @@ HichatRouter.post('/sendmsg', async (req: Request, res: Response) => {
     const messageToSend = config.chat.hiChatTaskMessageStructure(req.body.taskId, req.body.taskDate);
     try {
         await chat.sendMessageToGroup(groupName, messageToSend);
-        res.status(200).send("OK");
+        res.status(200).send({ status: "success" });
     } catch (err) {
         console.error(err);
         res.status(300).send(err);
@@ -35,9 +35,9 @@ HichatRouter.get('/', async (req: Request, res: Response) => {
     } catch (err) {
         console.error(err);
     } finally {
-        try{
+        try {
             await chat.setRoomMembers(groupName, groupUsersToAdd);
-        }catch(err){
+        } catch (err) {
             console.error(err);
         }
         await chat.setRoomMembers(groupName, groupUsersToAdd);
