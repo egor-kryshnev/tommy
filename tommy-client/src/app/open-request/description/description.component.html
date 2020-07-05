@@ -21,10 +21,8 @@
 </div>
 
 <div class="button_cont" (click)="sendPost()" id="taskOpenBtn" align="center">
-  <a class="example_b">פתיחת פניה</a>
-
+  <button class="example_b" [disabled]="isPending">פתיחת פניה</button>
 </div>
-
 
 <!-- <input _ngcontent-hvm-c94="" type="number" id="phone" placeholder="מספר טלפון נייד (חובה)" pattern="/^-?\d+\.?\d*$/"
   class="input" onkeypress="if(this.value.length==10) return false;"> -->
