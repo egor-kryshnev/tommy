@@ -47,11 +47,10 @@ export class DescriptionComponent implements OnInit {
   phoneFilter(phone: Array<string>) {
     if (phone) {
       if (phone.length > 1) {
-        console.log("0" + phone[1]);
-        return phone[1];
+        return phone[1].startsWith("0") ? phone[1] : "0" + phone[1];
       }
       else if (phone.length === 1) {
-        return phone[0];
+        return phone[0].startsWith("0") ? phone[0] : "0" + phone[0];
       }
     }
     return "";
