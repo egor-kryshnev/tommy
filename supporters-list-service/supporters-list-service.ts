@@ -1,6 +1,7 @@
 import * as redis from 'redis';
 import { promisify } from 'util';
 import axios from 'axios';
+import { SupporterI } from './supporter.interface';
 import { config } from './config';
 
 export class SupportersListService {
