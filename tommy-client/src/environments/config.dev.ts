@@ -4,7 +4,7 @@ export const config = {
     GET_OPEN_TASKS_URL_FUNCTION: (UUID: string) => `/api/caisd-rest/cr?WC=customer%3D${UUID}%20and%20type%3D'R'%20and%20active%3D1&SORT=open_date DESC`,
     GET_OPEN_REQUESTS_TASKS_URL_FUNCTION: (UUID: string) => `/api/caisd-rest/chg?WC=requestor%3D${UUID}%20and%20type%3D'R'%20and%20active%3D1&SORT=open_date DESC`,
     GET_CLOSED_TASKS_URL_FUNCTION: (UUID: string) => `/api/caisd-rest/cr?WC=customer%3D${UUID}%20and%20type%3D'R'%20and%20active%3D0&SORT=open_date DESC`,
-    GET_CLOSED_REQUESTS_TASKS_URL_FUNCTION: (UUID: string) => `/api/caisd-rest/cr?WC=requestor%3D${UUID}%20and%20type%3D'R'%20and%20active%3D0&SORT=open_date DESC`,
+    GET_CLOSED_REQUESTS_TASKS_URL_FUNCTION: (UUID: string) => `/api/caisd-rest/chg?WC=requestor%3D${UUID}%20and%20type%3D'R'%20and%20active%3D0&SORT=open_date DESC`,
     GET_CATEGORIES_OF_INCIDENTS_URL_FUNCTION: (id: string) => `/api/caisd-rest/pcat?WC=z_impact_service%3D${id}%20and%20delete_flag%3D0&start=1&size=1000`,
     GET_CATEGORIES_OF_REQUESTS_URL_FUNCTION: (id: string) => `/api/caisd-rest/chgcat?WC=z_impact_service%3D${id}%20and%20delete_flag%3D0&start=1&size=1000`,
     GET_UUID_URL_FUNCTION: (userT: string) => `/api/caisd-rest/cnt?WC=userid%3D'${userT}'`,
