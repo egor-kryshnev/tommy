@@ -21,6 +21,17 @@ export interface model1 {
   "value": string;
 }
 
+export interface inputTask {
+  "@COMMON_NAME": string;
+  description: string;
+  status: { "@COMMON_NAME": string; };
+  open_date: number,
+  z_network: { "@COMMON_NAME": string; };
+  z_impact_service: { "@COMMON_NAME": string; };
+  summary: string;
+  group: { "@COMMON_NAME": string };
+}
+
 export interface taskModel1 {
   "id": string;
   "description": string;
@@ -93,9 +104,9 @@ export class ApigetService {
     .set('X-Obj-Attrs', 'category, description, open_date, summary, z_network');
 
   contentTypeJson = new HttpHeaders({
-      'Content-type': 'application/json',
-      'Accept': 'application/json'
-    })
+    'Content-type': 'application/json',
+    'Accept': 'application/json'
+  })
 
   getNetworks() {
     this.networksByIdArray = [];
@@ -124,7 +135,15 @@ export class ApigetService {
     );
   }
 
+  getOpenRequestsTasks(UUID) {
+    return this.http.get(config.GET_OPEN_REQUESTS_TASKS_URL_FUNCTION(UUID),
+      { withCredentials: true, headers: this.tasksHeaders })
+  }
 
+  getClosedRequestsTasks(UUID) {
+    return this.http.get(config.GET_CLOSED_REQUESTS_TASKS_URL_FUNCTION(UUID),
+      { withCredentials: true, headers: this.tasksHeaders })
+  }
 
   getOpenTasks(UUID) {
     return this.http.get(config.GET_OPEN_TASKS_URL_FUNCTION(UUID),
@@ -136,45 +155,38 @@ export class ApigetService {
       { withCredentials: true, headers: this.tasksHeaders })
   }
 
-  post(uuid, phone, userT, network, service, description) {
-    let json = {
-      "cr": {
-        "customer":
-        {
-          "@id": uuid
-        },
-        "z_cst_phone": phone,
-        "priority":
-        {
-          "@id": "505"
-        },
-        "Urgency":
-        {
-          "@id": "1102"
-        },
-        "z_ipaddress": "1.1.1.1",
-        "z_username": userT,
-        "z_computer_name": "computer_name",
-        "z_current_loc": "customer_location",
-        "z_network":
-        {
-          "@id": network
-        },
-        "z_impact_service":
-        {
-          "@id": service
-        },
-        "description": description,
-        "z_source":
-        {
-          "@id": "400104"
-        },
-        "impact":
-        {
-          "@id": "1603"
-        },
-      }
+  chgToArr(chgObj: { collection_chg?: { chg?: Array<inputTask> } }): Array<inputTask> {
+    if (chgObj.collection_chg && chgObj.collection_chg.chg) {
+      return Array.isArray(chgObj.collection_chg.chg) ? chgObj.collection_chg.chg : [chgObj.collection_chg.chg];
     }
+    return []
+  }
+
+  crToArr(crObj: { collection_cr?: { cr?: Array<inputTask> } }): Array<inputTask> {
+    if (crObj.collection_cr && crObj.collection_cr.cr) {
+      return Array.isArray(crObj.collection_cr.cr) ? crObj.collection_cr.cr : [crObj.collection_cr.cr];
+    }
+    return []
+  }
+
+  async getAllSortedTasks(
+    incidentTasksPromise: Promise<{ collection_cr?: { cr?: Array<inputTask> } }>,
+    requestsTasksPromise: Promise<{ collection_chg?: { chg?: Array<inputTask> } }>) {
+    const arrsOfOpenTasks = await Promise.all([incidentTasksPromise, requestsTasksPromise]);
+    return this.crToArr(arrsOfOpenTasks[0]).concat(this.chgToArr(arrsOfOpenTasks[1]))
+      .sort((a, b) => (Number(a.open_date) - Number(b.open_date)))
+  }
+
+  async getAllOpenSortedTasks(UUID) {
+    return await this.getAllSortedTasks(
+      this.getOpenTasks(UUID).toPromise(),
+      this.getOpenRequestsTasks(UUID).toPromise());
+  }
+
+  async getAllClosedSortedTasks(UUID) {
+    return await this.getAllSortedTasks(
+      this.getClosedTasks(UUID).toPromise(),
+      this.getClosedRequestsTasks(UUID).toPromise());
   }
 
   getHichatIframe() {
