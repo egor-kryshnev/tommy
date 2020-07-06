@@ -174,7 +174,7 @@ export class ApigetService {
     requestsTasksPromise: Promise<{ collection_chg?: { chg?: Array<inputTask> } }>) {
     const arrsOfOpenTasks = await Promise.all([incidentTasksPromise, requestsTasksPromise]);
     return this.crToArr(arrsOfOpenTasks[0]).concat(this.chgToArr(arrsOfOpenTasks[1]))
-      .sort((a, b) => (Number(a.open_date) - Number(b.open_date)))
+      .sort((a, b) => (b.open_date - a.open_date))
   }
 
   async getAllOpenSortedTasks(UUID) {
