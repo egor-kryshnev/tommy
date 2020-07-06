@@ -105,11 +105,12 @@ export class CategoryService {
     const mapIncident = (el: { "@id": string; "@COMMON_NAME": string; }) => mapCategory(el, true);
     const mapRequest = (el: { "@id": string; "@COMMON_NAME": string; }) => mapCategory(el, false);
     const appendCategoryList = (arr: Array<Category>) => this.categoryList = this.categoryList.concat(arr);
+    const toArray = (arrOrElem: any) => Array.isArray(arrOrElem) ? arrOrElem : [arrOrElem];
     const appendIncidents = (data: CategoryOfIncidents) =>
-      data.collection_pcat.pcat ? appendCategoryList(data.collection_pcat.pcat.map(mapIncident)) : [];
+      data.collection_pcat.pcat ? appendCategoryList(toArray(data.collection_pcat.pcat).map(mapIncident)) : [];
 
     const appendRequests = (data: CategoryOfRequests) =>
-      data.collection_chgcat.chgcat ? appendCategoryList(data.collection_chgcat.chgcat.map(mapRequest)) : [];
+      data.collection_chgcat.chgcat ? appendCategoryList(toArray(data.collection_chgcat.chgcat).map(mapRequest)) : [];
 
     const handleDataSubscribe = (data: CategoryOfIncidents | CategoryOfRequests) =>
       ("collection_pcat" in data) ? appendIncidents(data) : appendRequests(data);
