@@ -46,18 +46,6 @@ export class DescriptionComponent implements OnInit {
     this.router.navigate(['/categories', this.postReqService.serviceId], { relativeTo: this.route });
   }
 
-  phoneFilter(phone: Array<string>) {
-    if (phone) {
-      if (phone.length > 1) {
-        return phone[1].startsWith("0") ? phone[1] : "0" + phone[1];
-      }
-      else if (phone.length === 1) {
-        return phone[0].startsWith("0") ? phone[0] : "0" + phone[0];
-      }
-    }
-    return "";
-  }
-
   sendPost() {
     if (this.locationInput && this.phoneInput && this.computerNameInput && (!this.isPending)) {
       this.isPending = true;
@@ -112,7 +100,12 @@ export class DescriptionComponent implements OnInit {
   }
 
   setPhoneFromShraga(phonesArray: string[]) {
-    this.phoneInput = phonesArray.filter(this.isMobile)[0] || "";
+    const phoneNumber = phonesArray.filter(this.isMobile)[0];
+    if (phoneNumber) {
+      this.phoneInput = phoneNumber.startsWith('0') ? phoneNumber : `0${phoneNumber}`;
+    } else {
+      this.phoneInput = "";
+    }
   }
 
   isMobile(numStr) {
