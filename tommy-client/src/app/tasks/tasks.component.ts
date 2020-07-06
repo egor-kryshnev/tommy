@@ -42,21 +42,12 @@ export class TasksComponent implements OnInit {
   }
 
   setTasks() {
-    this.setTaskArr("openTasksArr", "getOpenTasks");
-    this.setTaskArr("closedTasksArr", "getClosedTasks");
-  }
-
-  setTaskArr(arrName: string, functionName: string) {
-    this.aPIgetService[functionName](this.uUid).subscribe((res: any) => {
-      if(res.collection_cr.cr) {
-        this[arrName] = this.arrParser(
-          Array.isArray(res.collection_cr.cr)
-            ? res.collection_cr.cr
-            : [res.collection_cr.cr]
-        );
-      }
-      this.setDisplayedTasks();
-    });
+    Promise.all([this.aPIgetService.getAllOpenSortedTasks(this.uUid),
+    this.aPIgetService.getAllClosedSortedTasks(this.uUid)])
+      .then((arrOfTasks) => {
+        this.openTasksArr = this.arrParser(arrOfTasks[0]);
+        this.closedTasksArr = this.arrParser(arrOfTasks[1]);
+      }).finally(() => this.setDisplayedTasks());
   }
 
   jsonParser(taskObject) {
