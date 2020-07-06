@@ -115,38 +115,46 @@ export class Server {
         );
 
         const rabbitPromise = new Promise((resolve, reject)=>{
-            amqp.connect(
-                config.rabbitmq.url,
-                (err, connection) => {
+            amqp.connect(config.rabbitmq.url,(err, connection) => {
                   if (err) {
                       reject(servicesArray[2].isAlive = false)
                   }
-                  else(resolve())
+                  else{
+                    resolve()
+                  }
                 }
               );
         });
 
         const redisPromise = new Promise((resolve, reject)=>{
-            resolve()
-            reject(redisClient.on("error", (err) => {
-                servicesArray[3].isAlive = false;
-              })
-            )
-           
+
+          if(redisClient.set('key', 'value')){
+            resolve();
+          }
+          else{
+            reject(servicesArray[3].isAlive = false)
+          }
         });
 
         const accessTokenPromise = new Promise((resolve, reject)=>{
-            if( AccessTokenProvider.getAccessToken()){
-                resolve();
-            }
-            else{
-            reject(servicesArray[4].isAlive = false);
-            }
+          AccessTokenProvider.getAccessToken().then(()=>{
+            resolve();
+          })
+          .catch(()=>{
+            reject(servicesArray[4].isAlive = false)
+          })
+            // AccessTokenProvider.getAccessToken().then(()=>{
+            //   resolve();
+            // })
+            // .catch(()=>{
+            //   reject(servicesArray[4].isAlive = false);
+            // })
         });
 
        
        
         Promise.all([clientPromise, rabbitPromise, redisPromise, accessTokenPromise]).finally(()=>{
+          console.log(AccessTokenProvider.getAccessToken());
             servicesArray.forEach((service) => {
                 if (service.isAlive) {
                   healthCheck = `${healthCheck} ${service.serviceName} is up`;

@@ -15,7 +15,8 @@ export const GetAccessToken = async (): Promise<AccessToken> => {
                     rej(error1);
                 }
                 channel.assertQueue('', {
-                    exclusive: true
+                    exclusive: true,
+                    durable: true
                 }, (error2, q) => {
                     if (error2) {
                         rej(error2);
@@ -23,17 +24,21 @@ export const GetAccessToken = async (): Promise<AccessToken> => {
                     const correlationId = generateUuid();
                     console.log(' [x] Requesting Access Token');
                     channel.consume(q.queue, (msg) => {
+                        console.log(msg);
                         if (msg && msg.properties.correlationId === correlationId) {
                             console.log(' [.] Got %s', msg.content.toString());
                             connection.close();
                             res(JSON.parse(msg.content.toString()));
+                        } else {
+                            rej("Access Token Service is unavailable");
                         }
                     }, {
                         noAck: true
                     });
                     channel.sendToQueue(config.rabbitmq.access_token_queue_name, Buffer.from('Get Access Token'), {
                         correlationId: correlationId,
-                        replyTo: q.queue
+                        replyTo: q.queue,
+                        persistent: true
                     });
                 });
             });
