@@ -2,6 +2,7 @@ import { Router, Request, Response } from "express";
 import { AuthorizationMiddleware } from "./authorization/middleware";
 import { config } from './config';
 import { Chat } from './chat/chat'
+import { SupportersListService } from './supporters-list-service/supporters-list-service'
 
 const HichatRouter: Router = Router();
 

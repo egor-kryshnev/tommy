@@ -1,4 +1,4 @@
-export interface SupporterI+
+export interface Supporter
  {
     "@id": string,
     "@REL_ATTR": string,
