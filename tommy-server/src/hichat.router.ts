@@ -1,8 +1,7 @@
 import { Router, Request, Response } from "express";
-import { AuthorizationMiddleware } from "./authorization/middleware";
 import { config } from './config';
 import { Chat } from './chat/chat'
-import { SupportersListService } from './supporters-list-service/supporters-list-service'
+import { SupportersList } from './supporters-list/supporters-list'
 
 const HichatRouter: Router = Router();
 
@@ -28,7 +27,7 @@ HichatRouter.get('/', async (req: Request, res: Response) => {
     const groupName: string = chat.getAllowedGroupName(userT);
 
     //TODO: get support users from redis
-    let groupUsersToAdd: string[] = (config.chat.supportUsers).slice(0);
+    let groupUsersToAdd: string[] = await SupportersList.getSupportersList();
     groupUsersToAdd.push(hitchatUserT);
 
     try {
