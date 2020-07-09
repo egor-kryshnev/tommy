@@ -26,6 +26,7 @@ export class DescriptionComponent implements OnInit {
   userUUID: string = '';
   phoneNumbersArray: string[];
   input: number = 0;
+  isPending: boolean = false;
 
   constructor(private router: Router, private route: ActivatedRoute, public _eventEmmitter: EventEmiterService,
     public authService: AuthService, public postReqService: PostReqService, public categoryService: CategoryService,
@@ -38,34 +39,23 @@ export class DescriptionComponent implements OnInit {
     this._eventEmmitter.user.subscribe(data => this.authService.setUserShraga(data));
     this.setPhoneFromShraga(this.authService.getPhone());
     this._eventEmmitter.dataStr.subscribe(data => this.userUUID = data);
+    this.isPending = false;
   }
 
   onReturn() {
     this.router.navigate(['/categories', this.postReqService.serviceId], { relativeTo: this.route });
   }
 
-  phoneFilter(phone: Array<string>) {
-    if (phone) {
-      if (phone.length > 1) {
-        console.log("0" + phone[1]);
-        return phone[1];
-      }
-      else if (phone.length === 1) {
-        return phone[0];
-      }
-    }
-    return "";
-  }
-
   sendPost() {
-    if (this.locationInput && this.phoneInput && this.computerNameInput) {
+    if (this.locationInput && this.phoneInput && this.computerNameInput && (!this.isPending)) {
+      this.isPending = true;
       this.postReqService.descriptionInput = (<HTMLInputElement>document.getElementById("subject")).value;
       this.postReqService.location = this.locationInput;
       console.log(this.phoneInput);
       this.postReqService.phoneNumber = this.phoneInput;
       this.postReqService.computerName = this.computerNameInput;
       this.postReqService.voip = this.voip;
-      this.postReqService.postRequest()
+      this.postReqService.postAppeal()
         .subscribe((res: PostResponse) => {
           const requestId = this.postReqService.getRequestId(res);
           console.log(`request id: ${requestId}`);
@@ -110,7 +100,12 @@ export class DescriptionComponent implements OnInit {
   }
 
   setPhoneFromShraga(phonesArray: string[]) {
-    this.phoneInput = phonesArray.filter(this.isMobile)[0] || "";
+    const phoneNumber = phonesArray.filter(this.isMobile)[0];
+    if (phoneNumber) {
+      this.phoneInput = phoneNumber.startsWith('0') ? phoneNumber : `0${phoneNumber}`;
+    } else {
+      this.phoneInput = "";
+    }
   }
 
   isMobile(numStr) {

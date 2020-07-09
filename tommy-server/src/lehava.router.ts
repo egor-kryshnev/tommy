@@ -4,13 +4,8 @@ import { AccessTokenProvider } from './access-token/access-token-service';
 import axios, { Method } from 'axios';
 import { IpMiddleware } from './utils/middlewares/ip-middleware';
 import { config } from './config';
-import { Chat } from './chat/chat'
-// const { createGroup, setRoomMembers, closeGroup, renameGroup, sendMessageToGroup, getAuthHeaders } = require("./chat/chatJs");
-
 
 const LehavaRouter: Router = Router();
-
-LehavaRouter.get('/isalive', (req: Request, res: Response) => res.status(200).send('Server Is Up'));
 
 LehavaRouter.post('*', AuthorizationMiddleware.postAuthorization, IpMiddleware);
 

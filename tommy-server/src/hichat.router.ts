@@ -1,7 +1,7 @@
 import { Router, Request, Response } from "express";
-import { AuthorizationMiddleware } from "./authorization/middleware";
 import { config } from './config';
 import { Chat } from './chat/chat'
+import { SupportersList } from './supporters-list/supporters-list'
 
 const HichatRouter: Router = Router();
 
@@ -11,7 +11,7 @@ HichatRouter.post('/sendmsg', async (req: Request, res: Response) => {
     const messageToSend = config.chat.hiChatTaskMessageStructure(req.body.taskId, req.body.taskDate);
     try {
         await chat.sendMessageToGroup(groupName, messageToSend);
-        res.status(200).send("OK");
+        res.status(200).send({ status: "success" });
     } catch (err) {
         console.error(err);
         res.status(300).send(err);
@@ -27,7 +27,7 @@ HichatRouter.get('/', async (req: Request, res: Response) => {
     const groupName: string = chat.getAllowedGroupName(userT);
 
     //TODO: get support users from redis
-    let groupUsersToAdd: string[] = (config.chat.supportUsers).slice(0);
+    let groupUsersToAdd: string[] = await SupportersList.getSupportersList();
     groupUsersToAdd.push(hitchatUserT);
 
     try {
@@ -35,9 +35,9 @@ HichatRouter.get('/', async (req: Request, res: Response) => {
     } catch (err) {
         console.error(err);
     } finally {
-        try{
+        try {
             await chat.setRoomMembers(groupName, groupUsersToAdd);
-        }catch(err){
+        } catch (err) {
             console.error(err);
         }
         await chat.setRoomMembers(groupName, groupUsersToAdd);

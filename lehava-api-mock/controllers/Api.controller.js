@@ -88,10 +88,10 @@ module.exports = (app) => {
                 if (lehavaData.nonactivecalls[arraysearch("userUniqueId", req.query.WC.split("'")[1], lehavaData.nonactivecalls)]) {
                     if (req.query.WC.split("active=")[1] == 0) {
                         // Respond Non active calls
-                        res.json(lehavaData.nonactivecalls[arraysearch("userUniqueId", req.query.WC.split("'")[1], lehavaData.nonactivecalls)].data)
+                        res.json(lehavaData.nonactivecalls[arraysearch("userUniqueId", req.query.WC.split("'")[1], lehavaData.nonactivecalls)].crdata)
                     } else if (req.query.WC.split("active=")[1] == 1) {
                         // Respond Active calls
-                        res.json(lehavaData.activecalls[arraysearch("userUniqueId", req.query.WC.split("'")[1], lehavaData.activecalls)].data);
+                        res.json(lehavaData.activecalls[arraysearch("userUniqueId", req.query.WC.split("'")[1], lehavaData.activecalls)].crdata);
                     }
                 } else {
                     res.status(400).send({ error: "No Such User" })
@@ -104,17 +104,48 @@ module.exports = (app) => {
         }
     });
 
+    app.get('/caisd-rest/chg', (req, res) => {
+        console.log(req.query.WC);
+        if (validator.userCallsHeaderValidator(req)) {
+            if (lehavaData.nonactivecalls[arraysearch("userUniqueId", req.query.WC.split("'")[1], lehavaData.nonactivecalls)]) {
+                if (req.query.WC.split("active=")[1] == 0) {
+                    // Respond Non active calls
+                    res.json(lehavaData.nonactivecalls[arraysearch("userUniqueId", req.query.WC.split("'")[1], lehavaData.nonactivecalls)].chgdata)
+                } else if (req.query.WC.split("active=")[1] == 1) {
+                    // Respond Active calls
+                    res.json(lehavaData.activecalls[arraysearch("userUniqueId", req.query.WC.split("'")[1], lehavaData.activecalls)].chgdata);
+                }
+            } else {
+                res.status(400).send({ error: "No Such User" })
+            }
+        } else if (validator.updatesValidator(req)) {
+            res.send(lehavaData.updates);
+        } else {
+            res.status(400).send({ error: "Header is not sent in your request" });
+        }
+    });
+
     // POSTing a new request and response back the new lehava request id
     app.post('/caisd-rest/cr', (req, res) => {
-        if (validator.newCallValidator(req)) {
+        if (validator.typeCheck(req) === "cr") {
             const userId = (req.body.cr.customer['@id'].split("'")[1]);
             const category = (req.body.cr.description.split("\n")[0]);
             const description = (req.body.cr.description.split("\n")[1]);
 
             const newCall = new Call(userId, category, description);
             newCall.save();
-            res.send(lehavaData.requests);
-            lehavaData.requests.cr['@COMMON_NAME'] += 1;
+            res.send(lehavaData.crRequests);
+            lehavaData.crRequests.cr['@COMMON_NAME'] += 1;
+        }
+        else if (validator.typeCheck(req) === "chg") {
+            const userId = (req.body.chg.requestor['@id'].split("'")[1]);
+            const category = (req.body.chg.description.split("\n")[0]);
+            const description = (req.body.chg.description.split("\n")[1]);
+
+            const newCall = new Call(userId, category, description);
+            newCall.save();
+            res.send(lehavaData.chgRequests);
+            lehavaData.chgRequests.chg['@COMMON_NAME'] += 1;
         } else {
             res.status(400).send({ error: "Bad Parameters" })
         }
