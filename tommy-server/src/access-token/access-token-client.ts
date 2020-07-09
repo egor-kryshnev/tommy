@@ -5,7 +5,6 @@ import { generateUuid } from '../utils/generate-uuid';
 
 export const GetAccessToken = async (): Promise<AccessToken> => {
     return new Promise((res, rej) => {
-
         amqp.connect(config.rabbitmq.url, (error0, connection) => {
             if (error0) {
                 rej(error0);
@@ -27,6 +26,8 @@ export const GetAccessToken = async (): Promise<AccessToken> => {
                             console.log(' [.] Got %s', msg.content.toString());
                             connection.close();
                             res(JSON.parse(msg.content.toString()));
+                        } else {
+                            rej("Access Token Service is unavailable");
                         }
                     }, {
                         noAck: true
@@ -35,6 +36,8 @@ export const GetAccessToken = async (): Promise<AccessToken> => {
                         correlationId: correlationId,
                         replyTo: q.queue
                     });
+
+                    setTimeout(() => rej("Access Token Service is unavailable"), config.rabbitmq.msg_timeout);
                 });
             });
         });

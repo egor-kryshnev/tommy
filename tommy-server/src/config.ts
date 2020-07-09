@@ -38,6 +38,7 @@ export const config = {
     rabbitmq: {
         url: process.env.RABBITMQ_URL || "amqp://localhost:5672",
         access_token_queue_name: "access_token_rpc_queue",
+        msg_timeout: parseInt(process.env.RABBITMQ_TIMEOUT || "1000")
     },
 
     chat: {
