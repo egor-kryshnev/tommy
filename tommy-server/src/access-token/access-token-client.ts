@@ -5,7 +5,6 @@ import { generateUuid } from '../utils/generate-uuid';
 
 export const GetAccessToken = async (): Promise<AccessToken> => {
     return new Promise((res, rej) => {
-
         amqp.connect(config.rabbitmq.url, (error0, connection) => {
             if (error0) {
                 rej(error0);
@@ -15,8 +14,7 @@ export const GetAccessToken = async (): Promise<AccessToken> => {
                     rej(error1);
                 }
                 channel.assertQueue('', {
-                    exclusive: true,
-                    durable: true
+                    exclusive: true
                 }, (error2, q) => {
                     if (error2) {
                         rej(error2);
@@ -24,7 +22,6 @@ export const GetAccessToken = async (): Promise<AccessToken> => {
                     const correlationId = generateUuid();
                     console.log(' [x] Requesting Access Token');
                     channel.consume(q.queue, (msg) => {
-                        console.log(msg);
                         if (msg && msg.properties.correlationId === correlationId) {
                             console.log(' [.] Got %s', msg.content.toString());
                             connection.close();
@@ -37,9 +34,10 @@ export const GetAccessToken = async (): Promise<AccessToken> => {
                     });
                     channel.sendToQueue(config.rabbitmq.access_token_queue_name, Buffer.from('Get Access Token'), {
                         correlationId: correlationId,
-                        replyTo: q.queue,
-                        persistent: true
+                        replyTo: q.queue
                     });
+
+                    setTimeout(() => rej("Access Token Service is unavailable"), config.rabbitmq.msg_timeout);
                 });
             });
         });
