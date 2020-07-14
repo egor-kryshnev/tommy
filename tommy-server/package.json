@@ -21,7 +21,6 @@
     "@types/helmet": "0.0.45",
     "@types/passport": "^1.0.3",
     "@types/redis": "^2.8.17",
-    "nodemon": "^2.0.3",
     "typescript": "^3.8.3"
   },
   "dependencies": {
@@ -34,10 +33,10 @@
     "express-session": "^1.17.0",
     "helmet": "^3.21.3",
     "http-proxy-middleware": "^1.0.1",
+    "menashmq": "0.0.5",
     "passport": "^0.4.1",
     "passport-shraga": "^1.4.0",
     "redis": "^3.0.2",
-    "tslib": "^1.11.0",
-    "winston": "3.2.1"
+    "tslib": "^1.11.0"
   }
 }

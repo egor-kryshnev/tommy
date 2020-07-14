@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Supporter } from './supporter.interface';
 import { config } from './config';
 import { AccessTokenProvider } from '../access-token/access-token-service';
+import { logger } from '../utils/logger-client';
 
 export class SupportersList {
 
@@ -46,7 +47,7 @@ export class SupportersList {
 
                     SupportersList.supportersList = JSON.parse(this.hichatUsersArrayBuild(supportersListRes, "userid"));
                 } catch (err) {
-                    console.error(err)
+                    logger(err)
                 }
             }
         }

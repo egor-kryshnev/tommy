@@ -1,6 +1,7 @@
 const axios = require("axios");
 import { config } from '../config';
 import { trycatch } from '../utils/util';
+import { logger } from '../utils/logger-client';
 
 // const { chatUrl, chatGroupUrl, chatMessageUrl, chatLoginUrl, loginUser, loginPass } = require("./config/config");
 // const { trycatch } = require("../utils/util");
@@ -31,7 +32,7 @@ export class Chat {
                 this.authToken = authToken;
                 return { userId, authToken };
             } else {
-                console.error(result);
+                logger(new Error("Chat login failed"));
             }
         }
     }

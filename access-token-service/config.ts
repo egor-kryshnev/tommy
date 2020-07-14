@@ -6,7 +6,8 @@ export const config = {
     },
     rabbitmq: {
         url: process.env.RABBITMQ_URL || "amqp://rabbitmq:5672",
-        queue_name: "access_token_rpc_queue"
+        access_token_return_queue: "access_token_return",
+        access_token_rpc_queue: "access_token_rpc",
     },
     redis: {
         host: process.env.REDIS_URL || 'redis://redis:6379',
