@@ -16,13 +16,14 @@ export class SupportersList {
 
         if (!SupportersList.supportersList || ! await this.isValidExpirationDate()) {
 
+            console.log("Pulling Supporters List from REDIS");
             const redisSupportersList = JSON.parse(await this.getRedis('Supporters-List'));
-
-            if (redisSupportersList && this.isValidExpirationDate) {
-                console.log(`Supporters list brought from redis: ${redisSupportersList}`)
+            
+            if (redisSupportersList && await this.isValidExpirationDate()) {
                 this.supportersList = redisSupportersList;
             } else {
                 try {
+                    console.log("Requesting LehavaAPI for supporters list");
                     const res = await axios(`http://${config.lehava_api.lehavaHostName}${config.lehava_api.requestUrl}`,
                         {
                             headers: {
@@ -56,8 +57,7 @@ export class SupportersList {
     static async isValidExpirationDate() {
         const currentTime = new Date().getTime();
         const expDate = parseInt(await this.getRedis('Supporters-Exp-Date'));
-        console.log(expDate);
-        return currentTime < expDate;
+        return expDate ? currentTime < expDate : false;
     }
 
     static hichatUsersArrayBuild(array: any[], key: string): string {
