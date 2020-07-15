@@ -13,7 +13,7 @@ amqp.connect(config.rabbitmq.url, (error0: Error, connection) => {
     const queue = config.rabbitmq.queue_name;
 
     channel.assertQueue(queue, {
-      durable: false
+      durable: true
     });
     channel.prefetch(1);
     console.log(' [x] Awaiting RPC requests for access token service');

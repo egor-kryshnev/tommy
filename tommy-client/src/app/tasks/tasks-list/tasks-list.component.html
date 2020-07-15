@@ -4,7 +4,9 @@
             <img class="chatImg" src="{{ chatIcon }}" (click)="sendTaskSumMsg(task)">
             <div class="background" (click)="openTaskDetailDialog(task)">
                 <img class="StatusImg" src="{{ task.icon }}">
+                <div class="status">
                 <p class="task-status">{{ task.status }}</p>
+            </div>
                 <hr class="kav">
                 <div [ngClass]="{'taskNameDecorationOpen': tasksFlag, 'taskNameDecorationClosed' : !tasksFlag}"></div>
                 <p class="task-date">{{ task.open_date }}</p>

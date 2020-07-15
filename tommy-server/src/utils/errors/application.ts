@@ -22,3 +22,9 @@ export class UserError extends ApplicationError {
         super(message || 'User Error', status || 400);
     }
 }
+
+export class RabbitmqError extends ApplicationError {
+    constructor(message?: string, status?: number) {
+        super(message || 'Rabbitmq Error', status || 500);
+    }
+}

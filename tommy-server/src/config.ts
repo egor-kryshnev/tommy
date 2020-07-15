@@ -1,4 +1,5 @@
 process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0 as any;
+import { SupportersList } from './supporters-list/supporters-list'
 
 export const config = {
     server: {
@@ -38,6 +39,7 @@ export const config = {
     rabbitmq: {
         url: process.env.RABBITMQ_URL || "amqp://localhost:5672",
         access_token_queue_name: "access_token_rpc_queue",
+        msg_timeout: parseInt(process.env.RABBITMQ_TIMEOUT || "1000")
     },
 
     chat: {
@@ -48,7 +50,7 @@ export const config = {
         chatMessageUrl: process.env.CHAT_MESSAGE_URL || 'chat',
         loginUser: process.env.LOGIN_USER || 'tommy',
         loginPass: process.env.LOGIN_PASS || 'Aa123456',
-        supportUsers: process.env.SUPPORT_USERS ? process.env.SUPPORT_USERS.split(',') : [],
+        getSupportUsers: async () => { return await SupportersList.getSupportersList() || process.env.SUPPORT_USERS?.split(',') },
         hiChatGroupTitle: (userT: string) => `Tom Support ${userT}`,
         hiChatTaskMessageStructure: (taskId: string, taskDate: string) => `היי, אשמח לעזרה בפנייה מספר: ${taskId}, שנפתחה ב ${taskDate}`
     }
