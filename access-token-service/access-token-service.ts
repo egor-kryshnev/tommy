@@ -3,6 +3,7 @@ import { promisify } from 'util';
 import axios from 'axios';
 import { AccessToken } from './access-token.interface';
 import { config } from './config';
+import { logger } from './logger-client';
 
 export class AccessTokenService {
 
@@ -18,7 +19,7 @@ export class AccessTokenService {
 
             if (redisAccessToken &&
                 this.isValidExpirationDate(JSON.parse(redisAccessToken).rest_access.expiration_date)) {
-                console.log(`Access Key brought from redis: ${redisAccessToken}`)
+                logger({ message: "Access Key brought from redis", info: { redisAccessToken } });
                 this.accessToken = JSON.parse(redisAccessToken);
             } else {
                 const apiRes = await axios(config.lehava_api.request.url,
@@ -33,7 +34,7 @@ export class AccessTokenService {
                             rest_access: "rest_access",
                         },
                     });
-                console.log(`Access Key brought from lehava api: ${JSON.stringify(apiRes.data)}`);
+                logger({ message: "Access Key brought from lehava api", info: { ...apiRes.data } });
                 await this.setAccessTokenRedis('X-AccessKey', JSON.stringify(apiRes.data));
                 AccessTokenService.accessToken = apiRes.data;
             }

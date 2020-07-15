@@ -1,4 +1,4 @@
-import { config } from '../config';
+import { config } from './config';
 import menash from 'menashmq';
 
 export const logger = async (log: Error | ({ message: string; info?: { [key: string]: any; } })): Promise<void> => {
