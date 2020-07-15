@@ -48,6 +48,7 @@ export class SupportersList {
                     SupportersList.supportersList = JSON.parse(this.hichatUsersArrayBuild(supportersListRes, "userid"));
                 } catch (err) {
                     console.error(err)
+                    return false;
                 }
             }
         }
