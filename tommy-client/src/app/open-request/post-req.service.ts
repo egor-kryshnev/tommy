@@ -46,7 +46,8 @@ export class PostReqService {
   public isIncident: boolean = true;
 
   postAppeal() {
-    return this.isIncident ? this.postIncident() : this.postRequest();
+    // return this.isIncident ? this.postIncident() : this.postRequest();
+    return this.postIncident();
   }
 
   postIncident() {
