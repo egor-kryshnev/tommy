@@ -133,6 +133,7 @@ h3 {
 
 #taskName {
   margin-right: 10px;
+  direction: rtl;
 }
 
 #taskCategory {
