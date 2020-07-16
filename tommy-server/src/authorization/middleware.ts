@@ -6,7 +6,7 @@ export class AuthorizationMiddleware {
         const user: any = req.user;
 
         try {
-            if ((req.body.cr && (user.adfsId.split('@')[0] === req.body.cr.z_username)) ||
+            if ((req.body.in && (user.adfsId.split('@')[0] === req.body.in.z_username)) ||
                 (req.body.chg && (user.adfsId.split('@')[0] === req.body.chg.z_username))) {
                 next();
             } else {

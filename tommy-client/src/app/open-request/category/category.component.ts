@@ -14,7 +14,8 @@ export class CategoryComponent implements OnInit {
   categoriesLoaded: boolean = false;
   filterCategories: Array<string>;
   searchText = "";
-  constructor(public categoryService: CategoryService,
+  constructor(
+    public categoryService: CategoryService,
     public route: ActivatedRoute,
     private router: Router,
     public postReqService: PostReqService) { }

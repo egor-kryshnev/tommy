@@ -28,9 +28,7 @@ HichatRouter.get('/', async (req: Request, res: Response) => {
     const groupName: string = chat.getAllowedGroupName(userT);
 
     //TODO: get support users from redis
-    let groupUsersToAdd: string[] = await SupportersList.getSupportersList();
-    groupUsersToAdd.push(hitchatUserT);
-
+    const groupUsersToAdd: string[] = (await config.chat.getSupportUsers()).concat(hitchatUserT);
     try {
         await chat.createGroup(groupName, groupUsersToAdd);
     } catch (err) {

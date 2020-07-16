@@ -162,18 +162,18 @@ export class ApigetService {
     return []
   }
 
-  crToArr(crObj: { collection_cr?: { cr?: Array<inputTask> } }): Array<inputTask> {
-    if (crObj.collection_cr && crObj.collection_cr.cr) {
-      return Array.isArray(crObj.collection_cr.cr) ? crObj.collection_cr.cr : [crObj.collection_cr.cr];
+  inToArr(inObj: { collection_in?: { in?: Array<inputTask> } }): Array<inputTask> {
+    if (inObj.collection_in && inObj.collection_in.in) {
+      return Array.isArray(inObj.collection_in.in) ? inObj.collection_in.in : [inObj.collection_in.in];
     }
     return []
   }
 
   async getAllSortedTasks(
-    incidentTasksPromise: Promise<{ collection_cr?: { cr?: Array<inputTask> } }>,
+    incidentTasksPromise: Promise<{ collection_in?: { in?: Array<inputTask> } }>,
     requestsTasksPromise: Promise<{ collection_chg?: { chg?: Array<inputTask> } }>) {
     const arrsOfOpenTasks = await Promise.all([incidentTasksPromise, requestsTasksPromise]);
-    return this.crToArr(arrsOfOpenTasks[0]).concat(this.chgToArr(arrsOfOpenTasks[1]))
+    return this.inToArr(arrsOfOpenTasks[0]).concat(this.chgToArr(arrsOfOpenTasks[1]))
       .sort((a, b) => (b.open_date - a.open_date))
   }
 
