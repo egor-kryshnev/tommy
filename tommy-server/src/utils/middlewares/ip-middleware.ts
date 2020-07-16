@@ -2,7 +2,6 @@ import { Request, Response, NextFunction } from 'express';
 
 export const IpMiddleware = (req: Request, res: Response, next: NextFunction) => {
     const ip = req.ip.split(':')[3];
-    console.log(ip);
     
     if (req.body.in) {
         req.body.in.z_ipaddress = ip;
