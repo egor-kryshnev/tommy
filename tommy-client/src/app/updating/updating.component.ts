@@ -26,7 +26,7 @@ export class UpdatingComponent implements OnInit {
 
   setUpdates() {
     this.apiget.getUpdates().subscribe((res: any) => {
-      let Response = res.collection_cr.cr;
+      let Response = res.collection_in.in;
       if (Response) {
         this.updatesArray = [];
         if (Array.isArray(Response)) {
