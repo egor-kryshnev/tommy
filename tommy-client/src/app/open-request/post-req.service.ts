@@ -4,13 +4,13 @@ import { config } from 'src/environments/config.dev';
 
 export type PostResponse = PostRequestResponse | PostIncidentResponse;
 
-interface PostRequestResponse {
-  cr: {
+interface PostIncidentResponse {
+  in: {
     "@COMMON_NAME": string
   }
 }
 
-interface PostIncidentResponse {
+interface PostRequestResponse {
   chg: {
     "@COMMON_NAME": string
   }
@@ -43,18 +43,21 @@ export class PostReqService {
   location: string;
   computerName: string;
   voip: string;
+  categoryId: string;
   public isIncident: boolean = true;
 
   postAppeal() {
-    // return this.isIncident ? this.postIncident() : this.postRequest();
-    return this.postIncident();
+    return this.isIncident ? this.postIncident() : this.postRequest();
   }
 
   postIncident() {
     const requestBody = {
-      "cr": {
+      "in": {
         "customer": {
           "@id": this.userUUID
+        },
+        "category": {
+          "@REL_ATTR": this.categoryId
         },
         ...this.getCommonBodyProperties()
       }
@@ -70,6 +73,9 @@ export class PostReqService {
       "chg": {
         "requestor": {
           "@id": this.userUUID
+        },
+        "category": {
+          "@id": this.categoryId
         },
         ...this.getCommonBodyProperties()
       }
@@ -122,6 +128,6 @@ export class PostReqService {
   }
 
   getRequestId(postRes: PostResponse) {
-    return ("cr" in postRes) ? postRes.cr["@COMMON_NAME"] : postRes.chg["@COMMON_NAME"];
+    return ("in" in postRes) ? postRes.in["@COMMON_NAME"] : postRes.chg["@COMMON_NAME"];
   }
 }

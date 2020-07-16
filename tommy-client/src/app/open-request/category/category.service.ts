@@ -16,6 +16,12 @@ export interface CategoryOfIncidents {
   }
 }
 
+export interface CommonCategoryProperties {
+  "@id": string;
+  "@COMMON_NAME": string
+  "@REL_ATTR": string
+}
+
 export interface CategoryOfRequests {
   "collection_chgcat": {
     "chgcat": {
@@ -26,11 +32,11 @@ export interface CategoryOfRequests {
 }
 
 export interface TransverseIncident {
-  "collection_cr": {
+  "collection_in": {
     "@COUNT": String;
     "@START": String;
     "@TOTAL_COUNT": String;
-    cr?: [{
+    in?: [{
       "@id": String;
       "@REL_ATTR": String;
       "@COMMON_NAME": String;
@@ -49,6 +55,7 @@ export interface TransverseIncident {
 
 export interface Category {
   id: string;
+  rel_attr: string;
   name: string;
   isIncident: boolean;
 }
@@ -97,13 +104,14 @@ export class CategoryService {
 
   async setCategories(id: string) {
     this.categoryList = [];
-    const mapCategory = (el: { "@id": string; "@COMMON_NAME": string; }, isIncident: boolean): Category => ({
+    const mapCategory = (el: CommonCategoryProperties, isIncident: boolean): Category => ({
       id: el['@id'],
+      rel_attr: el['@REL_ATTR'],
       name: el['@COMMON_NAME'],
       isIncident
     });
-    const mapIncident = (el: { "@id": string; "@COMMON_NAME": string; }) => mapCategory(el, true);
-    const mapRequest = (el: { "@id": string; "@COMMON_NAME": string; }) => mapCategory(el, false);
+    const mapIncident = (el: CommonCategoryProperties) => mapCategory(el, true);
+    const mapRequest = (el: CommonCategoryProperties) => mapCategory(el, false);
     const appendCategoryList = (arr: Array<Category>) => this.categoryList = this.categoryList.concat(arr);
     const toArray = (arrOrElem: any) => Array.isArray(arrOrElem) ? arrOrElem : [arrOrElem];
     const appendIncidents = (data: CategoryOfIncidents) =>
@@ -203,6 +211,9 @@ export class CategoryService {
     const categoryId = this.categoryList[categoryIndex].id;
     console.log(this.categoryList);
     this.postReqService.isIncident = this.categoryList[categoryIndex].isIncident;
+    this.postReqService.categoryId = this.categoryList[categoryIndex].isIncident ?
+      this.categoryList[categoryIndex].rel_attr :
+      this.categoryList[categoryIndex].id;
     console.log(this.categoryList[categoryIndex].isIncident)
 
     if (!this.categoryList[categoryIndex].isIncident) {
@@ -211,9 +222,9 @@ export class CategoryService {
       this.getTransverseIncident(categoryId).subscribe((incident: TransverseIncident) => {
         const isInNetwork = (arr: Array<{ "z_network": { "@id": String; } }>) =>
           arr.some((trIncident) => trIncident.z_network["@id"] === this.postReqService.networkId);
-        if (incident.collection_cr.cr &&
-          ((Array.isArray(incident.collection_cr.cr) && isInNetwork(incident.collection_cr.cr)) ||
-            ((!Array.isArray(incident.collection_cr.cr)) && isInNetwork([incident.collection_cr.cr])))) {
+        if (incident.collection_in.in &&
+          ((Array.isArray(incident.collection_in.in) && isInNetwork(incident.collection_in.in)) ||
+            ((!Array.isArray(incident.collection_in.in)) && isInNetwork([incident.collection_in.in])))) {
           const data: TransverseIncidentData = { ...incident, selectedCategories };
           this.transverseIncidentDialog.open(TransverseIncidentDialog, { width: "430", height: "400", data: data })
           this.selectedCategory.pop();
