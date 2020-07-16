@@ -2143,10 +2143,10 @@ module.exports = {
                     "summary": "תקלת מערכת הפעלה",
                     "open_date": 1577822500,
                     "z_impact_service": {
-                        "@COMMON_NAME": "אמא של ויטלי"
+                        "@COMMON_NAME": "מערכות הפעלה"
                     },
                     "z_network": {
-                        "@COMMON_NAME": "אמא של רון"
+                        "@COMMON_NAME": "עד הסוף"
                     }
                 },
                 {
@@ -2162,10 +2162,10 @@ module.exports = {
                     "summary": "תקלת מיילים",
                     "open_date": 1577822500,
                     "z_impact_service": {
-                        "@COMMON_NAME": "אמא של ויטלי"
+                        "@COMMON_NAME": "מיילים ויומנים"
                     },
                     "z_network": {
-                        "@COMMON_NAME": "אמא של רון"
+                        "@COMMON_NAME": "שדה קוצים"
                     }
                 },
                 {
@@ -2181,10 +2181,10 @@ module.exports = {
                     "summary": "תקלת כרטיס מסך",
                     "open_date": 1577822500,
                     "z_impact_service": {
-                        "@COMMON_NAME": "אמא של ויטלי"
+                        "@COMMON_NAME": "תקלת חומרה"
                     },
                     "z_network": {
-                        "@COMMON_NAME": "אמא של רון"
+                        "@COMMON_NAME": "קישור אנכי"
                     }
                 },
                 {
@@ -2200,10 +2200,10 @@ module.exports = {
                     "summary": "תקלת דרייבר למקלדת",
                     "open_date": 1577822500,
                     "z_impact_service": {
-                        "@COMMON_NAME": "אמא של ויטלי"
+                        "@COMMON_NAME": "ציוד מחשוב אישי"
                     },
                     "z_network": {
-                        "@COMMON_NAME": "אמא של רון"
+                        "@COMMON_NAME": "מיאמי"
                     }
                 },
                 {
@@ -2219,10 +2219,10 @@ module.exports = {
                     "summary": "תקלת קורא כרטיס",
                     "open_date": 1577822500,
                     "z_impact_service": {
-                        "@COMMON_NAME": "אמא של ויטלי"
+                        "@COMMON_NAME": "ציוד מחשוב אישי"
                     },
                     "z_network": {
-                        "@COMMON_NAME": "אמא של רון"
+                        "@COMMON_NAME": "עד הסוף"
                     }
                 },
                 {
@@ -2238,10 +2238,10 @@ module.exports = {
                     "summary": "תקלת תוכנת אופיס",
                     "open_date": 1577822500,
                     "z_impact_service": {
-                        "@COMMON_NAME": "אמא של ויטלי"
+                        "@COMMON_NAME": "התקנות ותוכנות"
                     },
                     "z_network": {
-                        "@COMMON_NAME": "אמא של רון"
+                        "@COMMON_NAME": "מכבינט"
                     }
                 }
                 ]
@@ -2355,13 +2355,8 @@ module.exports = {
                         "@COMMON_NAME": "צוות מחשוב כריש \/8997"
                     },
                     "summary": "תקלת תוכנת אופיס",
-                    "open_date": 1577822500,
-                    "z_impact_service": {
-                        "@COMMON_NAME": "אמא של ויטלי"
-                    },
-                    "z_network": {
-                        "@COMMON_NAME": "אמא של רון"
-                    }
+                    "open_date": 1577822500
+                    
                 }
                 ]
             }
