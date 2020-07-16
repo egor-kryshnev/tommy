@@ -3,11 +3,21 @@ import { MatDialog } from '@angular/material/dialog';
 import { taskModel1, ApigetService } from '../../apiget.service';
 import { TaskDetailDialog } from '../../task-detail/task-detail.component';
 import { HomeComponent } from './../../home/home.component';
+import {MAT_TOOLTIP_DEFAULT_OPTIONS, MatTooltipDefaultOptions} from '@angular/material/tooltip';
+
+export const myCustomTooltipDefaults: MatTooltipDefaultOptions = {
+  showDelay: 500,
+  hideDelay: 0,
+  touchendHideDelay: 500,
+};
 
 @Component({
   selector: 'app-tasks-list',
   templateUrl: './tasks-list.component.html',
-  styleUrls: ['./tasks-list.component.css']
+  styleUrls: ['./tasks-list.component.css'],
+  providers: [
+    {provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: myCustomTooltipDefaults}
+  ],
 })
 export class TasksListComponent {
 
@@ -20,12 +30,12 @@ export class TasksListComponent {
     this.taskDetailDialog.open(TaskDetailDialog, { width: "720px", height: "400px", data: selectedTask });
   }
 
-  getTitle(task: taskModel1): string | boolean {
-    const taskSummary = task.summary;
-    if (taskSummary && taskSummary !== null) {
-      return taskSummary;
-    }
-    return "לא צוין";
+  getNetwork(task: taskModel1): string | boolean{
+    return task.network || 'לא צויין';
+  }
+
+  getService(task: taskModel1): string | boolean{
+    return task.service || 'לא צויין';
   }
 
   sendTaskSumMsg(task: taskModel1) {
