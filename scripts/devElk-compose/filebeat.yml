@@ -2,6 +2,8 @@ filebeat.inputs:
     - type: container
       paths: 
         - '/var/lib/docker/containers/*/*.log'
+      fields:
+        service: docker
     - type: log
       paths:
         - '/usr/share/filebeat/tommy/logs/*.log'
