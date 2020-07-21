@@ -9,7 +9,8 @@ const HichatRouter: Router = Router();
 HichatRouter.post('/sendmsg', async (req: Request, res: Response) => {
     const chat = new Chat();
     const groupName = getGroupName(req.user);
-    const messageToSend = config.chat.hiChatTaskMessageStructure(req.body.taskId, req.body.taskDate);
+    console.log(req.body);
+    const messageToSend = config.chat.hiChatTaskMessageStructure(req.body.taskId, req.body.taskDate, req.body.taskLink);
     try {
         await chat.sendMessageToGroup(groupName, messageToSend);
         res.status(200).send({ status: "success" });

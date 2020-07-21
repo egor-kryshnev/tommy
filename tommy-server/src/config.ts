@@ -54,6 +54,7 @@ export const config = {
         loginPass: process.env.LOGIN_PASS || 'Aa123456',
         getSupportUsers: async () => { return await SupportersList.getSupportersList() || process.env.SUPPORT_USERS?.split(',') || [] },
         hiChatGroupTitle: (userT: string) => `Tom Support ${userT}`,
-        hiChatTaskMessageStructure: (taskId: string, taskDate: string) => `היי, אשמח לעזרה בפנייה מספר: ${taskId}, שנפתחה ב ${taskDate}`
+        hiChatTaskMessageStructure: (taskId: string, taskDate: string, taskLink: string) =>
+            `היי, אשמח לעזרה בפנייה מספר: ${taskId}, שנפתחה ב ${taskDate}\nלינק בלהבה: ${taskLink}`
     }
 }
