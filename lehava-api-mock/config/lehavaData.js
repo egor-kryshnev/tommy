@@ -2112,9 +2112,9 @@ module.exports = {
     nonactivecalls: [
         {
             userUniqueId: "3",
-            crdata: {
-                collection_cr: {
-                    cr: []
+            indata: {
+                collection_in: {
+                    in: []
                 }
             },
             chgdata: {
@@ -2128,9 +2128,9 @@ module.exports = {
     activecalls: [
     {
         userUniqueId: "3",
-        crdata: {
-            collection_cr: {
-                cr: [{
+        indata: {
+            collection_in: {
+                in: [{
                     "@COMMON_NAME": "186318",
                     "description": "מערכת הפעלה\n היי לא עולה לי הווינדוס דחוף בבקשה",
                     "status": {
@@ -2250,7 +2250,7 @@ module.exports = {
         chgdata: {
             collection_chg: {
                 chg: [{
-                    "@COMMON_NAME": "186318",
+                    "@COMMON_NAME": "aaaaaaaaa",
                     "description": "מערכת הפעלה\n היי לא עולה לי הווינדוס דחוף בבקשה",
                     "status": {
                         "@COMMON_NAME": "פתוח",
@@ -2364,8 +2364,8 @@ module.exports = {
     }
     ],
 
-    crRequests: {
-        cr: {
+    inRequests: {
+        in: {
             "@COMMON_NAME": 5000
         }
     },
@@ -2377,11 +2377,11 @@ module.exports = {
     },
 
     updates: {
-        collection_cr: {
+        collection_in: {
             "@COUNT": 4,
             "@START": 4,
             "@TOTAL_COUNT": 4,
-            cr: [{
+            in: [{
                 "@COMMON_NAME": '596417',
                 category: {
                     "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
@@ -2709,8 +2709,8 @@ module.exports = {
     categoryWideProblems: [{
         categoryId: "0",
         data: {
-            collection_cr: {
-                cr: [{
+            collection_in: {
+                in: [{
                     "@id": "0",
                     "@COMMON_NAME": "112",
                     "description": "תיאור של תקלה 1 ברוחבית של מקלדות",
@@ -2741,8 +2741,8 @@ module.exports = {
     {
         categoryId: "1",
         data: {
-            collection_cr: {
-                cr: [{
+            collection_in: {
+                in: [{
                     "@id": "1",
                     "@COMMON_NAME": "114",
                     "description": "תיאור של תקלה 1 ברוחבית של עכברים",
@@ -2773,8 +2773,8 @@ module.exports = {
     {
         categoryId: "2",
         data: {
-            collection_cr: {
-                cr: [{
+            collection_in: {
+                in: [{
                     "@id": "2",
                     "@COMMON_NAME": "1233",
                     "description": "תיאור של תקלה 1 ברוחבית של מיילים",
@@ -2805,8 +2805,8 @@ module.exports = {
     {
         categoryId: "3",
         data: {
-            collection_cr: {
-                cr: [{
+            collection_in: {
+                in: [{
                     "@id": "3",
                     "@COMMON_NAME": "1233",
                     "description": "תיאור של תקלה 1 ברוחבית של שירות הורדות",
@@ -2836,7 +2836,7 @@ module.exports = {
     }
     ],
     categoryWideProblemsEmpty: {
-        "collection_cr": {
+        "collection_in": {
             "@COUNT": "0",
             "@START": "0",
             "@TOTAL_COUNT": "0",

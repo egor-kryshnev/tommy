@@ -4,7 +4,7 @@ module.exports = class Call {
     constructor(userId, category, description) {
         this.userId = userId;
         this.callObject = {
-            "@COMMON_NAME": `${lehavaData.crRequests.cr['@COMMON_NAME']}`,
+            "@COMMON_NAME": `${lehavaData.inRequests.in['@COMMON_NAME']}`,
             "description": `${description}`,
             "status": {
                 "@COMMON_NAME": "פתוח"
@@ -16,6 +16,6 @@ module.exports = class Call {
         }
     }
     save() {
-        lehavaData.activecalls[this.userId - 1].data.collection_cr.cr.push(this.callObject);
+        lehavaData.activecalls[this.userId - 1].data.collection_in.cr.push(this.callObject);
     }
 }

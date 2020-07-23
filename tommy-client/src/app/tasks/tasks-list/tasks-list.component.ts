@@ -45,7 +45,6 @@ export class TasksListComponent {
       taskDate: task.open_date,
       taskLink: task.link,
     }
-    console.log(msg);
     this.aPIgetService.sendTaskSumMsg(msg).subscribe(() => {
       this.openChatBox();
     });
