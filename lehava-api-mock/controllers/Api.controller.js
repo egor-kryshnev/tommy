@@ -25,6 +25,11 @@ module.exports = (app) => {
         }
     });
 
+    // GET all exceptions
+    app.get('/caisd-rest/z_pcat_to_network', (req, res) => res.json(lehavaData.exceptions.incidents));
+    app.get('/caisd-rest/z_chgcat_to_network', (req, res) => res.json(lehavaData.exceptions.requests));
+
+
     // GET all networks details
     app.get('/caisd-rest/nr', (req, res) => {
         if (validator.allNetworksWCValidator(req)) {
