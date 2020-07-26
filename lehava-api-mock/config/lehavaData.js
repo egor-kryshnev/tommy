@@ -353,7 +353,32 @@ module.exports = {
         }
     }
     ],
-
+    exceptions: {
+        incidents: {
+            collection_z_pcat_to_network: {
+                z_pcat_to_network: {
+                    "@id": '111',
+                    "@COMMON_NAME": 'Incident exception',
+                    category: {
+                        "@id": '0',
+                        "@COMMON_NAME": 'Category exception'
+                    }
+                }
+            }
+        },
+        requests: {
+            collection_z_chgcat_to_network: {
+                z_chgcat_to_network: {
+                    "@id": '111',
+                    "@COMMON_NAME": 'Incident exception',
+                    category: {
+                        "@id": '0',
+                        "@COMMON_NAME": 'Category exception'
+                    }
+                }
+            }
+        }
+    },
     problemCategories: [{
         id: 1,
         collection_pcat: {
@@ -1240,19 +1265,19 @@ module.exports = {
         id: 1,
         collection_chgcat: {
             chgcat: [{
-                "@id": "100",
+                "@id": "0",
                 "@COMMON_NAME": "שירות1 עד הסוף.הזמנת הזמנת כבל"
             },
             {
-                "@id": "100",
+                "@id": "1",
                 "@COMMON_NAME": "שירות1 עד הסוף.הזמנה.דחוף"
             },
             {
-                "@id": "100",
+                "@id": "2",
                 "@COMMON_NAME": "שירות1 עד הסוף.הזמנה.פחות דחוף"
             },
             {
-                "@id": "100",
+                "@id": "3",
                 "@COMMON_NAME": "שירות1 עד הסוף.הזמנה.פחות דחוף.תעדוף נמוך"
             }
             ]
