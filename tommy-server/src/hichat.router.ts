@@ -1,18 +1,21 @@
 import { Router, Request, Response } from "express";
 import { config } from './config';
 import { Chat } from './chat/chat'
+import { SupportersList } from './supporters-list/supporters-list';
+import { logger } from './utils/logger-client';
 
 const HichatRouter: Router = Router();
 
 HichatRouter.post('/sendmsg', async (req: Request, res: Response) => {
     const chat = new Chat();
     const groupName = getGroupName(req.user);
-    const messageToSend = config.chat.hiChatTaskMessageStructure(req.body.taskId, req.body.taskDate);
+    console.log(req.body);
+    const messageToSend = config.chat.hiChatTaskMessageStructure(req.body.taskId, req.body.taskDate, req.body.taskLink);
     try {
         await chat.sendMessageToGroup(groupName, messageToSend);
         res.status(200).send({ status: "success" });
     } catch (err) {
-        console.error(err);
+        logger(err);
         res.status(300).send(err);
     }
 });
@@ -30,12 +33,12 @@ HichatRouter.get('/', async (req: Request, res: Response) => {
     try {
         await chat.createGroup(groupName, groupUsersToAdd);
     } catch (err) {
-        console.error(err.data);
+        logger(err);
     } finally {
         try {
             await chat.setRoomMembers(groupName, groupUsersToAdd);
         } catch (err) {
-            console.error(err.data);
+            logger(err);
         }
         await chat.setRoomMembers(groupName, groupUsersToAdd);
         res.json({ "url": `${config.chat.hiChatUrl}/${groupName}` });

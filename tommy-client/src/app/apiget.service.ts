@@ -42,6 +42,7 @@ export interface taskModel1 {
   "network": string;
   "service": string;
   "summary": string;
+  "link": string;
 }
 
 export interface updatesModel {

@@ -38,7 +38,9 @@ export const config = {
     },
     rabbitmq: {
         url: process.env.RABBITMQ_URL || "amqp://localhost:5672",
-        access_token_queue_name: "access_token_rpc_queue",
+        access_token_return_queue: "access_token_return",
+        access_token_rpc_queue: "access_token_rpc",
+        logger_queue_name: "log_queue",
         msg_timeout: parseInt(process.env.RABBITMQ_TIMEOUT || "1000")
     },
 
@@ -52,6 +54,7 @@ export const config = {
         loginPass: process.env.LOGIN_PASS || 'Aa123456',
         getSupportUsers: async () => { return await SupportersList.getSupportersList() || process.env.SUPPORT_USERS?.split(',') || [] },
         hiChatGroupTitle: (userT: string) => `Tom Support ${userT}`,
-        hiChatTaskMessageStructure: (taskId: string, taskDate: string) => `היי, אשמח לעזרה בפנייה מספר: ${taskId}, שנפתחה ב ${taskDate}`
+        hiChatTaskMessageStructure: (taskId: string, taskDate: string, taskLink: string) =>
+            `היי, אשמח לעזרה בפנייה מספר: ${taskId}, שנפתחה ב ${taskDate}${taskLink ? `\nלינק בלהבה: ${taskLink}` : ''}`
     }
 }

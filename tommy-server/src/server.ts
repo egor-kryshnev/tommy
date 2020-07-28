@@ -20,7 +20,7 @@ import { createProxyMiddleware } from "http-proxy-middleware";
 import cors from "cors";
 import * as redis from "redis";
 import connectRedis from "connect-redis";
-import { logger } from "./utils/logger";
+import { logger } from "./utils/logger-client";
 import axios from "axios";
 import amqp from "amqplib/callback_api";
 import { AccessTokenProvider } from "./access-token/access-token-service";
@@ -43,13 +43,16 @@ export class Server {
       res: express.Response,
       next: express.NextFunction
     ) {
-      logger.info({
-        method: req.method,
-        url: req.url,
-        query: req.query,
-        headers: req.headers,
-        body: req.body,
-        user: req.user,
+      logger({
+        message: "Upcoming request",
+        info: {
+          method: req.method,
+          url: req.url,
+          query: req.query,
+          headers: req.headers,
+          body: req.body,
+          user: req.user,
+        }
       });
       next();
     });
@@ -72,11 +75,12 @@ export class Server {
     );
     this.server = http.createServer(this.app);
     this.server.listen(config.server.port, () => {
-      logger.info(
-        `Server running in ${
-        process.env.NODE_ENV || "development"
-        } environment on port ${config.server.port}`
-      );
+      logger({
+        message:
+          `Server running in ${
+          process.env.NODE_ENV || "development"
+          } environment on port ${config.server.port}`
+      });
     });
   }
 
@@ -150,7 +154,7 @@ export class Server {
             }
           });
 
-          logger.info(healthCheck);
+          logger({ message: healthCheck });
           res.send(healthCheck);
         });
     });
@@ -223,7 +227,7 @@ export class Server {
       res: express.Response,
       next: express.NextFunction
     ) {
-      logger.error(error);
+      logger(error);
       next();
     });
 

@@ -42,7 +42,8 @@ export class TasksListComponent {
     const msg: object = {
       taskId: task.id,
       taskSummary: task.summary,
-      taskDate: task.open_date
+      taskDate: task.open_date,
+      taskLink: task.link,
     }
     this.aPIgetService.sendTaskSumMsg(msg).subscribe(() => {
       this.openChatBox();

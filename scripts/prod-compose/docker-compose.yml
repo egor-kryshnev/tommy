@@ -73,3 +73,16 @@ services:
         condition: service_healthy
       redis:
         condition: service_started
+
+  logger:
+    image: logger
+    container_name: logger
+    build:
+      context: ../../logger
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: production
+      RABBITMQ_URL: "amqp://rabbitmq:5672"
+    depends_on:
+      rabbitmq:
+        condition: service_healthy

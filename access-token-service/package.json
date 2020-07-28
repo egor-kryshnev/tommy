@@ -12,6 +12,7 @@
   "dependencies": {
     "amqplib": "^0.5.5",
     "axios": "^0.19.2",
+    "menashmq": "0.0.5",
     "redis": "^3.0.2",
     "util": "^0.12.2"
   },

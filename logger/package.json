@@ -1,0 +1,22 @@
+{
+  "name": "logger",
+  "version": "1.0.0",
+  "description": "A micro-service for handling all the logs",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node ./dist/index.js",
+    "dev": "tsc && node ./dist/index.js"
+  },
+  "author": "Yoav Rozner",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/amqplib": "^0.5.13",
+    "@types/node": "^14.0.23",
+    "typescript": "^3.9.6"
+  },
+  "dependencies": {
+    "amqplib": "^0.5.6",
+    "winston": "^3.3.3"
+  }
+}
