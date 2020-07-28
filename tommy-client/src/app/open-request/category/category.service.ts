@@ -181,12 +181,12 @@ export class CategoryService {
         !(exceptionsArray.some((exceptionId: string) => exceptionId === category.id)));
 
     const removeIncidents = (data: ExceptionOfIncidents) =>
-      data.collection_z_pcat_to_network ?
+      data.collection_z_pcat_to_network && data.collection_z_pcat_to_network.z_pcat_to_network ?
         removeFromCategoryList(toArray(data.collection_z_pcat_to_network.z_pcat_to_network)
           .map(exceptionToCategoryId)) : null;
 
     const removeRequests = (data: ExceptionOfRequests) =>
-      data.collection_z_chgcat_to_network ?
+      data.collection_z_chgcat_to_network && data.collection_z_chgcat_to_network.z_chgcat_to_network ?
         removeFromCategoryList(toArray(data.collection_z_chgcat_to_network.z_chgcat_to_network)
           .map(exceptionToCategoryId)) : null;
 
