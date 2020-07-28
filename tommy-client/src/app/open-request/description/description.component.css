@@ -59,8 +59,9 @@
   letter-spacing: normal;
   text-align: right;
   color: #bfbfc0;
-  margin-left: 533px;
+  margin-left: 560px;
   margin-top: -24px;
+  direction: rtl;
 }
 
 textarea {
