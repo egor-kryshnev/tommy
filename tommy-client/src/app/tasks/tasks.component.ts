@@ -64,7 +64,7 @@ export class TasksComponent implements OnInit {
         service: taskObject.z_impact_service ? taskObject.z_impact_service["@COMMON_NAME"] : false,
         summary: taskObject.summary || false,
         group: taskObject.group ? taskObject.group["@COMMON_NAME"] : false,
-        icon: `../../assets/status${taskObject.status["@id"]}.svg`,
+        icon: `../../assets/${String(taskObject.status["@COMMON_NAME"]).replace('\\', '-')}.svg`,
         link: taskObject.link ? taskObject.link["@href"] : null,
       } as taskModel1;
     } else {

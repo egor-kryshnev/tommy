@@ -2254,7 +2254,7 @@ module.exports = {
                     "@COMMON_NAME": "186375",
                     "description": "תקלת אופיס\n לא נפתח לי התוכנה של האקסל",
                     "status": {
-                        "@COMMON_NAME": "ממתין לתקלה/שינוי",
+                        "@COMMON_NAME": "ממתין לתקלה\\שינוי",
                         "@id": "400008"
                     },
                     "group": {
@@ -2373,7 +2373,7 @@ module.exports = {
                     "@COMMON_NAME": "186375",
                     "description": "תקלת אופיס\n לא נפתח לי התוכנה של האקסל",
                     "status": {
-                        "@COMMON_NAME": "ממתין לתקלה/שינוי",
+                        "@COMMON_NAME": "ממתין לתקלה\\שינוי",
                         "@id": "400008"
                     },
                     "group": {
