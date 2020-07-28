@@ -24,7 +24,7 @@ module.exports = {
     },
     allNetworksWCValidator: (req) => {
         if (req.query.WC) {
-            if (req.query.WC == 'class=1000792 and delete_flag=0 and z_service_family=1000106') {
+            if (req.query.WC == 'class=1000792 and delete_flag=0') {
                 return true;
             }
         } return false;
