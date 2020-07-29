@@ -65,7 +65,7 @@ export class TasksComponent implements OnInit {
         summary: taskObject.summary || false,
         group: taskObject.group ? taskObject.group["@COMMON_NAME"] : false,
         icon: `../../assets/${String(taskObject.status["@COMMON_NAME"]).replace('\\', '-')}.svg`,
-        link: taskObject.link ? taskObject.link["@href"] : null,
+        link: taskObject.web_url ? taskObject.web_url : "",
       } as taskModel1;
     } else {
       return false;
