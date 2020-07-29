@@ -1,5 +1,5 @@
 const getCategoriesExptionsOfTable = (tableName: string, networkId: string) =>
-    `/api/caisd-rest/${tableName}?WC=network%3D%${networkId}&start=1&size=1000`;
+    `/api/caisd-rest/${tableName}?WC=network%3D${networkId}&start=1&size=1000`;
 
 export const config = {
     GET_NETWORKS_URL: "/api/caisd-rest/nr?WC=class%3D1000792%20and%20delete_flag%3D0&start=1&size=1000&SORT=z_requests_network_count DESC",

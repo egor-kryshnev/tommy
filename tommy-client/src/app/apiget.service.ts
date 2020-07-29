@@ -96,7 +96,7 @@ export class ApigetService {
     .set('Content-type', 'application/json')
     .set('X-AccessKey', this.accessKey)
     .set('Accept', 'application/json')
-    .set('X-Obj-Attrs', 'status, summary, description, open_date, z_network, z_impact_service, group');
+    .set('X-Obj-Attrs', 'status, summary, description, open_date, z_network, z_impact_service, group, web_url');
 
   updatesHeaders = new HttpHeaders()
     .set('Content-type', 'application/json')
