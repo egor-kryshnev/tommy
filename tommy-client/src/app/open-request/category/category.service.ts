@@ -117,8 +117,8 @@ export class CategoryService {
       { headers: this.transverseIncidentHeaders, withCredentials: true });
   }
 
-  getExceptionsOfIncidents(networkId: string, categoriesIds: Array<string>) {
-    return this.http.get(config.GET_CATEGORIES_EXCEPTIONS_OF_INCIDENTS(networkId, categoriesIds),
+  getExceptionsOfIncidents(networkId: string) {
+    return this.http.get(config.GET_CATEGORIES_EXCEPTIONS_OF_INCIDENTS(networkId),
       { headers: this.exceptionsHeaders, withCredentials: true });
   }
 
@@ -128,8 +128,8 @@ export class CategoryService {
     );
   }
 
-  getExceptionsOfRequests(networkId: string, categoriesIds: Array<string>) {
-    return this.http.get(config.GET_CATEGORIES_EXCEPTIONS_OF_REQUESTS(networkId, categoriesIds),
+  getExceptionsOfRequests(networkId: string) {
+    return this.http.get(config.GET_CATEGORIES_EXCEPTIONS_OF_REQUESTS(networkId),
       { headers: this.exceptionsHeaders, withCredentials: true });
   }
 
@@ -195,16 +195,12 @@ export class CategoryService {
 
     await Promise.all([
       new Promise((resolve, reject) =>
-        this.getExceptionsOfIncidents(
-          this.postReqService.networkId,
-          this.categoryList.map((category: Category) => category.id))
+        this.getExceptionsOfIncidents(this.postReqService.networkId)
           .subscribe(handleExceptionSubscribe,
             (err: Error) => reject(err),
             () => resolve())),
       new Promise((resolve, reject) =>
-        this.getExceptionsOfRequests(
-          this.postReqService.networkId,
-          this.categoryList.map((category: Category) => category.id))
+        this.getExceptionsOfRequests(this.postReqService.networkId)
           .subscribe(handleExceptionSubscribe,
             (err: Error) => reject(err),
             () => resolve())),

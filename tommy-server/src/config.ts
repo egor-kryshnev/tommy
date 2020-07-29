@@ -55,6 +55,6 @@ export const config = {
         getSupportUsers: async () => { return await SupportersList.getSupportersList() || process.env.SUPPORT_USERS?.split(',') || [] },
         hiChatGroupTitle: (userT: string) => `Tom Support ${userT}`,
         hiChatTaskMessageStructure: (taskId: string, taskDate: string, taskLink: string) =>
-            `היי, אשמח לעזרה בפנייה מספר: ${taskId}, שנפתחה ב ${taskDate}${taskLink ? `\nלינק בלהבה: ${taskLink}` : ''}`
+            `היי, אשמח לעזרה בפנייה מספר: ${taskId}, שנפתחה ב ${taskDate}. ${taskLink ? `לינק בלהבה: ${taskLink}` : 'לא קיים לינק בלהבה'}`
     }
 }
