@@ -2172,6 +2172,9 @@ module.exports = {
                     },
                     "z_network": {
                         "@COMMON_NAME": "עד הסוף"
+                    },
+                    "type": {
+                        "@COMMON_NAME": "Incident"
                     }
                 },
                 {
@@ -2191,6 +2194,9 @@ module.exports = {
                     },
                     "z_network": {
                         "@COMMON_NAME": "שדה קוצים"
+                    },
+                    "type": {
+                        "@COMMON_NAME": "Incident"
                     }
                 },
                 {
@@ -2210,6 +2216,9 @@ module.exports = {
                     },
                     "z_network": {
                         "@COMMON_NAME": "קישור אנכי"
+                    },
+                    "type": {
+                        "@COMMON_NAME": "Incident"
                     }
                 },
                 {
@@ -2229,6 +2238,9 @@ module.exports = {
                     },
                     "z_network": {
                         "@COMMON_NAME": "מיאמי"
+                    },
+                    "type": {
+                        "@COMMON_NAME": "Incident"
                     }
                 },
                 {
@@ -2248,6 +2260,9 @@ module.exports = {
                     },
                     "z_network": {
                         "@COMMON_NAME": "עד הסוף"
+                    },
+                    "type": {
+                        "@COMMON_NAME": "Incident"
                     }
                 },
                 {
@@ -2267,6 +2282,9 @@ module.exports = {
                     },
                     "z_network": {
                         "@COMMON_NAME": "מכבינט"
+                    },
+                    "type": {
+                        "@COMMON_NAME": "Incident"
                     }
                 }
                 ]
@@ -2291,7 +2309,8 @@ module.exports = {
                     },
                     "z_network": {
                         "@COMMON_NAME": "אמא של רון"
-                    }
+                    },
+                    "type": "C"
                 },
                 {
                     "@COMMON_NAME": "186322",
@@ -2310,7 +2329,8 @@ module.exports = {
                     },
                     "z_network": {
                         "@COMMON_NAME": "אמא של רון"
-                    }
+                    },
+                    "type": "C"
                 },
                 {
                     "@COMMON_NAME": "186324",
@@ -2329,7 +2349,8 @@ module.exports = {
                     },
                     "z_network": {
                         "@COMMON_NAME": "אמא של רון"
-                    }
+                    },
+                    "type": "C"
                 },
                 {
                     "@COMMON_NAME": "186375",
@@ -2348,7 +2369,8 @@ module.exports = {
                     },
                     "z_network": {
                         "@COMMON_NAME": "אמא של רון"
-                    }
+                    },
+                    "type": "C"
                 },
                 {
                     "@COMMON_NAME": "186341",
@@ -2367,7 +2389,8 @@ module.exports = {
                     },
                     "z_network": {
                         "@COMMON_NAME": "אמא של רון"
-                    }
+                    },
+                    "type": "C"
                 },
                 {
                     "@COMMON_NAME": "186375",
@@ -2380,7 +2403,8 @@ module.exports = {
                         "@COMMON_NAME": "צוות מחשוב כריש \/8997"
                     },
                     "summary": "תקלת תוכנת אופיס",
-                    "open_date": 1577822500
+                    "open_date": 1577822500,
+                    "type": "C"
                     
                 }
                 ]
