@@ -45,6 +45,19 @@
   top: 20px;
 }
 
+.cancelImg {
+  height: 30px;
+  position: absolute;
+  left: 40px;
+  bottom: 9px;
+  opacity: 0.5;
+  height: 20px;
+}
+  
+.cancelImg:hover{
+  opacity: 1;
+}
+
 .task {
   height: 110px;
   border-radius: 5px;

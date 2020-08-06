@@ -4,6 +4,7 @@ import { taskModel1, ApigetService } from '../../apiget.service';
 import { TaskDetailDialog } from '../../task-detail/task-detail.component';
 import { HomeComponent } from './../../home/home.component';
 import {MAT_TOOLTIP_DEFAULT_OPTIONS, MatTooltipDefaultOptions} from '@angular/material/tooltip';
+import { param } from 'jquery';
 
 export const myCustomTooltipDefaults: MatTooltipDefaultOptions = {
   showDelay: 500,
@@ -24,6 +25,7 @@ export class TasksListComponent {
   @Input() tasks: taskModel1[];
   @Input() tasksFlag: boolean;
   chatIcon: string = "../../../assets/supporter-logo.png";
+  closeIcon: string = "../../../assets/close.png"
   constructor(public taskDetailDialog: MatDialog, public aPIgetService: ApigetService) { }
 
   openTaskDetailDialog(selectedTask) {
@@ -53,6 +55,27 @@ export class TasksListComponent {
   openChatBox() {
     document.getElementById("cloack").className = "visible";
     HomeComponent.chatDisplayFlag = true;
+  }
+
+  getTaskType(task: taskModel1): 'chg' | 'in' {
+    if(typeof task.type === "string") {
+      return 'chg';
+    } else if (typeof task === "object") {
+      return 'in';
+    }
+  }
+  
+  getTaskNewStatus(task: taskModel1): 'CNCL' | 'CL' {
+    return task.statusCode == "RFC" || task.statusCode == "OP" ? "CNCL" : "CL";
+  }
+
+  closeTask(task: taskModel1) {
+    const params = {
+      type: this.getTaskType(task),
+      id: task.serial_id,
+      status: this.getTaskNewStatus(task)
+    }
+    this.aPIgetService.updateTaskStatus(params.type, params.id, params.status);
   }
 
 }

@@ -12,6 +12,7 @@
                 <p class="task-date">{{ task.open_date }}</p>
                 <p class="task-title">{{ getNetwork(task) }} - {{ getService(task) }}</p>
                 <p class="task-id">פניה מס' {{ task.id }}</p>
+                <img class="cancelImg" src="{{ closeIcon }}" (click)="closeTask(task)" matTooltip="לסגירת הפניה לחץ כאן">
             </div>
         </div>
     </div>
