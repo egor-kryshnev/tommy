@@ -2,7 +2,7 @@
     <div *ngFor="let task of tasks">
         <div class="task">
             <img class="chatImg" src="{{ chatIcon }}" (click)="sendTaskSumMsg(task)" matTooltip="לתמיכה לחץ כאן">
-            <img class="cancelImg" src="{{ closeIcon }}" (click)="closeTask(task)" matTooltip="לסגירת הפניה לחץ כאן">
+            <img *ngIf="isActiveTask(task)" class="cancelImg" src="{{ closeIcon }}" (click)="closeTask(task)" matTooltip="לסגירת הפניה לחץ כאן">
             <div class="background" (click)="openTaskDetailDialog(task)">
                 <img class="StatusImg" src="{{ task.icon }}">
                 <div class="status">

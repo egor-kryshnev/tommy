@@ -82,4 +82,8 @@ export class TasksListComponent {
     })
   }
 
+  isActiveTask(task: taskModel1): boolean {
+    return task.active === "1";
+  }
+
 }
