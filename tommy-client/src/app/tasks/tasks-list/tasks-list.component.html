@@ -2,6 +2,7 @@
     <div *ngFor="let task of tasks">
         <div class="task">
             <img class="chatImg" src="{{ chatIcon }}" (click)="sendTaskSumMsg(task)" matTooltip="לתמיכה לחץ כאן">
+            <img class="cancelImg" src="{{ closeIcon }}" (click)="closeTask(task)" matTooltip="לסגירת הפניה לחץ כאן">
             <div class="background" (click)="openTaskDetailDialog(task)">
                 <img class="StatusImg" src="{{ task.icon }}">
                 <div class="status">
@@ -12,7 +13,6 @@
                 <p class="task-date">{{ task.open_date }}</p>
                 <p class="task-title">{{ getNetwork(task) }} - {{ getService(task) }}</p>
                 <p class="task-id">פניה מס' {{ task.id }}</p>
-                <img class="cancelImg" src="{{ closeIcon }}" (click)="closeTask(task)" matTooltip="לסגירת הפניה לחץ כאן">
             </div>
         </div>
     </div>

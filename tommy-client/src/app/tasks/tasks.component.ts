@@ -128,5 +128,4 @@ export class TasksComponent implements OnInit {
       : "..." + taskDescription.substring(0, 30);
   }
 
-  // ngOnDestroy() {
 }

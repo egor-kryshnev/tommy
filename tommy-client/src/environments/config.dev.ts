@@ -22,10 +22,11 @@ export const config = {
     UPDATE_TASK_URL_FUNCTION: (taskType: 'in' | 'chg', taskId: string) => `/api/caisd-rest/${taskType}/${taskId}`,
     GET_UPDATE_TASK_STATUS_BODY: (taskType: "in" | "chg", taskStatus: "CNCL" | "CL") => {
         const taskBody: { [key: string]: any } = {};
-        return taskBody[taskType] = {
+        taskBody[taskType] = {
             "status": {
                 "@REL_ATTR": taskStatus
             }
         }
+        return taskBody;
     }
 };
