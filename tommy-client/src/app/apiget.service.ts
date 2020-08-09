@@ -33,6 +33,7 @@ export interface inputTask {
 }
 
 export interface taskModel1 {
+  "serial_id": string;
   "id": string;
   "description": string;
   "status": string;
@@ -43,6 +44,8 @@ export interface taskModel1 {
   "service": string;
   "summary": string;
   "link": string;
+  "type": string | object;
+  "statusCode": string;
 }
 
 export interface updatesModel {
@@ -96,7 +99,7 @@ export class ApigetService {
     .set('Content-type', 'application/json')
     .set('X-AccessKey', this.accessKey)
     .set('Accept', 'application/json')
-    .set('X-Obj-Attrs', 'status, summary, description, open_date, z_network, z_impact_service, group, web_url');
+    .set('X-Obj-Attrs', 'status, summary, description, open_date, z_network, z_impact_service, group, web_url, type');
 
   updatesHeaders = new HttpHeaders()
     .set('Content-type', 'application/json')
@@ -198,5 +201,11 @@ export class ApigetService {
   sendTaskSumMsg(msgObj: object) {
     return this.http.post(config.POST_SEND_HICHAT_MSG, msgObj, { withCredentials: true, headers: this.contentTypeJson })
   }
+
+  updateTaskStatus(taskType: 'in' | 'chg', taskId: string, taskStatus: 'CNCL' | 'CL') {
+    return this.http.put(config.UPDATE_TASK_URL_FUNCTION(taskType, taskId), config.GET_UPDATE_TASK_STATUS_BODY(taskType, taskStatus), { withCredentials: true, headers: this.head })
+  }
+
+
 
 };
