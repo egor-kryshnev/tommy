@@ -29,11 +29,7 @@ export class TaskDetailDialog implements OnInit {
   }
 
   getTitle(): string | boolean {
-    const taskSummary = this.task.summary;
-    if (taskSummary && taskSummary !== null) {
-      return taskSummary;
-    }
-    return "לא צוין";
+    return this.task.network && this.task.service ? `${this.task.network} - ${this.task.service}` : "לא צויין";
   }
 
   getNetwork(): string | boolean {
