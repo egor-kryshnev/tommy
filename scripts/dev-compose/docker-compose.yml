@@ -10,14 +10,6 @@ services:
     ports:
       - 8050:8050
 
-  client-builder:
-    container_name: client-builder
-    image: trion/ng-cli
-    working_dir: /usr/tommy-client/
-    volumes:
-      - ../../tommy-client/:/usr/tommy-client/
-    command: bash -c "ng build --watch"
-
   tommy-server:
     image: tommy-server
     container_name: tommy-server
@@ -101,6 +93,14 @@ services:
       rabbitmq:
         condition: service_healthy
   
+  client-builder:
+    container_name: client-builder
+    image: trion/ng-cli
+    working_dir: /usr/tommy-client/
+    volumes:
+      - ../../tommy-client/:/usr/tommy-client/
+    command: bash -c "npm i && ng build --watch"
+
   client-nginx:
     container_name: client-nginx
     image: nginx
