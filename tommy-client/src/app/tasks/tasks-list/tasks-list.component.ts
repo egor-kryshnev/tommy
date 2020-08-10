@@ -12,6 +12,13 @@ export const myCustomTooltipDefaults: MatTooltipDefaultOptions = {
   touchendHideDelay: 500,
 };
 
+
+interface ParamsI {
+  type: 'chg' | 'in';
+  id: string;
+  status: 'CNCL' | 'CL' | 'REOPEN';
+}
+
 @Component({
   selector: 'app-tasks-list',
   templateUrl: './tasks-list.component.html',
@@ -20,12 +27,15 @@ export const myCustomTooltipDefaults: MatTooltipDefaultOptions = {
     { provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: myCustomTooltipDefaults }
   ],
 })
+
+
 export class TasksListComponent {
 
   @Input() tasks: taskModel1[];
   @Input() tasksFlag: boolean;
   chatIcon: string = "../../../assets/supporter-logo.png";
-  closeIcon: string = "../../../assets/close.png"
+  closeIcon: string = "../../../assets/close.png";
+  redoIcon: string = "../../../assets/redo.png";
   constructor(public taskDetailDialog: MatDialog, public aPIgetService: ApigetService, public tasksComponent: TasksComponent) { }
 
   openTaskDetailDialog(selectedTask) {
@@ -70,7 +80,7 @@ export class TasksListComponent {
   }
 
   closeTask(task: taskModel1) {
-    const params = {
+    const params: ParamsI = {
       type: this.getTaskType(task),
       id: task.serial_id,
       status: this.getTaskNewStatus(task)
@@ -82,8 +92,23 @@ export class TasksListComponent {
     })
   }
 
+  reopenTask(task: taskModel1) {
+    const params: ParamsI = {
+      type: this.getTaskType(task),
+      id: task.serial_id,
+      status: 'REOPEN'
+    }    
+    this.aPIgetService.updateTaskStatus(params.type, params.id, params.status).subscribe(res => {
+      this.tasksComponent.ngOnInit();
+    }, error => {
+      console.log("Close request operation failed. Please contact application dev team");
+    })
+  }
+
   isActiveTask(task: taskModel1): boolean {
     return task.active === "1";
   }
+
+
 
 }

@@ -24,8 +24,8 @@ HichatRouter.post('/sendmsg', async (req: Request, res: Response) => {
 HichatRouter.get('/', async (req: Request, res: Response) => {
     const chat = new Chat();
     const user: any = req.user;
-    const userT: string = user.adfsId.split("@")[0];
-    const hitchatUserT: string = `${userT}@aman`;
+    const userT: string = user.adfsId.split("@")[0].toLowerCase();
+    const hitchatUserT: string = `${userT}@aman`.toLowerCase();
     const groupName: string = chat.getAllowedGroupName(userT);
 
     //TODO: get support users from redis
