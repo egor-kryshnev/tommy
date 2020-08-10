@@ -213,6 +213,7 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
+
 #file-svg{
   left: 6.5px;
   position: relative;
@@ -221,4 +222,8 @@ input::-webkit-inner-spin-button {
 
 #file-svg:hover{
   cursor: pointer;
+
+#phoneWrapper {
+  display: inherit;
+
 }

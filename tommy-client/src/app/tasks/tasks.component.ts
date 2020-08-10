@@ -58,6 +58,7 @@ export class TasksComponent implements OnInit {
       return {
         serial_id: taskObject ? taskObject["@id"] : false,
         id: taskObject ? taskObject["@COMMON_NAME"] : false,
+        active: taskObject.active ? taskObject.active["@REL_ATTR"]: false,
         description: taskObject.description || false,
         status: taskObject.status ? taskObject.status["@COMMON_NAME"] : false,
         open_date: formatted_date || false,
@@ -83,6 +84,8 @@ export class TasksComponent implements OnInit {
     this.displayedTasks = this.openTasksFlag
       ? this.openTasksArr.concat()
       : this.closedTasksArr.concat();
+    console.log(this.displayedTasks);
+    
   }
 
   openRequest() {

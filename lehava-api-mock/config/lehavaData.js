@@ -2177,6 +2177,9 @@ module.exports = {
                     },
                     "type": {
                         "@COMMON_NAME": "Incident"
+                    },
+                    "active": {
+                        "@REL_ATTR": "1"
                     }
                 },
                 {
@@ -2201,6 +2204,9 @@ module.exports = {
                     },
                     "type": {
                         "@COMMON_NAME": "Incident"
+                    },
+                    "active": {
+                        "@REL_ATTR": "1"
                     }
                 },
                 {
@@ -2225,6 +2231,9 @@ module.exports = {
                     },
                     "type": {
                         "@COMMON_NAME": "Incident"
+                    },
+                    "active": {
+                        "@REL_ATTR": "1"
                     }
                 },
                 {
@@ -2249,6 +2258,9 @@ module.exports = {
                     },
                     "type": {
                         "@COMMON_NAME": "Incident"
+                    },
+                    "active": {
+                        "@REL_ATTR": "1"
                     }
                 },
                 {
@@ -2273,6 +2285,9 @@ module.exports = {
                     },
                     "type": {
                         "@COMMON_NAME": "Incident"
+                    },
+                    "active": {
+                        "@REL_ATTR": "1"
                     }
                 },
                 {
@@ -2297,6 +2312,9 @@ module.exports = {
                     },
                     "type": {
                         "@COMMON_NAME": "Incident"
+                    },
+                    "active": {
+                        "@REL_ATTR": "0"
                     }
                 }
                 ]
@@ -2324,7 +2342,10 @@ module.exports = {
                     "z_network": {
                         "@COMMON_NAME": "אמא של רון"
                     },
-                    "type": "C"
+                    "type": "C",
+                    "active": {
+                        "@REL_ATTR": "0"
+                    }
                 },
                 {
                     "@id": "1023351",
@@ -2346,7 +2367,10 @@ module.exports = {
                     "z_network": {
                         "@COMMON_NAME": "אמא של רון"
                     },
-                    "type": "C"
+                    "type": "C",
+                    "active": {
+                        "@REL_ATTR": "1"
+                    }
                 },
                 {
                     "@id": "1322251",

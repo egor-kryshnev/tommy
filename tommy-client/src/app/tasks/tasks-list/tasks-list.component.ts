@@ -5,7 +5,6 @@ import { TaskDetailDialog } from '../../task-detail/task-detail.component';
 import { HomeComponent } from './../../home/home.component';
 import { TasksComponent } from '../../tasks/tasks.component'
 import { MAT_TOOLTIP_DEFAULT_OPTIONS, MatTooltipDefaultOptions } from '@angular/material/tooltip';
-import { param } from 'jquery';
 
 export const myCustomTooltipDefaults: MatTooltipDefaultOptions = {
   showDelay: 500,
@@ -81,6 +80,10 @@ export class TasksListComponent {
     }, error => {
       console.log("Close request operation failed. Please contact application dev team");
     })
+  }
+
+  isActiveTask(task: taskModel1): boolean {
+    return task.active === "1";
   }
 
 }
