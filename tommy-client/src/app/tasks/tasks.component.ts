@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ApigetService, taskModel1 } from "../apiget.service";
 import { AuthService } from "../auth.service";
 import { EventEmiterService } from "../event.emmiter.service";
+import {MatSnackBar} from '@angular/material/snack-bar';
 import * as moment from "moment";
 
 export interface Pnia {
@@ -33,7 +34,8 @@ export class TasksComponent implements OnInit {
     public aPIgetService: ApigetService,
     public _eventEmmitter: EventEmiterService,
     public authService: AuthService,
-    public taskDetailDialog: MatDialog
+    public taskDetailDialog: MatDialog,
+    private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -41,7 +43,7 @@ export class TasksComponent implements OnInit {
     this.setTasks();
   }
 
-  setTasks() {
+  async setTasks() {
     Promise.all([this.aPIgetService.getAllOpenSortedTasks(this.uUid),
     this.aPIgetService.getAllClosedSortedTasks(this.uUid)])
       .then((arrOfTasks) => {
@@ -83,9 +85,7 @@ export class TasksComponent implements OnInit {
   setDisplayedTasks() {
     this.displayedTasks = this.openTasksFlag
       ? this.openTasksArr.concat()
-      : this.closedTasksArr.concat();
-    console.log(this.displayedTasks);
-    
+      : this.closedTasksArr.concat();   
   }
 
   openRequest() {
@@ -131,4 +131,22 @@ export class TasksComponent implements OnInit {
       : "..." + taskDescription.substring(0, 30);
   }
 
+  async refresh() {
+    await this.setTasks();
+    this.openSnackBar("בוצע רענון!", "")
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.openFromComponent(snackbarComponent, {
+      duration: 2000,
+      panelClass: ['refresh-snackbar']
+    });
+  }
+  
 }
+
+@Component({
+    selector: 'snackbarComponent',
+    templateUrl: 'snackbarComponent.html'
+  })
+  export class snackbarComponent {}

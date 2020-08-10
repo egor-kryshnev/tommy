@@ -46,6 +46,15 @@ export class DescriptionComponent implements OnInit {
     this.router.navigate(['/categories', this.postReqService.serviceId], { relativeTo: this.route });
   }
 
+  handleUpload(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+        console.log(reader.result);
+    };
+}
+
   sendPost() {
     if (this.locationInput && this.phoneInput && this.computerNameInput && (!this.isPending)) {
       this.isPending = true;

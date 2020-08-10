@@ -40,6 +40,19 @@
   font-weight: 500;
 }
 
+
+#files{
+  opacity: 0;
+  position: relative;
+  bottom: 20px;
+  height: 29px;
+  width: 23px;
+}
+
+input[type='file'] {
+  opacity:0    
+}
+
 ::placeholder {
   font-family: Rubik;
   font-size: 14px;
@@ -52,9 +65,39 @@
   color: #bfbfc0;
 }
 
+.filesIcon{
+  left: 6.5px;
+  position: relative;
+  top: 5px;
+}
+
+.filesCircle {
+  width: 28px;
+  height: 28px;
+  border: solid 1px #3f9c67;
+  border-radius: 50%;
+  background-color: #ffffff;
+  position: relative;
+  bottom: 42px;
+  right: 280px;
+}
+
+.filesCircle:hover {
+  cursor: pointer;
+}
+
+#files:hover{
+  cursor: pointer;
+}
+
+#svg:hover{
+  cursor: pointer;
+}
+
 #charCounter {
   width: 20px;
   font-size: 14px;
+  font-family: Rubik;
   line-height: 1.43;
   letter-spacing: normal;
   text-align: right;
@@ -170,6 +213,17 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
+
+#file-svg{
+  left: 6.5px;
+  position: relative;
+  top: 5px;
+}
+
+#file-svg:hover{
+  cursor: pointer;
+
 #phoneWrapper {
   display: inherit;
+
 }
