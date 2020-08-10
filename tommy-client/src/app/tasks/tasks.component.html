@@ -14,15 +14,19 @@
   </div>
 
   <div class="new-task-container">
-    <div (click)="openRequest()" class="new-task-button">
-      <span id="button-text">קריאה חדשה</span>
-      <span id="button-plus">
-        <img src="../../assets/plus.svg" class="plus">
-      </span>
+    <div class="flex-container">
+      <div (click)="setTasks()">
+        <img src="../../assets/refresh.png" id="refresh">
+      </div>
+      <div (click)="openRequest()" class="new-task-button">
+        <span id="button-text">קריאה חדשה</span>
+        <span id="button-plus">
+          <img src="../../assets/plus.svg" class="plus">
+        </span>
+      </div>
     </div>
     <app-search-bar (textChanged)="searchTextChanged($event)"></app-search-bar>
   </div>
-
 
   <cdk-virtual-scroll-viewport id="scrollerComponents" itemSize="50" class="viewport">
     <ng-container *ngIf="displayedTasks; else loader">

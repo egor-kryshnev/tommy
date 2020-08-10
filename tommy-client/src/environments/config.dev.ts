@@ -19,4 +19,14 @@ export const config = {
     POST_NEW_REQUEST: "/api/caisd-rest/chg",
     GET_HICHAT_IFRAME_URL: '/hichat',
     POST_SEND_HICHAT_MSG: '/hichat/sendmsg',
+    UPDATE_TASK_URL_FUNCTION: (taskType: 'in' | 'chg', taskId: string) => `/api/caisd-rest/${taskType}/${taskId}`,
+    GET_UPDATE_TASK_STATUS_BODY: (taskType: "in" | "chg", taskStatus: "CNCL" | "CL") => {
+        const taskBody: { [key: string]: any } = {};
+        taskBody[taskType] = {
+            "status": {
+                "@REL_ATTR": taskStatus
+            }
+        }
+        return taskBody;
+    }
 };
