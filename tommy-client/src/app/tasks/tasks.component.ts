@@ -56,7 +56,9 @@ export class TasksComponent implements OnInit {
         "hh:mm DD.MM.YYYY"
       );
       return {
+        serial_id: taskObject ? taskObject["@id"] : false,
         id: taskObject ? taskObject["@COMMON_NAME"] : false,
+        active: taskObject.active ? taskObject.active["@REL_ATTR"]: false,
         description: taskObject.description || false,
         status: taskObject.status ? taskObject.status["@COMMON_NAME"] : false,
         open_date: formatted_date || false,
@@ -66,6 +68,8 @@ export class TasksComponent implements OnInit {
         group: taskObject.group ? taskObject.group["@COMMON_NAME"] : false,
         icon: `../../assets/${String(taskObject.status["@COMMON_NAME"]).replace('\\', '-')}.svg`,
         link: taskObject.web_url ? taskObject.web_url : "",
+        type: taskObject ? taskObject.type : "",
+        statusCode: taskObject ? taskObject.status['@REL_ATTR'] : ""
       } as taskModel1;
     } else {
       return false;
@@ -80,6 +84,8 @@ export class TasksComponent implements OnInit {
     this.displayedTasks = this.openTasksFlag
       ? this.openTasksArr.concat()
       : this.closedTasksArr.concat();
+    console.log(this.displayedTasks);
+    
   }
 
   openRequest() {
@@ -125,5 +131,4 @@ export class TasksComponent implements OnInit {
       : "..." + taskDescription.substring(0, 30);
   }
 
-  // ngOnDestroy() {
 }

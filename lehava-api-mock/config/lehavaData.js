@@ -2156,11 +2156,13 @@ module.exports = {
         indata: {
             collection_in: {
                 in: [{
+                    "@id": "1013351",
                     "@COMMON_NAME": "186318",
                     "description": "מערכת הפעלה\n היי לא עולה לי הווינדוס דחוף בבקשה",
                     "status": {
                         "@COMMON_NAME": "פתוח",
-                        "@id": "5200"
+                        "@id": "5200",
+                        "@REL_ATTR": "RFC"
                     },
                     "group": {
                         "@COMMON_NAME": "צוות מחשוב כריש \/8997"
@@ -2172,14 +2174,22 @@ module.exports = {
                     },
                     "z_network": {
                         "@COMMON_NAME": "עד הסוף"
+                    },
+                    "type": {
+                        "@COMMON_NAME": "Incident"
+                    },
+                    "active": {
+                        "@REL_ATTR": "1"
                     }
                 },
                 {
+                    "@id": "1013352",
                     "@COMMON_NAME": "186322",
                     "description": "תקלת מייל\n היי לא נפתח לי האווטלוק אשמח שתעזרו בהקדם האפשרי",
                     "status": {
                         "@COMMON_NAME": "בטיפול",
-                        "@id": "5208"
+                        "@id": "5208",
+                        "@REL_ATTR": "WIP"
                     },
                     "group": {
                         "@COMMON_NAME": "צוות מחשוב כריש \/8997"
@@ -2191,14 +2201,22 @@ module.exports = {
                     },
                     "z_network": {
                         "@COMMON_NAME": "שדה קוצים"
+                    },
+                    "type": {
+                        "@COMMON_NAME": "Incident"
+                    },
+                    "active": {
+                        "@REL_ATTR": "1"
                     }
                 },
                 {
+                    "@id": "1013353",
                     "@COMMON_NAME": "186324",
                     "description": "תקלת כרטיס מסך\n היי המסך שלי ברזולוצייה ממש נמוכה ולא נראה לי שהבעיה בהגדרות",
                     "status": {
                         "@COMMON_NAME": "השהייה",
-                        "@id": "5211"
+                        "@id": "5211",
+                        "@REL_ATTR": "WIPSLA"
                     },
                     "group": {
                         "@COMMON_NAME": "צוות מחשוב כריש \/8997"
@@ -2210,14 +2228,22 @@ module.exports = {
                     },
                     "z_network": {
                         "@COMMON_NAME": "קישור אנכי"
+                    },
+                    "type": {
+                        "@COMMON_NAME": "Incident"
+                    },
+                    "active": {
+                        "@REL_ATTR": "1"
                     }
                 },
                 {
+                    "@id": "1013354",
                     "@COMMON_NAME": "186375",
                     "description": "תקלת דרייברים\n המחשב לא מזהה את המקלדת נראה לי שזה דרייברים",
                     "status": {
                         "@COMMON_NAME": "פתיחה מחדש",
-                        "@id": "10006"
+                        "@id": "10006",
+                        "@REL_ATTR": "REOPEN"
                     },
                     "group": {
                         "@COMMON_NAME": "צוות מחשוב כריש \/8997"
@@ -2229,14 +2255,22 @@ module.exports = {
                     },
                     "z_network": {
                         "@COMMON_NAME": "מיאמי"
+                    },
+                    "type": {
+                        "@COMMON_NAME": "Incident"
+                    },
+                    "active": {
+                        "@REL_ATTR": "1"
                     }
                 },
                 {
+                    "@id": "1013355",
                     "@COMMON_NAME": "186341",
                     "description": "תקלת חומרה\n לא קורא לי את הכרטיס",
                     "status": {
                         "@COMMON_NAME": "ממתין לתגובת לקוח",
-                        "@id": "400007"
+                        "@id": "400007",
+                        "@REL_ATTR": "WAIT"
                     },
                     "group": {
                         "@COMMON_NAME": "צוות מחשוב כריש \/8997"
@@ -2248,14 +2282,22 @@ module.exports = {
                     },
                     "z_network": {
                         "@COMMON_NAME": "עד הסוף"
+                    },
+                    "type": {
+                        "@COMMON_NAME": "Incident"
+                    },
+                    "active": {
+                        "@REL_ATTR": "1"
                     }
                 },
                 {
+                    "@id": "1013356",
                     "@COMMON_NAME": "186375",
                     "description": "תקלת אופיס\n לא נפתח לי התוכנה של האקסל",
                     "status": {
                         "@COMMON_NAME": "ממתין לתקלה\\שינוי",
-                        "@id": "400008"
+                        "@id": "400008",
+                        "@REL_ATTR": "RFC"
                     },
                     "group": {
                         "@COMMON_NAME": "צוות מחשוב כריש \/8997"
@@ -2267,6 +2309,12 @@ module.exports = {
                     },
                     "z_network": {
                         "@COMMON_NAME": "מכבינט"
+                    },
+                    "type": {
+                        "@COMMON_NAME": "Incident"
+                    },
+                    "active": {
+                        "@REL_ATTR": "0"
                     }
                 }
                 ]
@@ -2275,11 +2323,13 @@ module.exports = {
         chgdata: {
             collection_chg: {
                 chg: [{
-                    "@COMMON_NAME": "aaaaaaaaa",
+                    "@id": "1013362",
+                    "@COMMON_NAME": "183365",
                     "description": "מערכת הפעלה\n היי לא עולה לי הווינדוס דחוף בבקשה",
                     "status": {
                         "@COMMON_NAME": "פתוח",
-                        "@id": "5200"
+                        "@id": "5200",
+                        "@REL_ATTR": "OP"
                     },
                     "group": {
                         "@COMMON_NAME": "צוות מחשוב כריש \/8997"
@@ -2291,14 +2341,20 @@ module.exports = {
                     },
                     "z_network": {
                         "@COMMON_NAME": "אמא של רון"
+                    },
+                    "type": "C",
+                    "active": {
+                        "@REL_ATTR": "0"
                     }
                 },
                 {
+                    "@id": "1023351",
                     "@COMMON_NAME": "186322",
                     "description": "תקלת מייל\n היי לא נפתח לי האווטלוק אשמח שתעזרו בהקדם האפשרי",
                     "status": {
                         "@COMMON_NAME": "בטיפול",
-                        "@id": "5208"
+                        "@id": "5208",
+                        "@REL_ATTR": "WIP"
                     },
                     "group": {
                         "@COMMON_NAME": "צוות מחשוב כריש \/8997"
@@ -2310,14 +2366,20 @@ module.exports = {
                     },
                     "z_network": {
                         "@COMMON_NAME": "אמא של רון"
+                    },
+                    "type": "C",
+                    "active": {
+                        "@REL_ATTR": "1"
                     }
                 },
                 {
+                    "@id": "1322251",
                     "@COMMON_NAME": "186324",
                     "description": "תקלת כרטיס מסך\n היי המסך שלי ברזולוצייה ממש נמוכה ולא נראה לי שהבעיה בהגדרות",
                     "status": {
                         "@COMMON_NAME": "השהייה",
-                        "@id": "5211"
+                        "@id": "5211",
+                        "@REL_ATTR": "HOLD"
                     },
                     "group": {
                         "@COMMON_NAME": "צוות מחשוב כריש \/8997"
@@ -2329,14 +2391,17 @@ module.exports = {
                     },
                     "z_network": {
                         "@COMMON_NAME": "אמא של רון"
-                    }
+                    },
+                    "type": "C"
                 },
                 {
+                    "@id": "1012311",
                     "@COMMON_NAME": "186375",
                     "description": "תקלת דרייברים\n המחשב לא מזהה את המקלדת נראה לי שזה דרייברים",
                     "status": {
                         "@COMMON_NAME": "פתיחה מחדש",
-                        "@id": "10006"
+                        "@id": "10006",
+                        "@REL_ATTR": "REOPEN"
                     },
                     "group": {
                         "@COMMON_NAME": "צוות מחשוב כריש \/8997"
@@ -2348,14 +2413,17 @@ module.exports = {
                     },
                     "z_network": {
                         "@COMMON_NAME": "אמא של רון"
-                    }
+                    },
+                    "type": "C"
                 },
                 {
+                    "@id": "10123351",
                     "@COMMON_NAME": "186341",
                     "description": "תקלת חומרה\n לא קורא לי את הכרטיס",
                     "status": {
                         "@COMMON_NAME": "ממתין לתגובת לקוח",
-                        "@id": "400007"
+                        "@id": "400007",
+                        "@REL_ATTR": "WFUR"
                     },
                     "group": {
                         "@COMMON_NAME": "צוות מחשוב כריש \/8997"
@@ -2367,21 +2435,24 @@ module.exports = {
                     },
                     "z_network": {
                         "@COMMON_NAME": "אמא של רון"
-                    }
+                    },
+                    "type": "C"
                 },
                 {
+                    "@id": "1013365",
                     "@COMMON_NAME": "186375",
                     "description": "תקלת אופיס\n לא נפתח לי התוכנה של האקסל",
                     "status": {
                         "@COMMON_NAME": "ממתין לתקלה\\שינוי",
-                        "@id": "400008"
+                        "@id": "400008",
+                        "@REL_ATTR": "WAITCHG"
                     },
                     "group": {
                         "@COMMON_NAME": "צוות מחשוב כריש \/8997"
                     },
                     "summary": "תקלת תוכנת אופיס",
-                    "open_date": 1577822500
-                    
+                    "open_date": 1577822500,
+                    "type": "C"
                 }
                 ]
             }
