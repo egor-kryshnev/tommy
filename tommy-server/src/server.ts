@@ -1,4 +1,4 @@
-import express from "express";
+import express , { Request, Response, NextFunction } from 'express';
 import http from "http";
 import bodyParser from "body-parser";
 import helmet from "helmet";
@@ -24,6 +24,7 @@ import { logger } from "./utils/logger-client";
 import axios from "axios";
 import amqp from "amqplib/callback_api";
 import { AccessTokenProvider } from "./access-token/access-token-service";
+import {healthCheck} from './utils/middlewares/health'
 
 export class Server {
   public app: express.Application;
@@ -99,65 +100,11 @@ export class Server {
       res.status(200).send("Server Is Up");
     });
 
-    this.app.get("/health", (req: express.Request, res: express.Response, next: express.NextFunction) => {
-      let healthCheck: string = '';
-      const servicesArray: Array<{ serviceName: string; isAlive: boolean }> = [
-        { serviceName: "Server", isAlive: true },
-        { serviceName: "Client", isAlive: true },
-        { serviceName: "RabbitMQ", isAlive: true },
-        { serviceName: "Redis", isAlive: true },
-        { serviceName: "Access Token", isAlive: true },
-      ];
-      const clientPromise = new Promise((resolve, reject) =>
-        axios
-          .get(`${config.client.url}/isaliveclient`)
-          .then((response) => resolve())
-          .catch((err) => { reject(servicesArray[1].isAlive = false) })
 
-      );
-
-      const rabbitPromise = new Promise((resolve, reject) => {
-        amqp.connect(config.rabbitmq.url, (err, connection) => {
-          if (err) {
-            reject(servicesArray[2].isAlive = false)
-          }
-          else {
-            resolve()
-          }
-        }
-        );
-      });
-
-      const redisPromise = new Promise((resolve, reject) => {
-
-        if (redisClient.set('key', 'value')) {
-          resolve();
-        }
-        else {
-          reject(servicesArray[3].isAlive = false)
-        }
-      });
-
-      const accessTokenPromise = new Promise((resolve, reject) => {
-        AccessTokenProvider.getAccessToken()
-          .then(() => resolve())
-          .catch(() => reject(servicesArray[4].isAlive = false))
-      });
-
-      Promise.all([clientPromise, rabbitPromise, redisPromise, accessTokenPromise].map(p => p.catch(e => e)))
-        .finally(() => {
-          servicesArray.forEach((service) => {
-            if (service.isAlive) {
-              healthCheck = `${healthCheck} ${service.serviceName} is up`;
-            } else {
-              healthCheck = `${healthCheck} ${service.serviceName} is down`;
-            }
-          });
-
-          logger({ message: healthCheck });
-          res.send(healthCheck);
-        });
-    });
+    this.app.get('/health', ( req: Request, res: Response,next: NextFunction)=>{
+      console.log('health check')
+      healthCheck(req, res, next, redisClient, AccessTokenProvider)
+    } )
 
     this.app.use(cors());
 
@@ -181,7 +128,7 @@ export class Server {
     });
 
     const RedisStore = connectRedis(session);
-    const redisClient = redis.createClient(config.redis.host);
+    const redisClient: redis.RedisClient = redis.createClient(config.redis.host);
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: true }));
     this.app.use(cookieParser());
