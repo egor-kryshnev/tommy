@@ -222,6 +222,7 @@ input::-webkit-inner-spin-button {
 
 #file-svg:hover{
   cursor: pointer;
+}
 
 #phoneWrapper {
   display: inherit;
