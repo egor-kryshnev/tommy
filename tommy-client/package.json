@@ -25,6 +25,7 @@
     "@types/jquery": "^3.3.33",
     "@types/redis": "^2.8.16",
     "eva-icons": "^1.1.3",
+    "hammerjs": "^2.0.8",
     "jquery": "^3.5.1",
     "moment": "^2.24.0",
     "ng": "0.0.0",
