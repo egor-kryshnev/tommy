@@ -57,9 +57,28 @@ module.exports = (app) => {
         if (validator.categoriesValidator(req)) {
             res.json(lehavaData.problemCategories[req.query.WC.split("'")[1] - 1]);
         } else {
-            res.status(400).send({
-                error: "No WC parameter on GET request"
-            });
+            try {
+                if (req.query.WC.startsWith("id=1")) {
+                    res.status(200).json({
+                        collection_pcat: {
+                            pcat: {
+                                "@id": "1",
+                                description: "Hello world!"
+                            }
+                        }
+                    });
+                } else {
+                    res.status(200).json({
+                        collection_pcat: {
+                            "@COUNT": "0"
+                        }
+                    });
+                }
+            } catch (e) {
+                res.status(400).send({
+                    error: "No WC parameter on GET request"
+                });
+            }
         }
     });
 

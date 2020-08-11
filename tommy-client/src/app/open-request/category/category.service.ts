@@ -143,7 +143,7 @@ export class CategoryService {
     this.categoryList = [];
     const mapCategory = (el: CommonCategoryProperties, isIncident: boolean): Category => ({
       id: el['@id'],
-      rel_attr: el['@REL_ATTR'],
+      rel_attr: el['@REL_ATTR'] || "1",
       name: el['@COMMON_NAME'],
       isIncident
     });

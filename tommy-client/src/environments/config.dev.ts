@@ -30,5 +30,7 @@ export const config = {
         console.log(taskBody);
         
         return taskBody;
-    }
+    },
+    GET_CATEGORY_KNOWLEDGE_ARTICLE: (categoryId: string) => `/api/caisd-rest/pcat?WC=id%3D${categoryId}`,
+
 };

@@ -7,6 +7,7 @@ import { PostReqService, PostResponse } from '../post-req.service';
 import { CategoryService } from '../category/category.service';
 import { MatDialog } from '@angular/material/dialog';
 import { FinishRequestComponent } from '../finish-request/finish-request.component';
+import { KnowledgeArticleComponent } from '../knowledge-article/knowledge-article.component';
 
 @Component({
   selector: 'app-description',
@@ -40,6 +41,7 @@ export class DescriptionComponent implements OnInit {
     this.setPhoneFromShraga(this.authService.getPhone());
     this._eventEmmitter.dataStr.subscribe(data => this.userUUID = data);
     this.isPending = false;
+    console.log(this.postReqService.categoryId)
   }
 
   onReturn() {
