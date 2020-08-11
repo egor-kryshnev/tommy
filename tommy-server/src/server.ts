@@ -207,17 +207,6 @@ export class Server {
         next();
       }
     );
-
-    this.app.get(
-      "/config",
-      (
-        req: express.Request,
-        res: express.Response,
-        next: express.NextFunction
-      ) => {
-        res.status(200).send(config.client.requests);
-      }
-    );
   }
 
   private initializeErrorHandler() {
