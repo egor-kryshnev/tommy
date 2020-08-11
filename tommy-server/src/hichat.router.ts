@@ -1,4 +1,4 @@
-import { Router, Request, Response } from "express";
+import { Router, Request, Response, NextFunction } from "express";
 import { config } from './config';
 import { Chat } from './chat/chat'
 import { SupportersList } from './supporters-list/supporters-list';
@@ -21,15 +21,20 @@ HichatRouter.post('/sendmsg', async (req: Request, res: Response) => {
 });
 
 
-HichatRouter.get('/', async (req: Request, res: Response) => {
+HichatRouter.get('/', async (req: Request, res: Response, next: NextFunction) => {
     const chat = new Chat();
     const user: any = req.user;
     const userT: string = user.adfsId.split("@")[0].toLowerCase();
-    const hitchatUserT: string = `${userT}@aman`.toLowerCase();
+    const hitchatUserT: string = user.adfsId.toLowerCase();
     const groupName: string = chat.getAllowedGroupName(userT);
 
-    //TODO: get support users from redis
-    const groupUsersToAdd: string[] = (await config.chat.getSupportUsers()).concat(hitchatUserT);
+    let groupUsersToAdd: string[] = [];
+    try {
+        groupUsersToAdd = (await config.chat.getSupportUsers()).concat(hitchatUserT);
+    } catch(e) {
+        logger(e);
+        next(e);
+    }
     try {
         await chat.createGroup(groupName, groupUsersToAdd);
     } catch (err) {
@@ -42,7 +47,6 @@ HichatRouter.get('/', async (req: Request, res: Response) => {
         }
         await chat.setRoomMembers(groupName, groupUsersToAdd);
         res.json({ "url": `${config.chat.hiChatUrl}/${groupName}` });
-        // TODO: pull support users from lehava and update in redis
     }
 });
 
