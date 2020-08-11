@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ApigetService, taskModel1 } from "../apiget.service";
 import { AuthService } from "../auth.service";
 import { EventEmiterService } from "../event.emmiter.service";
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import * as moment from "moment";
 
 export interface Pnia {
@@ -60,7 +60,7 @@ export class TasksComponent implements OnInit {
       return {
         serial_id: taskObject ? taskObject["@id"] : false,
         id: taskObject ? taskObject["@COMMON_NAME"] : false,
-        active: taskObject.active ? taskObject.active["@REL_ATTR"]: false,
+        active: taskObject.active ? taskObject.active["@REL_ATTR"] : false,
         description: taskObject.description || false,
         status: taskObject.status ? taskObject.status["@COMMON_NAME"] : false,
         open_date: formatted_date || false,
@@ -85,7 +85,7 @@ export class TasksComponent implements OnInit {
   setDisplayedTasks() {
     this.displayedTasks = this.openTasksFlag
       ? this.openTasksArr.concat()
-      : this.closedTasksArr.concat();   
+      : this.closedTasksArr.concat();
   }
 
   openRequest() {
@@ -99,21 +99,16 @@ export class TasksComponent implements OnInit {
   }
 
   searchTextChanged(text: string) {
-    this.searchText = this.stripWhiteSpaces(text);
+    this.searchText = this.stripWhiteSpaces(text.toLowerCase());
     this.openTasksFlag
       ? this.addTasksToDisplay(this.openTasksArr)
       : this.addTasksToDisplay(this.closedTasksArr);
-  }
+  }  
 
   addTasksToDisplay(tasksArray: taskModel1[]) {
-    tasksArray.forEach((task: taskModel1) => {
-      if (
-        this.getTaskTitle(task).includes(this.searchText) ||
-        task.id.startsWith(this.searchText)
-      ) {
-        if (this.displayedTasks) this.displayedTasks = [];
-        this.displayedTasks.push(task);
-      }
+    this.displayedTasks = tasksArray.filter((task: taskModel1) => {
+      console.log(this.getTaskTitle(task))
+      return this.getTaskTitle(task).toLowerCase().includes(this.searchText);
     });
   }
 
@@ -122,13 +117,7 @@ export class TasksComponent implements OnInit {
   }
 
   getTaskTitle(task: taskModel1) {
-    let taskDescription = task.description;
-    if (task.description.split("\n")[0]) {
-      taskDescription = task.description.split("\n")[0];
-    }
-    return taskDescription.length <= 30
-      ? taskDescription
-      : "..." + taskDescription.substring(0, 30);
+    return `${task.network} - ${task.service}`;
   }
 
   async refresh() {
@@ -142,11 +131,11 @@ export class TasksComponent implements OnInit {
       panelClass: ['refresh-snackbar']
     });
   }
-  
+
 }
 
 @Component({
-    selector: 'snackbarComponent',
-    templateUrl: 'snackbarComponent.html'
-  })
-  export class snackbarComponent {}
+  selector: 'snackbarComponent',
+  templateUrl: 'snackbarComponent.html'
+})
+export class snackbarComponent { }
