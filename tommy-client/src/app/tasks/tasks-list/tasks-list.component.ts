@@ -109,6 +109,10 @@ export class TasksListComponent {
     return task.active === "1";
   }
 
+  getTaskTitle(task: taskModel1){
+    return `${this.getNetwork(task)} - ${this.getService(task)}`;
+  }
+
 
 
 }
