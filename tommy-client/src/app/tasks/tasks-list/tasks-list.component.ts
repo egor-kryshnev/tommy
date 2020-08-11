@@ -5,13 +5,19 @@ import { TaskDetailDialog } from '../../task-detail/task-detail.component';
 import { HomeComponent } from './../../home/home.component';
 import { TasksComponent } from '../../tasks/tasks.component'
 import { MAT_TOOLTIP_DEFAULT_OPTIONS, MatTooltipDefaultOptions } from '@angular/material/tooltip';
-import { param } from 'jquery';
 
 export const myCustomTooltipDefaults: MatTooltipDefaultOptions = {
   showDelay: 500,
   hideDelay: 0,
   touchendHideDelay: 500,
 };
+
+
+interface ParamsI {
+  type: 'chg' | 'in';
+  id: string;
+  status: 'CNCL' | 'CL' | 'REOPEN';
+}
 
 @Component({
   selector: 'app-tasks-list',
@@ -21,12 +27,15 @@ export const myCustomTooltipDefaults: MatTooltipDefaultOptions = {
     { provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: myCustomTooltipDefaults }
   ],
 })
+
+
 export class TasksListComponent {
 
   @Input() tasks: taskModel1[];
   @Input() tasksFlag: boolean;
   chatIcon: string = "../../../assets/supporter-logo.png";
-  closeIcon: string = "../../../assets/close.png"
+  closeIcon: string = "../../../assets/close.png";
+  redoIcon: string = "../../../assets/redo.png";
   constructor(public taskDetailDialog: MatDialog, public aPIgetService: ApigetService, public tasksComponent: TasksComponent) { }
 
   openTaskDetailDialog(selectedTask) {
@@ -71,7 +80,7 @@ export class TasksListComponent {
   }
 
   closeTask(task: taskModel1) {
-    const params = {
+    const params: ParamsI = {
       type: this.getTaskType(task),
       id: task.serial_id,
       status: this.getTaskNewStatus(task)
@@ -82,5 +91,28 @@ export class TasksListComponent {
       console.log("Close request operation failed. Please contact application dev team");
     })
   }
+
+  reopenTask(task: taskModel1) {
+    const params: ParamsI = {
+      type: this.getTaskType(task),
+      id: task.serial_id,
+      status: 'REOPEN'
+    }    
+    this.aPIgetService.updateTaskStatus(params.type, params.id, params.status).subscribe(res => {
+      this.tasksComponent.ngOnInit();
+    }, error => {
+      console.log("Close request operation failed. Please contact application dev team");
+    })
+  }
+
+  isActiveTask(task: taskModel1): boolean {
+    return task.active === "1";
+  }
+
+  getTaskTitle(task: taskModel1){
+    return `${this.getNetwork(task)} - ${this.getService(task)}`;
+  }
+
+
 
 }
