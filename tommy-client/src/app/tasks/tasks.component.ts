@@ -107,7 +107,6 @@ export class TasksComponent implements OnInit {
 
   addTasksToDisplay(tasksArray: taskModel1[]) {
     this.displayedTasks = tasksArray.filter((task: taskModel1) => {
-      console.log(this.getTaskTitle(task))
       return this.getTaskTitle(task).toLowerCase().includes(this.searchText);
     });
   }
