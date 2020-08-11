@@ -63,7 +63,7 @@ module.exports = (app) => {
                         collection_pcat: {
                             pcat: {
                                 "@id": "1",
-                                description: "Hello world!"
+                                description: "משהו https://stackoverflow.com משהו http://randomsite.com כדאי לקרוא."
                             }
                         }
                     });

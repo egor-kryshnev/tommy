@@ -1,2 +1,9 @@
-<h4 class="title">מוכנים להשקיע מספר דקות מזמנכם? לרשותך מדריך קצר שעשוי לעזור לפתור את הבעיה</h4>
-<div class="text-area">{{ knowledgeArticle }}</div>
+<h4 class="title" *ngIf="knowledgeArticle">מוכנים להשקיע מספר דקות מזמנכם? לרשותך מדריך קצר שעשוי לעזור לפתור את הבעיה</h4>
+<div class="text-area" *ngIf="knowledgeArticle" style="display: flex; justify-content: start;">
+    <div *ngFor="let text of knowledgeArticle;">
+        <p class="text" *ngIf="!text.startsWith('http'); else link">{{ text }}&nbsp;</p>
+        <ng-template class="text" #link>
+            <a href="{{ text }}">{{ text }}&nbsp;</a>
+        </ng-template>
+    </div>
+</div>
