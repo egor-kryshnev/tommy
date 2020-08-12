@@ -45,7 +45,7 @@ export interface taskModel1 {
   "service": string;
   "summary": string;
   "link": string;
-  "type": string | object;
+  "type": string | object | boolean;
   "statusCode": string;
 }
 
