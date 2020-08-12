@@ -65,8 +65,4 @@ export class CardsListComponent implements OnInit  {
     this.limit = 7;
     this.setCardListToDisplay();
   }
-
-
-
-
 }
