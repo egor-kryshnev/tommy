@@ -79,4 +79,7 @@
   background-color: white;
   border: none;
   cursor: pointer;
+  height: 30px;
+  opacity: 0.5;
+  height: 20px;
 }
