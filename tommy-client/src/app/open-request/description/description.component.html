@@ -8,7 +8,7 @@
 
 <div class="grid">
   <textarea id="subject" (input)="counter()" maxlength="500"
-    placeholder="מוכנים להשקיע מספר דקות מזמנכם? לרשותך מדריך קצר שעשוי לעזור לפתור את הבעיה"></textarea>
+    placeholder="תיאור הפניה"></textarea>
   <p id="charCounter">{{ input }}/500</p>
   <div class="filesCircle" matTooltip="צרף קבצים">
     <svg id="file-svg" xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16">
@@ -22,8 +22,8 @@
   <input maxlength="11" class="input {{ phoneWarning }}" pattern="/^-?\d+\.?\d*$/" placeholder="מספר טלפון נייד (חובה)"
     onkeypress="if(this.value.length>12) return false;" value="{{phoneInput}}"
     (input)="setPhoneInput($event.target.value)">
-  <div id="phoneWrapper" matTooltip="אם ברשותך טלפון אדום נא הזן את מספרו">
-    <input maxlength="11" class="input" pattern="/^-?\d+\.?\d*$/" placeholder="טלפון אדום/VoiP"
+  <div id="phoneWrapper" matTooltip="מטכלי נא הזן את מספרו / VoiP / אם ברשותך טלפון אדום">
+    <input maxlength="11" class="input" pattern="/^-?\d+\.?\d*$/" placeholder="טלפון אדום / VoiP / מטכלי"
       onkeypress="if(this.value.length>12) return false;" (input)="setVOIPInput($event.target.value)">
   </div>
   <input type="text" class="input {{ computerNameWarning }}" placeholder="שם המחשב (חובה)" maxlength="20"
