@@ -8,7 +8,6 @@ import { CategoryService } from '../category/category.service';
 import { MatDialog } from '@angular/material/dialog';
 import { FinishRequestComponent } from '../finish-request/finish-request.component';
 import { KnowledgeArticleComponent } from '../knowledge-article/knowledge-article.component';
-
 @Component({
   selector: 'app-description',
   templateUrl: './description.component.html',
@@ -31,9 +30,10 @@ export class DescriptionComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute, public _eventEmmitter: EventEmiterService,
     public authService: AuthService, public postReqService: PostReqService, public categoryService: CategoryService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog, public knowledgeArticleDialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.openKnowlengeDialog();
     const id = this.route.snapshot.paramMap.get('id');
     const selectedCategories = this.categoryService.getSelectedCategoryString();
     this.postReqService.descriptionCategory = selectedCategories;
@@ -41,7 +41,7 @@ export class DescriptionComponent implements OnInit {
     this.setPhoneFromShraga(this.authService.getPhone());
     this._eventEmmitter.dataStr.subscribe(data => this.userUUID = data);
     this.isPending = false;
-    console.log(this.postReqService.categoryId)
+    console.log(this.postReqService.categoryId);
   }
 
   onReturn() {
@@ -53,9 +53,9 @@ export class DescriptionComponent implements OnInit {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
-        console.log(reader.result);
+      console.log(reader.result);
     };
-}
+  }
 
   sendPost() {
     if (this.locationInput && this.phoneInput && this.computerNameInput && (!this.isPending)) {
@@ -123,4 +123,11 @@ export class DescriptionComponent implements OnInit {
     const prefix = numStr.split("-")[0];
     return prefix.startsWith("5") || prefix.startsWith("05")
   }
+
+  openKnowlengeDialog() {
+   const dialogRef = this.knowledgeArticleDialog.open(KnowledgeArticleComponent);
+    //  this.knowledgeArticleDialog.open(KnowledgeArticleComponent);
+  }
+  
 }
+

@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { PostReqService } from "../post-req.service";
 import { ApigetService } from "../../apiget.service";
+import { MatDialogRef } from '@angular/material/dialog';
+
 
 @Component({
   selector: "app-knowledge-article",
@@ -9,11 +11,13 @@ import { ApigetService } from "../../apiget.service";
 })
 export class KnowledgeArticleComponent implements OnInit {
   knowledgeArticle: string[] = [];
+  knowledgeLink: string[] = [];
 
   constructor(
     private postReqService: PostReqService,
-    private apiGetService: ApigetService
-  ) {}
+    private apiGetService: ApigetService,
+    public dialogRef: MatDialogRef<KnowledgeArticleComponent>
+  ) { }
 
   ngOnInit(): void {
     let categoryId: string;
@@ -32,4 +36,18 @@ export class KnowledgeArticleComponent implements OnInit {
           : null;
       });
   }
+
+  getKnowledgeLink() {
+    this.knowledgeLink = this.knowledgeArticle.filter((article: string) => article.startsWith("http"));
+    return this.knowledgeLink[0];
+
+  }
+
+  closeDialog() {
+    console.log('closed2');
+    this.dialogRef.close();
+  }
 }
+
+
+

@@ -1,9 +1,8 @@
-<h4 class="title" *ngIf="knowledgeArticle">מוכנים להשקיע מספר דקות מזמנכם? לרשותך מדריך קצר שעשוי לעזור לפתור את הבעיה</h4>
-<div class="text-area" *ngIf="knowledgeArticle" style="display: flex; justify-content: start;">
-    <div *ngFor="let text of knowledgeArticle;">
-        <p class="text" *ngIf="!text.startsWith('http'); else link">{{ text }}&nbsp;</p>
-        <ng-template class="text" #link>
-            <a href="{{ text }}">{{ text }}&nbsp;</a>
-        </ng-template>
-    </div>
+<!-- <button class="close-button" (click)="closeDialog()"><img src="../../../assets/close.png" alt="סגור" ></button> -->
+<img class="close-button" src="../../../assets/close.png" alt="סגור" (click)="closeDialog()">
+<!-- <button md-raised-button md-dialog-close>Cancel</button> -->
+<h4 class="title" *ngIf="knowledgeArticle" dir="rtl">מוכנים להשקיע מספר דקות מזמנכם? </h4>
+<h4 class="title" *ngIf="knowledgeArticle"> לרשותך מדריך קצר שעשוי לעזור לפתור את הבעיה</h4>
+<div class="button-Link">
+<a class ="linkButton" mat-raised-button href={{getKnowledgeLink()}} target="_blank">לחץ כאן</a>
 </div>
