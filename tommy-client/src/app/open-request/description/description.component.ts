@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { model1 } from '../../apiget.service';
+import { model1, ApigetService } from '../../apiget.service';
 import { AuthService } from '../../auth.service';
 import { EventEmiterService } from '../../event.emmiter.service';
 import { PostReqService, PostResponse } from '../post-req.service';
@@ -28,12 +28,14 @@ export class DescriptionComponent implements OnInit {
   input: number = 0;
   isPending: boolean = false;
 
+
   constructor(private router: Router, private route: ActivatedRoute, public _eventEmmitter: EventEmiterService,
     public authService: AuthService, public postReqService: PostReqService, public categoryService: CategoryService,
-    public dialog: MatDialog, public knowledgeArticleDialog: MatDialog) { }
+    public dialog: MatDialog, public knowledgeArticleDialog: MatDialog, private apiGetService: ApigetService,
+    ) { }
 
   ngOnInit(): void {
-    this.openKnowlengeDialog();
+    this.isKnowledgeArticle()
     const id = this.route.snapshot.paramMap.get('id');
     const selectedCategories = this.categoryService.getSelectedCategoryString();
     this.postReqService.descriptionCategory = selectedCategories;
@@ -126,7 +128,27 @@ export class DescriptionComponent implements OnInit {
 
   openKnowlengeDialog() {
    const dialogRef = this.knowledgeArticleDialog.open(KnowledgeArticleComponent);
-    //  this.knowledgeArticleDialog.open(KnowledgeArticleComponent);
+  }
+
+  isKnowledgeArticle(){
+    let categoryId: string;
+    categoryId = this.postReqService.isIncident
+      ? this.postReqService.categoryId.split(":")[1]
+      : this.postReqService.categoryId;
+    if (!categoryId) {
+      categoryId = this.postReqService.categoryId;
+    }
+    this.apiGetService
+      .getCategoryDescription(categoryId)
+      .subscribe((res: any) => {
+        const knowledgeArticle = res.collection_pcat.pcat
+          ? res.collection_pcat.pcat.description
+          : null;
+
+          if(knowledgeArticle){
+            this.openKnowlengeDialog();
+          }
+      });
   }
   
 }
