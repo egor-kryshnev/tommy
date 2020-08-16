@@ -44,7 +44,6 @@ export class KnowledgeArticleComponent implements OnInit {
   }
 
   closeDialog() {
-    console.log('closed2');
     this.dialogRef.close();
   }
 }
