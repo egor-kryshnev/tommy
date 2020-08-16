@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { model1 } from '../../apiget.service';
+import { model1, ApigetService } from '../../apiget.service';
 import { AuthService } from '../../auth.service';
 import { EventEmiterService } from '../../event.emmiter.service';
 import { PostReqService, PostResponse } from '../post-req.service';
 import { CategoryService } from '../category/category.service';
 import { MatDialog } from '@angular/material/dialog';
 import { FinishRequestComponent } from '../finish-request/finish-request.component';
-
+import { KnowledgeArticleComponent } from '../knowledge-article/knowledge-article.component';
 @Component({
   selector: 'app-description',
   templateUrl: './description.component.html',
@@ -28,11 +28,14 @@ export class DescriptionComponent implements OnInit {
   input: number = 0;
   isPending: boolean = false;
 
+
   constructor(private router: Router, private route: ActivatedRoute, public _eventEmmitter: EventEmiterService,
     public authService: AuthService, public postReqService: PostReqService, public categoryService: CategoryService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog, public knowledgeArticleDialog: MatDialog, private apiGetService: ApigetService,
+    ) { }
 
   ngOnInit(): void {
+    this.isKnowledgeArticle()
     const id = this.route.snapshot.paramMap.get('id');
     const selectedCategories = this.categoryService.getSelectedCategoryString();
     this.postReqService.descriptionCategory = selectedCategories;
@@ -40,10 +43,20 @@ export class DescriptionComponent implements OnInit {
     this.setPhoneFromShraga(this.authService.getPhone());
     this._eventEmmitter.dataStr.subscribe(data => this.userUUID = data);
     this.isPending = false;
+    console.log(this.postReqService.categoryId);
   }
 
   onReturn() {
     this.router.navigate(['/categories', this.postReqService.serviceId], { relativeTo: this.route });
+  }
+
+  handleUpload(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      console.log(reader.result);
+    };
   }
 
   sendPost() {
@@ -112,4 +125,31 @@ export class DescriptionComponent implements OnInit {
     const prefix = numStr.split("-")[0];
     return prefix.startsWith("5") || prefix.startsWith("05")
   }
+
+  openKnowlengeDialog() {
+   const dialogRef = this.knowledgeArticleDialog.open(KnowledgeArticleComponent);
+  }
+
+  isKnowledgeArticle(){
+    let categoryId: string;
+    categoryId = this.postReqService.isIncident
+      ? this.postReqService.categoryId.split(":")[1]
+      : this.postReqService.categoryId;
+    if (!categoryId) {
+      categoryId = this.postReqService.categoryId;
+    }
+    this.apiGetService
+      .getCategoryDescription(categoryId)
+      .subscribe((res: any) => {
+        const knowledgeArticle = res.collection_pcat.pcat
+          ? res.collection_pcat.pcat.description
+          : null;
+
+          if(knowledgeArticle){
+            this.openKnowlengeDialog();
+          }
+      });
+  }
+  
 }
+

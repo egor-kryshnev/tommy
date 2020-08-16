@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TransverseIncidentDialog, TransverseIncidentData } from '../transverse-incident/transverse-incident.component';
 import { PostReqService } from '../post-req.service';
+import { data } from 'jquery';
 
 
 export interface CategoryOfIncidents {
@@ -60,6 +61,27 @@ export interface Category {
   isIncident: boolean;
 }
 
+interface ExceptionOfIncidents {
+  "collection_z_pcat_to_network": {
+    "z_pcat_to_network": Exception[];
+  }
+}
+
+interface ExceptionOfRequests {
+  "collection_z_chgcat_to_network": {
+    "z_chgcat_to_network": Exception[];
+  }
+}
+
+interface Exception {
+  "@id": string;
+  "@COMMON_NAME": string;
+  category: {
+    "@id": string;
+    "@COMMON_NAME": string;
+  }
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -79,6 +101,11 @@ export class CategoryService {
     .set('X-Obj-Attrs', 'description, open_date, z_network')
     .set('Accept', 'application/json')
 
+  exceptionsHeaders = new HttpHeaders()
+    .set('Content-type', 'application/json')
+    .set('X-Obj-Attrs', 'category')
+    .set('Accept', 'application/json')
+
   constructor(private http: HttpClient,
     public transverseIncidentDialog: MatDialog,
     public route: ActivatedRoute,
@@ -90,10 +117,20 @@ export class CategoryService {
       { headers: this.transverseIncidentHeaders, withCredentials: true });
   }
 
+  getExceptionsOfIncidents(networkId: string) {
+    return this.http.get(config.GET_CATEGORIES_EXCEPTIONS_OF_INCIDENTS(networkId),
+      { headers: this.exceptionsHeaders, withCredentials: true });
+  }
+
   getCategoriesOfIncidents(serviceId: string) {
     return this.http.get(config.GET_CATEGORIES_OF_INCIDENTS_URL_FUNCTION(serviceId),
       { headers: this.categoriesRequestHeaders, withCredentials: true }
     );
+  }
+
+  getExceptionsOfRequests(networkId: string) {
+    return this.http.get(config.GET_CATEGORIES_EXCEPTIONS_OF_REQUESTS(networkId),
+      { headers: this.exceptionsHeaders, withCredentials: true });
   }
 
   getCategoriesOfRequests(serviceId: string) {
@@ -106,7 +143,7 @@ export class CategoryService {
     this.categoryList = [];
     const mapCategory = (el: CommonCategoryProperties, isIncident: boolean): Category => ({
       id: el['@id'],
-      rel_attr: el['@REL_ATTR'],
+      rel_attr: el['@REL_ATTR'] || "1",
       name: el['@COMMON_NAME'],
       isIncident
     });
@@ -123,7 +160,6 @@ export class CategoryService {
     const handleDataSubscribe = (data: CategoryOfIncidents | CategoryOfRequests) =>
       ("collection_pcat" in data) ? appendIncidents(data) : appendRequests(data);
 
-
     await Promise.all([
       new Promise((resolve, reject) =>
         this.getCategoriesOfIncidents(id)
@@ -136,6 +172,38 @@ export class CategoryService {
           .subscribe(handleDataSubscribe,
             (err: Error) => reject(err),
             () => resolve()))
+    ]);
+
+    const exceptionToCategoryId = (exception: Exception) => exception.category["@id"];
+
+    const removeFromCategoryList = (exceptionsArray: Array<string>) =>
+      this.categoryList = this.categoryList.filter((category: Category) =>
+        !(exceptionsArray.some((exceptionId: string) => exceptionId === category.id)));
+
+    const removeIncidents = (data: ExceptionOfIncidents) =>
+      data.collection_z_pcat_to_network && data.collection_z_pcat_to_network.z_pcat_to_network ?
+        removeFromCategoryList(toArray(data.collection_z_pcat_to_network.z_pcat_to_network)
+          .map(exceptionToCategoryId)) : null;
+
+    const removeRequests = (data: ExceptionOfRequests) =>
+      data.collection_z_chgcat_to_network && data.collection_z_chgcat_to_network.z_chgcat_to_network ?
+        removeFromCategoryList(toArray(data.collection_z_chgcat_to_network.z_chgcat_to_network)
+          .map(exceptionToCategoryId)) : null;
+
+    const handleExceptionSubscribe = (data: ExceptionOfIncidents | ExceptionOfRequests) =>
+      ("collection_z_pcat_to_network" in data) ? removeIncidents(data) : removeRequests(data);
+
+    await Promise.all([
+      new Promise((resolve, reject) =>
+        this.getExceptionsOfIncidents(this.postReqService.networkId)
+          .subscribe(handleExceptionSubscribe,
+            (err: Error) => reject(err),
+            () => resolve())),
+      new Promise((resolve, reject) =>
+        this.getExceptionsOfRequests(this.postReqService.networkId)
+          .subscribe(handleExceptionSubscribe,
+            (err: Error) => reject(err),
+            () => resolve())),
     ]);
 
     this.buildData(this.categoryList.map((category: Category) => category.name.split(".")));

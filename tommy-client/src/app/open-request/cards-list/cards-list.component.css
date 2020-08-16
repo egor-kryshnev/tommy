@@ -14,19 +14,20 @@
     background-color: #ffffff;
     margin: 20px;
     text-align: center;
-    padding-top: 5px;
-    font-size: 22px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
     transition: 0.5s;
 }
 
 .text-in-card{
-    width: 247px;
-    height: 20px;
+    font-size: calc(100% + 0.5vw);
     font-family: Rubik;
     line-height: 1.43;
     letter-spacing: normal;
     text-align: center;
     color: #3b3b3b;
+    align-self: center;
 }
   
 .card#show-card{

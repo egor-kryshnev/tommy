@@ -29,7 +29,8 @@ import { TasksListComponent } from './tasks/tasks-list/tasks-list.component';
 import { SharedModule } from './shared.module';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { BottomUpdateDetailSheet } from './updating/update-detail/update-detail.component'
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     DragDropModule,
     SharedModule,
     MatBottomSheetModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSnackBarModule
   ],
   providers: [EventEmiterService, AuthService, { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } }],
   bootstrap: [AppComponent]

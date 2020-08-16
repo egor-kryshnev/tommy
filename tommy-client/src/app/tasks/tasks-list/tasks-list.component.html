@@ -2,6 +2,12 @@
     <div *ngFor="let task of tasks">
         <div class="task">
             <img class="chatImg" src="{{ chatIcon }}" (click)="sendTaskSumMsg(task)" matTooltip="לתמיכה לחץ כאן">
+            <img *ngIf="isActiveTask(task); else nonActive" class="cancelImg" src="{{ closeIcon }}" (click)="closeTask(task)" matTooltip="לסגירת הפניה לחץ כאן">
+            <ng-template #nonActive>
+                <div *ngIf="task.type !== 'C'">
+                    <img class="cancelImg" src="{{ redoIcon }}" (click)="reopenTask(task)" matTooltip="להגשת הפנייה מחדש לחץ כאן">
+                </div>
+            </ng-template>
             <div class="background" (click)="openTaskDetailDialog(task)">
                 <img class="StatusImg" src="{{ task.icon }}">
                 <div class="status">
@@ -10,7 +16,7 @@
                 <hr class="kav">
                 <div [ngClass]="{'taskNameDecorationOpen': tasksFlag, 'taskNameDecorationClosed' : !tasksFlag}"></div>
                 <p class="task-date">{{ task.open_date }}</p>
-                <p class="task-title">{{ getNetwork(task) }} - {{ getService(task) }}</p>
+                <p class="task-title">{{ getTaskTitle(task) }}</p>
                 <p class="task-id">פניה מס' {{ task.id }}</p>
             </div>
         </div>

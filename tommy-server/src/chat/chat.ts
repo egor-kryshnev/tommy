@@ -178,7 +178,7 @@ export class Chat {
     }
 
     getAllowedGroupName(userT: string) {
-        const groupName = config.chat.hiChatGroupTitle(userT);
+        const groupName = config.chat.hiChatGroupTitle(userT).toLowerCase();
         return this.getAllowedGroupTitleFromText(groupName);
     }
 }

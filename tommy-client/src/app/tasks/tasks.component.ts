@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ApigetService, taskModel1 } from "../apiget.service";
 import { AuthService } from "../auth.service";
 import { EventEmiterService } from "../event.emmiter.service";
+import { MatSnackBar } from '@angular/material/snack-bar';
 import * as moment from "moment";
 
 export interface Pnia {
@@ -33,7 +34,8 @@ export class TasksComponent implements OnInit {
     public aPIgetService: ApigetService,
     public _eventEmmitter: EventEmiterService,
     public authService: AuthService,
-    public taskDetailDialog: MatDialog
+    public taskDetailDialog: MatDialog,
+    private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -41,7 +43,7 @@ export class TasksComponent implements OnInit {
     this.setTasks();
   }
 
-  setTasks() {
+  async setTasks() {
     Promise.all([this.aPIgetService.getAllOpenSortedTasks(this.uUid),
     this.aPIgetService.getAllClosedSortedTasks(this.uUid)])
       .then((arrOfTasks) => {
@@ -56,7 +58,9 @@ export class TasksComponent implements OnInit {
         "hh:mm DD.MM.YYYY"
       );
       return {
+        serial_id: taskObject ? taskObject["@id"] : false,
         id: taskObject ? taskObject["@COMMON_NAME"] : false,
+        active: taskObject.active ? taskObject.active["@REL_ATTR"] : false,
         description: taskObject.description || false,
         status: taskObject.status ? taskObject.status["@COMMON_NAME"] : false,
         open_date: formatted_date || false,
@@ -64,7 +68,10 @@ export class TasksComponent implements OnInit {
         service: taskObject.z_impact_service ? taskObject.z_impact_service["@COMMON_NAME"] : false,
         summary: taskObject.summary || false,
         group: taskObject.group ? taskObject.group["@COMMON_NAME"] : false,
-        icon: `../../assets/status${taskObject.status["@id"]}.svg`,
+        icon: `../../assets/${String(taskObject.status["@COMMON_NAME"]).replace('\\', '-')}.svg`,
+        link: taskObject.web_url ? taskObject.web_url : "",
+        type: taskObject ? taskObject.type : "",
+        statusCode: taskObject ? taskObject.status['@REL_ATTR'] : ""
       } as taskModel1;
     } else {
       return false;
@@ -92,21 +99,15 @@ export class TasksComponent implements OnInit {
   }
 
   searchTextChanged(text: string) {
-    this.searchText = this.stripWhiteSpaces(text);
+    this.searchText = this.stripWhiteSpaces(text.toLowerCase());
     this.openTasksFlag
       ? this.addTasksToDisplay(this.openTasksArr)
       : this.addTasksToDisplay(this.closedTasksArr);
-  }
+  }  
 
   addTasksToDisplay(tasksArray: taskModel1[]) {
-    tasksArray.forEach((task: taskModel1) => {
-      if (
-        this.getTaskTitle(task).includes(this.searchText) ||
-        task.id.startsWith(this.searchText)
-      ) {
-        if (this.displayedTasks) this.displayedTasks = [];
-        this.displayedTasks.push(task);
-      }
+    this.displayedTasks = tasksArray.filter((task: taskModel1) => {
+      return this.getTaskTitle(task).toLowerCase().includes(this.searchText);
     });
   }
 
@@ -115,14 +116,25 @@ export class TasksComponent implements OnInit {
   }
 
   getTaskTitle(task: taskModel1) {
-    let taskDescription = task.description;
-    if (task.description.split("\n")[0]) {
-      taskDescription = task.description.split("\n")[0];
-    }
-    return taskDescription.length <= 30
-      ? taskDescription
-      : "..." + taskDescription.substring(0, 30);
+    return `${task.network} - ${task.service}`;
   }
 
-  // ngOnDestroy() {
+  async refresh() {
+    await this.setTasks();
+    this.openSnackBar("בוצע רענון!", "")
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.openFromComponent(snackbarComponent, {
+      duration: 2000,
+      panelClass: ['refresh-snackbar']
+    });
+  }
+
 }
+
+@Component({
+  selector: 'snackbarComponent',
+  templateUrl: 'snackbarComponent.html'
+})
+export class snackbarComponent { }

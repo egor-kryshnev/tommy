@@ -10,3 +10,10 @@
 }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 h4 {margin-top: 10vh; cursor: context-menu;}
+.refresh-snackbar{
+    background-color: #f9fafb;
+    color: #3f9c67;
+    text-align: center;
+    font-family: Rubik;
+    width: 10px;
+}

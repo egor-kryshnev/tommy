@@ -23,6 +23,8 @@ import { AppRoutingModule } from '../app-routing.module';
 import { TransverseIncidentDialog } from './transverse-incident/transverse-incident.component';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared.module';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { KnowledgeArticleComponent } from './knowledge-article/knowledge-article.component';
 
 
 
@@ -37,7 +39,8 @@ import { SharedModule } from '../shared.module';
     CardsListComponent,
     ReturnButtonComponent,
     PageTopTitleComponent,
-    TransverseIncidentDialog
+    TransverseIncidentDialog,
+    KnowledgeArticleComponent
   ],
   imports: [
     CommonModule,
@@ -51,7 +54,8 @@ import { SharedModule } from '../shared.module';
     HttpClientModule,
     MatDialogModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    MatTooltipModule
   ],
   exports: [
     NetworksComponent,

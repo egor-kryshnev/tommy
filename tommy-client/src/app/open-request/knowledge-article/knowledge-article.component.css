@@ -1,0 +1,85 @@
+.text-area {
+  width: 600px;
+  height: 180px;
+  padding: 10px;
+  outline: none;
+  direction: rtl;
+  resize: none;
+  border-radius: 4px;
+  border: solid 1px #ebebeb;
+  background-color: #ffffff;
+  transition: 0.5s;
+  font-size: 14px;
+  font-family: rubik-light;
+  line-height: 1.43;
+  text-align: right;
+  color: #3b3b3b;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+.text-area:hover {
+  border: solid 1px #afc514;
+}
+
+.text-area:focus {
+  border: solid 1px #afc514;
+}
+
+.title {
+  text-align: center;
+  left: 20vh;
+  font-family: Rubik;
+  margin-top: 5vh;
+  font-size: 1.5rem;
+  font-weight: normal;
+}
+
+.subtitle {
+  text-align: center;
+  left: 20vh;
+  font-family: Rubik;
+  margin-top: 5vh;
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.text {
+  align-self: start;
+  margin: 0px;
+}
+
+.linkButton {
+  width: 165px;
+  height: 46px;
+  border-radius: 23px;
+  background-color: #3f9c67;
+  color: #fff !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #3f9c67;
+  padding: 20px;
+  margin-top: 5.2vh;
+  font-family: Rubik;
+  width: 20vh;
+  border-radius: 50px;
+  display: inline-block;
+  border: none;
+  transition: all 0.4s ease 0s;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.button-Link {
+  display: flex;
+  justify-content: center;
+}
+
+.close-button {
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  height: 30px;
+  opacity: 0.5;
+  height: 20px;
+}

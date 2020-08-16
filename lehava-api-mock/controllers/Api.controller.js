@@ -5,6 +5,9 @@ const arraysearch = require('../modules/arraysearch')
 const headerValidators = require('../routes/api.router')
 const Call = require('../modules/newCall');
 const hichatTools = require('../modules/hichat.tools')
+const {
+    json
+} = require('express')
 
 module.exports = (app) => {
 
@@ -16,16 +19,25 @@ module.exports = (app) => {
         if (validator.accessKeyValidator(req)) {
             res.json(lehavaData.restaccess);
         } else {
-            res.status(400).send({ error: "Body is not set properly" });
+            res.status(400).send({
+                error: "Body is not set properly"
+            });
         }
     });
+
+    // GET all exceptions
+    app.get('/caisd-rest/z_pcat_to_network', (req, res) => res.json(lehavaData.exceptions.incidents));
+    app.get('/caisd-rest/z_chgcat_to_network', (req, res) => res.json(lehavaData.exceptions.requests));
+
 
     // GET all networks details
     app.get('/caisd-rest/nr', (req, res) => {
         if (validator.allNetworksWCValidator(req)) {
             res.json(lehavaData.all_networks);
         } else {
-            res.status(400).send({ error: "WC Parameter not set properly" });
+            res.status(400).send({
+                error: "WC Parameter not set properly"
+            });
         }
     });
 
@@ -34,7 +46,9 @@ module.exports = (app) => {
         if (validator.servicesValidator(req)) {
             res.json(lehavaData.services[req.query.WC.split("'")[1] - 1]);
         } else {
-            res.status(400).send({ error: "Parameters not sent properly" });
+            res.status(400).send({
+                error: "Parameters not sent properly"
+            });
         }
     });
 
@@ -43,7 +57,28 @@ module.exports = (app) => {
         if (validator.categoriesValidator(req)) {
             res.json(lehavaData.problemCategories[req.query.WC.split("'")[1] - 1]);
         } else {
-            res.status(400).send({ error: "No WC parameter on GET request" });
+            try {
+                if (req.query.WC.startsWith("id=1")) {
+                    res.status(200).json({
+                        collection_pcat: {
+                            pcat: {
+                                "@id": "1",
+                                description: "משהו https://stackoverflow.com משהו http://randomsite.com כדאי לקרוא."
+                            }
+                        }
+                    });
+                } else {
+                    res.status(200).json({
+                        collection_pcat: {
+                            "@COUNT": "0"
+                        }
+                    });
+                }
+            } catch (e) {
+                res.status(400).send({
+                    error: "No WC parameter on GET request"
+                });
+            }
         }
     });
 
@@ -52,7 +87,9 @@ module.exports = (app) => {
         if (validator.categoriesValidator(req)) {
             res.json(lehavaData.requestsCategories[req.query.WC.split("'")[1] - 1]);
         } else {
-            res.status(400).send({ error: "No WC parameter on GET request" });
+            res.status(400).send({
+                error: "No WC parameter on GET request"
+            });
         }
     });
 
@@ -65,7 +102,9 @@ module.exports = (app) => {
             if (validator.userExistsValidator(req)) {
                 res.json(lehavaData.users[arraysearch("T", req.query.WC.split("'")[1], lehavaData.users)].data);
             } else {
-                res.status(400).send({ error: `User:${req.query.WC.split("'")[1]} Doesn't Exist` });
+                res.status(400).send({
+                    error: `User:${req.query.WC.split("'")[1]} Doesn't Exist`
+                });
             }
         }
     });
@@ -88,19 +127,63 @@ module.exports = (app) => {
                 if (lehavaData.nonactivecalls[arraysearch("userUniqueId", req.query.WC.split("'")[1], lehavaData.nonactivecalls)]) {
                     if (req.query.WC.split("active=")[1] == 0) {
                         // Respond Non active calls
-                        res.json(lehavaData.nonactivecalls[arraysearch("userUniqueId", req.query.WC.split("'")[1], lehavaData.nonactivecalls)].crdata)
+                        res.json(lehavaData.nonactivecalls[arraysearch("userUniqueId", req.query.WC.split("'")[1], lehavaData.nonactivecalls)].indata)
                     } else if (req.query.WC.split("active=")[1] == 1) {
                         // Respond Active calls
-                        res.json(lehavaData.activecalls[arraysearch("userUniqueId", req.query.WC.split("'")[1], lehavaData.activecalls)].crdata);
+                        res.json(lehavaData.activecalls[arraysearch("userUniqueId", req.query.WC.split("'")[1], lehavaData.activecalls)].indata);
                     }
                 } else {
-                    res.status(400).send({ error: "No Such User" })
+                    res.status(400).send({
+                        error: "No Such User"
+                    })
                 }
             }
         } else if (validator.updatesValidator(req)) {
             res.send(lehavaData.updates);
         } else {
-            res.status(400).send({ error: "Header is not sent in your request" });
+            res.status(400).send({
+                error: "Header is not sent in your request"
+            });
+        }
+    });
+
+    app.get('/caisd-rest/in', (req, res) => {
+        console.log(req.query.WC);
+        if (validator.userCallsHeaderValidator(req)) {
+            if (req.query.WC.startsWith('category')) {
+                const pcatId = String(parseInt(req.query.WC.split(':').pop().split("'")[0]));
+                const pcatIdValue = lehavaData.categoryWideProblems[arraysearch("categoryId", pcatId, lehavaData.categoryWideProblems)]
+                let sendMsg = {};
+                if (pcatIdValue) {
+                    sendMsg = lehavaData.categoryWideProblems[pcatId].data;
+                } else {
+                    sendMsg = lehavaData.categoryWideProblemsEmpty;
+                }
+                res.json(sendMsg);
+            } else {
+                if (lehavaData.nonactivecalls[arraysearch("userUniqueId", req.query.WC.split("'")[1], lehavaData.nonactivecalls)]) {
+                    if (req.query.WC.split("active=")[1] == 0) {
+                        // Respond Non active calls
+                        const sendMsg = lehavaData.nonactivecalls[arraysearch("userUniqueId", req.query.WC.split("'")[1], lehavaData.nonactivecalls)].indata;
+                        res.json(sendMsg);
+                    } else if (req.query.WC.split("active=")[1] == 1) {
+                        // Respond Active calls
+                        const sendMsg = lehavaData.activecalls[arraysearch("userUniqueId", req.query.WC.split("'")[1], lehavaData.activecalls)].indata;
+                        res.json(sendMsg);
+                    }
+                } else {
+                    res.status(400).send({
+                        error: "No Such User"
+                    })
+                }
+            }
+        } else if (validator.updatesValidator(req)) {
+            let sendMsg = lehavaData.updates;
+            res.send(sendMsg);
+        } else {
+            res.status(400).send({
+                error: "Header is not sent in your request"
+            });
         }
     });
 
@@ -116,12 +199,16 @@ module.exports = (app) => {
                     res.json(lehavaData.activecalls[arraysearch("userUniqueId", req.query.WC.split("'")[1], lehavaData.activecalls)].chgdata);
                 }
             } else {
-                res.status(400).send({ error: "No Such User" })
+                res.status(400).send({
+                    error: "No Such User"
+                })
             }
         } else if (validator.updatesValidator(req)) {
             res.send(lehavaData.updates);
         } else {
-            res.status(400).send({ error: "Header is not sent in your request" });
+            res.status(400).send({
+                error: "Header is not sent in your request"
+            });
         }
     });
 
@@ -134,10 +221,9 @@ module.exports = (app) => {
 
             const newCall = new Call(userId, category, description);
             newCall.save();
-            res.send(lehavaData.crRequests);
-            lehavaData.crRequests.cr['@COMMON_NAME'] += 1;
-        }
-        else if (validator.typeCheck(req) === "chg") {
+            res.send(lehavaData.inRequests);
+            lehavaData.inRequests.in['@COMMON_NAME'] += 1;
+        } else if (validator.typeCheck(req) === "chg") {
             const userId = (req.body.chg.requestor['@id'].split("'")[1]);
             const category = (req.body.chg.description.split("\n")[0]);
             const description = (req.body.chg.description.split("\n")[1]);
@@ -147,7 +233,9 @@ module.exports = (app) => {
             res.send(lehavaData.chgRequests);
             lehavaData.chgRequests.chg['@COMMON_NAME'] += 1;
         } else {
-            res.status(400).send({ error: "Bad Parameters" })
+            res.status(400).send({
+                error: "Bad Parameters"
+            })
         }
     });
 
@@ -155,7 +243,9 @@ module.exports = (app) => {
 
     // HiChat | Server Response Mock For GET HichatUrl
     app.get('/hichat/exampleurl', (req, res) => {
-        res.send({ url: 'https://www.ynet.co.il/Ext/App/TalkBack/CdaViewOpenTalkBack/0,11382,L-3190779-3,00.html' });
+        res.send({
+            url: 'https://www.ynet.co.il/Ext/App/TalkBack/CdaViewOpenTalkBack/0,11382,L-3190779-3,00.html'
+        });
     });
 
     // HiChat | Base route => Checking if content-type = application/json
