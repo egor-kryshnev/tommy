@@ -2315,9 +2315,9 @@ module.exports = {
                         "@COMMON_NAME": "186322",
                         "description": "תקלת מייל\n היי לא נפתח לי האווטלוק אשמח שתעזרו בהקדם האפשרי",
                         "status": {
-                            "@COMMON_NAME": "בטיפול",
-                            "@id": "5208",
-                            "@REL_ATTR": "WIP"
+                            "@COMMON_NAME": "טופל",
+                            "@id": "5212",
+                            "@REL_ATTR": "RE"
                         },
                         "group": {
                             "@COMMON_NAME": "צוות מחשוב כריש \/8997"

@@ -35,6 +35,7 @@ export class TasksListComponent {
   @Input() tasksFlag: boolean;
   chatIcon: string = "../../../assets/supporter-logo.png";
   closeIcon: string = "../../../assets/close.png";
+  doneIcon: string = "../../../assets/done.png";
   redoIcon: string = "../../../assets/redo.png";
   constructor(public taskDetailDialog: MatDialog, public aPIgetService: ApigetService, public tasksComponent: TasksComponent) { }
 
