@@ -21,7 +21,6 @@
 }
 
 .text-in-card{
-    font-size: calc(100% + 0.5vw);
     font-family: Rubik;
     line-height: 1.43;
     letter-spacing: normal;
