@@ -3,7 +3,7 @@
         <app-tasks *ngIf="this.authService.getUuid()" class="task-component"></app-tasks>
         <app-updating class="updating-component"></app-updating>
     </div>
-    <button id="btnChat" (click)="chatTag()" mat-fab>
+    <button style="display: none;" id="btnChat" (click)="chatTag()" mat-fab>
         <img class="chatImg" src="../assets/chat.png">
     </button>
     <app-chat id="chatBox"></app-chat>
