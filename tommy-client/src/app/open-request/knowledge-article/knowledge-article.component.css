@@ -49,30 +49,41 @@
   margin: 0px;
 }
 
-.linkButton {
+.commonButton {
   width: 165px;
   height: 46px;
   border-radius: 23px;
-  background-color: #3f9c67;
-  color: #fff !important;
   text-transform: uppercase;
   text-decoration: none;
-  background: #3f9c67;
   padding: 20px;
-  margin-top: 5.2vh;
+  margin-top: 4vh;
   font-family: Rubik;
   width: 20vh;
   border-radius: 50px;
-  display: inline-block;
+  display: block;
   border: none;
   transition: all 0.4s ease 0s;
   padding: 5px;
   cursor: pointer;
 }
 
+.linkButton {
+  color: #fff !important;
+  background: #3f9c67;
+  background-color: #3f9c67;
+}
+
+.cancelButton {
+  color: #3f9c67 !important;
+  background: #fff;
+  background-color: #fff;
+  border: solid 1px #3f9c67;
+}
+
 .button-Link {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .close-button {
