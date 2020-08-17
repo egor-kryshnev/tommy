@@ -30,7 +30,7 @@
   text-align: center;
   left: 20vh;
   font-family: Rubik;
-  margin-top: 5vh;
+  margin-top: 2vh;
   font-size: 1.5rem;
   font-weight: normal;
 }
@@ -56,7 +56,7 @@
   text-transform: uppercase;
   text-decoration: none;
   padding: 20px;
-  margin-top: 4vh;
+  margin-top: 3vh;
   font-family: Rubik;
   width: 20vh;
   border-radius: 50px;
@@ -74,16 +74,24 @@
 }
 
 .cancelButton {
-  color: #3f9c67 !important;
-  background: #fff;
-  background-color: #fff;
-  border: solid 1px #3f9c67;
+  margin-right: 10px;
+  color: red;
+  border: solid 1px red;
+  opacity: 0.5;
 }
 
 .button-Link {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.homeButton {
+  margin-left: 10px;
+  color: #3f9c67 !important;
+  background: #fff;
+  background-color: #fff;
+  border: solid 1px #3f9c67;
 }
 
 .close-button {
@@ -93,4 +101,9 @@
   height: 30px;
   opacity: 0.5;
   height: 20px;
+}
+
+#inlineButtonContainer {
+  display: flex;
+  padding-bottom: 10px;
 }
