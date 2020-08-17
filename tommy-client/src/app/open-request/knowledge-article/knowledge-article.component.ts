@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { PostReqService } from "../post-req.service";
 import { ApigetService } from "../../apiget.service";
 import { MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,6 +15,7 @@ export class KnowledgeArticleComponent implements OnInit {
   knowledgeLink: string[] = [];
 
   constructor(
+    private router: Router,
     private postReqService: PostReqService,
     private apiGetService: ApigetService,
     public dialogRef: MatDialogRef<KnowledgeArticleComponent>
@@ -45,6 +47,11 @@ export class KnowledgeArticleComponent implements OnInit {
 
   closeDialog() {
     this.dialogRef.close();
+  }
+  
+  homepageNav() {
+    this.dialogRef.close();
+    this.router.navigate(['/']);
   }
 }
 
