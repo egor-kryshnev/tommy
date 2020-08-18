@@ -150,5 +150,5 @@ Thumbs.db
 
 config.prod.ts
 
-/data01
+/scripts/devElk-compose/data01
 /logs
