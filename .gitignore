@@ -149,3 +149,6 @@ testem.log
 Thumbs.db
 
 config.prod.ts
+
+/data01
+/logs

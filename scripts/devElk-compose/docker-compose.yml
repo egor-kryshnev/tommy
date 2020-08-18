@@ -1,0 +1,186 @@
+version: "2.1"
+
+services:
+  lehava-api-mock:
+    image: lehava-api-mock
+    container_name: lehava-api-mock
+    build:
+      context: ../../lehava-api-mock
+      dockerfile: Dockerfile
+    ports:
+      - 8050:8050
+
+  client-builder:
+    container_name: client-builder
+    image: trion/ng-cli
+    working_dir: /usr/tommy-client/
+    volumes:
+      - ../../tommy-client/:/usr/tommy-client/
+    command: bash -c "ng build --watch"
+
+  tommy-server:
+    image: tommy-server
+    container_name: tommy-server
+    build:
+      context: ../../tommy-server
+      dockerfile: Dockerfile
+    environment:
+      NODE_TLS_REJECT_UNAUTHORIZED: 0
+      NODE_ENV: development
+      AUTH_CALLBACK_URL: /auth/callback
+      PORT: 80
+      SHRAGA_URL: http://13.79.7.3
+      CLIENT_URL: http://client-nginx:3000
+      REDIS_URL: 'redis://redis:6379'
+      RABBITMQ_URL: "amqp://rabbitmq:5672"
+      LEHAVA_API_HOST: "lehava-api-mock"
+      LEHAVA_API_PORT: "8050"
+      CHAT_URL: "http://lehava-api-mock:8050/api/v1"
+      HI_CHAT_URL: "http://lehava-api-mock:8050/group"
+      CHAT_GROUP_URL: groups
+      CHAT_LOGIN_URL: login
+      CHAT_MESSAGE_URL: chat
+      LOGIN_USER: tommy
+      LOGIN_PASS: Aa123456
+      SUPPORT_USERS: "t1010101@aman,t11223344@aman,t12312300@aman"
+    ports:
+      - 80:80
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      redis:
+        condition: service_started
+  
+  redis:
+    container_name: 'redis'
+    image: 'redis:alpine'
+    ports:
+      - '6379:6379'
+
+  rabbitmq:
+    container_name: 'rabbitmq'
+    build:
+      context: ../
+      dockerfile: rabbitmq.Dockerfile
+    hostname: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://rabbitmq:15672"]
+      interval: 10s
+      timeout: 10s
+      retries: 15
+  
+    
+  access-token-service:
+    image: "access-token-service"
+    container_name: "access-token-service"
+    build:
+      context: ../../access-token-service
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: production
+      RABBITMQ_URL: "amqp://rabbitmq:5672"
+      REDIS_URL: 'redis://redis:6379'
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      redis:
+        condition: service_started
+
+  logger:
+    image: logger
+    container_name: logger
+    build:
+      context: ../../logger
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: production
+      RABBITMQ_URL: "amqp://rabbitmq:5672"
+    volumes: 
+      - ./logs:/usr/src/app/logs
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+  
+  client-nginx:
+    container_name: client-nginx
+    image: nginx
+    volumes:
+      - ../../tommy-client/nginx.dev.conf:/etc/nginx/nginx.conf
+      - ../../tommy-client/dist/tommy/:/usr/share/nginx/html/
+    ports:
+      - "3000:3000"
+    depends_on:
+      - tommy-server
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.8.0
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - node.name=elasticsearch
+    # - cluster.name=es-docker-cluster
+    # - bootstrap.memory_lock=true
+    # - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    # ulimits:
+    #     memlock:
+    #         soft: -1
+    #         hard: -1
+    volumes:
+    - ./data01:/usr/share/elasticsearch/data
+    ports:
+        - 9200:9200
+        - 9300:9300
+    
+    
+  kibana:
+      image: docker.elastic.co/kibana/kibana:7.8.0
+      container_name: kibana
+      environment: 
+          # SERVER_NAME: kibana.example.org
+          ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+      # volumes: 
+      #     - ./kibana.yml:/usr/share/kibana/config/kibana.yml
+      ports: 
+          - 5601:5601
+      links:
+          - elasticsearch
+      depends_on:
+          - elasticsearch
+    
+              
+  logstash:
+      image: docker.elastic.co/logstash/logstash:7.8.0
+      container_name: logstash
+      volumes:
+          - ./simpleconf.conf:/config-dir/simpleconf.conf
+      command: logstash -f /config-dir/simpleconf.conf
+      ports:
+          - "5959:5959"
+      links:
+          - elasticsearch
+      depends_on:
+          - elasticsearch
+
+
+  filebeat:
+      image: docker.elastic.co/beats/filebeat:7.8.0
+      container_name: filebeat
+      command: ["--strict.perms=false"]
+      user: root
+      volumes:
+          - ./filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+          - /var/lib/docker:/var/lib/docker:ro
+          - /var/run/docker.sock:/var/run/docker.sock
+          - ./logs:/usr/share/filebeat/tommy/logs:ro
+          # - /var/lib/docker/containers:/usr/share/dockerlogs/data:ro
+      ports: 
+          - 5044:5044
+      links:
+          - logstash
+          - elasticsearch
+      depends_on:
+          - logstash
+          - elasticsearch
