@@ -20,7 +20,7 @@ export const config = {
     GET_HICHAT_IFRAME_URL: '/hichat',
     POST_SEND_HICHAT_MSG: '/hichat/sendmsg',
     UPDATE_TASK_URL_FUNCTION: (taskType: 'in' | 'chg', taskId: string) => `/api/caisd-rest/${taskType}/${taskId}`,
-    GET_UPDATE_TASK_STATUS_BODY: (taskType: "in" | "chg", taskStatus: "CNCL" | "CL" | "REOPEN") => {
+    GET_UPDATE_TASK_STATUS_BODY: (taskType: "in" | "chg", taskStatus: "CNCL" | "CL" | "REOPEN" | "NSCC") => {
         const taskBody: { [key: string]: any } = {};
         taskBody[taskType] = {
             "status": {

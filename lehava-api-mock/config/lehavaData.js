@@ -2288,6 +2288,33 @@ module.exports = {
                         "@COMMON_NAME": "186318",
                         "description": "מערכת הפעלה\n היי לא עולה לי הווינדוס דחוף בבקשה",
                         "status": {
+                            "@COMMON_NAME": "טופל",
+                            "@id": "5200",
+                            "@REL_ATTR": "RFC"
+                        },
+                        "group": {
+                            "@COMMON_NAME": "צוות מחשוב כריש \/8997"
+                        },
+                        "summary": "תקלת מערכת הפעלה",
+                        "open_date": 1577822500,
+                        "z_impact_service": {
+                            "@COMMON_NAME": "מערכות הפעלה"
+                        },
+                        "z_network": {
+                            "@COMMON_NAME": "עד הסוף"
+                        },
+                        "type": {
+                            "@COMMON_NAME": "Incident"
+                        },
+                        "active": {
+                            "@REL_ATTR": "1"
+                        }
+                    },
+                    {
+                        "@id": "1013351",
+                        "@COMMON_NAME": "186318",
+                        "description": "מערכת הפעלה\n היי לא עולה לי הווינדוס דחוף בבקשה",
+                        "status": {
                             "@COMMON_NAME": "פתוח",
                             "@id": "5200",
                             "@REL_ATTR": "RFC"
@@ -2315,9 +2342,9 @@ module.exports = {
                         "@COMMON_NAME": "186322",
                         "description": "תקלת מייל\n היי לא נפתח לי האווטלוק אשמח שתעזרו בהקדם האפשרי",
                         "status": {
-                            "@COMMON_NAME": "בטיפול",
-                            "@id": "5208",
-                            "@REL_ATTR": "WIP"
+                            "@COMMON_NAME": "טופל",
+                            "@id": "5212",
+                            "@REL_ATTR": "RE"
                         },
                         "group": {
                             "@COMMON_NAME": "צוות מחשוב כריש \/8997"
@@ -2451,6 +2478,31 @@ module.exports = {
             chgdata: {
                 collection_chg: {
                     chg: [{
+                        "@id": "1013352",
+                        "@COMMON_NAME": "186322",
+                        "description": "תקלת מייל\n היי לא נפתח לי האווטלוק אשמח שתעזרו בהקדם האפשרי",
+                        "status": {
+                            "@COMMON_NAME": "טופל",
+                            "@id": "5212",
+                            "@REL_ATTR": "RE"
+                        },
+                        "group": {
+                            "@COMMON_NAME": "צוות מחשוב כריש \/8997"
+                        },
+                        "summary": "תקלת מיילים",
+                        "open_date": 1577822500,
+                        "z_impact_service": {
+                            "@COMMON_NAME": "מיילים ויומנים"
+                        },
+                        "z_network": {
+                            "@COMMON_NAME": "שדה קוצים"
+                        },
+                        "type": "C",
+                        "active": {
+                            "@REL_ATTR": "1"
+                        }
+                    },
+                    {
                         "@id": "1013362",
                         "@COMMON_NAME": "183365",
                         "description": "מערכת הפעלה\n היי לא עולה לי הווינדוס דחוף בבקשה",
