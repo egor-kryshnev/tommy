@@ -211,7 +211,7 @@ export class ApigetService {
     return this.http.post(config.POST_SEND_HICHAT_MSG, msgObj, { withCredentials: true, headers: this.contentTypeJson })
   }
 
-  updateTaskStatus(taskType: 'in' | 'chg', taskId: string, taskStatus: 'CNCL' | 'CL' | 'REOPEN') {
+  updateTaskStatus(taskType: 'in' | 'chg', taskId: string, taskStatus: 'CNCL' | 'CL' | 'REOPEN' | 'NSCC') {
     return this.http.put(config.UPDATE_TASK_URL_FUNCTION(taskType, taskId), config.GET_UPDATE_TASK_STATUS_BODY(taskType, taskStatus), { withCredentials: true, headers: this.head })
   }
 
