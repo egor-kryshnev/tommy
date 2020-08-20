@@ -16,7 +16,7 @@ export const myCustomTooltipDefaults: MatTooltipDefaultOptions = {
 interface ParamsI {
   type: 'chg' | 'in';
   id: string;
-  status: 'CNCL' | 'CL' | 'REOPEN';
+  status: 'CNCL' | 'CL' | 'REOPEN' | 'NSCC';
 }
 
 @Component({
@@ -35,7 +35,9 @@ export class TasksListComponent {
   @Input() tasksFlag: boolean;
   chatIcon: string = "../../../assets/supporter-logo.png";
   closeIcon: string = "../../../assets/close.png";
+  doneIcon: string = "../../../assets/done.png";
   redoIcon: string = "../../../assets/redo.png";
+  trashIcon: string = "../../../assets/trash.png";
   constructor(public taskDetailDialog: MatDialog, public aPIgetService: ApigetService, public tasksComponent: TasksComponent) { }
 
   openTaskDetailDialog(selectedTask) {
@@ -70,7 +72,7 @@ export class TasksListComponent {
   getTaskType(task: taskModel1): 'chg' | 'in' {
     if (typeof task.type === "string") {
       return 'chg';
-    } else if (typeof task === "object") {
+    } else if (typeof task.type === "object") {
       return 'in';
     }
   }
@@ -97,6 +99,19 @@ export class TasksListComponent {
       type: this.getTaskType(task),
       id: task.serial_id,
       status: 'REOPEN'
+    }    
+    this.aPIgetService.updateTaskStatus(params.type, params.id, params.status).subscribe(res => {
+      this.tasksComponent.ngOnInit();
+    }, error => {
+      console.log("Close request operation failed. Please contact application dev team");
+    })
+  }
+  
+  taskFailed(task: taskModel1) {
+    const params: ParamsI = {
+      type: this.getTaskType(task),
+      id: task.serial_id,
+      status: 'NSCC'
     }    
     this.aPIgetService.updateTaskStatus(params.type, params.id, params.status).subscribe(res => {
       this.tasksComponent.ngOnInit();

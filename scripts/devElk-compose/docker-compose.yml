@@ -10,6 +10,14 @@ services:
     ports:
       - 8050:8050
 
+  client-builder:
+    container_name: client-builder
+    image: trion/ng-cli
+    working_dir: /usr/tommy-client/
+    volumes:
+      - ../../tommy-client/:/usr/tommy-client/
+    command: bash -c "ng build --watch"
+
   tommy-server:
     image: tommy-server
     container_name: tommy-server
@@ -63,6 +71,7 @@ services:
       interval: 10s
       timeout: 10s
       retries: 15
+  
     
   access-token-service:
     image: "access-token-service"
@@ -89,18 +98,12 @@ services:
     environment:
       NODE_ENV: production
       RABBITMQ_URL: "amqp://rabbitmq:5672"
+    volumes: 
+      - ./logs:/usr/src/app/logs
     depends_on:
       rabbitmq:
         condition: service_healthy
   
-  # client-builder:
-  #   container_name: client-builder
-  #   image: trion/ng-cli:10.0.5
-  #   working_dir: /usr/tommy-client/
-  #   volumes:
-  #     - ../../tommy-client/:/usr/tommy-client/
-  #   command: bash -c "npm i && ng build --watch"
-
   client-nginx:
     container_name: client-nginx
     image: nginx
@@ -111,3 +114,73 @@ services:
       - "3000:3000"
     depends_on:
       - tommy-server
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.8.0
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - node.name=elasticsearch
+    # - cluster.name=es-docker-cluster
+    # - bootstrap.memory_lock=true
+    # - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    # ulimits:
+    #     memlock:
+    #         soft: -1
+    #         hard: -1
+    volumes:
+    - ./data01:/usr/share/elasticsearch/data
+    ports:
+        - 9200:9200
+        - 9300:9300
+    
+    
+  kibana:
+      image: docker.elastic.co/kibana/kibana:7.8.0
+      container_name: kibana
+      environment: 
+          # SERVER_NAME: kibana.example.org
+          ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+      # volumes: 
+      #     - ./kibana.yml:/usr/share/kibana/config/kibana.yml
+      ports: 
+          - 5601:5601
+      links:
+          - elasticsearch
+      depends_on:
+          - elasticsearch
+    
+              
+  logstash:
+      image: docker.elastic.co/logstash/logstash:7.8.0
+      container_name: logstash
+      volumes:
+          - ./simpleconf.conf:/config-dir/simpleconf.conf
+      command: logstash -f /config-dir/simpleconf.conf
+      ports:
+          - "5959:5959"
+      links:
+          - elasticsearch
+      depends_on:
+          - elasticsearch
+
+
+  filebeat:
+      image: docker.elastic.co/beats/filebeat:7.8.0
+      container_name: filebeat
+      command: ["--strict.perms=false"]
+      user: root
+      volumes:
+          - ./filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+          - /var/lib/docker:/var/lib/docker:ro
+          - /var/run/docker.sock:/var/run/docker.sock
+          - ./logs:/usr/share/filebeat/tommy/logs:ro
+          # - /var/lib/docker/containers:/usr/share/dockerlogs/data:ro
+      ports: 
+          - 5044:5044
+      links:
+          - logstash
+          - elasticsearch
+      depends_on:
+          - logstash
+          - elasticsearch
