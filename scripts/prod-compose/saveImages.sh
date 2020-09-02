@@ -5,6 +5,10 @@ declare -a repos=(
 "alphawolfsforce/access-token-service:latest"
 "alphawolfsforce/rabbitmq:latest"
 "redis:latest"
+"docker.elastic.co/elasticsearch/elasticsearch:7.8.0"
+"docker.elastic.co/kibana/kibana:7.8.0"
+"docker.elastic.co/logstash/logstash:7.8.0"
+"docker.elastic.co/beats/filebeat:7.8.0"
 )
 
 
