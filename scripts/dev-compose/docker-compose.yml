@@ -93,13 +93,13 @@ services:
       rabbitmq:
         condition: service_healthy
   
-  # client-builder:
-  #   container_name: client-builder
-  #   image: trion/ng-cli:10.0.5
-  #   working_dir: /usr/tommy-client/
-  #   volumes:
-  #     - ../../tommy-client/:/usr/tommy-client/
-  #   command: bash -c "npm i && ng build --watch"
+  client-builder:
+    container_name: client-builder
+    image: trion/ng-cli:10.0.5
+    working_dir: /usr/tommy-client/
+    volumes:
+      - ../../tommy-client/:/usr/tommy-client/
+    command: bash -c "npm i && ng build --watch"
 
   client-nginx:
     container_name: client-nginx
