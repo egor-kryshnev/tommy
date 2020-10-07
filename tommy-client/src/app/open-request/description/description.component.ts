@@ -27,7 +27,7 @@ export class DescriptionComponent implements OnInit {
   phoneNumbersArray: string[];
   input: number = 0;
   isPending: boolean = false;
-
+  file: Blob = undefined;
 
   constructor(private router: Router, private route: ActivatedRoute, public _eventEmmitter: EventEmiterService,
     public authService: AuthService, public postReqService: PostReqService, public categoryService: CategoryService,
@@ -56,6 +56,7 @@ export class DescriptionComponent implements OnInit {
     reader.readAsDataURL(file);
     reader.onload = () => {
       console.log(reader.result);
+      this.file = new Blob([reader.result]);
     };
   }
 
@@ -68,23 +69,33 @@ export class DescriptionComponent implements OnInit {
       this.postReqService.phoneNumber = this.phoneInput;
       this.postReqService.computerName = this.computerNameInput;
       this.postReqService.voip = this.voip;
-      this.postReqService.postAppeal()
-        .subscribe((res: PostResponse) => {
-          const requestId = this.postReqService.getRequestId(res);
-          console.log(`request id: ${requestId}`);
-          const finishRequestDialog = this.dialog.open(FinishRequestComponent, {
-            width: '430px',
-            height: '466px',
-            data: requestId
+      this.postReqService.file = this.file;
+      this.file ?
+        this.postReqService.postWithFileAppeal()
+          .subscribe((res: PostResponse) => {
+            this.finishRequestDialog(res);
+          }) 
+          :
+        this.postReqService.postAppeal()
+          .subscribe((res: PostResponse) => {
+            this.finishRequestDialog(res);
           });
-          finishRequestDialog.afterClosed().subscribe(result => {
-            this.router.navigate(['/']);
-          });
-        })
     } else {
       this.inputPlaceholderChanger();
     }
   }
+
+  private finishRequestDialog(res: PostResponse){
+      const requestId = this.postReqService.getRequestId(res);
+      console.log(`request id: ${requestId}`);
+      this.dialog.open(FinishRequestComponent, {
+        width: '430px',
+        height: '466px',
+        data: requestId
+      }).afterClosed().subscribe(() => {
+        this.router.navigate(['/']);
+      });
+    }
 
   counter() {
     this.input = (<HTMLInputElement>document.getElementById("subject")).value.length;
