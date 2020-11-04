@@ -40,31 +40,18 @@ const getFormDataBody = (postType) => {
 }
 
 const convertToXml = (object) => {
-  let fixedConvert = [];
-  for (const [key, value] of Object.entries(object)) {
-    if (typeof (value) === 'object') {
-      fixedConvert = [...fixedConvert,
-      {
-        _name: key,
-        _attrs: {
-          id: value['@id']
-        }
+  let fixedFields = [];
+  Object.entries(object).forEach(([key,value]) => {
+    fixedFields = [...fixedFields ,typeof (value) === 'object'  ? {
+      _name: key,
+      _attrs: {
+        id: value['@id']
       }
-      ]
-    } else {
-      fixedConvert = [...fixedConvert,
-      {
-        [key]: value
-      }
-      ]
-    }
-    // fixedConvert = [...fixedConvert,
-    // {
-    //   [key]: value
-    // }
-    // ]
-  }
-  return toXML(fixedConvert)
+    }: {
+      [key]: value
+    }]
+  });
+  return toXML(fixedFields);
 }
 
 const getIncident = () => {

@@ -46,7 +46,7 @@ export class PostReqService {
   computerName: string;
   voip: string;
   categoryId: string;
-  file: Blob;
+  file: {base64:Blob,name:string};
   public isIncident: boolean = true;
 
   postAppeal() {
@@ -104,44 +104,16 @@ export class PostReqService {
       { headers: this.requestWithFileHead, withCredentials: true }
     );
   }
-
-  private getFormDataBody(postType: string): string {
-    return `--*****MessageBoundary*****\r
-    Content-Disposition: form-data; name="${postType}"
-    Content-Type: application/xml; CHARACTER=UTF-8
-    \r
-    <${postType}>
-        ${postType === 'chg' ?
-        `<requestor id="${this.userUUID}"></requestor>
-         <category id="${this.categoryId}"></category>` :
-        `<customer id="${this.userUUID}"></customer>
-         <category REL_ATTR="${this.categoryId}"></category>`}
-         <z_cst_phone>${this.phoneNumber}</z_cst_phone>
-         <priority id="505"></priority>
-         <Urgency id="1102"></Urgency>
-         <z_ipaddress>1.1.1.1</z_ipaddress>
-         <z_username>${this.userT}</z_username>
-         <z_computer_name>${this.computerName}</z_computer_name>
-         <z_current_loc>${this.location}</z_current_loc>
-         <z_cst_red_phone>${this.voip}</z_cst_red_phone>
-         <z_network id="${this.networkId}"></z_network>
-         <z_impact_service id="${this.serviceId}"></z_impact_service>
-         <description>${this.appendDescriptions()}</description>
-         <z_source id="400104"></z_source>
-         <impact id="1603"></impact>
-    </${postType}>
-    \r
-    --*****MessageBoundary*****\r
-    Content-Disposition: form-data; name="file"
-    Content-Type: application/octet-stream
-    Content-Transfer-Encoding: base64
-    \r
-    ${this.file}
-    \r
-    --*****MessageBoundary*****--\r
-    `;
+  
+  appendDescriptions() {
+    this.descriptionInput = (this.descriptionInput).replace(/\n/g, '');
+    return `${this.descriptionCategory}\n${this.descriptionInput}`
   }
-
+  
+  getRequestId(postRes: PostResponse) {
+    return ("in" in postRes) ? postRes.in["@COMMON_NAME"] : postRes.chg["@COMMON_NAME"];
+  }
+  
   private getCommonBodyProperties(): object {
     return {
       "z_cst_phone": this.phoneNumber,
@@ -177,13 +149,44 @@ export class PostReqService {
       }
     }
   }
-
-  appendDescriptions() {
-    this.descriptionInput = (this.descriptionInput).replace(/\n/g, '');
-    return `${this.descriptionCategory}\n${this.descriptionInput}`
-  }
-
-  getRequestId(postRes: PostResponse) {
-    return ("in" in postRes) ? postRes.in["@COMMON_NAME"] : postRes.chg["@COMMON_NAME"];
+  
+  private getFormDataBody(postType: string): string {
+    return `--*****MessageBoundary*****\r
+    Content-Disposition: form-data; name="${postType}"
+    Content-Type: application/xml; CHARACTERSET=UTF-8
+    \r
+    <${postType}>
+        ${postType === 'chg' ?
+        `<requestor id="${this.userUUID}"/>
+          <category id="${this.categoryId}"/>` :
+        `<customer id="${this.userUUID}"/>
+          <category REL_ATTR="${this.categoryId}"/>`}
+          <z_cst_phone>${this.phoneNumber}</z_cst_phone>
+          <priority id="505"/>
+          <Urgency id="1102"/>
+          <z_ipaddress>1.1.1.1</z_ipaddress>
+          <z_username>${this.userT}</z_username>
+          <z_computer_name>${this.computerName}</z_computer_name>
+          <z_current_loc>${this.location}</z_current_loc>
+          <z_cst_red_phone>${this.voip}</z_cst_red_phone>
+          <z_network id="${this.networkId}"/>
+          <z_impact_service id="${this.serviceId}"/>
+          <description>${this.appendDescriptions()}</description>
+          <z_source id="400104"/>
+          <impact id="1603"/>
+    </${postType}>
+    \r
+    --*****MessageBoundary*****\r
+    Content-Disposition: form-data; name="${this.file.name}"; filename="${this.file.name}"
+    Content-Type: application/octet-stream
+    Content-Transfer-Encoding: base64
+    \r
+    ${this.file.base64}
+    \r
+    --*****MessageBoundary*****--\r
+    `;
   }
 }
+  
+  
+
