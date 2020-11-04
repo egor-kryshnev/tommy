@@ -16,7 +16,6 @@ interface PostRequestResponse {
   }
 }
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -31,7 +30,7 @@ export class PostReqService {
     .set('Authorization', 'Basic c2VydmljZWRlc2s6U0RBZG1pbjAx');
   requestWithFileHead = new HttpHeaders()
     .set('Content-type', 'multipart/form-data')
-    .set('Accept', 'application/xml')
+    .set('Accept', 'application/json')
     .set('Authorization', 'Basic c2VydmljZWRlc2s6U0RBZG1pbjAx');
 
   userUUID: string;
@@ -95,49 +94,25 @@ export class PostReqService {
   }
 
   postWithFileIncident() {
-    // const formData = new FormData();
-    // formData.append('file', this.file);
-    // formData.append('in', JSON.stringify({
-    //   "customer": {
-    //     "@id": this.userUUID
-    //   },
-    //   "category": {
-    //     "@REL_ATTR": this.categoryId
-    //   },
-    //   ...this.getCommonBodyProperties()
-    // }));
-
-    return this.http.post(config.POST_NEW_INCIDENT, this.getFormDataBody('in'),
+    return this.http.post(`${config.POST_NEW_INCIDENT}`, this.getFormDataBody('in'),
       { headers: this.requestWithFileHead, withCredentials: true }
     );
   }
 
   postWithFileRequest() {
-    // const formData = new FormData();
-    // formData.append('file', this.file);
-    // formData.append('chg', JSON.stringify({
-    //   "requestor": {
-    //     "@id": this.userUUID
-    //   },
-    //   "category": {
-    //     "@id": this.categoryId
-    //   },
-    //   ...this.getCommonBodyProperties()
-    // }));
-
-    return this.http.post(config.POST_NEW_REQUEST, this.getFormDataBody('chg'),
+    return this.http.post(`${config.POST_NEW_REQUEST}`, this.getFormDataBody('chg'),
       { headers: this.requestWithFileHead, withCredentials: true }
     );
   }
 
   private getFormDataBody(postType: string): string {
-    return `--*****MessageBoundary*****{{CR}}
+    return `--*****MessageBoundary*****\r
     Content-Disposition: form-data; name="${postType}"
-    Content-Type: application/xml; CHARACTER=UTF -8
-    {{CR}}
+    Content-Type: application/xml; CHARACTER=UTF-8
+    \r
     <${postType}>
         ${postType === 'chg' ?
-        `<requester id="${this.userUUID}"></requester>
+        `<requestor id="${this.userUUID}"></requestor>
          <category id="${this.categoryId}"></category>` :
         `<customer id="${this.userUUID}"></customer>
          <category REL_ATTR="${this.categoryId}"></category>`}
@@ -155,15 +130,15 @@ export class PostReqService {
          <z_source id="400104"></z_source>
          <impact id="1603"></impact>
     </${postType}>
-    {{CR}}
-    --*****MessageBoundary*****{{CR}}
+    \r
+    --*****MessageBoundary*****\r
     Content-Disposition: form-data; name="file"
     Content-Type: application/octet-stream
     Content-Transfer-Encoding: base64
-    {{CR}}
+    \r
     ${this.file}
-    {{CR}}
-    --*****MessageBoundary*****{{CR}}
+    \r
+    --*****MessageBoundary*****--\r
     `;
   }
 
