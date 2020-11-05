@@ -1,37 +1,35 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { config } from 'src/environments/config.dev';
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { config } from "src/environments/config.dev";
 
 export type PostResponse = PostRequestResponse | PostIncidentResponse;
 
 interface PostIncidentResponse {
   in: {
-    "@COMMON_NAME": string
-  }
+    "@COMMON_NAME": string;
+  };
 }
 
 interface PostRequestResponse {
   chg: {
-    "@COMMON_NAME": string
-  }
+    "@COMMON_NAME": string;
+  };
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
-
 export class PostReqService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   requestHead = new HttpHeaders()
-    .set('Content-type', 'application/json')
-    .set('Accept', 'application/json')
-    .set('Authorization', 'Basic c2VydmljZWRlc2s6U0RBZG1pbjAx');
+    .set("Content-type", "application/json")
+    .set("Accept", "application/json")
+    .set("Authorization", "Basic c2VydmljZWRlc2s6U0RBZG1pbjAx");
   requestWithFileHead = new HttpHeaders()
-    .set('Content-type', 'multipart/form-data')
-    .set('Accept', 'application/json')
-    .set('Authorization', 'Basic c2VydmljZWRlc2s6U0RBZG1pbjAx');
+    .set("Content-type", "multipart/form-data")
+    .set("Accept", "application/json")
+    .set("Authorization", "Basic c2VydmljZWRlc2s6U0RBZG1pbjAx");
 
   userUUID: string;
   phoneNumber: string;
@@ -46,7 +44,7 @@ export class PostReqService {
   computerName: string;
   voip: string;
   categoryId: string;
-  file: {base64:Blob,name:string};
+  file: { name: string; type: string; base64: Blob };
   public isIncident: boolean = true;
 
   postAppeal() {
@@ -55,112 +53,118 @@ export class PostReqService {
 
   postIncident() {
     const requestBody = {
-      "in": {
-        "customer": {
-          "@id": this.userUUID
+      in: {
+        customer: {
+          "@id": this.userUUID,
         },
-        "category": {
-          "@REL_ATTR": this.categoryId
+        category: {
+          "@REL_ATTR": this.categoryId,
         },
-        ...this.getCommonBodyProperties()
-      }
-    }
-    console.log(requestBody);
-    return this.http.post(config.POST_NEW_INCIDENT, requestBody,
-      { headers: this.requestHead, withCredentials: true }
-    );
+        ...this.getCommonBodyProperties(),
+      },
+    };
+
+    return this.http.post(config.POST_NEW_INCIDENT, requestBody, {
+      headers: this.requestHead,
+      withCredentials: true,
+    });
   }
 
   postRequest() {
     const requestBody = {
-      "chg": {
-        "requestor": {
-          "@id": this.userUUID
+      chg: {
+        requestor: {
+          "@id": this.userUUID,
         },
-        "category": {
-          "@id": this.categoryId
+        category: {
+          "@id": this.categoryId,
         },
-        ...this.getCommonBodyProperties()
-      }
-    }
-    console.log(requestBody);
-    return this.http.post(config.POST_NEW_REQUEST, requestBody,
-      { headers: this.requestHead, withCredentials: true }
-    );
+        ...this.getCommonBodyProperties(),
+      },
+    };
+
+    return this.http.post(config.POST_NEW_REQUEST, requestBody, {
+      headers: this.requestHead,
+      withCredentials: true,
+    });
   }
 
   postWithFileAppeal() {
-    return this.isIncident ? this.postWithFileIncident() : this.postWithFileRequest();
+    return this.isIncident
+      ? this.postWithFileIncident()
+      : this.postWithFileRequest();
   }
 
   postWithFileIncident() {
-    return this.http.post(`${config.POST_NEW_INCIDENT}`, this.getFormDataBody('in'),
+    return this.http.post(
+      `${config.POST_NEW_INCIDENT}`,
+      this.getFormDataBody("in"),
       { headers: this.requestWithFileHead, withCredentials: true }
     );
   }
 
   postWithFileRequest() {
-    return this.http.post(`${config.POST_NEW_REQUEST}`, this.getFormDataBody('chg'),
+    return this.http.post(
+      `${config.POST_NEW_REQUEST}`,
+      this.getFormDataBody("chg"),
       { headers: this.requestWithFileHead, withCredentials: true }
     );
   }
-  
+
   appendDescriptions() {
-    this.descriptionInput = (this.descriptionInput).replace(/\n/g, '');
-    return `${this.descriptionCategory}\n${this.descriptionInput}`
+    this.descriptionInput = this.descriptionInput.replace(/\n/g, "");
+    return `${this.descriptionCategory}\n${this.descriptionInput}`;
   }
-  
+
   getRequestId(postRes: PostResponse) {
-    return ("in" in postRes) ? postRes.in["@COMMON_NAME"] : postRes.chg["@COMMON_NAME"];
+    return "in" in postRes
+      ? postRes.in["@COMMON_NAME"]
+      : postRes.chg["@COMMON_NAME"];
   }
-  
+
   private getCommonBodyProperties(): object {
     return {
-      "z_cst_phone": this.phoneNumber,
-      "priority":
-      {
-        "@id": "505"
+      z_cst_phone: this.phoneNumber,
+      priority: {
+        "@id": "505",
       },
-      "Urgency":
-      {
-        "@id": "1102"
+      Urgency: {
+        "@id": "1102",
       },
-      "z_ipaddress": "1.1.1.1",
-      "z_username": this.userT,
-      "z_computer_name": this.computerName,
-      "z_current_loc": this.location,
-      "z_cst_red_phone": this.voip,
-      "z_network":
-      {
-        "@id": this.networkId
+      z_ipaddress: "1.1.1.1",
+      z_username: this.userT,
+      z_computer_name: this.computerName,
+      z_current_loc: this.location,
+      z_cst_red_phone: this.voip,
+      z_network: {
+        "@id": this.networkId,
       },
-      "z_impact_service":
-      {
-        "@id": this.serviceId
+      z_impact_service: {
+        "@id": this.serviceId,
       },
-      "description": this.appendDescriptions(),
-      "z_source":
-      {
-        "@id": "400104"
+      description: this.appendDescriptions(),
+      z_source: {
+        "@id": "400104",
       },
-      "impact":
-      {
-        "@id": "1603"
-      }
-    }
+      impact: {
+        "@id": "1603",
+      },
+    };
   }
-  
+
   private getFormDataBody(postType: string): string {
     return `--*****MessageBoundary*****\r
     Content-Disposition: form-data; name="${postType}"
     Content-Type: application/xml; CHARACTERSET=UTF-8
     \r
     <${postType}>
-        ${postType === 'chg' ?
-        `<requestor id="${this.userUUID}"/>
-          <category id="${this.categoryId}"/>` :
-        `<customer id="${this.userUUID}"/>
-          <category REL_ATTR="${this.categoryId}"/>`}
+        ${
+          postType === "chg"
+            ? `<requestor id="${this.userUUID}"/>
+          <category id="${this.categoryId}"/>`
+            : `<customer id="${this.userUUID}"/>
+          <category REL_ATTR="${this.categoryId}"/>`
+        }
           <z_cst_phone>${this.phoneNumber}</z_cst_phone>
           <priority id="505"/>
           <Urgency id="1102"/>
@@ -177,7 +181,9 @@ export class PostReqService {
     </${postType}>
     \r
     --*****MessageBoundary*****\r
-    Content-Disposition: form-data; name="${this.file.name}"; filename="${this.file.name}"
+    Content-Disposition: form-data; name="${this.file.name}"; filename="${
+      this.file.name
+    }"
     Content-Type: application/octet-stream
     Content-Transfer-Encoding: base64
     \r
@@ -187,6 +193,3 @@ export class PostReqService {
     `;
   }
 }
-  
-  
-
