@@ -27,7 +27,10 @@ export class PostReqService {
     .set("Accept", "application/json")
     .set("Authorization", "Basic c2VydmljZWRlc2s6U0RBZG1pbjAx");
   requestWithFileHead = new HttpHeaders()
-    .set("Content-type", "multipart/form-data")
+    .set(
+      "Content-type",
+      "multipart/form-data; BOUNDARY=*****MessageBoundary*****"
+    )
     .set("Accept", "application/json")
     .set("Authorization", "Basic c2VydmljZWRlc2s6U0RBZG1pbjAx");
 
@@ -44,7 +47,7 @@ export class PostReqService {
   computerName: string;
   voip: string;
   categoryId: string;
-  file: { name: string; type: string; base64: Blob };
+  file: { name: string; type: string; base64: string };
   public isIncident: boolean = true;
 
   postAppeal() {
@@ -97,7 +100,7 @@ export class PostReqService {
 
   postWithFileIncident() {
     return this.http.post(
-      `${config.POST_NEW_INCIDENT}`,
+      `${config.POST_NEW_INCIDENT_WITH_FILE}&mimeType=${this.file.type}&description=${this.file.name}`,
       this.getFormDataBody("in"),
       { headers: this.requestWithFileHead, withCredentials: true }
     );
@@ -105,7 +108,7 @@ export class PostReqService {
 
   postWithFileRequest() {
     return this.http.post(
-      `${config.POST_NEW_REQUEST}`,
+      `${config.POST_NEW_REQUEST_WITH_FILE}&mimeType=${this.file.type}&description=${this.file.name}`,
       this.getFormDataBody("chg"),
       { headers: this.requestWithFileHead, withCredentials: true }
     );

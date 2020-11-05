@@ -27,7 +27,7 @@ export class DescriptionComponent implements OnInit {
   phoneNumbersArray: string[];
   input: number = 0;
   isPending: boolean = false;
-  file: { name: string; type: string; base64: Blob } = undefined;
+  file: { name: string; type: string; base64: string } = undefined;
 
   constructor(private router: Router, private route: ActivatedRoute, public _eventEmmitter: EventEmiterService,
     public authService: AuthService, public postReqService: PostReqService, public categoryService: CategoryService,
@@ -53,12 +53,12 @@ export class DescriptionComponent implements OnInit {
   handleFileUpload(event) {
     const file = event.target.files[0];
     const reader = new FileReader();
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(file); 
     reader.onload = () => {
       this.file = {
         name: file, 
         type: file.type,
-        base64: new Blob([reader.result])
+        base64: reader.result as string
       };
       console.log('file object ' , this.file);
     };
