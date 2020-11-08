@@ -56,11 +56,10 @@ export class DescriptionComponent implements OnInit {
     reader.readAsDataURL(file); 
     reader.onload = () => {
       this.file = {
-        name: file, 
-        type: file.type,
-        base64: reader.result as string
+        name: file.name, 
+        type: file.name.split('.')[1],
+        base64: (reader.result as string).split(',')[1]
       };
-      console.log('file object ' , this.file);
     };
   }
 
