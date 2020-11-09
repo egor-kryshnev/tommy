@@ -73,6 +73,10 @@ export class DescriptionComponent implements OnInit {
     };
   }
 
+  handleRemoveFile(){
+    this.file = undefined;
+  }
+
   sendPost() {
     if (
       this.locationInput &&
