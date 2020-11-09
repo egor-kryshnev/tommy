@@ -239,8 +239,6 @@ module.exports = (app) => {
         }
     });
 
-
-
     // HiChat | Server Response Mock For GET HichatUrl
     app.get('/hichat/exampleurl', (req, res) => {
         res.send({

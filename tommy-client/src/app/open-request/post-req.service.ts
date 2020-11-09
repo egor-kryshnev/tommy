@@ -26,13 +26,6 @@ export class PostReqService {
     .set("Content-type", "application/json")
     .set("Accept", "application/json")
     .set("Authorization", "Basic c2VydmljZWRlc2s6U0RBZG1pbjAx");
-  requestWithFileHead = new HttpHeaders()
-    .set(
-      "Content-type",
-      "multipart/form-data; BOUNDARY=*****MessageBoundary*****"
-    )
-    .set("Accept", "application/json")
-    .set("Authorization", "Basic c2VydmljZWRlc2s6U0RBZG1pbjAx");
 
   userUUID: string;
   phoneNumber: string;
@@ -55,38 +48,14 @@ export class PostReqService {
   }
 
   postIncident() {
-    const requestBody = {
-      in: {
-        customer: {
-          "@id": this.userUUID,
-        },
-        category: {
-          "@REL_ATTR": this.categoryId,
-        },
-        ...this.getCommonBodyProperties(),
-      },
-    };
-
-    return this.http.post(config.POST_NEW_INCIDENT, requestBody, {
+    return this.http.post(config.POST_NEW_INCIDENT, this.getIncidentObject(), {
       headers: this.requestHead,
       withCredentials: true,
     });
   }
 
   postRequest() {
-    const requestBody = {
-      chg: {
-        requestor: {
-          "@id": this.userUUID,
-        },
-        category: {
-          "@id": this.categoryId,
-        },
-        ...this.getCommonBodyProperties(),
-      },
-    };
-
-    return this.http.post(config.POST_NEW_REQUEST, requestBody, {
+    return this.http.post(config.POST_NEW_REQUEST, this.getRequestObject(), {
       headers: this.requestHead,
       withCredentials: true,
     });
@@ -99,19 +68,29 @@ export class PostReqService {
   }
 
   postWithFileIncident() {
-    return this.http.post(
-      `${config.POST_NEW_INCIDENT_WITH_FILE}&mimeType=${this.file.type}&description=${this.file.name}`,
-      this.getFormDataBody("in"),
-      { headers: this.requestWithFileHead, withCredentials: true }
-    );
+    const requestBody = {
+      postType: "in",
+      ...this.getIncidentObject(),
+      file: this.file,
+    };
+
+    return this.http.post(config.POST_NEW_INCIDENT_WITH_FILE, requestBody, {
+      headers: this.requestHead,
+      withCredentials: true,
+    });
   }
 
   postWithFileRequest() {
-    return this.http.post(
-      `${config.POST_NEW_REQUEST_WITH_FILE}&mimeType=${this.file.type}&description=${this.file.name}`,
-      this.getFormDataBody("chg"),
-      { headers: this.requestWithFileHead, withCredentials: true }
-    );
+    const requestBody = {
+      postType: "chg",
+      ...this.getRequestObject(),
+      file: this.file,
+    };
+
+    return this.http.post(config.POST_NEW_REQUEST_WITH_FILE, requestBody, {
+      headers: this.requestHead,
+      withCredentials: true,
+    });
   }
 
   appendDescriptions() {
@@ -125,14 +104,42 @@ export class PostReqService {
       : postRes.chg["@COMMON_NAME"];
   }
 
+  private getRequestObject(): object {
+    return {
+      chg: {
+        requestor: {
+          "@id": this.userUUID,
+        },
+        category: {
+          "@id": this.categoryId,
+        },
+        ...this.getCommonBodyProperties(),
+      },
+    };
+  }
+
+  private getIncidentObject(): object {
+    return {
+      in: {
+        customer: {
+          "@id": this.userUUID,
+        },
+        category: {
+          "@REL_ATTR": this.categoryId,
+        },
+        ...this.getCommonBodyProperties(),
+      },
+    };
+  }
+
   private getCommonBodyProperties(): object {
     return {
       z_cst_phone: this.phoneNumber,
       priority: {
-        "@id": "505",
+        "@id": `${this.priority}`,
       },
       Urgency: {
-        "@id": "1102",
+        "@id": `${this.urgency}`,
       },
       z_ipaddress: "1.1.1.1",
       z_username: this.userT,
@@ -153,46 +160,5 @@ export class PostReqService {
         "@id": "1603",
       },
     };
-  }
-
-  private getFormDataBody(postType: string): string {
-    return `--*****MessageBoundary*****\r
-    Content-Disposition: form-data; name="${postType}"
-    Content-Type: application/xml; CHARACTERSET=UTF-8
-    \r
-    <${postType}>
-        ${
-          postType === "chg"
-            ? `<requestor id="${this.userUUID}"/>
-          <category id="${this.categoryId}"/>`
-            : `<customer id="${this.userUUID}"/>
-          <category REL_ATTR="${this.categoryId}"/>`
-        }
-          <z_cst_phone>${this.phoneNumber}</z_cst_phone>
-          <priority id="505"/>
-          <Urgency id="1102"/>
-          <z_ipaddress>1.1.1.1</z_ipaddress>
-          <z_username>${this.userT}</z_username>
-          <z_computer_name>${this.computerName}</z_computer_name>
-          <z_current_loc>${this.location}</z_current_loc>
-          <z_cst_red_phone>${this.voip}</z_cst_red_phone>
-          <z_network id="${this.networkId}"/>
-          <z_impact_service id="${this.serviceId}"/>
-          <description>${this.appendDescriptions()}</description>
-          <z_source id="400104"/>
-          <impact id="1603"/>
-    </${postType}>
-    \r
-    --*****MessageBoundary*****\r
-    Content-Disposition: form-data; name="${this.file.name}"; filename="${
-      this.file.name
-    }"
-    Content-Type: application/octet-stream
-    Content-Transfer-Encoding: base64
-    \r
-    ${this.file.base64}
-    \r
-    --*****MessageBoundary*****--\r
-    `;
   }
 }

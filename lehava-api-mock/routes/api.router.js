@@ -12,6 +12,8 @@ router
         }
     })
     .post((req, res, next) => {
+        console.log('req.baseUrl ' , req.baseUrl)
+        console.log('req.url ' , req.url)
         if (validator.basicHeaderValidator(req)) {
             next();
         } else {
