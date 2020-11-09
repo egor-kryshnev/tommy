@@ -19,7 +19,7 @@
     <input id="files" type="file" (change)="handleFileUpload($event)">
   </div>
   <div *ngIf="file" class="filesRectangle" matTooltip="{{file.name}}">
-    <button  class="removeButton" (click)="handleRemoveFile()">הסר קובץ</button>
+    <button class="removeButton" (click)="handleRemoveFile()">הסר קובץ</button>
   </div>  
 </div>
 <div id="grid-wrapper">

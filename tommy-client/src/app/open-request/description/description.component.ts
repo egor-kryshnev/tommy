@@ -73,7 +73,7 @@ export class DescriptionComponent implements OnInit {
     };
   }
 
-  handleRemoveFile(){
+  handleRemoveFile() {
     this.file = undefined;
   }
 

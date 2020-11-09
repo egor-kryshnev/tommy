@@ -46,7 +46,7 @@ LehavaRouter.post("/file/*", async (req: Request, res: Response) => {
         req.body.file
       ),
     });
-
+    
     res.status(apiRes.status).send(apiRes.data);
   } catch (e) {
     logger(e);
