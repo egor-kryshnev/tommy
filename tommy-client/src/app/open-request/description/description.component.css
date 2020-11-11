@@ -81,26 +81,28 @@ input[type='file'] {
   right: 280px;
 }
 
-.filesRectangle {
-  height: 28px;
-  border: solid 1px #3f9c67;
-  background-color: #ffffff;
-  border-radius: 4px;
-  font-family: Rubik;
-  line-height: 1.43;
-  position: relative;
-  bottom: 42px;
-  right: 265px;
+.filesCircle:hover {
+  cursor: pointer;
 }
 
 .removeButton {
-  color: #3f9c67;
-  background-color: #ffffff;
+  position: relative;
+  bottom: 42px;
+  right: 260px;
+  font-family: Rubik;
+  line-height: 1.43;
+  height: 28px;
+  border-radius: 4px;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: #3f9c67;
   border: none;
 }
 
-.filesCircle:hover {
-  cursor: pointer;
+.removeButton:hover {
+  color: #3f9c67;
+  background-color: #ffffff;
+  border: solid 1px #3f9c67;
 }
 
 #svg:hover{
