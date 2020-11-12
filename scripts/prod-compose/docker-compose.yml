@@ -23,6 +23,7 @@ services:
       SHRAGA_URL: http://shraga.prod.services.idf
       CLIENT_URL: http://tommy-client:4200
       REDIS_URL: 'redis://redis:6379'
+      LEHAVA_API_SERVER_NAME: "221.181.0.10"
       LEHAVA_API_HOST: "221.181.0.10"
       LEHAVA_API_PORT: "8050"
       CHAT_URL: "http://lehava-api-mock:8050/api/v1"
