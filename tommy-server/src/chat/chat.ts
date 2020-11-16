@@ -83,13 +83,18 @@ export class Chat {
         }
     };
 
-    async getGroupMembers(roomName: string) {
+    async getGroupInfo(roomName: string) {
         const authHeaders = await this.getAuthHeaders();
-        let result = await axios({
+        const result = await axios({
             method: 'get',
             url: `${config.chat.chatUrl}/${config.chat.chatGroupUrl}.info?roomName=${roomName}`,
             headers: { ...authHeaders }
         });
+        return result;
+    };
+
+    async getGroupMembers(roomName: string) {
+        const result = await this.getGroupInfo(roomName);
 
         if (result && result.data) {
             const usernames = result.data.group.usernames;
@@ -147,7 +152,7 @@ export class Chat {
         });
         return symmetricDifference;
     };
-
+    
     async setRoomMembers(roomName: string, members: string[]) {
         const currentGroupMembers = await this.getGroupMembers(roomName);
         if (currentGroupMembers && currentGroupMembers.length > 0) {
@@ -155,6 +160,17 @@ export class Chat {
             const membersToAdd = this.getNonItercectingItems(members, currentGroupMembers);
             await this.removeMembersFromGroup(roomName, membersToRemove);
             await this.addMembersToGroup(roomName, membersToAdd);
+        }
+    };
+
+    async setRoomAnnouncement(roomName: string, announcement: string) {
+        const authHeaders = await this.getAuthHeaders();
+        const result = await this.getGroupInfo(roomName);
+
+        if (result && result.data) {
+            const roomId = result.data.group._id;
+            await axios.post(`${config.chat.chatUrl}/${config.chat.chatGroupUrl}.setAnnouncement`, 
+            { roomId , announcement: announcement }, { headers: { ...authHeaders } });
         }
     };
 

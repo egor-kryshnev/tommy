@@ -82,5 +82,7 @@ export const config = {
       `היי, אשמח לעזרה בפנייה מספר: ${taskId}, שנפתחה ב ${taskDate}. ${
         taskLink ? `לינק בלהבה: ${taskLink}` : "לא קיים לינק בלהבה"
       }`,
+      announcement: 'שעות הפעילות הן 08:00-17:30'
+
   },
 };
