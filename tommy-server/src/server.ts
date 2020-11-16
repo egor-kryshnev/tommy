@@ -21,8 +21,10 @@ import cors from "cors";
 import * as redis from "redis";
 import connectRedis from "connect-redis";
 import { logger } from "./utils/logger-client";
+import axios from "axios";
+import amqp from "amqplib/callback_api";
 import { AccessTokenProvider } from "./access-token/access-token-service";
-import {healthCheck} from './utils/middlewares/health';
+import {healthCheck} from './utils/middlewares/health'
 
 export class Server {
   public app: express.Application;

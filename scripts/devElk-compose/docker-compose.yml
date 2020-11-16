@@ -10,13 +10,13 @@ services:
     ports:
       - 8050:8050
 
-  # client-builder:
-  #   container_name: client-builder
-  #   image: trion/ng-cli
-  #   working_dir: /usr/tommy-client/
-  #   volumes:
-  #     - ../../tommy-client/:/usr/tommy-client/
-  #   command: bash -c "ng build --watch"
+  client-builder:
+    container_name: client-builder
+    image: trion/ng-cli
+    working_dir: /usr/tommy-client/
+    volumes:
+      - ../../tommy-client/:/usr/tommy-client/
+    command: bash -c "ng build --watch"
 
   tommy-server:
     image: tommy-server
