@@ -42,6 +42,7 @@ export const config = {
     host: process.env.REDIS_URL || "redis://localhost:6379",
   },
   lehava_api: {
+    serverName: process.env.LEHAVA_API_SERVER_NAME || "localhost",
     host: process.env.LEHAVA_API_HOST || "localhost",
     port: process.env.LEHAVA_API_PORT || "8050",
     getRequestWithFileUrl: (
@@ -53,7 +54,7 @@ export const config = {
       }
     ): string =>
       `${reqUrl.split("/file")[1]}?repositoryId=1002&serverName=${
-        config.lehava_api.host
+        config.lehava_api.serverName
       }&mimeType=${fileObject.type}&description=${fileObject.name}`,
     getFormDataBody: (
       postType: string,
