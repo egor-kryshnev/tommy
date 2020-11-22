@@ -20,7 +20,6 @@ HichatRouter.post('/sendmsg', async (req: Request, res: Response) => {
     }
 });
 
-
 HichatRouter.get('/', async (req: Request, res: Response, next: NextFunction) => {
     const chat = new Chat();
     const user: any = req.user;
@@ -42,6 +41,7 @@ HichatRouter.get('/', async (req: Request, res: Response, next: NextFunction) =>
     } finally {
         try {
             await chat.setRoomMembers(groupName, groupUsersToAdd);
+            await chat.setRoomAnnouncement(groupName, config.chat.announcement);
         } catch (err) {
             logger(err);
         }
