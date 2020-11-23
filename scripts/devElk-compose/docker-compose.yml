@@ -33,6 +33,7 @@ services:
       CLIENT_URL: http://client-nginx:3000
       REDIS_URL: 'redis://redis:6379'
       RABBITMQ_URL: "amqp://rabbitmq:5672"
+      LEHAVA_API_SERVER_NAME: "lehava-api-mock"
       LEHAVA_API_HOST: "lehava-api-mock"
       LEHAVA_API_PORT: "8050"
       CHAT_URL: "http://lehava-api-mock:8050/api/v1"
