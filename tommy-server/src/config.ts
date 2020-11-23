@@ -44,7 +44,6 @@ export const config = {
   lehava_api: {
     serverName: process.env.LEHAVA_API_SERVER_NAME || "localhost",
     host: process.env.LEHAVA_API_HOST || "localhost",
-    serverName: process.env.LEHAVA_API_SERVER_NAME || "localhost",
     port: process.env.LEHAVA_API_PORT || "8050",
     getRequestWithFileUrl: (
       reqUrl: string,
