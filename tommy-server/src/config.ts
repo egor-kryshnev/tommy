@@ -42,8 +42,61 @@ export const config = {
     host: process.env.REDIS_URL || "redis://localhost:6379",
   },
   lehava_api: {
+    serverName: process.env.LEHAVA_API_SERVER_NAME || "localhost",
     host: process.env.LEHAVA_API_HOST || "localhost",
     port: process.env.LEHAVA_API_PORT || "8050",
+    getRequestWithFileUrl: (
+      reqUrl: string,
+      fileObject: {
+        name: string;
+        type: string;
+        base64: string;
+      }
+    ): string =>
+      `${reqUrl.split("/file")[1]}?repositoryId=1002&serverName=${config.lehava_api.serverName
+      }&mimeType=${fileObject.type}&description=${fileObject.name}`,
+    getFormDataBody: (
+      postType: string,
+      postObject: any,
+      file: {
+        name: string;
+        type: string;
+        base64: string;
+      }
+    ): string =>
+`--*****MessageBoundary*****\r
+Content-Disposition: form-data; name="${postType}"
+Content-Type: application/xml; CHARACTERSET=UTF-8
+\r
+<${postType}>
+${postType === "chg"
+? `<requestor id="${postObject.requestor["@id"]}"/>
+<category id="${postObject.category["@id"]}"/>`
+: `<customer id="${postObject.customer["@id"]}"/>
+<category REL_ATTR="${postObject.category["@REL_ATTR"]}"/>`}
+<z_cst_phone>${postObject.z_cst_phone}</z_cst_phone>
+<priority id="${postObject.priority["@id"]}"/>
+<Urgency id="${postObject.Urgency["@id"]}"/>
+<z_ipaddress>${postObject.z_ipaddress}</z_ipaddress>
+<z_username>${postObject.z_username}</z_username>
+<z_computer_name>${postObject.z_computer_name}</z_computer_name>
+<z_current_loc>${postObject.z_current_loc}</z_current_loc>
+<z_cst_red_phone>${postObject.z_cst_red_phone}</z_cst_red_phone>
+<z_network id="${postObject.z_network["@id"]}"/>
+<z_impact_service id="${postObject.z_impact_service["@id"]}"/>
+<description>${postObject.description}</description>
+<z_source id="${postObject.z_source["@id"]}"/>
+<impact id="${postObject.impact["@id"]}"/>
+</${postType}>
+\r
+--*****MessageBoundary*****\r
+Content-Disposition: form-data; name="${file.name}"; filename="${file.name}"
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: base64
+\r
+${file.base64}
+\r
+--*****MessageBoundary*****--\r`,
   },
   rabbitmq: {
     url: process.env.RABBITMQ_URL || "amqp://localhost:5672",
@@ -79,8 +132,7 @@ export const config = {
       taskDate: string,
       taskLink: string
     ) =>
-      `היי, אשמח לעזרה בפנייה מספר: ${taskId}, שנפתחה ב ${taskDate}. ${
-        taskLink ? `לינק בלהבה: ${taskLink}` : "לא קיים לינק בלהבה"
+      `היי, אשמח לעזרה בפנייה מספר: ${taskId}, שנפתחה ב ${taskDate}. ${taskLink ? `לינק בלהבה: ${taskLink}` : "לא קיים לינק בלהבה"
       }`,
       announcement: 'שעות המענה הן 08:30-17:30'
 
