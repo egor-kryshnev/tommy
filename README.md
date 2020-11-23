@@ -2,13 +2,9 @@
 
 ## Development server
 
-Step A:
-1. cd to /tommy-client/
-2. Run in Terminal: `ng build --watch`
+1. CD to scripts/dev-compose/
+2. RUN `sh rundev.sh`
 
-Step B:
-1. cd to /scripts/dev-compose/
-2. Run in Terminal: `docker-compose up --build -d`
 
 ## Production server
 

@@ -105,6 +105,7 @@ ${file.base64}
     logger_queue_name: "log_queue",
     msg_timeout: parseInt(process.env.RABBITMQ_TIMEOUT || "1000"),
   },
+
   chat: {
     chatUrl: process.env.CHAT_URL || "",
     hiChatUrl: process.env.HI_CHAT_URL || "http://lehava-api-mock:8050/api/v1",
@@ -133,5 +134,7 @@ ${file.base64}
     ) =>
       `היי, אשמח לעזרה בפנייה מספר: ${taskId}, שנפתחה ב ${taskDate}. ${taskLink ? `לינק בלהבה: ${taskLink}` : "לא קיים לינק בלהבה"
       }`,
+      announcement: 'שעות המענה הן 08:30-17:30'
+
   },
 };

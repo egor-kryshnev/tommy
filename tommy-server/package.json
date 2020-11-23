@@ -24,10 +24,8 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "@types/body-parser-xml": "^1.1.0",
     "amqplib": "^0.5.5",
     "axios": "^0.19.2",
-    "body-parser-xml": "^2.0.0",
     "connect-redis": "^4.0.4",
     "cookie-parser": "^1.4.4",
     "cors": "^2.8.5",
