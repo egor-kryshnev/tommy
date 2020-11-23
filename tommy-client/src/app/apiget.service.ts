@@ -219,7 +219,4 @@ export class ApigetService {
     return this.http.get(config.GET_CATEGORY_KNOWLEDGE_ARTICLE(categoryId), 
       { withCredentials: true, headers: this.categoryDescriptionHeaders })
   }
-
-
-  
 };

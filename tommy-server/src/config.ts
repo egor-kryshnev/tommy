@@ -42,6 +42,7 @@ export const config = {
     host: process.env.REDIS_URL || "redis://localhost:6379",
   },
   lehava_api: {
+    serverName: process.env.LEHAVA_API_SERVER_NAME || "localhost",
     host: process.env.LEHAVA_API_HOST || "localhost",
     serverName: process.env.LEHAVA_API_SERVER_NAME || "localhost",
     port: process.env.LEHAVA_API_PORT || "8050",
@@ -53,8 +54,7 @@ export const config = {
         base64: string;
       }
     ): string =>
-      `${reqUrl.split("/file")[1]}?repositoryId=1002&serverName=${
-        config.lehava_api.serverName
+      `${reqUrl.split("/file")[1]}?repositoryId=1002&serverName=${config.lehava_api.serverName
       }&mimeType=${fileObject.type}&description=${fileObject.name}`,
     getFormDataBody: (
       postType: string,
@@ -64,7 +64,7 @@ export const config = {
         type: string;
         base64: string;
       }
-    ): string => 
+    ): string =>
 `--*****MessageBoundary*****\r
 Content-Disposition: form-data; name="${postType}"
 Content-Type: application/xml; CHARACTERSET=UTF-8
@@ -106,6 +106,7 @@ ${file.base64}
     logger_queue_name: "log_queue",
     msg_timeout: parseInt(process.env.RABBITMQ_TIMEOUT || "1000"),
   },
+
   chat: {
     chatUrl: process.env.CHAT_URL || "",
     hiChatUrl: process.env.HI_CHAT_URL || "http://lehava-api-mock:8050/api/v1",
@@ -132,8 +133,9 @@ ${file.base64}
       taskDate: string,
       taskLink: string
     ) =>
-      `היי, אשמח לעזרה בפנייה מספר: ${taskId}, שנפתחה ב ${taskDate}. ${
-        taskLink ? `לינק בלהבה: ${taskLink}` : "לא קיים לינק בלהבה"
+      `היי, אשמח לעזרה בפנייה מספר: ${taskId}, שנפתחה ב ${taskDate}. ${taskLink ? `לינק בלהבה: ${taskLink}` : "לא קיים לינק בלהבה"
       }`,
+      announcement: 'שעות המענה הן 08:30-17:30'
+
   },
 };
