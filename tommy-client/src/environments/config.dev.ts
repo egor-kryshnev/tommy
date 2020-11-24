@@ -34,5 +34,9 @@ export const config = {
         return taskBody;
     },
     GET_CATEGORY_KNOWLEDGE_ARTICLE: (categoryId: string) => `/api/caisd-rest/pcat?WC=id%3D${categoryId}`,
-
+    rabbitmq: {
+        url: process.env.RABBITMQ_URL || "amqp://rabbitmq:5672",
+        logger_queue_name: "log_queue",
+    },
+    serviceName: 'tommy-client',
 };

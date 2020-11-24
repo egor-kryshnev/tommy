@@ -8,6 +8,7 @@ services:
       dockerfile: Dockerfile
     environment:
       NODE_ENV: production
+      RABBITMQ_URL: "amqp://rabbitmq:5672"
 
   tommy-server:
     image: tommy-server

@@ -2,6 +2,7 @@ import { Component, Inject, Output, EventEmitter } from '@angular/core';
 import { DOCUMENT } from '@angular/common'
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from './auth.service';
+import { LoggerService } from './logger.service';
 import { HttpClient } from '@angular/common/http';
 import { ApigetService } from './apiget.service';
 import { EventEmiterService } from './event.emmiter.service';
@@ -23,9 +24,10 @@ export class AppComponent {
   @Output() exampleOutput = new EventEmitter<string>();
   userUUID: string;
 
-  constructor(@Inject(DOCUMENT) document, public apigetService: ApigetService, private router: Router, private route: ActivatedRoute, private http: HttpClient, public authService: AuthService, public _eventEmmiter: EventEmiterService, private postReqService: PostReqService) { }
+  constructor(@Inject(DOCUMENT) document, public apigetService: ApigetService, private router: Router, private route: ActivatedRoute, private http: HttpClient, public authService: AuthService, public _eventEmmiter: EventEmiterService, private postReqService: PostReqService, private loggerService: LoggerService) { }
 
   ngOnInit() {
+    this.loggerService.connect();
     this.authService.loginSub().subscribe((res: any) => {
       console.log(res);
       this.userName = res.name.firstName + " " + res.name.lastName;
