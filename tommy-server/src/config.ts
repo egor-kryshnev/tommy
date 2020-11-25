@@ -54,7 +54,7 @@ export const config = {
       }
     ): string =>
       `${reqUrl.split("/file")[1]}?repositoryId=1002&serverName=${config.lehava_api.serverName
-      }&mimeType=${fileObject.type}&description=${fileObject.name}`,
+      }&mimeType=${fileObject.type}&description=${fileObject.type}`,
     getFormDataBody: (
       postType: string,
       postObject: any,
