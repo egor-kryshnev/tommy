@@ -7,7 +7,9 @@ import { PostReqService, PostResponse } from "../post-req.service";
 import { CategoryService } from "../category/category.service";
 import { MatDialog } from "@angular/material/dialog";
 import { FinishRequestComponent } from "../finish-request/finish-request.component";
+import { AlertComponent } from "../alert/alert.component";
 import { KnowledgeArticleComponent } from "../knowledge-article/knowledge-article.component";
+import { config } from '../../../environments/config.dev';
 @Component({
   selector: "app-description",
   templateUrl: "./description.component.html",
@@ -60,17 +62,30 @@ export class DescriptionComponent implements OnInit {
     });
   }
 
+  getFileSizeLimit() {
+    return config.fileSizeLimit;
+  }
+
   handleFileUpload(event: any) {
     const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      this.file = {
-        name: file.name,
-        type: file.name.split(".")[1],
-        base64: (reader.result as string).split(",")[1],
+    if (file.size > this.getFileSizeLimit()) {
+      this.dialog
+      .open(AlertComponent, {
+        width: "350px",
+        height: "190px",
+        data: 'הקובץ שנבחר גדול מדי',
+      });
+    } else {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.file = {
+          name: file.name,
+          type: file.name.split(".")[1],
+          base64: (reader.result as string).split(",")[1],
+        };
       };
-    };
+    }
   }
 
   handleRemoveFile() {
