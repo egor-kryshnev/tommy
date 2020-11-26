@@ -20,7 +20,7 @@
     <input id="files" type="file" title=" " (change)="handleFileUpload($event)">
     </div>
     <div id="filesLimit">
-     [ הגבלת גודל: MB {{ getFileSizeLimit() / 1000 }} ]
+     [ הגבלת גודל: KB {{ getFileSizeLimit() / 1000 }} ]
     </div>
   </div>
   <div *ngIf="file">

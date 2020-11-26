@@ -71,8 +71,8 @@ export class DescriptionComponent implements OnInit {
     if (file.size > this.getFileSizeLimit()) {
       this.dialog
       .open(AlertComponent, {
-        width: "350px",
-        height: "190px",
+        width: "330px",
+        height: "200px",
         data: 'הקובץ שנבחר גדול מדי',
       });
     } else {
