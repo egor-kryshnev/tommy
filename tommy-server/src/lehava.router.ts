@@ -26,12 +26,8 @@ LehavaRouter.post("/file/*", async (req: Request, res: Response) => {
         url,
         params: req.params,
         headers: apiHeaders,
-        data: config.lehava_api.getFormDataBody(
-          req.body.postType,
-          req.body[req.body.postType],
-          req.body.file
-        ),
-      },
+        data: {[req.body.postType]: req.body[req.body.postType], fileName: req.body.file.name },
+      }
     });
 
     const apiRes = await axios({
