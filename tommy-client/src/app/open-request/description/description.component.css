@@ -70,6 +70,14 @@ input[type='file'] {
   top: 5px;
 }
 
+.addFile {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  bottom: 42px;
+  left: -215px;
+}
+
 .filesCircle {
   width: 28px;
   height: 28px;
@@ -77,12 +85,21 @@ input[type='file'] {
   border-radius: 50%;
   background-color: #ffffff;
   position: relative;
-  bottom: 42px;
-  right: 280px;
 }
 
 .filesCircle:hover {
   cursor: pointer;
+}
+
+#filesLimit {
+  position: relative;
+  font-size: 14px;
+  font-family: Rubik;
+  padding-left: 4px;
+  top: 7.5px;
+  letter-spacing: normal;
+  color: #bfbfc0;
+  direction: rtl;
 }
 
 .removeButton {
