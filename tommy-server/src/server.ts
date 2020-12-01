@@ -52,6 +52,7 @@ export class Server {
           query: req.query,
           headers: req.headers,
           user: req.user,
+          // body: req.body,
         }
       });
       next();
