@@ -40,7 +40,8 @@ export class UpdatingComponent implements OnInit {
                 "summary": update.summary || null,
                 "open_date": formatted_date || null,
                 "z_network": update.z_network ? (update.z_network["@COMMON_NAME"] || false) : false,
-                "description": update.description || null
+                "description": update.description || null,
+                "z_impact_service": update.z_impact_service ? (update.z_impact_service["@COMMON_NAME"] || false) : null
               }
             )
           });
@@ -55,7 +56,9 @@ export class UpdatingComponent implements OnInit {
               "summary": Response.summary || null,
               "open_date": formatted_date || null,
               "z_network": Response.z_network ? (Response.z_network["@COMMON_NAME"] || false) : false,
-              "description": Response.description || null
+              "description": Response.description || null,
+              "z_impact_service": Response.z_impact_service ? (Response.z_impact_service["@COMMON_NAME"] || false) : null
+
             }
           )
         }
