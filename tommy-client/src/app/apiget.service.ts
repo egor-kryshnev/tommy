@@ -106,7 +106,7 @@ export class ApigetService {
     .set('Content-type', 'application/json')
     .set('X-AccessKey', this.accessKey)
     .set('Accept', 'application/json')
-    .set('X-Obj-Attrs', 'category, description, open_date, summary, z_network');
+    .set('X-Obj-Attrs', 'category, description, open_date, summary, z_network, z_impact_service');
 
   categoryDescriptionHeaders = new HttpHeaders()
     .set('Content-type', 'application/json')
