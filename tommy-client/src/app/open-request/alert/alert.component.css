@@ -44,7 +44,7 @@
   width: 310px;
   height: 20px;
   font-family: Rubik;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -52,14 +52,14 @@
   letter-spacing: normal;
   text-align: center;
   color: #3b3b3b;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
 }
 
 #content {
   width: 310px;
   height: 20px;
   font-family: Rubik;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -67,7 +67,7 @@
   letter-spacing: normal;
   text-align: center;
   color: #3b3b3b;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 
 
