@@ -10,7 +10,7 @@ export class AlertComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<AlertComponent>,
-    @Inject(MAT_DIALOG_DATA) public message: string) { }
+    @Inject(MAT_DIALOG_DATA) public data: { title: string, content: string }) { }
 
   onFinishClick(): void {
     this.dialogRef.close();

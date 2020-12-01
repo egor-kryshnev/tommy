@@ -69,12 +69,14 @@ export class DescriptionComponent implements OnInit {
   handleFileUpload(event: any) {
     const file = event.target.files[0];
     if (file.size > this.getFileSizeLimit()) {
+      document.getElementById("files")['value'] = "";
       this.dialog
       .open(AlertComponent, {
         width: "330px",
         height: "200px",
-        data: 'הקובץ שנבחר גדול מדי',
+        data: {title:'הקובץ שנבחר גדול מדי', content:`הגבלת הגודל היא ${this.getFileSizeLimit()} MB `},
       });
+
     } else {
       const reader = new FileReader();
       reader.readAsDataURL(file);

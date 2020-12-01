@@ -40,11 +40,26 @@
     font-family: Rubik;
   }
 
-#message {
+#title {
   width: 310px;
   height: 20px;
   font-family: Rubik;
   font-size: 20px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.38;
+  letter-spacing: normal;
+  text-align: center;
+  color: #3b3b3b;
+  margin-bottom: 50px;
+}
+
+#content {
+  width: 310px;
+  height: 20px;
+  font-family: Rubik;
+  font-size: 10px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
