@@ -26,11 +26,6 @@ export class PostReqService {
     .set("Content-type", "application/json")
     .set("Accept", "application/json")
     .set("Authorization", "Basic c2VydmljZWRlc2s6U0RBZG1pbjAx");
-  requestWithFileHead = new HttpHeaders()
-    .set("Content-type", "application/json")
-    .set("Accept", "application/json")
-    .set("Authorization", "Basic c2VydmljZWRlc2s6U0RBZG1pbjAx")
-    .set("Access-Control-Allow-Origin", "*");
 
   userUUID: string;
   phoneNumber: string;
@@ -80,7 +75,7 @@ export class PostReqService {
     };
 
     return this.http.post(config.POST_NEW_INCIDENT_WITH_FILE, requestBody, {
-      headers: this.requestWithFileHead,
+      headers: this.requestHead,
     });
   }
 
@@ -92,7 +87,7 @@ export class PostReqService {
     };
 
     return this.http.post(config.POST_NEW_REQUEST_WITH_FILE, requestBody, {
-      headers: this.requestWithFileHead,
+      headers: this.requestHead,
     });
   }
 
