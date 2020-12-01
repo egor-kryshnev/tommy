@@ -1,4 +1,4 @@
-import express , { Request, Response, NextFunction } from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import http from "http";
 import bodyParser from "body-parser";
 import helmet from "helmet";
@@ -24,7 +24,7 @@ import { logger } from "./utils/logger-client";
 import axios from "axios";
 import amqp from "amqplib/callback_api";
 import { AccessTokenProvider } from "./access-token/access-token-service";
-import {healthCheck} from './utils/middlewares/health'
+import { healthCheck } from './utils/middlewares/health'
 
 export class Server {
   public app: express.Application;
@@ -51,8 +51,8 @@ export class Server {
           url: req.url,
           query: req.query,
           headers: req.headers,
-          body: req.body,
           user: req.user,
+          // body: req.body,
         }
       });
       next();
@@ -78,8 +78,7 @@ export class Server {
     this.server.listen(config.server.port, () => {
       logger({
         message:
-          `Server running in ${
-          process.env.NODE_ENV || "development"
+          `Server running in ${process.env.NODE_ENV || "development"
           } environment on port ${config.server.port}`
       });
     });
@@ -101,10 +100,10 @@ export class Server {
     });
 
 
-    this.app.get('/health', ( req: Request, res: Response,next: NextFunction)=>{
+    this.app.get('/health', (req: Request, res: Response, next: NextFunction) => {
       console.log('health check')
       healthCheck(req, res, next, redisClient, AccessTokenProvider)
-    } )
+    })
 
     this.app.use(cors());
 
@@ -129,8 +128,8 @@ export class Server {
 
     const RedisStore = connectRedis(session);
     const redisClient: redis.RedisClient = redis.createClient(config.redis.host);
-    this.app.use(bodyParser.json());
-    this.app.use(bodyParser.urlencoded({ extended: true }));
+    this.app.use(bodyParser.json({ limit: '100mb' }));
+    this.app.use(bodyParser.urlencoded({ limit: '100mb', extended: true }));
     this.app.use(cookieParser());
     this.app.use(
       session({
