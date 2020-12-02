@@ -2705,10 +2705,10 @@ module.exports = {
                 },
                 summary: "בוצע REPORT על WH - ניתן VAC",
                 z_network: {
-                    "@COMMON_NAME": "עד הקצה"
+                    "@COMMON_NAME": "רשת"
                 },
                 z_impact_service: {
-                    "@COMMON_NAME": "מערכות הפעלה"
+                    "@COMMON_NAME": "service"
                 }
             },
             {
@@ -2723,10 +2723,10 @@ module.exports = {
                 },
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
                 z_network: {
-                    "@COMMON_NAME": "עד הקצה"
+                    "@COMMON_NAME": "רשת"
                 },
                 z_impact_service: {
-                    "@COMMON_NAME": "מערכות הפעלה"
+                    "@COMMON_NAME": "service"
                 }
             },
             {
@@ -2741,10 +2741,10 @@ module.exports = {
                 },
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
                 z_network: {
-                    "@COMMON_NAME": "עד הקצה"
+                    "@COMMON_NAME": "רשת"
                 },
                 z_impact_service: {
-                    "@COMMON_NAME": "מערכות הפעלה"
+                    "@COMMON_NAME": "service"
                 }
             },
             {
@@ -2759,10 +2759,10 @@ module.exports = {
                 },
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
                 z_network: {
-                    "@COMMON_NAME": "עד הקצה"
+                    "@COMMON_NAME": "רשת"
                 },
                 z_impact_service: {
-                    "@COMMON_NAME": "מערכות הפעלה"
+                    "@COMMON_NAME": "service"
                 }
             },
             {
@@ -2777,10 +2777,10 @@ module.exports = {
                 },
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
                 z_network: {
-                    "@COMMON_NAME": "עד הקצה"
+                    "@COMMON_NAME": "רשת"
                 },
                 z_impact_service: {
-                    "@COMMON_NAME": "מערכות הפעלה"
+                    "@COMMON_NAME": "service"
                 }
             },
             {
@@ -2795,10 +2795,10 @@ module.exports = {
                 },
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
                 z_network: {
-                    "@COMMON_NAME": "עד הקצה"
+                    "@COMMON_NAME": "רשת"
                 },
                 z_impact_service: {
-                    "@COMMON_NAME": "מערכות הפעלה"
+                    "@COMMON_NAME": "service"
                 }
             },
             {
