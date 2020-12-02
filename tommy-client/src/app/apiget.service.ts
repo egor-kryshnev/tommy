@@ -96,12 +96,25 @@ export class ApigetService {
     .set('Accept', 'application/json')
     .set('X-Obj-Attrs', 'service')
 
+    organizationHeaders = new HttpHeaders()
+    .set('Content-type', 'application/json')
+    .set('X-AccessKey', this.accessKey)
+    .set('Accept', 'application/json')
+    .set('X-Obj-Attrs', 'organization')
+
+    placeHeaders = new HttpHeaders()
+    .set('Content-type', 'application/json')
+    .set('X-AccessKey', this.accessKey)
+    .set('Accept', 'application/json')
+    .set('X-Obj-Attrs', 'name') //TODO: X-Obj-Attrs: name or sym 
+
   tasksHeaders = new HttpHeaders()
     .set('Content-type', 'application/json')
     .set('X-AccessKey', this.accessKey)
     .set('Accept', 'application/json')
     .set('X-Obj-Attrs', 'status, summary, description, open_date, z_network, z_impact_service, group, web_url, type, active');
 
+  
   updatesHeaders = new HttpHeaders()
     .set('Content-type', 'application/json')
     .set('X-AccessKey', this.accessKey)
@@ -135,6 +148,16 @@ export class ApigetService {
       { withCredentials: true, headers: this.servicesHeaders });
   }
 
+  getOrganization(UUID) { //TODO: use
+    return this.http.get(config.GET_ORGANIZATION(UUID),
+      { withCredentials: true, headers: this.organizationHeaders });
+  }
+
+  getPlace(UUID) { //TODO: use
+    return this.http.get(config.GET_PLACE(UUID),
+      { withCredentials: true, headers: this.servicesHeaders });
+  }
+
   getUpdates() {
     return this.http.get(config.GET_UPDATES,
       { withCredentials: true, headers: this.updatesHeaders })
@@ -160,6 +183,12 @@ export class ApigetService {
 
   getOpenTasks(UUID) {
     return this.http.get(config.GET_OPEN_TASKS_URL_FUNCTION(UUID),
+      { withCredentials: true, headers: this.tasksHeaders })
+  }
+
+
+  getPlaces() {
+    return this.http.get(config.GET_PLACES(),
       { withCredentials: true, headers: this.tasksHeaders })
   }
 

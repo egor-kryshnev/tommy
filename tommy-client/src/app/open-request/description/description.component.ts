@@ -55,7 +55,8 @@ export class DescriptionComponent implements OnInit {
     this._eventEmmitter.dataStr.subscribe((data) => (this.userUUID = data));
     this.isPending = false;
     console.log(this.postReqService.categoryId);
-    this.placesList =['hello', 'heyy', 'hiii']
+    // this.placesList =this.apiGetService.getPlaces(); //TODO: UPDATE PLACES
+    // this.place= this.apiGetService.getPlace() //TODO: UPDATE PLACE
   }
 
   onReturn() {
