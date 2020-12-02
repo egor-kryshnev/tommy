@@ -19,6 +19,8 @@ export class DescriptionComponent implements OnInit {
   computerNameWarning = "";
   locationInput: string = "";
   phoneInput: string = "";
+  placesList: Array<string> = [];
+  place: string = '';
   voip: string = "";
   computerNameInput: string = "";
   services: model1[];
@@ -38,6 +40,7 @@ export class DescriptionComponent implements OnInit {
     public dialog: MatDialog,
     public knowledgeArticleDialog: MatDialog,
     private apiGetService: ApigetService
+    
   ) {}
 
   ngOnInit(): void {
@@ -52,6 +55,7 @@ export class DescriptionComponent implements OnInit {
     this._eventEmmitter.dataStr.subscribe((data) => (this.userUUID = data));
     this.isPending = false;
     console.log(this.postReqService.categoryId);
+    this.placesList =['hello', 'heyy', 'hiii']
   }
 
   onReturn() {
@@ -143,6 +147,11 @@ export class DescriptionComponent implements OnInit {
 
   setLocationInput(location: string) {
     this.locationInput = location;
+  }
+
+  setPlace(newPlace: string){
+    console.log('newPlace:::',newPlace)
+    this.place = newPlace; 
   }
 
   inputPlaceholderChanger() {
