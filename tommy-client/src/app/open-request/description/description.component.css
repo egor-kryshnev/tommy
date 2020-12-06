@@ -242,3 +242,20 @@ input::-webkit-inner-spin-button {
 #phoneWrapper {
   display: inherit;
 }
+
+#places:hover {
+  direction: rtl;
+  font-family: Rubik;
+  border: solid 1px #afc514;
+}
+
+#places {
+  direction: rtl;
+  font-family: Rubik;
+  align-items: center;
+}
+
+#place {
+  direction: rtl;
+  font-family: Rubik;
+}

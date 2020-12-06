@@ -25,6 +25,8 @@ import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared.module';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { KnowledgeArticleComponent } from './knowledge-article/knowledge-article.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
 
 
 
@@ -55,7 +57,9 @@ import { KnowledgeArticleComponent } from './knowledge-article/knowledge-article
     MatDialogModule,
     FormsModule,
     SharedModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatFormFieldModule,
+    MatSelectModule
   ],
   exports: [
     NetworksComponent,
