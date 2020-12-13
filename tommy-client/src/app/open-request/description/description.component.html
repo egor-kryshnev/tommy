@@ -34,10 +34,12 @@
     (input)="setComputerNameInput($event.target.value)">
   <input type="text" class="input {{ locationWarning }}" placeholder="מיקום ספציפי (חובה)" maxlength="40"
     (input)="setLocationInput($event.target.value)">
+</div>
 
-    <select name="places" id="places" (change)="setPlace($event.target.value)">
-      <option id="place" *ngFor="let place of placesList" value="{{place}}">{{place}}</option>
-    </select>
+<div id="places-div">
+<select name="places" id="places" (change)="setPlace($event.target.value)">
+  <option id="place" *ngFor="let place of placesList" value="{{place}}">{{place}}</option>
+</select>
 </div>
 
 

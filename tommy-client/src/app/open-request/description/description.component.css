@@ -18,7 +18,7 @@
   text-align: center;
   left: 20vh;
   font-family: Rubik;
-  margin-top: 5vh;
+  margin-top: 3vh;
   font-size: 1.5rem;
   font-weight: normal;
 }
@@ -154,7 +154,7 @@ textarea:focus {
   text-decoration: none;
   background: #3f9c67;
   padding: 20px;
-  margin-top: 5.2vh;
+  margin-top: 3.2vh;
   font-family: Rubik;
   width: 20vh;
   border-radius: 50px;
@@ -249,10 +249,29 @@ input::-webkit-inner-spin-button {
   border: solid 1px #afc514;
 }
 
+#places-div{
+  display: grid;
+  grid-gap: 20px;
+  padding: 10px;
+  justify-content: center;
+}
+
 #places {
-  direction: rtl;
   font-family: Rubik;
-  align-items: center;
+  width: 280px;
+  padding: 5px;
+  outline: none;
+  direction: rtl;
+  border-radius: 4px;
+  border: solid 1px #ebebeb;
+  background-color: #fff;
+  transition: 0.5s;
+  font-size: 14px;
+  line-height: 1.43;
+  text-align: center;
+  color: #3b3b3b;
+  position: relative;
+  justify-self: center;
 }
 
 #place {

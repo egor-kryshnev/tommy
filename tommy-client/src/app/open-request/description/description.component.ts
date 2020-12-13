@@ -100,6 +100,7 @@ export class DescriptionComponent implements OnInit {
       this.postReqService.computerName = this.computerNameInput;
       this.postReqService.voip = this.voip;
       this.postReqService.file = this.file;
+      // this.postReqService. = this.place;
       this.file
         ? this.postReqService
             .postWithFileAppeal()
