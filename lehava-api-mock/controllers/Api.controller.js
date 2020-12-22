@@ -32,13 +32,13 @@ module.exports = (app) => {
 
     // GET all networks details
     app.get('/caisd-rest/nr', (req, res) => {
-        if (validator.allNetworksWCValidator(req)) {
+        // if (validator.allNetworksWCValidator(req)) {
             res.json(lehavaData.all_networks);
-        } else {
-            res.status(400).send({
-                error: "WC Parameter not set properly"
-            });
-        }
+        // } else {
+        //     res.status(400).send({
+        //         error: "WC Parameter not set properly"
+        //     });
+        // }
     });
 
     // GET all network's services by network's unique id
