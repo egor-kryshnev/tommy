@@ -40,11 +40,14 @@ export const config = {
   serviceName: "tommy-server",
   redis: {
     host: process.env.REDIS_URL || "redis://localhost:6379",
+    cachedReqsTTL: process.env.CACHED_REQS_TTL ? parseInt(process.env.CACHED_REQS_TTL) : 86400
   },
   lehava_api: {
     serverName: process.env.LEHAVA_API_SERVER_NAME || "localhost",
+    fullHost: process.env.LEHAVA_FULL_HOST || "lehava-api-mock:8050",
     host: process.env.LEHAVA_API_HOST || "localhost",
     port: process.env.LEHAVA_API_PORT || "8050",
+    requestTypesToCache: ['nr', 'z_networks_to_service', 'pcat', 'chgcat', 'z_pcat_to_network', 'z_chgcat_to_network'],
     getRequestWithFileUrl: (
       reqUrl: string,
       fileObject: {
