@@ -106,7 +106,7 @@ export class ApigetService {
     .set('Content-type', 'application/json')
     .set('X-AccessKey', this.accessKey)
     .set('Accept', 'application/json')
-    .set('X-Obj-Attrs', 'name') //TODO: X-Obj-Attrs: name or sym 
+    .set('X-Obj-Attrs', 'z_location')
 
   tasksHeaders = new HttpHeaders()
     .set('Content-type', 'application/json')
@@ -148,14 +148,19 @@ export class ApigetService {
       { withCredentials: true, headers: this.servicesHeaders });
   }
 
-  getOrganization(UUID) { //TODO: use
+  getOrganization(UUID) {
     return this.http.get(config.GET_ORGANIZATION(UUID),
       { withCredentials: true, headers: this.organizationHeaders });
   }
 
-  getPlace(UUID) { //TODO: use
-    return this.http.get(config.GET_PLACE(UUID),
-      { withCredentials: true, headers: this.servicesHeaders });
+  getPlace(organizationUUID) {
+    return this.http.get(config.GET_PLACE(organizationUUID), 
+      { withCredentials: true, headers: this.placeHeaders });
+  }
+
+  getPlaces() {
+    return this.http.get(config.GET_PLACES(),
+      { withCredentials: true, headers: this.head })
   }
 
   getUpdates() {
@@ -186,11 +191,6 @@ export class ApigetService {
       { withCredentials: true, headers: this.tasksHeaders })
   }
 
-
-  getPlaces() {
-    return this.http.get(config.GET_PLACES(),
-      { withCredentials: true, headers: this.tasksHeaders })
-  }
 
   getClosedTasks(UUID) {
     return this.http.get(config.GET_CLOSED_TASKS_URL_FUNCTION(UUID),

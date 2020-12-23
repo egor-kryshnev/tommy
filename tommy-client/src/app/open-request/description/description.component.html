@@ -36,9 +36,9 @@
     (input)="setLocationInput($event.target.value)">
 </div>
 
-<div id="places-div">
-<select name="places" id="places" (change)="setPlace($event.target.value)">
-  <option id="place" *ngFor="let place of placesList" value="{{place}}">{{place}}</option>
+<div id="places-div" *ngIf="placesList">
+<select name="places" id="places" (change)="setPlace($event.target.value)" value="place">
+  <option class="place" *ngFor="let place of placesList" value="{{place}}">{{place}}</option>
 </select>
 </div>
 

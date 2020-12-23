@@ -245,8 +245,9 @@ input::-webkit-inner-spin-button {
 
 #places:hover {
   direction: rtl;
-  font-family: Rubik;
   border: solid 1px #afc514;
+  align-items: center;
+
 }
 
 #places-div{
@@ -257,7 +258,6 @@ input::-webkit-inner-spin-button {
 }
 
 #places {
-  font-family: Rubik;
   width: 280px;
   padding: 5px;
   outline: none;
@@ -268,13 +268,19 @@ input::-webkit-inner-spin-button {
   transition: 0.5s;
   font-size: 14px;
   line-height: 1.43;
-  text-align: center;
-  color: #3b3b3b;
-  position: relative;
-  justify-self: center;
+  text-align-last:center;
 }
+/* option {
+  text-align: left;
+  text-align-last:left;
+  background-color: indigo;
 
-#place {
+} */
+
+
+.place {
   direction: rtl;
-  font-family: Rubik;
+  /* text-align-last:left; */
+  /* margin-right: 20px; */
+  /* background-color: orange; */
 }

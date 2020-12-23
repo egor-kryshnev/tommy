@@ -19,8 +19,9 @@ export class DescriptionComponent implements OnInit {
   computerNameWarning = "";
   locationInput: string = "";
   phoneInput: string = "";
-  placesList: Array<string> = [];
-  place: string = '';
+  placesList: model1[] = [];
+  initialPlace: model1;
+  place: string;
   voip: string = "";
   computerNameInput: string = "";
   services: model1[];
@@ -29,6 +30,8 @@ export class DescriptionComponent implements OnInit {
   input: number = 0;
   isPending: boolean = false;
   file: { name: string; type: string; base64: string } = undefined;
+  organizationUUID: string;
+
 
   constructor(
     private router: Router,
@@ -45,19 +48,18 @@ export class DescriptionComponent implements OnInit {
 
   ngOnInit(): void {
     this.isKnowledgeArticle();
+    this.updateInitialPlace()
+    this.updatePlaces();
     const id = this.route.snapshot.paramMap.get("id");
     const selectedCategories = this.categoryService.getSelectedCategoryString();
     this.postReqService.descriptionCategory = selectedCategories;
     this._eventEmmitter.user.subscribe((data) =>
       this.authService.setUserShraga(data)
     );
-    this.setPhoneFromShraga(this.authService.getPhone());
+    if(this.authService.getPhone()) this.setPhoneFromShraga(this.authService.getPhone());
     this._eventEmmitter.dataStr.subscribe((data) => (this.userUUID = data));
     this.isPending = false;
     console.log(this.postReqService.categoryId);
-    this.placesList =['אופציה 1', 'אופציה 2', 'אופציה 3'];
-    // this.placesList =this.apiGetService.getPlaces(); //TODO: UPDATE PLACES
-    // this.place= this.apiGetService.getPlace() //TODO: UPDATE PLACE
   }
 
   onReturn() {
@@ -88,6 +90,7 @@ export class DescriptionComponent implements OnInit {
       this.locationInput &&
       this.phoneInput &&
       this.computerNameInput &&
+      this.place &&
       !this.isPending
     ) {
       this.isPending = true;
@@ -100,7 +103,7 @@ export class DescriptionComponent implements OnInit {
       this.postReqService.computerName = this.computerNameInput;
       this.postReqService.voip = this.voip;
       this.postReqService.file = this.file;
-      // this.postReqService. = this.place;
+      this.postReqService.z_location = this.getPlaceId(this.place);
       this.file
         ? this.postReqService
             .postWithFileAppeal()
@@ -153,7 +156,6 @@ export class DescriptionComponent implements OnInit {
   }
 
   setPlace(newPlace: string){
-    console.log('newPlace:::',newPlace)
     this.place = newPlace; 
   }
 
@@ -204,5 +206,47 @@ export class DescriptionComponent implements OnInit {
           this.openKnowlengeDialog();
         }
       });
+  }
+
+  updatePlaces(){
+    this.apiGetService.getPlaces().subscribe((res: any) => {
+      this.placesList = [];
+      const placesResponse = res.collection_loc.loc;
+      placesResponse.forEach((placeObject: any) => {
+        this.placesList.push(
+          {
+            "id": placeObject['@id'],
+            "value": placeObject['@COMMON_NAME']
+          } as model1
+        );
+      });
+    });
+  if(this.placesList.includes(this.initialPlace)){
+    this.placesList = this.placesList.filter(place => place!== this.initialPlace);
+  }
+  this.placesList.unshift(this.initialPlace)
+  this.place= this.initialPlace?.value;
+  }
+
+  updateInitialPlace(){
+    this.apiGetService.getOrganization(this.userUUID).subscribe((res: any)=>{
+    this.organizationUUID = res.collection_cnt?.cnt?.organization['@id'];
+    });
+
+    if(this.organizationUUID){
+    this.apiGetService.getPlace(this.organizationUUID).subscribe((res: any)=>{
+      this.initialPlace = {
+        id: res.collection_org.org.z_location['@id'],
+        value: res.collection_org.org.z_location['@COMMON_NAME']
+      }
+    })
+  }
+}
+
+  getPlaceId(placeName: string) {
+    const placeSelected = this.placesList.find(place => {
+      return place?.value === placeName;
+    });
+    return placeSelected.id;
   }
 }
