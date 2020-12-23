@@ -20,7 +20,7 @@ interface PostRequestResponse {
   providedIn: "root",
 })
 export class PostReqService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   requestHead = new HttpHeaders()
     .set("Content-type", "application/json")
@@ -78,7 +78,6 @@ export class PostReqService {
 
     return this.http.post(config.POST_NEW_INCIDENT_WITH_FILE, requestBody, {
       headers: this.requestHead,
-      withCredentials: true,
     });
   }
 
@@ -91,7 +90,6 @@ export class PostReqService {
 
     return this.http.post(config.POST_NEW_REQUEST_WITH_FILE, requestBody, {
       headers: this.requestHead,
-      withCredentials: true,
     });
   }
 

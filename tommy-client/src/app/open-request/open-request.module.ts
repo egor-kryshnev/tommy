@@ -6,6 +6,7 @@ import { DescriptionComponent } from './description/description.component';
 import { CategoryComponent } from './category/category.component';
 import { SubcategoryComponent } from './subcategory/subcategory.component';
 import { FinishRequestComponent } from './finish-request/finish-request.component';
+import { AlertComponent } from './alert/alert.component';
 import { CardsListComponent } from './cards-list/cards-list.component';
 import { ReturnButtonComponent } from './return-button/return-button.component';
 import { PageTopTitleComponent } from './page-top-title/page-top-title.component';
@@ -38,6 +39,7 @@ import {MatSelectModule} from '@angular/material/select';
     CategoryComponent,
     SubcategoryComponent,
     FinishRequestComponent,
+    AlertComponent,
     CardsListComponent,
     ReturnButtonComponent,
     PageTopTitleComponent,
@@ -68,6 +70,7 @@ import {MatSelectModule} from '@angular/material/select';
     CategoryComponent,
     SubcategoryComponent,
     FinishRequestComponent,
+    AlertComponent,
     CardsListComponent,
     ReturnButtonComponent,
     PageTopTitleComponent

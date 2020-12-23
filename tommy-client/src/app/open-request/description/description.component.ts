@@ -7,7 +7,9 @@ import { PostReqService, PostResponse } from "../post-req.service";
 import { CategoryService } from "../category/category.service";
 import { MatDialog } from "@angular/material/dialog";
 import { FinishRequestComponent } from "../finish-request/finish-request.component";
+import { AlertComponent } from "../alert/alert.component";
 import { KnowledgeArticleComponent } from "../knowledge-article/knowledge-article.component";
+import { config } from '../../../environments/config.dev';
 @Component({
   selector: "app-description",
   templateUrl: "./description.component.html",
@@ -43,8 +45,7 @@ export class DescriptionComponent implements OnInit {
     public dialog: MatDialog,
     public knowledgeArticleDialog: MatDialog,
     private apiGetService: ApigetService
-    
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.isKnowledgeArticle();
@@ -68,17 +69,32 @@ export class DescriptionComponent implements OnInit {
     });
   }
 
+  getFileSizeLimit() {
+    return config.fileSizeLimit;
+  }
+
   handleFileUpload(event: any) {
     const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      this.file = {
-        name: file.name,
-        type: file.name.split(".")[1],
-        base64: (reader.result as string).split(",")[1],
+    if (file.size > this.getFileSizeLimit()) {
+      document.getElementById("files")['value'] = "";
+      this.dialog
+        .open(AlertComponent, {
+          width: "330px",
+          height: "225px",
+          data: { title: 'הקובץ שנבחר גדול מדי', content: `${this.getFileSizeLimit() / 1048576}  MB הגבלת הגודל היא` },
+        });
+
+    } else {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.file = {
+          name: file.name,
+          type: file.name.split(".")[1],
+          base64: (reader.result as string).split(",")[1],
+        };
       };
-    };
+    }
   }
 
   handleRemoveFile() {
@@ -106,13 +122,13 @@ export class DescriptionComponent implements OnInit {
       this.postReqService.z_location = this.getPlaceId(this.place);
       this.file
         ? this.postReqService
-            .postWithFileAppeal()
-            .subscribe((res: PostResponse) => {
-              this.finishRequestDialog(res);
-            })
-        : this.postReqService.postAppeal().subscribe((res: PostResponse) => {
+          .postWithFileAppeal()
+          .subscribe((res: PostResponse) => {
             this.finishRequestDialog(res);
-          });
+          })
+        : this.postReqService.postAppeal().subscribe((res: PostResponse) => {
+          this.finishRequestDialog(res);
+        });
     } else {
       this.inputPlaceholderChanger();
     }

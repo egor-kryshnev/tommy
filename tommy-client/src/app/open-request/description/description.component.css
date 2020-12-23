@@ -70,6 +70,14 @@ input[type='file'] {
   top: 5px;
 }
 
+.addFile {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  bottom: 42px;
+  right: 275px;
+}
+
 .filesCircle {
   width: 28px;
   height: 28px;
@@ -77,8 +85,6 @@ input[type='file'] {
   border-radius: 50%;
   background-color: #ffffff;
   position: relative;
-  bottom: 42px;
-  right: 280px;
 }
 
 .filesCircle:hover {

@@ -2670,6 +2670,9 @@ module.exports = {
                 summary: "בוצע REPORT על WH - ניתן VAC",
                 z_network: {
                     "@COMMON_NAME": "עד הקצה"
+                },
+                z_impact_service: {
+                    "@COMMON_NAME": "מערכות הפעלה"
                 }
             },
             {
@@ -2685,6 +2688,9 @@ module.exports = {
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
                 z_network: {
                     "@COMMON_NAME": "עד הקצה"
+                },
+                z_impact_service: {
+                    "@COMMON_NAME": "מערכות הפעלה"
                 }
             },
             {
@@ -2699,7 +2705,100 @@ module.exports = {
                 },
                 summary: "בוצע REPORT על WH - ניתן VAC",
                 z_network: {
-                    "@COMMON_NAME": "עד הקצה"
+                    "@COMMON_NAME": "רשת"
+                },
+                z_impact_service: {
+                    "@COMMON_NAME": "service"
+                }
+            },
+            {
+                "@COMMON_NAME": '458525',
+                category: {
+                    "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                },
+                description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                open_date: 1592978575,
+                status: {
+                    "@COMMON_NAME": 'ממתין לטיפול'
+                },
+                summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
+                z_network: {
+                    "@COMMON_NAME": "רשת"
+                },
+                z_impact_service: {
+                    "@COMMON_NAME": "service"
+                }
+            },
+            {
+                "@COMMON_NAME": '458525',
+                category: {
+                    "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                },
+                description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                open_date: 1592978575,
+                status: {
+                    "@COMMON_NAME": 'ממתין לטיפול'
+                },
+                summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
+                z_network: {
+                    "@COMMON_NAME": "רשת"
+                },
+                z_impact_service: {
+                    "@COMMON_NAME": "service"
+                }
+            },
+            {
+                "@COMMON_NAME": '458525',
+                category: {
+                    "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                },
+                description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                open_date: 1592978575,
+                status: {
+                    "@COMMON_NAME": 'ממתין לטיפול'
+                },
+                summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
+                z_network: {
+                    "@COMMON_NAME": "רשת"
+                },
+                z_impact_service: {
+                    "@COMMON_NAME": "service"
+                }
+            },
+            {
+                "@COMMON_NAME": '458525',
+                category: {
+                    "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                },
+                description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                open_date: 1592978575,
+                status: {
+                    "@COMMON_NAME": 'ממתין לטיפול'
+                },
+                summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
+                z_network: {
+                    "@COMMON_NAME": "רשת"
+                },
+                z_impact_service: {
+                    "@COMMON_NAME": "service"
+                }
+            },
+            {
+                "@COMMON_NAME": '458525',
+                category: {
+                    "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                },
+                description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                open_date: 1592978575,
+                status: {
+                    "@COMMON_NAME": 'ממתין לטיפול'
+                },
+                summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
+                z_network: {
+                    "@COMMON_NAME": "רשת"
+                },
+                z_impact_service: {
+                    "@COMMON_NAME": "service"
                 }
             },
             {
@@ -2715,6 +2814,9 @@ module.exports = {
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
                 z_network: {
                     "@COMMON_NAME": "עד הקצה"
+                },
+                z_impact_service: {
+                    "@COMMON_NAME": "מערכות הפעלה"
                 }
             },
             {
@@ -2730,6 +2832,9 @@ module.exports = {
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
                 z_network: {
                     "@COMMON_NAME": "עד הקצה"
+                },
+                z_impact_service: {
+                    "@COMMON_NAME": "מערכות הפעלה"
                 }
             },
             {
@@ -2745,6 +2850,9 @@ module.exports = {
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
                 z_network: {
                     "@COMMON_NAME": "עד הקצה"
+                },
+                z_impact_service: {
+                    "@COMMON_NAME": "מערכות הפעלה"
                 }
             },
             {
@@ -2760,6 +2868,9 @@ module.exports = {
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
                 z_network: {
                     "@COMMON_NAME": "עד הקצה"
+                },
+                z_impact_service: {
+                    "@COMMON_NAME": "מערכות הפעלה"
                 }
             },
             {
@@ -2775,6 +2886,9 @@ module.exports = {
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
                 z_network: {
                     "@COMMON_NAME": "עד הקצה"
+                },
+                z_impact_service: {
+                    "@COMMON_NAME": "מערכות הפעלה"
                 }
             },
             {
@@ -2790,6 +2904,9 @@ module.exports = {
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
                 z_network: {
                     "@COMMON_NAME": "עד הקצה"
+                },
+                z_impact_service: {
+                    "@COMMON_NAME": "מערכות הפעלה"
                 }
             },
             {
@@ -2805,6 +2922,9 @@ module.exports = {
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
                 z_network: {
                     "@COMMON_NAME": "עד הקצה"
+                },
+                z_impact_service: {
+                    "@COMMON_NAME": "מערכות הפעלה"
                 }
             },
             {
@@ -2818,8 +2938,8 @@ module.exports = {
                     "@COMMON_NAME": 'ממתין לטיפול'
                 },
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
-                z_network: {
-                    "@COMMON_NAME": "עד הקצה"
+                z_impact_service: {
+                    "@COMMON_NAME": "מערכות הפעלה"
                 }
             },
             {
@@ -2833,8 +2953,8 @@ module.exports = {
                     "@COMMON_NAME": 'ממתין לטיפול'
                 },
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
-                z_network: {
-                    "@COMMON_NAME": "עד הקצה"
+                z_impact_service: {
+                    "@COMMON_NAME": "מערכות הפעלה"
                 }
             },
             {
@@ -2848,8 +2968,8 @@ module.exports = {
                     "@COMMON_NAME": 'ממתין לטיפול'
                 },
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
-                z_network: {
-                    "@COMMON_NAME": "עד הקצה"
+                z_impact_service: {
+                    "@COMMON_NAME": "מערכות הפעלה"
                 }
             },
             {
@@ -2863,8 +2983,8 @@ module.exports = {
                     "@COMMON_NAME": 'ממתין לטיפול'
                 },
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
-                z_network: {
-                    "@COMMON_NAME": "עד הקצה"
+                z_impact_service: {
+                    "@COMMON_NAME": "מערכות הפעלה"
                 }
             },
             {
@@ -2878,8 +2998,8 @@ module.exports = {
                     "@COMMON_NAME": 'ממתין לטיפול'
                 },
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
-                z_network: {
-                    "@COMMON_NAME": "עד הקצה"
+                z_impact_service: {
+                    "@COMMON_NAME": "מערכות הפעלה"
                 }
             },
             {
@@ -2892,7 +3012,10 @@ module.exports = {
                 status: {
                     "@COMMON_NAME": 'ממתין לטיפול'
                 },
-                summary: "בוצע COOLDOWN לשרתי SILVER ELITE"
+                summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
+                z_impact_service: {
+                    "@COMMON_NAME": "מערכות הפעלה"
+                }
             },
             {
                 "@COMMON_NAME": '458525',
@@ -2904,7 +3027,10 @@ module.exports = {
                 status: {
                     "@COMMON_NAME": 'ממתין לטיפול'
                 },
-                summary: "בוצע COOLDOWN לשרתי SILVER ELITE"
+                summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
+                z_impact_service: {
+                    "@COMMON_NAME": "מערכות הפעלה"
+                }
             },
             {
                 "@COMMON_NAME": '458525',
@@ -2916,67 +3042,10 @@ module.exports = {
                 status: {
                     "@COMMON_NAME": 'ממתין לטיפול'
                 },
-                summary: "בוצע COOLDOWN לשרתי SILVER ELITE"
-            },
-            {
-                "@COMMON_NAME": '458525',
-                category: {
-                    "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
-                },
-                description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                open_date: 1592978575,
-                status: {
-                    "@COMMON_NAME": 'ממתין לטיפול'
-                },
-                summary: "בוצע COOLDOWN לשרתי SILVER ELITE"
-            },
-            {
-                "@COMMON_NAME": '458525',
-                category: {
-                    "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
-                },
-                description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                open_date: 1592978575,
-                status: {
-                    "@COMMON_NAME": 'ממתין לטיפול'
-                },
-                summary: "בוצע COOLDOWN לשרתי SILVER ELITE"
-            },
-            {
-                "@COMMON_NAME": '458525',
-                category: {
-                    "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
-                },
-                description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                open_date: 1592978575,
-                status: {
-                    "@COMMON_NAME": 'ממתין לטיפול'
-                },
-                summary: "בוצע COOLDOWN לשרתי SILVER ELITE"
-            },
-            {
-                "@COMMON_NAME": '458525',
-                category: {
-                    "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
-                },
-                description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                open_date: 1592978575,
-                status: {
-                    "@COMMON_NAME": 'ממתין לטיפול'
-                },
-                summary: "בוצע COOLDOWN לשרתי SILVER ELITE"
-            },
-            {
-                "@COMMON_NAME": '458525',
-                category: {
-                    "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
-                },
-                description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                open_date: 1592978575,
-                status: {
-                    "@COMMON_NAME": 'ממתין לטיפול'
-                },
-                summary: "בוצע COOLDOWN לשרתי SILVER ELITE"
+                summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
+                z_impact_service: {
+                    "@COMMON_NAME": "מערכות הפעלה"
+                }
             }
             ]
         }
