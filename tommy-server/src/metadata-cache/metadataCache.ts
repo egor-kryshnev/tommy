@@ -27,6 +27,7 @@ export default class MetadataCache {
         } else {
             next();
             await MetadataCache.cacheReqToRedis(req)
+            return;
         }
 
     }
