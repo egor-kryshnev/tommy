@@ -41,6 +41,8 @@ export class PostReqService {
   voip: string;
   categoryId: string;
   file: { name: string; type: string; base64: string };
+  z_location: string;
+  
   public isIncident: boolean = true;
 
   postAppeal() {

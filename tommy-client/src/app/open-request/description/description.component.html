@@ -34,9 +34,16 @@
   </div>
   <input type="text" class="input {{ computerNameWarning }}" placeholder="שם המחשב (חובה)" maxlength="20"
     (input)="setComputerNameInput($event.target.value)">
-  <input type="text" class="input {{ locationWarning }}" placeholder="מיקום גיאוגרפי (חובה)" maxlength="40"
+  <input type="text" class="input {{ locationWarning }}" placeholder="מיקום ספציפי (חובה)" maxlength="40"
     (input)="setLocationInput($event.target.value)">
 </div>
+
+<div id="places-div" *ngIf="placesList">
+<select name="places" id="places" (change)="setPlace($event.target.value)" value="place">
+  <option class="place" *ngFor="let place of placesList" value="{{place}}">{{place}}</option>
+</select>
+</div>
+
 
 <div class="button_cont" (click)="sendPost()" id="taskOpenBtn" align="center">
   <button class="example_b" [disabled]="isPending">פתיחת פניה</button>

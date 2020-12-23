@@ -33,7 +33,7 @@ export class AppComponent {
       this.phoneNumber = res.phoneNumbers;
       this.authService.setUser(this.userT);
       this.authService.setUserShraga(res);
-      this._eventEmmiter.phoneSubject.next(res.phoneNumbers[0]);
+      if (res.phoneNumbers) this._eventEmmiter.phoneSubject.next(res.phoneNumbers[0]);
       this._eventEmmiter.sendUser(res);
       this._eventEmmiter.sendTuser(this.userT);
       // console.log(this.phoneNumber[0]);
