@@ -1,6 +1,11 @@
 process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0 as any;
 import { SupportersList } from "./supporters-list/supporters-list";
 
+const buildLehavaFullHost = (hostName?: string, port?: string | number): string | undefined => {
+  if(hostName && port) return `${hostName}:${port}`;
+  return undefined;
+}
+
 export const config = {
   server: {
     port: process.env.PORT || 80,
@@ -44,10 +49,10 @@ export const config = {
   },
   lehava_api: {
     serverName: process.env.LEHAVA_API_SERVER_NAME || "localhost",
-    fullHost: process.env.LEHAVA_FULL_HOST || "lehava-api-mock:8050",
     host: process.env.LEHAVA_API_HOST || "localhost",
     port: process.env.LEHAVA_API_PORT || "8050",
-    requestTypesToCache: ['nr', 'z_networks_to_service', 'pcat', 'chgcat', 'z_pcat_to_network', 'z_chgcat_to_network'],
+    fullHost: buildLehavaFullHost(process.env.LEHAVA_API_HOST, process.env.LEHAVA_API_PORT) || "lehava-api-mock:8050",
+    requestTypesToCache: process.env.REQ_TYPES_TO_CACHE?.split(',') || ['nr', 'z_networks_to_service', 'pcat', 'chgcat', 'z_pcat_to_network', 'z_chgcat_to_network'],
     getRequestWithFileUrl: (
       reqUrl: string,
       fileObject: {

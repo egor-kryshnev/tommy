@@ -11,22 +11,18 @@ export default class MetadataCache {
     private static client: redis.RedisClient = redis.createClient(config.redis.host);
     private static getRedis = promisify(MetadataCache.client.get).bind(MetadataCache.client);
     private static setRedis = promisify(MetadataCache.client.setex).bind(MetadataCache.client);
+    
+    public static async metadataHttpCacheMiddleware(req: express.Request, res: express.Response, next: express.NextFunction ) {
+        
+        if (!config.lehava_api.requestTypesToCache.includes(MetadataCache.lehavaReqTypeParse(req.originalUrl))) return next();
 
-    public static async metadataHttpCacheMiddleware(req: express.Request, res: express.Response, next: express.NextFunction) {
-
-        if (!config.lehava_api.requestTypesToCache.includes(MetadataCache.lehavaReqTypeParse(req.originalUrl))) {
-            next();
-            return;
-        }
-
-        const redisCachedResponse = JSON.parse(await MetadataCache.getRedis(req.originalUrl));
+        let redisCachedResponse: string | null = await MetadataCache.getRedis(req.originalUrl);
 
         if (redisCachedResponse) {
-            res.send(redisCachedResponse);
-            return;
+            return res.send(JSON.parse(redisCachedResponse));
         } else {
             next();
-            await MetadataCache.cacheReqToRedis(req)
+            await MetadataCache.cacheReqToRedis(req);
             return;
         }
 
@@ -37,7 +33,7 @@ export default class MetadataCache {
         headers["X-AccessKey"] = await AccessTokenProvider.getAccessToken();
         await axios(`http://${config.lehava_api.fullHost}${req.originalUrl.split('/api')[1]}`,
             {
-                headers: headers,
+                headers,
                 method: "GET"
             }).then(async (res: any) => {
                 await MetadataCache.setRedis(req.originalUrl, config.redis.cachedReqsTTL, JSON.stringify(res.data));
@@ -56,4 +52,3 @@ export default class MetadataCache {
     }
 
 }
-
