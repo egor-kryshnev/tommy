@@ -19,8 +19,7 @@ export default class MetadataCache {
         return await MetadataCache.getRedis(req.originalUrl).then(async (redisRes: string | null) => {
             if (redisRes) return res.send(JSON.parse(redisRes));
             next();
-            await MetadataCache.cacheReqToRedis(req);
-            return;
+            return await MetadataCache.cacheReqToRedis(req);
         }).catch(err => {
             logger(err);
             return next();
