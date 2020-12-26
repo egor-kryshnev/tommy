@@ -28,6 +28,7 @@ services:
       LEHAVA_API_SERVER_NAME: "lehava-api-mock"
       LEHAVA_API_HOST: "lehava-api-mock"
       LEHAVA_API_PORT: "8050"
+      REQ_TYPES_TO_CACHE: "nr,z_networks_to_service,pcat,chgcat,z_pcat_to_network,z_chgcat_to_network"
       CHAT_URL: "http://lehava-api-mock:8050/api/v1"
       HI_CHAT_URL: "http://lehava-api-mock:8050/group"
       CHAT_GROUP_URL: groups

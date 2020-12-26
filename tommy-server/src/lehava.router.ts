@@ -5,6 +5,7 @@ import axios, { Method } from "axios";
 import { IpMiddleware } from "./utils/middlewares/ip-middleware";
 import { config } from "./config";
 import { logger } from "./utils/logger-client";
+import MetadataCache from './metadata-cache/metadataCache'
 
 const LehavaRouter: Router = Router();
 
@@ -52,6 +53,8 @@ LehavaRouter.post("/file/*", async (req: Request, res: Response) => {
     res.send(e.message);
   }
 });
+
+LehavaRouter.use(MetadataCache.metadataHttpCacheMiddleware)
 
 LehavaRouter.all("*", async (req: Request, res: Response) => {
   const url = `http://${config.lehava_api.host}:${config.lehava_api.port}${req.url}`;
