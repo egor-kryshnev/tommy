@@ -67,12 +67,13 @@ export class Chat {
         const authHeaders = await this.getAuthHeaders();
         const name = this.getAllowedGroupTitleFromText(groupName);
         const sendUrl = `${config.chat.chatUrl}/${config.chat.chatGroupUrl}.create`;
+        const hichatNormalizedMembers = this.normalizeHichatMembersList(members)
         let result = await axios({
             method: 'post',
             url: sendUrl,
             data: {
                 name: name,
-                members: members
+                members: hichatNormalizedMembers
             },
             headers: { ...authHeaders }
 
@@ -82,6 +83,15 @@ export class Chat {
             return result;
         }
     };
+
+    normalizeHichatMembersList(membersList: string[]) {
+        const cleaner = membersList.map(member => {
+            const lowermember = member.toLowerCase();
+            const cleanChars = lowermember.replace(/[^a-zA-Z0-9@]/g, "")
+            if (cleanChars[0] === 't' && cleanChars.split('@')[1] === 'aman') return cleanChars;
+        }).filter(obj => obj)
+        return cleaner;
+    }
 
     async getGroupInfo(roomName: string) {
         const authHeaders = await this.getAuthHeaders();
@@ -152,7 +162,7 @@ export class Chat {
         });
         return symmetricDifference;
     };
-    
+
     async setRoomMembers(roomName: string, members: string[]) {
         const currentGroupMembers = await this.getGroupMembers(roomName);
         if (currentGroupMembers && currentGroupMembers.length > 0) {
@@ -169,8 +179,8 @@ export class Chat {
 
         if (result && result.data) {
             const roomId = result.data.group._id;
-            await axios.post(`${config.chat.chatUrl}/${config.chat.chatGroupUrl}.setAnnouncement`, 
-            { roomId , announcement: announcement }, { headers: { ...authHeaders } });
+            await axios.post(`${config.chat.chatUrl}/${config.chat.chatGroupUrl}.setAnnouncement`,
+                { roomId, announcement: announcement }, { headers: { ...authHeaders } });
         }
     };
 
