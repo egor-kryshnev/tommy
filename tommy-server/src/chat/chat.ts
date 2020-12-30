@@ -85,12 +85,16 @@ export class Chat {
     };
 
     normalizeHichatMembersList(membersList: string[]) {
+        let nonDuplicate: string[] = [];
         const cleaner = membersList.map(member => {
             const lowermember = member.toLowerCase();
             const cleanChars = lowermember.replace(/[^a-zA-Z0-9@]/g, "")
-            if (cleanChars[0] === 't' && cleanChars.split('@')[1] === 'aman') return cleanChars;
-        }).filter(obj => obj)
-        return cleaner;
+            return (cleanChars[0] === 't' && cleanChars.split('@')[1] === 'aman') ? cleanChars : '';
+        }).filter((obj: string) => obj && obj !== '')
+        cleaner.forEach((user: string) => {
+            if (!nonDuplicate.includes(user)) nonDuplicate.push(user)
+        })
+        return nonDuplicate;
     }
 
     async getGroupInfo(roomName: string) {
