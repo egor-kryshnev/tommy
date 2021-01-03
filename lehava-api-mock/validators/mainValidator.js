@@ -29,9 +29,25 @@ module.exports = {
             }
         } return false;
     },
+
+    allLocationsWCValidator: (req) => {
+        if (req.query.WC) {
+            if (req.query.WC == '') {//////////
+                return true;
+            }
+        } return false;
+    },
+
     servicesValidator: (req) => {
         if (req.query.WC) {
             if (req.query.WC.startsWith("network=U\'") && req.header('X-Obj-Attrs') == 'service') {
+                return true;
+            } return false;
+        } return false;
+    },
+    organizationValidator: (req) => {
+        if (req.query.WC) {
+            if (req.header('X-Obj-Attrs') == 'organization') {
                 return true;
             } return false;
         } return false;

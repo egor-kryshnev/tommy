@@ -41,6 +41,43 @@ module.exports = (app) => {
         }
     });
 
+    // GET user's organization by T username 
+    app.get('/caisd-rest/cnt', (req, res) => {
+        if (validator.organizationValidator(req)) {
+            res.json(lehavaData.users);
+        } else {
+                res.status(400).send({
+                    error: `User:${req.query.WC.split("'")[1]} organization Doesn't Exist`
+                });
+            }
+        }
+    );
+    
+
+    // GET all locations details
+        app.get('/caisd-rest/loc', (req, res) => {
+            // if (validator.allLocationsWCValidator(req)) {
+                res.json(lehavaData.all_locations);
+            // } else {
+                // res.status(400).send({
+                    // error: "WC Parameter not set properly"
+                // });
+            // }
+        });
+
+   // GET initial location by user's organization uuid
+//    app.get('/caisd-rest/', (req, res) => {////////
+    // if (validator.servicesValidator(req)) {
+        // res.json(lehavaData.services[req.query.WC.split("'")[1] - 1]);
+    // } else {
+        // res.status(400).send({
+            // error: "Parameters not sent properly"
+        // });
+    // }
+});
+
+
+
     // GET all network's services by network's unique id
     app.get('/caisd-rest/z_networks_to_service', (req, res) => {
         if (validator.servicesValidator(req)) {
