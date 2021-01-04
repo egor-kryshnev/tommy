@@ -71,6 +71,8 @@ mat-list-item {
   text-align: right;
   font-family: Rubik-Light;
   color: #000;
+  overflow: hidden;
+  max-width: 47ch;
 }
 
 .Oval {
