@@ -62,6 +62,96 @@ module.exports = {
             ]
         }
     },
+    all_locations: {
+        collection_loc: {
+            "@COUNT": "9",
+            "@START": "1",
+            "@TOTAL_COUNT": "9",
+            "loc": [
+            {
+                "@id": "U'1'",
+                "@REL_ATTR": "U'1'",
+                "@COMMON_NAME": "בסיס 1",
+                "link": {
+                    "@href":"http://hgbliuglikuhlu",
+                    "@rel":"self"
+                }
+            },
+            {
+                "@id": "U'2'",
+                "@REL_ATTR": "U'1'",
+                "@COMMON_NAME": "בסיס 2",
+                "link": {
+                    "@href":"http://hgbliuglikuhlu",
+                    "@rel":"self"
+                }
+            },
+            {
+                "@id": "U'3'",
+                "@REL_ATTR": "U'1'",
+                "@COMMON_NAME": "בסיס 3",
+                "link": {
+                    "@href":"http://hgbliuglikuhlu",
+                    "@rel":"self"
+                }
+            },
+            {
+                "@id": "U'4'",
+                "@REL_ATTR": "U'1'",
+                "@COMMON_NAME": "בסיס 4",
+                "link": {
+                    "@href":"http://hgbliuglikuhlu",
+                    "@rel":"self"
+                }
+            },
+            {
+                "@id": "U'5'",
+                "@REL_ATTR": "U'1'",
+                "@COMMON_NAME": "בסיס 5",
+                "link": {
+                    "@href":"http://hgbliuglikuhlu",
+                    "@rel":"self"
+                }
+            },
+            {
+                "@id": "U'6'",
+                "@REL_ATTR": "U'1'",
+                "@COMMON_NAME": "בסיס 6",
+                "link": {
+                    "@href":"http://hgbliuglikuhlu",
+                    "@rel":"self"
+                }
+            },
+            {
+                "@id": "U'7'",
+                "@REL_ATTR": "U'1'",
+                "@COMMON_NAME": "בסיס 7",
+                "link": {
+                    "@href":"http://hgbliuglikuhlu",
+                    "@rel":"self"
+                }
+            },
+            {
+                "@id": "U'8'",
+                "@REL_ATTR": "U'1'",
+                "@COMMON_NAME": "בסיס 8",
+                "link": {
+                    "@href":"http://hgbliuglikuhlu",
+                    "@rel":"self"
+                }
+            },
+            {
+                "@id": "U'9'",
+                "@REL_ATTR": "U'1'",
+                "@COMMON_NAME": "בסיס 9",
+                "link": {
+                    "@href":"http://hgbliuglikuhlu",
+                    "@rel":"self"
+                }
+            }
+            ]
+        }
+    },
     services: [{
         collection_z_networks_to_service: {
             z_networks_to_service: [{
@@ -2109,7 +2199,11 @@ module.exports = {
             collection_cnt: {
                 cnt: {
                     "@id": "U'1'",
-                    "@COMMON_NAME": "ביבי נתניהו"
+                    "@COMMON_NAME": "ביבי נתניהו",
+                    "organization": {
+                        "@id": "U'11",
+                        "@COMMON_NAME": "יחידה1"
+                    }
                 }
             }
         }
@@ -2120,7 +2214,11 @@ module.exports = {
             collection_cnt: {
                 cnt: {
                     "@id": "U'2'",
-                    "@COMMON_NAME": "בני גנץ"
+                    "@COMMON_NAME": "בני גנץ",
+                    "organization": {
+                        "@id": "U'23",
+                        "@COMMON_NAME": "יחידה3"
+                    }
                 }
             }
         }
