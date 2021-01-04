@@ -57,7 +57,8 @@ export class DescriptionComponent implements OnInit {
     this._eventEmmitter.user.subscribe((data) =>
       this.authService.setUserShraga(data)
     );
-    if(this.authService.getPhone()) this.setPhoneFromShraga(this.authService.getPhone());
+
+    if (this.authService.getPhone()) this.setPhoneFromShraga(this.authService.getPhone());
     this._eventEmmitter.dataStr.subscribe((data) => (this.userUUID = data));
     this.isPending = false;
     console.log(this.postReqService.categoryId);

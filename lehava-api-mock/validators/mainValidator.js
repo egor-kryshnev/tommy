@@ -23,11 +23,11 @@ module.exports = {
         } return false;
     },
     allNetworksWCValidator: (req) => {
-        if (req.query.WC) {
-            if (req.query.WC == 'class=1000792 and delete_flag=0') {
+        // if (req.query.WC) {
+        //     if (req.query.WC == 'class=1000792 and delete_flag=0') {
                 return true;
-            }
-        } return false;
+        //     }
+        // } return false;
     },
     servicesValidator: (req) => {
         if (req.query.WC) {

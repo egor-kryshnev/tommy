@@ -8,6 +8,7 @@ const hichatTools = require('../modules/hichat.tools')
 const {
     json
 } = require('express')
+const delay = require('../utils/delay');
 
 module.exports = (app) => {
 
@@ -24,22 +25,23 @@ module.exports = (app) => {
             });
         }
     });
-
+    // app.use(async (req, res, next) => {await delay(5000);next();})
     // GET all exceptions
-    app.get('/caisd-rest/z_pcat_to_network', (req, res) => res.json(lehavaData.exceptions.incidents));
-    app.get('/caisd-rest/z_chgcat_to_network', (req, res) => res.json(lehavaData.exceptions.requests));
+    app.get('/caisd-rest/z_pcat_to_network', async (req, res, next) => {await delay(5000);next();}, (req, res) => res.json(lehavaData.exceptions.incidents));
+    app.get('/caisd-rest/z_chgcat_to_network', async (req, res, next) => {await delay(5000);next();}, (req, res) => res.json(lehavaData.exceptions.requests));
 
 
     // GET all networks details
-    app.get('/caisd-rest/nr', (req, res) => {
+    app.get('/caisd-rest/nr', async (req, res, next) => {await delay(5000);next();}, (req, res) => {
         // if (validator.allNetworksWCValidator(req)) {
             res.json(lehavaData.all_networks);
         // } else {
-            // res.status(400).send({
-                // error: "WC Parameter not set properly"
-            // });
+        //     res.status(400).send({
+        //         error: "WC Parameter not set properly"
+        //     });
         // }
     });
+  
 
     // GET all locations details
     app.get('/caisd-rest/loc', (req, res) => {
@@ -49,11 +51,10 @@ module.exports = (app) => {
             // res.status(400).send({
                 // error: "WC Parameter not set properly"
             // });
-        // }
-    });
+
 
     // GET all network's services by network's unique id
-    app.get('/caisd-rest/z_networks_to_service', (req, res) => {
+    app.get('/caisd-rest/z_networks_to_service', async (req, res, next) => {await delay(5000);next();}, (req, res) => {
         if (validator.servicesValidator(req)) {
             res.json(lehavaData.services[req.query.WC.split("'")[1] - 1]);
         } else {
@@ -64,7 +65,7 @@ module.exports = (app) => {
     });
 
     // GET all service PROBLEM categories by service's unique id
-    app.get('/caisd-rest/pcat', (req, res) => {
+    app.get('/caisd-rest/pcat', async (req, res, next) => {await delay(5000);next();}, (req, res) => {
         if (validator.categoriesValidator(req)) {
             res.json(lehavaData.problemCategories[req.query.WC.split("'")[1] - 1]);
         } else {
@@ -94,7 +95,7 @@ module.exports = (app) => {
     });
 
     // GET all service REQUEST categories by service's unique id
-    app.get('/caisd-rest/chgcat', (req, res) => {
+    app.get('/caisd-rest/chgcat', async (req, res, next) => {await delay(5000);next();}, (req, res) => {
         if (validator.categoriesValidator(req)) {
             res.json(lehavaData.requestsCategories[req.query.WC.split("'")[1] - 1]);
         } else {
