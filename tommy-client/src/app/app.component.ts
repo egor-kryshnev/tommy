@@ -6,6 +6,8 @@ import { HttpClient } from '@angular/common/http';
 import { ApigetService } from './apiget.service';
 import { EventEmiterService } from './event.emmiter.service';
 import { PostReqService } from './open-request/post-req.service';
+import { MatDialog } from '@angular/material/dialog';
+import { LehavaUserComponent } from './lehava-user/lehava-user.component';
 import { isArray } from 'util';
 
 @Component({
@@ -23,7 +25,7 @@ export class AppComponent {
   @Output() exampleOutput = new EventEmitter<string>();
   userUUID: string;
 
-  constructor(@Inject(DOCUMENT) document, public apigetService: ApigetService, private router: Router, private route: ActivatedRoute, private http: HttpClient, public authService: AuthService, public _eventEmmiter: EventEmiterService, private postReqService: PostReqService) { }
+  constructor(@Inject(DOCUMENT) document, public apigetService: ApigetService, private router: Router, private route: ActivatedRoute, private http: HttpClient, public authService: AuthService, public _eventEmmiter: EventEmiterService, private postReqService: PostReqService,public dialog: MatDialog) { }
 
   ngOnInit() {
     this.authService.loginSub().subscribe((res: any) => {
@@ -39,6 +41,9 @@ export class AppComponent {
       // console.log(this.phoneNumber[0]);
       this._eventEmmiter.sendPhone("this.phoneNumber[0]");
       this.apigetService.getUUID(this.userT).subscribe((res: any) => {
+        if(res.collection_cnt['@TOTAL_COUNT'] == '0' ){
+          this.openDialog();
+        }
         if (Array.isArray(res.collection_cnt.cnt)) {
           this.userUUID = res.collection_cnt.cnt[1]['@id'];
         }
@@ -59,5 +64,13 @@ export class AppComponent {
 
   onHome() {
     this.router.navigateByUrl('/', { relativeTo: this.route });
+  }
+
+  openDialog(){
+    this.dialog.open(LehavaUserComponent, {
+      height: '250px',
+      width: '430px',
+      disableClose: true 
+    });
   }
 }
