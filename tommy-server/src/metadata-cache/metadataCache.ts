@@ -16,7 +16,7 @@ export default class MetadataCache {
 
         if (!config.lehava_api.requestTypesToCache.includes(MetadataCache.lehavaReqTypeParse(req.originalUrl)) || !MetadataCache.client.connected) return next();
 
-        return await MetadataCache.getRedis(req.originalUrl).then(async (redisRes: string | null) => {
+        return MetadataCache.getRedis(req.originalUrl).then(async (redisRes: string | null) => {
             if (redisRes) return res.send(JSON.parse(redisRes));
             next();
             return await MetadataCache.cacheReqToRedis(req);

@@ -6,7 +6,6 @@ import session from "express-session";
 import cookieParser from "cookie-parser";
 import { config } from "./config";
 import { LehavaRouter } from "./lehava.router";
-import { HichatRouter } from "./hichat.router";
 import {
   userErrorHandler,
   serverErrorHandler,
@@ -58,7 +57,7 @@ export class Server {
       next();
     });
     this.app.use("/api", AuthenticationMiddleware.requireAuth, LehavaRouter);
-    this.app.use("/hichat", AuthenticationMiddleware.requireAuth, HichatRouter);
+    // this.app.use("/hichat", AuthenticationMiddleware.requireAuth, HichatRouter); !!!!!!!!!!!!!
     this.initializeErrorHandler();
     this.app.get(
       "/user",
