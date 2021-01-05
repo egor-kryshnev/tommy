@@ -37,6 +37,11 @@ export const config = {
         return taskBody;
     },
     GET_CATEGORY_KNOWLEDGE_ARTICLE: (categoryId: string) => `/api/caisd-rest/pcat?WC=id%3D${categoryId}`,
-    fileSizeLimit: 7340032
+    fileSizeLimit: 7340032,
+    NO_LEHAVA_USER_SENTENCES:{
+        firstSen: 'משתמש יקר',
+        secondSen: 'לא קיים עבורך משתמש במערכת',
+        thirdSen: 'אנא פנה למוקד הממונה עליך',
+    }
     
 };

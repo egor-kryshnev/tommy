@@ -1,8 +1,6 @@
 import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LehavaUserComponent } from '../lehava-user/lehava-user.component';
 
 @Component({
   selector: 'app-home',
@@ -11,10 +9,9 @@ import { LehavaUserComponent } from '../lehava-user/lehava-user.component';
 })
 export class HomeComponent implements OnInit {
   static chatDisplayFlag: Boolean;
-  constructor(private router: Router, private route: ActivatedRoute, public authService: AuthService,public dialog: MatDialog) { }
+  constructor(private router: Router, private route: ActivatedRoute, public authService: AuthService) { }
 
   ngOnInit(): void {
-    this.openDialog()
   }
 
   public chatTag() {
@@ -22,12 +19,5 @@ export class HomeComponent implements OnInit {
       HomeComponent.chatDisplayFlag = !HomeComponent.chatDisplayFlag;
   }
 
-  openDialog(){
-    this.dialog.open(LehavaUserComponent, {
-      height: '400px',
-      width: '600px',
-      disableClose: true 
-    });
-  }
 
 }
