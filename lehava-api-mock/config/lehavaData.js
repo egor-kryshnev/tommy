@@ -2197,6 +2197,7 @@ module.exports = {
         T: "t87471111",
         data: {
             collection_cnt: {
+                '@TOTAL_COUNT': '1',
                 cnt: {
                     "@id": "U'1'",
                     "@COMMON_NAME": "ביבי נתניהו",
@@ -2212,6 +2213,7 @@ module.exports = {
         T: "t87471112",
         data: {
             collection_cnt: {
+                '@TOTAL_COUNT': '1',
                 cnt: {
                     "@id": "U'2'",
                     "@COMMON_NAME": "בני גנץ",
@@ -2227,6 +2229,7 @@ module.exports = {
         T: "t23458789",
         data: {
             collection_cnt: {
+                '@TOTAL_COUNT': '1',
                 cnt: {
                     "@id": "U'3'",
                     "@COMMON_NAME": "איווט ליברמן"

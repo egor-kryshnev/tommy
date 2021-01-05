@@ -51,6 +51,7 @@ module.exports = (app) => {
             // res.status(400).send({
                 // error: "WC Parameter not set properly"
             // });
+        })
 
 
     // GET all network's services by network's unique id
