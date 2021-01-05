@@ -23,7 +23,7 @@ export class DescriptionComponent implements OnInit {
   phoneInput: string = "";
   placesList: model1[] = [];
   initialPlace: model1;
-  place: string;
+  place: string='';
   voip: string = "";
   computerNameInput: string = "";
   services: model1[];
@@ -120,7 +120,7 @@ export class DescriptionComponent implements OnInit {
       this.postReqService.computerName = this.computerNameInput;
       this.postReqService.voip = this.voip;
       this.postReqService.file = this.file;
-      this.postReqService.z_location = this.getPlaceId(this.place);
+      this.postReqService.z_location = this.place ==='' ? this.place : this.getPlaceId(this.place);
       this.file
         ? this.postReqService
           .postWithFileAppeal()
@@ -241,9 +241,6 @@ export class DescriptionComponent implements OnInit {
         }
         this.placesList.unshift(this.initialPlace)
         this.place= this.initialPlace?.value;
-      }
-      else{
-        this.place = this.placesList[0].value;
       }
     });
   }
