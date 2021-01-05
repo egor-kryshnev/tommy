@@ -253,16 +253,16 @@ export class DescriptionComponent implements OnInit {
   updateInitialPlace(){
     this.apiGetService.getOrganization(this.userUUID).subscribe((res: any)=>{
     this.organizationUUID = res.collection_cnt?.cnt?.organization['@id'];
+    if(this.organizationUUID){
+      this.apiGetService.getPlace(this.organizationUUID).subscribe((res: any)=>{
+        this.initialPlace = {
+          id: res.collection_org.org.z_location['@id'],
+          value: res.collection_org.org.z_location['@COMMON_NAME']
+        }
+      })
+    }
     });
 
-    if(this.organizationUUID){
-    this.apiGetService.getPlace(this.organizationUUID).subscribe((res: any)=>{
-      this.initialPlace = {
-        id: res.collection_org.org.z_location['@id'],
-        value: res.collection_org.org.z_location['@COMMON_NAME']
-      }
-    })
-  }
 }
 
   getPlaceId(placeName: string) {
