@@ -49,8 +49,6 @@ export class DescriptionComponent implements OnInit {
 
   ngOnInit(): void {
     this.isKnowledgeArticle();
-    this.updateInitialPlace()
-    this.updatePlaces();
     const id = this.route.snapshot.paramMap.get("id");
     const selectedCategories = this.categoryService.getSelectedCategoryString();
     this.postReqService.descriptionCategory = selectedCategories;
@@ -60,6 +58,8 @@ export class DescriptionComponent implements OnInit {
 
     if (this.authService.getPhone()) this.setPhoneFromShraga(this.authService.getPhone());
     this._eventEmmitter.dataStr.subscribe((data) => (this.userUUID = data));
+    this.updateInitialPlace()
+    this.updatePlaces();
     this.isPending = false;
     console.log(this.postReqService.categoryId);
   }
