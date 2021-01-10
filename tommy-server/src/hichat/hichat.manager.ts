@@ -51,8 +51,6 @@ export default class HichatManager {
         })
     };
 
-
-
     private static async getAuthHeaders(): Promise<object> {
 
         if (HichatManager.userId && HichatManager.authToken) {
@@ -90,13 +88,11 @@ export default class HichatManager {
             },
             headers: { ...authHeaders }
 
-        }).then((res: AxiosResponse) => {
-            if (res?.data?.group) return res.data.group;
+        }).then(async (res: AxiosResponse) => {
+            await HichatManager.setRoomAnnouncement(normalizedGroupName, config.chat.announcement);
+            if (res?.data?.group) return normalizedGroupName;
             throw new Error('Group creation failed');
-        }).catch((error: AxiosError) => {
-            logger(error);
-            return;
-        });
+        })
     }
 
     private static async getGroupMembers(roomName: string) {
@@ -148,6 +144,14 @@ export default class HichatManager {
         }
     };
 
+    public static async updateUserGroupMembers(userT: string, members: string[]): Promise<string> {
+        const builtTommyGroupName = HichatManager.buildGroupName(userT);
+        const normalizedGroupName = HichatManager.getAllowedGroupTitleFromText(builtTommyGroupName);
+        const hichatNormalizedMembers = HichatManager.normalizeHichatMembersList(members.concat(userT));
+        await HichatManager.setRoomMembers(normalizedGroupName, hichatNormalizedMembers);
+        return normalizedGroupName;
+    }
+
     public static async setRoomAnnouncement(roomName: string, announcement: string) {
         const authHeaders = await HichatManager.getAuthHeaders();
         const result = await HichatManager.getGroupInfo(roomName);
@@ -174,14 +178,16 @@ export default class HichatManager {
         return Promise.all(promises);
     };
 
-    public static async sendMessageToGroup(roomName: string, text: string) {
+    public static async sendMessageToGroup(userT: string, text: string) {
+        const builtTommyGroupName = HichatManager.buildGroupName(userT);
+        const normalizedGroupName = HichatManager.getAllowedGroupTitleFromText(builtTommyGroupName);
         const authHeaders = await HichatManager.getAuthHeaders();
-        return await axios.post(`${config.chat.chatUrl}/${config.chat.chatMessageUrl}.postMessage`,
-            { channel: `#${roomName}`, text }, { headers: { ...authHeaders } })
-            .then(res => res)
+        await axios.post(`${config.chat.chatUrl}/${config.chat.chatMessageUrl}.postMessage`,
+            { channel: `#${normalizedGroupName}`, text }, { headers: { ...authHeaders } })
+            .then(res => res.data)
             .catch(error => {
                 logger(error);
-                throw new Error(`Failed to send message to group ${roomName} `);
+                throw new Error(`Failed to send message to group ${normalizedGroupName} `);
             })
     }
 
@@ -220,11 +226,17 @@ export default class HichatManager {
         const result = await axios({
             method: 'get',
             url: `${config.chat.chatUrl}/${config.chat.chatGroupUrl}.info?roomName=${roomName}`,
-
             headers: { ...authHeaders }
         });
         return result;
     };
+
+    public static async isGroupExists(userT: string): Promise<boolean> {
+        const builtTommyGroupName = HichatManager.buildGroupName(userT);
+        const normalizedGroupName = HichatManager.getAllowedGroupTitleFromText(builtTommyGroupName);
+        return HichatManager.getGroupInfo(normalizedGroupName).then(res => res.data.success);
+    }
+
 
     /**
      * return every item in arr1 that doesnt exist in arr2

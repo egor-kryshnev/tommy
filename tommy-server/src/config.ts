@@ -125,7 +125,7 @@ ${file.base64}
     loginPass: process.env.LOGIN_PASS || "Aa123456",
     getSupportUsers: async () => {
       try {
-        return (process.env.SUPPORT_USERS?.split(",") || []);
+        return ( await SupportersList.getSupportersList() || process.env.SUPPORT_USERS?.split(",") || []);
       } catch (e) {
         return process.env.SUPPORT_USERS?.split(",") || [];
       }

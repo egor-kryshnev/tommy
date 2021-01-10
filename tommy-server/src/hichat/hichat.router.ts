@@ -1,10 +1,12 @@
 import express from 'express';
-import { config } from '../config';
-import { SupportersList } from '../supporters-list/supporters-list';
-import { logger } from '../utils/logger-client';
+import HichatController from './hichat.controller';
 
 const HichatRouter: express.Router = express.Router();
 
-HichatRouter.get('/', )
+HichatRouter.get('/', HichatController.assignUserGroup)
+
+HichatRouter.post('/sendmsg', HichatController.sendMessageToGroup)
+
+HichatRouter.get('/isalive', (req: express.Request, res: express.Response) => res.status(200).send('Server Is Up'));
 
 export default HichatRouter;
