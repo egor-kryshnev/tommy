@@ -130,7 +130,7 @@ ${file.base64}
         return process.env.SUPPORT_USERS?.split(",") || [];
       }
     },
-    hiChatGroupTitle: (userT: string) => `Tommy Support Room ${userT}`,
+    hiChatGroupTitle: (userT: string) => process.env.HI_CHAT_ROOM_NAME || `Tommy Support Room ${userT}`,
     hiChatTaskMessageStructure: (
       taskId: string,
       taskDate: string,
@@ -138,7 +138,7 @@ ${file.base64}
     ) =>
       `היי, אשמח לעזרה בפנייה מספר: ${taskId}, שנפתחה ב ${taskDate}. ${taskLink ? `לינק בלהבה: ${taskLink}` : "לא קיים לינק בלהבה"
       }`,
-      announcement: 'שעות המענה הן 08:30-17:30'
+      announcement: process.env.HI_ANNOUNCEMENT || 'שעות המענה הן 08:00-17:00'
 
   },
 };

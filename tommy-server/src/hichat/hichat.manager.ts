@@ -100,11 +100,11 @@ export default class HichatManager {
 
         return await axios({
             method: 'GET',
-            url: `${config.chat.chatUrl}/${config.chat.chatGroupUrl}.info?roomName=${roomName}`,
+            url: `${config.chat.chatUrl}/${config.chat.chatGroupUrl}.members?roomName=${roomName}`,
             headers: { ...authHeaders }
         }).then((res: AxiosResponse) => {
             if (res?.data) {
-                const usernames = res.data.group.usernames;
+                const usernames = res.data.members.map(member => member.username);
                 return usernames;
             } throw new Error('Get group members method failed');
         }).catch((error: AxiosError) => {
@@ -130,7 +130,7 @@ export default class HichatManager {
     };
 
     private static buildGroupName(userT: string): string {
-        const groupName = config.chat.hiChatGroupTitle(userT).toLowerCase();
+        const groupName = config.chat.hiChatGroupTitle(userT.split('@')[0]).toLowerCase();
         return HichatManager.getAllowedGroupTitleFromText(groupName);
     }
 
