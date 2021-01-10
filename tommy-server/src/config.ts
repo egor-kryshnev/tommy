@@ -130,7 +130,7 @@ ${file.base64}
         return process.env.SUPPORT_USERS?.split(",") || [];
       }
     },
-    hiChatGroupTitle: (userT: string) => process.env.HI_CHAT_ROOM_NAME || `Tommy Support Room ${userT}`,
+    hiChatGroupTitle: (userT: string) => `${process.env.HI_CHAT_ROOM_NAME} ${userT}` || `Tommy Support Room ${userT}`,
     hiChatTaskMessageStructure: (
       taskId: string,
       taskDate: string,
