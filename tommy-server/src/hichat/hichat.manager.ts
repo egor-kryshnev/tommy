@@ -234,7 +234,7 @@ export default class HichatManager {
     public static async isGroupExists(userT: string): Promise<boolean> {
         const builtTommyGroupName = HichatManager.buildGroupName(userT);
         const normalizedGroupName = HichatManager.getAllowedGroupTitleFromText(builtTommyGroupName);
-        return HichatManager.getGroupInfo(normalizedGroupName).then(res => res.data.success);
+        return HichatManager.getGroupInfo(normalizedGroupName).then(() => true).catch(() => false);
     }
 
 
