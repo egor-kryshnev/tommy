@@ -3,11 +3,12 @@ import { DOCUMENT } from '@angular/common'
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import { HttpClient } from '@angular/common/http';
-import { ApigetService } from './apiget.service';
+import { model1, ApigetService } from './apiget.service';
 import { EventEmiterService } from './event.emmiter.service';
 import { PostReqService } from './open-request/post-req.service';
 import { MatDialog } from '@angular/material/dialog';
 import { LehavaUserComponent } from './lehava-user/lehava-user.component';
+import {SpecPlaceService} from './spec-place.service'
 import { isArray } from 'util';
 
 @Component({
@@ -22,10 +23,15 @@ export class AppComponent {
   openChat: boolean = false;
   phoneNumber: string[];
   userT: string;
+  placesList: model1[] = [];
+  initialPlace: model1;
+  organizationUUID: string;
+
+
   @Output() exampleOutput = new EventEmitter<string>();
   userUUID: string;
 
-  constructor(@Inject(DOCUMENT) document, public apigetService: ApigetService, private router: Router, private route: ActivatedRoute, private http: HttpClient, public authService: AuthService, public _eventEmmiter: EventEmiterService, private postReqService: PostReqService,public dialog: MatDialog) { }
+  constructor(@Inject(DOCUMENT) document, public apigetService: ApigetService, private router: Router, private route: ActivatedRoute, private http: HttpClient, public authService: AuthService, public _eventEmmiter: EventEmiterService, private postReqService: PostReqService,public dialog: MatDialog, private specPlaceService: SpecPlaceService) { }
 
   ngOnInit() {
     this.authService.loginSub().subscribe((res: any) => {
@@ -56,7 +62,9 @@ export class AppComponent {
         console.log(this.userUUID);
         this._eventEmmiter.sendMsg(this.userUUID);
       });
-      this.authService.setPhone(this.phoneNumber);   
+      this.authService.setPhone(this.phoneNumber);  
+      this.updateInitialPlace();
+      this.updatePlaces() 
     });
     // console.clear();
   }
@@ -73,4 +81,42 @@ export class AppComponent {
       disableClose: true 
     });
   }
+
+  updateInitialPlace(){
+    this.apigetService.getOrganization(this.userUUID).subscribe((res: any)=>{
+    this.organizationUUID = res.collection_cnt?.cnt?.organization['@id'];
+    if(this.organizationUUID){
+      this.apigetService.getPlace(this.organizationUUID).subscribe((res: any)=>{
+        this.initialPlace = {
+          id: res.collection_org.org.z_location['@id'],
+          value: res.collection_org.org.z_location['@COMMON_NAME']
+        }
+      })
+      this.specPlaceService.setPlace(this.initialPlace);
+    }
+    });
+
+}
+  updatePlaces(){
+    this.apigetService.getPlaces().subscribe((res: any) => {
+      this.placesList = [];
+      const placesResponse = res.collection_loc.loc;
+      this.placesList = placesResponse.map((placeObject: any) => {
+        return {
+            "id": placeObject['@id'],
+            "value": placeObject['@COMMON_NAME']
+          } as model1
+      });
+      if(this.initialPlace){
+        if(this.placesList.includes(this.initialPlace)){
+          this.placesList = this.placesList.filter(place => place!== this.initialPlace);
+        }
+        this.placesList.unshift(this.initialPlace)
+        // this.place= this.initialPlace?.value;
+      }
+      this.specPlaceService.setPlaces(this.placesList)
+    });
+  }
+
+
 }
