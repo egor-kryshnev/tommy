@@ -91,10 +91,10 @@ export class AppComponent {
           id: res.collection_org.org.z_location['@id'],
           value: res.collection_org.org.z_location['@COMMON_NAME']
         }
+        this.specPlaceService.setPlace(this.initialPlace); 
+        console.log('user location:', this.initialPlace)
       })
-      this.specPlaceService.setPlace(this.initialPlace);
     }
-    console.log('user location:', this.initialPlace)
     });
 
 }
