@@ -24,7 +24,7 @@ export class DescriptionComponent implements OnInit {
   locationInput: string = "";
   phoneInput: string = "";
   placesList: model1[] = [];
-  initialPlace: model1;
+  initialPlace: model1 ={id: '', value:''};
   place: string='';
   voip: string = "";
   computerNameInput: string = "";
@@ -182,6 +182,7 @@ export class DescriptionComponent implements OnInit {
 
   setPlace(newPlace: string){
     this.place = newPlace; 
+    console.log(this.place)
   }
 
   inputPlaceholderChanger() {
@@ -242,7 +243,11 @@ export class DescriptionComponent implements OnInit {
 
   updatePlaces() {
    this.placesList = this.specPlaceService.placesList ? this.specPlaceService.placesList: []; 
-   this.initialPlace = this.specPlaceService.specPlace;
-   this.initialPlace.value.length > 0 ? this.place = this.initialPlace.value : this.place=''
+   this.initialPlace = {
+     id: this.specPlaceService.specPlace.id,
+     value: this.specPlaceService.specPlace.value,
+
+    }
+   this.initialPlace.value ? this.place = this.initialPlace.value : this.place='';
   }
 }

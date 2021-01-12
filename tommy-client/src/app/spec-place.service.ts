@@ -6,7 +6,7 @@ import { model1 } from './apiget.service';
 })
 export class SpecPlaceService {
 
-  specPlace: model1;
+  specPlace: model1={id: '', value:''};
   placesList: model1[];
 
   constructor() { }
