@@ -112,7 +112,6 @@ export class AppComponent {
           this.placesList = this.placesList.filter(place => place!== this.initialPlace);
         }
         this.placesList.unshift(this.initialPlace)
-        // this.place= this.initialPlace?.value;
       }
       this.specPlaceService.setPlaces(this.placesList)
     });

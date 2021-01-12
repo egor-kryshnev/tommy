@@ -66,10 +66,7 @@ export class DescriptionComponent implements OnInit {
 
     });
     console.log(this.userUUID)
-    //TODO: update place and places
-    this.updatePlaces();//TODO: change name!
-    // this.updateInitialPlace();
-    // this.updatePlaces();
+    this.updatePlaces();
     this.isPending = false;
     console.log(this.postReqService.categoryId);
   }
@@ -235,41 +232,6 @@ export class DescriptionComponent implements OnInit {
         }
       });
   }
-
-  // updatePlaces(){
-  //   this.apiGetService.getPlaces().subscribe((res: any) => {
-  //     this.placesList = [];
-  //     const placesResponse = res.collection_loc.loc;
-  //     this.placesList = placesResponse.map((placeObject: any) => {
-  //       return {
-  //           "id": placeObject['@id'],
-  //           "value": placeObject['@COMMON_NAME']
-  //         } as model1
-  //     });
-  //     if(this.initialPlace){
-  //       if(this.placesList.includes(this.initialPlace)){
-  //         this.placesList = this.placesList.filter(place => place!== this.initialPlace);
-  //       }
-  //       this.placesList.unshift(this.initialPlace)
-  //       this.place= this.initialPlace?.value;
-  //     }
-  //   });
-  // }
-
-  // updateInitialPlace(){
-  //   this.apiGetService.getOrganization(this.userUUID).subscribe((res: any)=>{
-  //   this.organizationUUID = res.collection_cnt?.cnt?.organization['@id'];
-  //   if(this.organizationUUID){
-  //     this.apiGetService.getPlace(this.organizationUUID).subscribe((res: any)=>{
-  //       this.initialPlace = {
-  //         id: res.collection_org.org.z_location['@id'],
-  //         value: res.collection_org.org.z_location['@COMMON_NAME']
-  //       }
-  //     })
-  //   }
-  //   });
-
-// }
 
   getPlaceId(placeName: string) {
     const placeSelected = this.placesList.find(place => {
