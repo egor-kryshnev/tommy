@@ -94,6 +94,7 @@ export class AppComponent {
       })
       this.specPlaceService.setPlace(this.initialPlace);
     }
+    console.log('user location:', this.initialPlace)
     });
 
 }

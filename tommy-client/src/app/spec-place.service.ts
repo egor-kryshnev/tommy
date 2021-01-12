@@ -12,7 +12,10 @@ export class SpecPlaceService {
   constructor() { }
 
   public setPlace(place: model1) {
-    this.specPlace = place;
+    this.specPlace = {
+      id: place.id,
+      value: place.value
+    }
   }
 
   public setPlaces(places: model1[]) {
