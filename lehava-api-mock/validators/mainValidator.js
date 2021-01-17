@@ -71,5 +71,10 @@ module.exports = {
         if (req.query.WC.split("=")[0] == "z_pri_grp") {
             return true;
         } return false;
+    },
+    isOrganization: (req) => {
+        if (req.header('X-Obj-Attrs') == 'organization') {
+            return true;
+        } return false;
     }
 }

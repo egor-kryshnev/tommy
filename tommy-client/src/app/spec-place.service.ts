@@ -8,8 +8,13 @@ export class SpecPlaceService {
 
   specPlace: model1={id: '', value:''};
   placesList: model1[];
+  try: string='';
 
   constructor() { }
+
+  public setTry(tryy: string) {
+    this.try= tryy;
+  }
 
   public setPlace(place: model1) {
     this.specPlace = {

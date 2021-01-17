@@ -52,10 +52,30 @@ module.exports = (app) => {
                 // error: "WC Parameter not set properly"
             // });
         })
+    
 
+        
+    // GET organization by user uuid 
+    app.get('/caisd-rest/cnt', async (req, res, next) => {await delay(5000);next();}, (req, res) => {
+        if (validator.isOrganization(req)) {
+        console.log('organizations:', lehavaData.users[0].data)
+        res.json(lehavaData.users[0].data);
+    }
+        else {
+                res.status(400).send({
+                    error: "Parameters not sent properly"
+                });
+            }
+    });
+
+     // GET all location by Organization uuid
+     app.get('/caisd-rest/org', async (req, res, next) => {await delay(5000);next();}, (req, res) => {
+         console.log('organization location:', lehavaData.organizations)
+         res.json(lehavaData.organizations);
+     });
 
     // GET all network's services by network's unique id
-    app.get('/caisd-rest/z_networks_to_service', async (req, res, next) => {await delay(5000);next();}, (req, res) => {
+    app.get('/caisd-rest/z_networks_to_service', (req, res) => {
         if (validator.servicesValidator(req)) {
             res.json(lehavaData.services[req.query.WC.split("'")[1] - 1]);
         } else {

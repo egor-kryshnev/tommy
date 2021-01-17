@@ -2232,7 +2232,11 @@ module.exports = {
                 '@TOTAL_COUNT': '1',
                 cnt: {
                     "@id": "U'3'",
-                    "@COMMON_NAME": "איווט ליברמן"
+                    "@COMMON_NAME": "איווט ליברמן",
+                    "organization": {
+                        "@id": "U'31",
+                        "@COMMON_NAME": "יחידה1"
+                    }
                 }
             }
         }
@@ -3293,34 +3297,74 @@ module.exports = {
             cnt: [{
                 "@id": "U'40654A5604SADDC03654'",
                 "@COMMON_NAME": "באלשוי, ויטה ",
-                "userid": "M70220177"
+                "userid": "M70220177",
+                "organization": {
+                    "@id": "U'15",
+                    "@COMMON_NAME": "יחידה1"
+                }
             },
             {
                 "@id": "U'40654A5604SADDC03654'",
                 "@COMMON_NAME": "עבט, רון ",
-                "userid": "M70220177"
+                "userid": "M70220177",
+                "organization": {
+                    "@id": "U'51",
+                    "@COMMON_NAME": "יחידה1"
+                }
             },
             {
                 "@id": "U'40654A5604SADDC03654'",
                 "@COMMON_NAME": "באלטון, חוד ",
-                "userid": "M70220177"
+                "userid": "M70220177",
+                "organization": {
+                    "@id": "U'61",
+                    "@COMMON_NAME": "יחידה2"
+                }
             },
             {
                 "@id": "U'40654A5604SADDC03654'",
                 "@COMMON_NAME": "יותם, סויסה ",
-                "userid": "M70220177"
+                "userid": "M70220177",
+                "organization": {
+                    "@id": "U'18",
+                    "@COMMON_NAME": "יחידה3"
+                }
             },
             {
                 "@id": "U'40654A5604SADDC03654'",
                 "@COMMON_NAME": "ליברמן, גבר ",
-                "userid": "M70220177"
+                "userid": "M70220177",
+                "organization": {
+                    "@id": "U'165",
+                    "@COMMON_NAME": "יחידה8"
+                }
             },
             {
                 "@id": "U'40654A5604SADDC03654'",
                 "@COMMON_NAME": "מיקי, מוטי ",
-                "userid": "M70220177"
+                "userid": "M70220177",
+                "organization": {
+                    "@id": "U'23",
+                    "@COMMON_NAME": "יחידה15"
+                }
             },
             ]
+        }
+    },
+    organizations:{
+        "collection_org":{
+            "@COUNT": "0",
+            "@START": "0",
+            "@TOTAL_COUNT": "0",
+            "org":{
+            "@id": "1",
+            "@REL_ATTR": "1",
+            "@COMMON_NAME": "1",
+            "z_location":{
+                '@id': "U'1",
+                '@COMMON_NAME':'בסיס99'
+            }
+        }
         }
     }
 

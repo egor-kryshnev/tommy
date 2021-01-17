@@ -26,6 +26,7 @@ export class AppComponent {
   placesList: model1[] = [];
   initialPlace: model1;
   organizationUUID: string;
+  try: string='hello';
 
 
   @Output() exampleOutput = new EventEmitter<string>();
@@ -115,6 +116,7 @@ export class AppComponent {
         this.placesList.unshift(this.initialPlace)
       }
       this.specPlaceService.setPlaces(this.placesList)
+      this.specPlaceService.setTry(this.try); 
     });
   }
 

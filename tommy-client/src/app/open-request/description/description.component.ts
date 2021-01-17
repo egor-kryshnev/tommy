@@ -35,6 +35,7 @@ export class DescriptionComponent implements OnInit {
   isPending: boolean = false;
   file: { name: string; type: string; base64: string } = undefined;
   organizationUUID: string;
+  try: string='';
 
 
   constructor(
