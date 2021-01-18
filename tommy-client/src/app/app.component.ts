@@ -110,7 +110,6 @@ export class AppComponent {
           } as model1
       });
       this.specPlaceService.setPlaces(this.placesList)
-      this.specPlaceService.setTry(this.try); 
     });
   }
 
