@@ -109,12 +109,6 @@ export class AppComponent {
             "value": placeObject['@COMMON_NAME']
           } as model1
       });
-      if(this.initialPlace){
-        if(this.placesList.includes(this.initialPlace)){
-          this.placesList = this.placesList.filter(place => place!== this.initialPlace);
-        }
-        this.placesList.unshift(this.initialPlace)
-      }
       this.specPlaceService.setPlaces(this.placesList)
       this.specPlaceService.setTry(this.try); 
     });

@@ -54,20 +54,6 @@ module.exports = (app) => {
         })
     
 
-        
-    // GET organization by user uuid 
-    // app.get('/caisd-rest/cnt', async (req, res, next) => {await delay(5000);next();}, (req, res) => {
-    //     if (validator.isOrganization(req)) {
-    //     console.log('organizations:', lehavaData.users[0].data)
-    //     res.json(lehavaData.users[0].data);
-    // }
-    //     else {
-    //             res.status(400).send({
-    //                 error: "Parameters not sent properly"
-    //             });
-    //         }
-    // });
-
      // GET all location by Organization uuid
      app.get('/caisd-rest/org', async (req, res, next) => {await delay(5000);next();}, (req, res) => {
          console.log('organization location:', lehavaData.organizations)
@@ -129,6 +115,10 @@ module.exports = (app) => {
     // Lehava | GET user Unique id by T username
     // Lehava | GET Supporters List
     app.get('/caisd-rest/cnt', (req, res) => {
+        if (validator.isOrganization(req)) {
+            console.log('organizations:', lehavaData.users[0].data)
+            res.json(lehavaData.users[0].data);
+        }
         if (validator.isUserSupporter(req)) {
             res.json(lehavaData.supporters);
         } else {
