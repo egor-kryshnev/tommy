@@ -114,9 +114,10 @@ module.exports = (app) => {
 
     // Lehava | GET user Unique id by T username
     // Lehava | GET Supporters List
-    app.get('/caisd-rest/cnt', (req, res) => {
+    app.get('/caisd-rest/cnt', async (req, res) => {
         if (validator.isOrganization(req)) {
-            console.log('organizations:', lehavaData.users[0].data)
+            await delay(10000);
+            console.log('organizations:', lehavaData.users[0].data);
             res.json(lehavaData.users[0].data);
         }
         if (validator.isUserSupporter(req)) {
