@@ -84,19 +84,19 @@ export class AppComponent {
   }
 
   updateInitialPlace(){
-    this.apigetService.getOrganization(this.userUUID).subscribe((res: any)=>{
-    this.organizationUUID = res.collection_cnt?.cnt?.organization['@id'];
-    if(this.organizationUUID){
-      this.apigetService.getPlace(this.organizationUUID).subscribe((res: any)=>{
-        this.initialPlace = {
-          id: res.collection_org.org.z_location['@id'],
-          value: res.collection_org.org.z_location['@COMMON_NAME']
-        }
-        this.specPlaceService.setPlace(this.initialPlace); 
-        console.log('user location:', this.initialPlace)
-      })
-    }
-    });
+    // this.apigetService.getOrganization(this.userUUID).subscribe((res: any)=>{
+    // this.organizationUUID = res.collection_cnt?.cnt?.organization['@id'];
+    // if(this.organizationUUID){
+    //   this.apigetService.getPlace(this.organizationUUID).subscribe((res: any)=>{
+    //     this.initialPlace = {
+    //       id: res.collection_org.org.z_location['@id'],
+    //       value: res.collection_org.org.z_location['@COMMON_NAME']
+    //     }
+    //     this.specPlaceService.setPlace(this.initialPlace); 
+    //     console.log('user location:', this.initialPlace)
+    //   })
+    // }
+    // });
 
 }
   updatePlaces(){
@@ -110,6 +110,25 @@ export class AppComponent {
           } as model1
       });
       this.specPlaceService.setPlaces(this.placesList)
+      this.apigetService.getOrganization(this.userUUID).subscribe((res: any)=>{
+        this.organizationUUID = res.collection_cnt?.cnt?.organization['@id'];
+        if(this.organizationUUID){
+          this.apigetService.getPlace(this.organizationUUID).subscribe((res: any)=>{
+            this.initialPlace = {
+              id: res.collection_org.org.z_location['@id'],
+              value: res.collection_org.org.z_location['@COMMON_NAME']
+            }
+            this.specPlaceService.setPlace(this.initialPlace); 
+            console.log('user location:', this.initialPlace)
+            if(this.initialPlace){
+              if(this.placesList.includes(this.initialPlace)){
+                this.placesList = this.placesList.filter(place => place!== this.initialPlace);
+              }
+              this.placesList.unshift(this.initialPlace)
+            }
+          })
+        }
+        });
     });
   }
 

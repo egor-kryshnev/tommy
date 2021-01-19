@@ -250,12 +250,12 @@ export class DescriptionComponent implements OnInit {
      value: this.specPlaceService.specPlace.value,
 
     }
-   if(this.initialPlace){
-    if(this.placesList.includes(this.initialPlace)){
-      this.placesList = this.placesList.filter(place => place!== this.initialPlace);
-    }
-    this.placesList.unshift(this.initialPlace)
-  }
+  //  if(this.initialPlace){
+  //   if(this.placesList.includes(this.initialPlace)){
+  //     this.placesList = this.placesList.filter(place => place!== this.initialPlace);
+  //   }
+  //   this.placesList.unshift(this.initialPlace)
+  // }
   this.initialPlace.value ? this.place = this.initialPlace.value : this.place='';
 
   }

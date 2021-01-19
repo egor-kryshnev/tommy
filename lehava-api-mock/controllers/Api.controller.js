@@ -116,7 +116,7 @@ module.exports = (app) => {
     // Lehava | GET Supporters List
     app.get('/caisd-rest/cnt', async (req, res) => {
         if (validator.isOrganization(req)) {
-            await delay(10000);
+            await delay(5000);
             console.log('organizations:', lehavaData.users[0].data);
             res.json(lehavaData.users[0].data);
         }
