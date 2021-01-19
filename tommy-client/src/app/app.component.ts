@@ -61,11 +61,10 @@ export class AppComponent {
         this.postReqService.userT = this.userT;
         this.postReqService.userUUID = this.userUUID;
         console.log(this.userUUID);
-        this._eventEmmiter.sendMsg(this.userUUID);
+        this._eventEmmiter.sendMsg(this.userUUID);      
+        this.updatePlaces() 
       });
       this.authService.setPhone(this.phoneNumber);  
-      this.updateInitialPlace();
-      this.updatePlaces() 
     });
     // console.clear();
   }
@@ -83,22 +82,6 @@ export class AppComponent {
     });
   }
 
-  updateInitialPlace(){
-    // this.apigetService.getOrganization(this.userUUID).subscribe((res: any)=>{
-    // this.organizationUUID = res.collection_cnt?.cnt?.organization['@id'];
-    // if(this.organizationUUID){
-    //   this.apigetService.getPlace(this.organizationUUID).subscribe((res: any)=>{
-    //     this.initialPlace = {
-    //       id: res.collection_org.org.z_location['@id'],
-    //       value: res.collection_org.org.z_location['@COMMON_NAME']
-    //     }
-    //     this.specPlaceService.setPlace(this.initialPlace); 
-    //     console.log('user location:', this.initialPlace)
-    //   })
-    // }
-    // });
-
-}
   updatePlaces(){
     this.apigetService.getPlaces().subscribe((res: any) => {
       this.placesList = [];
