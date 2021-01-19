@@ -48,7 +48,7 @@ export class DescriptionComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.isKnowledgeArticle();
+    // this.isKnowledgeArticle();
     const id = this.route.snapshot.paramMap.get("id");
     const selectedCategories = this.categoryService.getSelectedCategoryString();
     this.postReqService.descriptionCategory = selectedCategories;
