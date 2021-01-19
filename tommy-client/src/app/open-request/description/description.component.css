@@ -290,3 +290,7 @@ input::-webkit-inner-spin-button {
   /* margin-right: 20px; */
   /* background-color: orange; */
 }
+
+:host ::ng-deep .data-loader {
+  margin-top: 0;
+}

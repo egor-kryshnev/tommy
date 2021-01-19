@@ -66,8 +66,10 @@ export class DescriptionComponent implements OnInit {
 
 
     });
-    console.log(this.userUUID)
-    this.updatePlaces();
+    console.log(this.userUUID);
+    this.specPlaceService.subject.subscribe((specPlace)=>{
+      this.updatePlaces();
+    })
     this.isPending = false;
     console.log(this.postReqService.categoryId);
   }
