@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { model1, ApigetService } from "../../apiget.service";
 import { AuthService } from "../../auth.service";
@@ -11,13 +11,14 @@ import { AlertComponent } from "../alert/alert.component";
 import { KnowledgeArticleComponent } from "../knowledge-article/knowledge-article.component";
 import { config } from '../../../environments/config.dev';
 import {SpecPlaceService} from '../../spec-place.service'
+import { Subscription } from 'rxjs'
 
 @Component({
   selector: "app-description",
   templateUrl: "./description.component.html",
   styleUrls: ["./description.component.css"],
 })
-export class DescriptionComponent implements OnInit {
+export class DescriptionComponent implements OnInit, OnDestroy {
   locationWarning = "";
   phoneWarning = "";
   computerNameWarning = "";
@@ -35,8 +36,7 @@ export class DescriptionComponent implements OnInit {
   isPending: boolean = false;
   file: { name: string; type: string; base64: string } = undefined;
   organizationUUID: string;
-  try: string='';
-
+  subscription:Subscription;
 
   constructor(
     private router: Router,
@@ -67,11 +67,15 @@ export class DescriptionComponent implements OnInit {
 
     });
     console.log(this.userUUID);
-    this.specPlaceService.subject.subscribe((specPlace)=>{
+     this.subscription = this.specPlaceService.subject.subscribe((specPlace)=>{
       this.updatePlaces();
     })
     this.isPending = false;
     console.log(this.postReqService.categoryId);
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
   }
 
 
