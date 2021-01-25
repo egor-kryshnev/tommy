@@ -38,12 +38,17 @@
     (input)="setLocationInput($event.target.value)">
 </div>
 
-<div id="places-div" *ngIf="placesList.length > 0">
+<div id="places-div" *ngIf="placesList.length > 0; else loader">
 <select name="places" id="places" (change)="setPlace($event.target.value)" value="place">
   <option class="place" *ngFor="let place of placesList" value="{{place.value}}">{{place.value}}</option>
 </select>
 </div>
 
+<div id="loader-div">
+  <ng-template #loader>
+    <app-cardsloader class="loader"></app-cardsloader>
+  </ng-template>
+  </div>
 
 <div class="button_cont" (click)="sendPost()" id="taskOpenBtn" align="center">
   <button class="example_b" [disabled]="isPending">פתיחת פניה</button>

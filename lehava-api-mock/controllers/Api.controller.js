@@ -44,8 +44,9 @@ module.exports = (app) => {
   
 
     // GET all locations details
-    app.get('/caisd-rest/loc', (req, res) => {
+    app.get('/caisd-rest/loc', async (req, res, next) => {await delay(5000);next();},(req, res) => {
         // if (validator.allLocationsWCValidator(req)) {
+
             res.json(lehavaData.all_locations);
         // } else {
             // res.status(400).send({
