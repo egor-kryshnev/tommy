@@ -1,10 +1,13 @@
 process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0 as any;
 import { SupportersList } from "./supporters-list/supporters-list";
 
-const buildLehavaFullHost = (hostName?: string, port?: string | number): string | undefined => {
-  if(hostName && port) return `${hostName}:${port}`;
+const buildLehavaFullHost = (
+  hostName?: string,
+  port?: string | number
+): string | undefined => {
+  if (hostName && port) return `${hostName}:${port}`;
   return undefined;
-}
+};
 
 export const config = {
   server: {
@@ -20,25 +23,25 @@ export const config = {
   client: {
     url: process.env.CLIENT_URL || "http://localhost:4200",
     requests: {
-      GET_NETWORKS_URL:
-        "/api/caisd-rest/nr?WC=class%3D1000792%20and%20delete_flag%3D0",
+      GET_NETWORKS_URL: `http://${process.env.LEHAVA_API_HOST}:${process.env.LEHAVA_API_PORT}/caisd-rest/nr?WC=class%3D1000792%20and%20delete_flag%3D0`,
       GET_SERVICES_URL_FUNCTION: (id: string) =>
-        `/api/caisd-rest/z_networks_to_service?WC=network%3D${id}%20and%20delete_flag%3D0`,
+        `http://${process.env.LEHAVA_API_HOST}:${process.env.LEHAVA_API_PORT}/caisd-rest/z_networks_to_service?WC=network%3D${id}%20and%20delete_flag%3D0`,
       GET_OPEN_TASKS_URL_FUNCTION: (UUID: string) =>
-        `/api/caisd-rest/cr?WC=customer%3D${UUID}%20and%20type%3D'R'%20and%20active%3D1&SORT=open_date DESC`,
+        `http://${process.env.LEHAVA_API_HOST}:${process.env.LEHAVA_API_PORT}/caisd-rest/cr?WC=customer%3D${UUID}%20and%20type%3D'R'%20and%20active%3D1&SORT=open_date DESC`,
       GET_CLOSED_TASKS_URL_FUNCTION: (UUID: string) =>
-        `/api/caisd-rest/cr?WC=customer%3D${UUID}%20and%20type%3D'R'%20and%20active%3D0&SORT=open_date DESC`,
+        `http://${process.env.LEHAVA_API_HOST}:${process.env.LEHAVA_API_PORT}/caisd-rest/cr?WC=customer%3D${UUID}%20and%20type%3D'R'%20and%20active%3D0&SORT=open_date DESC`,
       GET_CATEGORIES_OF_INCIDENTS_URL_FUNCTION: (id: string) =>
-        `/api/caisd-rest/pcat?WC=z_impact_service%3D${id}%20and%20delete_flag%3D0`,
+        `http://${process.env.LEHAVA_API_HOST}:${process.env.LEHAVA_API_PORT}/caisd-rest/pcat?WC=z_impact_service%3D${id}%20and%20delete_flag%3D0`,
       GET_CATEGORIES_OF_REQUESTS_URL_FUNCTION: (id: string) =>
-        `/api/caisd-rest/chgcat?WC=z_impact_service%3D${id}%20and%20delete_flag%3D0`,
+        `http://${process.env.LEHAVA_API_HOST}:${process.env.LEHAVA_API_PORT}/caisd-rest/chgcat?WC=z_impact_service%3D${id}%20and%20delete_flag%3D0`,
       GET_UUID_URL_FUNCTION: (userT: string) =>
-        `/api/caisd-rest/cnt?WC=userid%3D'${userT}'`,
+        `http://${process.env.LEHAVA_API_HOST}:${process.env.LEHAVA_API_PORT}/caisd-rest/cnt?WC=userid%3D'${userT}'`,
       GET_TRANSVERSE_URL_FUNCTION: (categoryId: string) =>
-        `/api/caisd-rest/cr?WC=category%3D'pcat:${categoryId}'%20and%20active%3D1%20and%20impact%3D1`,
+        `http://${process.env.LEHAVA_API_HOST}:${process.env.LEHAVA_API_PORT}/caisd-rest/cr?WC=category%3D'pcat:${categoryId}'%20and%20active%3D1%20and%20impact%3D1`,
       GET_UPDATES:
-        "/api/caisd-rest/cr?WC=type%3D'I'%20and%20active%3D1%20and%20impact%3D1&SORT=open_date DESC",
-      POST_NEW_REQUEST: "/api/caisd-rest/cr",
+        "http://${process.env.LEHAVA_API_HOST}:${process.env.LEHAVA_API_PORT}/caisd-rest/cr?WC=type%3D'I'%20and%20active%3D1%20and%20impact%3D1&SORT=open_date DESC",
+      POST_NEW_REQUEST:
+        "http://${process.env.LEHAVA_API_HOST}:${process.env.LEHAVA_API_PORT}/caisd-rest/cr",
       GET_HICHAT_IFRAME_URL: "/hichat",
     },
   },
@@ -48,14 +51,27 @@ export const config = {
   serviceName: "tommy-server",
   redis: {
     host: process.env.REDIS_URL || "redis://localhost:6379",
-    cachedReqsTTL: process.env.CACHED_REQS_TTL ? parseInt(process.env.CACHED_REQS_TTL) : 86400
+    cachedReqsTTL: process.env.CACHED_REQS_TTL
+      ? parseInt(process.env.CACHED_REQS_TTL)
+      : 86400,
   },
   lehava_api: {
     serverName: process.env.LEHAVA_API_SERVER_NAME || "localhost",
     host: process.env.LEHAVA_API_HOST || "localhost",
     port: process.env.LEHAVA_API_PORT || "8050",
-    fullHost: buildLehavaFullHost(process.env.LEHAVA_API_HOST, process.env.LEHAVA_API_PORT) || "lehava-api-mock:8050",
-    requestTypesToCache: process.env.REQ_TYPES_TO_CACHE?.split(',') || ['nr', 'z_networks_to_service', 'pcat', 'chgcat', 'z_pcat_to_network', 'z_chgcat_to_network'],
+    fullHost:
+      buildLehavaFullHost(
+        process.env.LEHAVA_API_HOST,
+        process.env.LEHAVA_API_PORT
+      ) || "lehava-api-mock:8050",
+    requestTypesToCache: process.env.REQ_TYPES_TO_CACHE?.split(",") || [
+      "nr",
+      "z_networks_to_service",
+      "pcat",
+      "chgcat",
+      "z_pcat_to_network",
+      "z_chgcat_to_network",
+    ],
     getRequestWithFileUrl: (
       reqUrl: string,
       fileObject: {
@@ -64,7 +80,8 @@ export const config = {
         base64: string;
       }
     ): string =>
-      `${reqUrl.split("/file")[1]}?repositoryId=1002&serverName=${config.lehava_api.serverName
+      `${reqUrl.split("/file")[1]}?repositoryId=1002&serverName=${
+        config.lehava_api.serverName
       }&mimeType=${fileObject.type}&description=${fileObject.name}`,
     getFormDataBody: (
       postType: string,
@@ -75,16 +92,18 @@ export const config = {
         base64: string;
       }
     ): string =>
-`--*****MessageBoundary*****\r
+      `--*****MessageBoundary*****\r
 Content-Disposition: form-data; name="${postType}"
 Content-Type: application/xml; CHARACTERSET=UTF-8
 \r
 <${postType}>
-${postType === "chg"
-? `<requestor id="${postObject.requestor["@id"]}"/>
+${
+  postType === "chg"
+    ? `<requestor id="${postObject.requestor["@id"]}"/>
 <category id="${postObject.category["@id"]}"/>`
-: `<customer id="${postObject.customer["@id"]}"/>
-<category REL_ATTR="${postObject.category["@REL_ATTR"]}"/>`}
+    : `<customer id="${postObject.customer["@id"]}"/>
+<category REL_ATTR="${postObject.category["@REL_ATTR"]}"/>`
+}
 <z_cst_phone>${postObject.z_cst_phone}</z_cst_phone>
 <priority id="${postObject.priority["@id"]}"/>
 <Urgency id="${postObject.Urgency["@id"]}"/>
@@ -143,9 +162,9 @@ ${file.base64}
       taskDate: string,
       taskLink: string
     ) =>
-      `היי, אשמח לעזרה בפנייה מספר: ${taskId}, שנפתחה ב ${taskDate}. ${taskLink ? `לינק בלהבה: ${taskLink}` : "לא קיים לינק בלהבה"
+      `היי, אשמח לעזרה בפנייה מספר: ${taskId}, שנפתחה ב ${taskDate}. ${
+        taskLink ? `לינק בלהבה: ${taskLink}` : "לא קיים לינק בלהבה"
       }`,
-      announcement: 'שעות המענה הן 08:30-17:30'
-
+    announcement: "שעות המענה הן 08:30-17:30",
   },
 };
