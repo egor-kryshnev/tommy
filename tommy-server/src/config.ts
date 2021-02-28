@@ -38,6 +38,10 @@ export const config = {
         `http://${process.env.LEHAVA_API_HOST}:${process.env.LEHAVA_API_PORT}/caisd-rest/cnt?WC=userid%3D'${userT}'`,
       GET_TRANSVERSE_URL_FUNCTION: (categoryId: string) =>
         `http://${process.env.LEHAVA_API_HOST}:${process.env.LEHAVA_API_PORT}/caisd-rest/cr?WC=category%3D'pcat:${categoryId}'%20and%20active%3D1%20and%20impact%3D1`,
+      GET_CATEGORIES_EXCEPTIONS_OF_INCIDENTS: (networkId: string) =>
+        `http://${process.env.LEHAVA_API_HOST}:${process.env.LEHAVA_API_PORT}/caisd-rest/z_pcat_to_network?WC=network%3D${networkId}&start=1&size=1000`,
+        GET_CATEGORIES_EXCEPTIONS_OF_REQUESTS: (networkId: string) =>
+        `http://${process.env.LEHAVA_API_HOST}:${process.env.LEHAVA_API_PORT}/caisd-rest/z_chgcat_to_network?WC=network%3D${networkId}&start=1&size=1000`,
       GET_UPDATES:
         "http://${process.env.LEHAVA_API_HOST}:${process.env.LEHAVA_API_PORT}/caisd-rest/cr?WC=type%3D'I'%20and%20active%3D1%20and%20impact%3D1&SORT=open_date DESC",
       POST_NEW_REQUEST:
