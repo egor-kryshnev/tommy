@@ -5,10 +5,9 @@
       <mat-list role="list">
         <mat-list-item (click)="openBottomSheet(update)" role="listitem" *ngFor="let update of updatesArray" class="update-card">
           <span class="date" matLine>{{ update.open_date }}</span>
-          <p class="name" matLine *ngIf="update.z_network && update.z_impact_service">תקלה רוחבית בשירות "{{update.z_impact_service}}" ברשת ״{{update.z_network}}״ :</p>
-          <p class="name" matLine *ngIf="!update.z_network || !update.z_impact_service">תקלה רוחבית:</p>
-          <p class="name" matLine> "{{update.name }}</p>
-          <p class="name" matLine>{{ update.summary }}"</p>
+          <p class="name" matLine *ngIf="update.z_network">{{ update.z_network }}</p>
+          <p class="name" matLine> {{ update.name }}</p>
+          <p class="name" matLine>{{ update.summary }}</p>
         </mat-list-item>
       </mat-list>
     </cdk-virtual-scroll-viewport>

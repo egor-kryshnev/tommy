@@ -18,7 +18,7 @@
   text-align: center;
   left: 20vh;
   font-family: Rubik;
-  margin-top: 3vh;
+  margin-top: 5vh;
   font-size: 1.5rem;
   font-weight: normal;
 }
@@ -70,14 +70,6 @@ input[type='file'] {
   top: 5px;
 }
 
-.addFile {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  bottom: 42px;
-  right: 275px;
-}
-
 .filesCircle {
   width: 28px;
   height: 28px;
@@ -85,6 +77,8 @@ input[type='file'] {
   border-radius: 50%;
   background-color: #ffffff;
   position: relative;
+  bottom: 42px;
+  right: 280px;
 }
 
 .filesCircle:hover {
@@ -160,7 +154,7 @@ textarea:focus {
   text-decoration: none;
   background: #3f9c67;
   padding: 20px;
-  margin-top: 3.2vh;
+  margin-top: 5.2vh;
   font-family: Rubik;
   width: 20vh;
   border-radius: 50px;
@@ -247,40 +241,4 @@ input::-webkit-inner-spin-button {
 
 #phoneWrapper {
   display: inherit;
-}
-
-#places:hover {
-  direction: rtl;
-  border: solid 1px #afc514;
-  align-items: center;
-
-}
-
-#places-div{
-  display: grid;
-  grid-gap: 20px;
-  padding: 10px;
-  justify-content: center;
-}
-
-#places {
-  width: 280px;
-  padding: 5px;
-  outline: none;
-  direction: rtl;
-  border-radius: 4px;
-  border: solid 1px #ebebeb;
-  background-color: #fff;
-  transition: 0.5s;
-  font-size: 14px;
-  line-height: 1.43;
-  text-align-last:center;
-}
-
-.place {
-  direction: rtl;
-}
-
-:host ::ng-deep .data-loader {
-  margin-top: 0;
 }

@@ -42,6 +42,9 @@ export const config = {
       GET_HICHAT_IFRAME_URL: "/hichat",
     },
   },
+  openConf: {
+    homepageTutorialVideoUrl: process.env.HOMEPAGE_TUTORIAL_VIDEO_URL || 'https://www.youtube.com/user/TeslaMotors'
+  },
   serviceName: "tommy-server",
   redis: {
     host: process.env.REDIS_URL || "redis://localhost:6379",
@@ -62,7 +65,7 @@ export const config = {
       }
     ): string =>
       `${reqUrl.split("/file")[1]}?repositoryId=1002&serverName=${config.lehava_api.serverName
-      }&mimeType=${fileObject.type}&description=${fileObject.type}`,
+      }&mimeType=${fileObject.type}&description=${fileObject.name}`,
     getFormDataBody: (
       postType: string,
       postObject: any,
@@ -142,7 +145,7 @@ ${file.base64}
     ) =>
       `היי, אשמח לעזרה בפנייה מספר: ${taskId}, שנפתחה ב ${taskDate}. ${taskLink ? `לינק בלהבה: ${taskLink}` : "לא קיים לינק בלהבה"
       }`,
-      announcement: 'שעות המענה הן 08:00-17:00'
+      announcement: 'שעות המענה הן 08:30-17:30'
 
   },
 };

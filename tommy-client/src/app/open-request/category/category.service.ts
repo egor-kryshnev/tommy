@@ -277,12 +277,10 @@ export class CategoryService {
         return splitedCategory.slice(1, splitedCategory.length).join('.') === selectedCategories;
       });
     const categoryId = this.categoryList[categoryIndex].id;
-    console.log(this.categoryList);
     this.postReqService.isIncident = this.categoryList[categoryIndex].isIncident;
     this.postReqService.categoryId = this.categoryList[categoryIndex].isIncident ?
       this.categoryList[categoryIndex].rel_attr :
       this.categoryList[categoryIndex].id;
-    console.log(this.categoryList[categoryIndex].isIncident)
 
     if (!this.categoryList[categoryIndex].isIncident) {
       this.proceedToNextPage()

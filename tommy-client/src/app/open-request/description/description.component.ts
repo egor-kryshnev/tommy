@@ -7,9 +7,7 @@ import { PostReqService, PostResponse } from "../post-req.service";
 import { CategoryService } from "../category/category.service";
 import { MatDialog } from "@angular/material/dialog";
 import { FinishRequestComponent } from "../finish-request/finish-request.component";
-import { AlertComponent } from "../alert/alert.component";
 import { KnowledgeArticleComponent } from "../knowledge-article/knowledge-article.component";
-import { config } from '../../../environments/config.dev';
 @Component({
   selector: "app-description",
   templateUrl: "./description.component.html",
@@ -21,9 +19,6 @@ export class DescriptionComponent implements OnInit {
   computerNameWarning = "";
   locationInput: string = "";
   phoneInput: string = "";
-  placesList: model1[] = [];
-  initialPlace: model1;
-  place: string='';
   voip: string = "";
   computerNameInput: string = "";
   services: model1[];
@@ -32,8 +27,6 @@ export class DescriptionComponent implements OnInit {
   input: number = 0;
   isPending: boolean = false;
   file: { name: string; type: string; base64: string } = undefined;
-  organizationUUID: string;
-
 
   constructor(
     private router: Router,
@@ -45,28 +38,19 @@ export class DescriptionComponent implements OnInit {
     public dialog: MatDialog,
     public knowledgeArticleDialog: MatDialog,
     private apiGetService: ApigetService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    // this.isKnowledgeArticle();
+    this.isKnowledgeArticle();
     const id = this.route.snapshot.paramMap.get("id");
     const selectedCategories = this.categoryService.getSelectedCategoryString();
     this.postReqService.descriptionCategory = selectedCategories;
     this._eventEmmitter.user.subscribe((data) =>
       this.authService.setUserShraga(data)
     );
-    this.userUUID = this.authService.getUuid();
     if (this.authService.getPhone()) this.setPhoneFromShraga(this.authService.getPhone());
-    this._eventEmmitter.dataStr.subscribe((data) => {
-      this.userUUID = data
-
-
-    });
-    console.log(this.userUUID)
-    this.updateInitialPlace();
-    this.updatePlaces();
+    this._eventEmmitter.dataStr.subscribe((data) => (this.userUUID = data));
     this.isPending = false;
-    console.log(this.postReqService.categoryId);
   }
 
   onReturn() {
@@ -75,32 +59,17 @@ export class DescriptionComponent implements OnInit {
     });
   }
 
-  getFileSizeLimit() {
-    return config.fileSizeLimit;
-  }
-
   handleFileUpload(event: any) {
     const file = event.target.files[0];
-    if (file.size > this.getFileSizeLimit()) {
-      document.getElementById("files")['value'] = "";
-      this.dialog
-        .open(AlertComponent, {
-          width: "330px",
-          height: "225px",
-          data: { title: 'הקובץ שנבחר גדול מדי', content: `${this.getFileSizeLimit() / 1048576}  MB הגבלת הגודל היא` },
-        });
-
-    } else {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        this.file = {
-          name: file.name,
-          type: file.name.split(".")[1],
-          base64: (reader.result as string).split(",")[1],
-        };
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.file = {
+        name: file.name,
+        type: file.name.split(".")[1],
+        base64: (reader.result as string).split(",")[1],
       };
-    }
+    };
   }
 
   handleRemoveFile() {
@@ -112,7 +81,6 @@ export class DescriptionComponent implements OnInit {
       this.locationInput &&
       this.phoneInput &&
       this.computerNameInput &&
-      this.place &&
       !this.isPending
     ) {
       this.isPending = true;
@@ -120,21 +88,19 @@ export class DescriptionComponent implements OnInit {
         document.getElementById("subject")
       )).value;
       this.postReqService.location = this.locationInput;
-      console.log(this.phoneInput);
       this.postReqService.phoneNumber = this.phoneInput;
       this.postReqService.computerName = this.computerNameInput;
       this.postReqService.voip = this.voip;
       this.postReqService.file = this.file;
-      this.postReqService.z_location = this.place ==='' ? this.place : this.getPlaceId(this.place);
       this.file
         ? this.postReqService
-          .postWithFileAppeal()
-          .subscribe((res: PostResponse) => {
-            this.finishRequestDialog(res);
-          })
+            .postWithFileAppeal()
+            .subscribe((res: PostResponse) => {
+              this.finishRequestDialog(res);
+            })
         : this.postReqService.postAppeal().subscribe((res: PostResponse) => {
-          this.finishRequestDialog(res);
-        });
+            this.finishRequestDialog(res);
+          });
     } else {
       this.inputPlaceholderChanger();
     }
@@ -142,7 +108,6 @@ export class DescriptionComponent implements OnInit {
 
   private finishRequestDialog(res: PostResponse) {
     const requestId = this.postReqService.getRequestId(res);
-    console.log(`request id: ${requestId}`);
     this.dialog
       .open(FinishRequestComponent, {
         width: "430px",
@@ -175,10 +140,6 @@ export class DescriptionComponent implements OnInit {
 
   setLocationInput(location: string) {
     this.locationInput = location;
-  }
-
-  setPlace(newPlace: string){
-    this.place = newPlace; 
   }
 
   inputPlaceholderChanger() {
@@ -228,47 +189,5 @@ export class DescriptionComponent implements OnInit {
           this.openKnowlengeDialog();
         }
       });
-  }
-
-  updatePlaces(){
-    this.apiGetService.getPlaces().subscribe((res: any) => {
-      this.placesList = [];
-      const placesResponse = res.collection_loc.loc;
-      this.placesList = placesResponse.map((placeObject: any) => {
-        return {
-            "id": placeObject['@id'],
-            "value": placeObject['@COMMON_NAME']
-          } as model1
-      });
-      if(this.initialPlace){
-        if(this.placesList.includes(this.initialPlace)){
-          this.placesList = this.placesList.filter(place => place!== this.initialPlace);
-        }
-        this.placesList.unshift(this.initialPlace)
-        this.place= this.initialPlace?.value;
-      }
-    });
-  }
-
-  updateInitialPlace(){
-    this.apiGetService.getOrganization(this.userUUID).subscribe((res: any)=>{
-    this.organizationUUID = res.collection_cnt?.cnt?.organization['@id'];
-    if(this.organizationUUID){
-      this.apiGetService.getPlace(this.organizationUUID).subscribe((res: any)=>{
-        this.initialPlace = {
-          id: res.collection_org.org.z_location['@id'],
-          value: res.collection_org.org.z_location['@COMMON_NAME']
-        }
-      })
-    }
-    });
-
-}
-
-  getPlaceId(placeName: string) {
-    const placeSelected = this.placesList.find(place => {
-      return place?.value === placeName;
-    });
-    return placeSelected.id;
   }
 }

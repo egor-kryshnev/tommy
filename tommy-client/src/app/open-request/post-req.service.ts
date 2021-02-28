@@ -20,7 +20,7 @@ interface PostRequestResponse {
   providedIn: "root",
 })
 export class PostReqService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   requestHead = new HttpHeaders()
     .set("Content-type", "application/json")
@@ -41,8 +41,6 @@ export class PostReqService {
   voip: string;
   categoryId: string;
   file: { name: string; type: string; base64: string };
-  z_location: string;
-  
   public isIncident: boolean = true;
 
   postAppeal() {
@@ -78,6 +76,7 @@ export class PostReqService {
 
     return this.http.post(config.POST_NEW_INCIDENT_WITH_FILE, requestBody, {
       headers: this.requestHead,
+      withCredentials: true,
     });
   }
 
@@ -90,6 +89,7 @@ export class PostReqService {
 
     return this.http.post(config.POST_NEW_REQUEST_WITH_FILE, requestBody, {
       headers: this.requestHead,
+      withCredentials: true,
     });
   }
 
@@ -158,9 +158,7 @@ export class PostReqService {
       },
       impact: {
         "@id": "1603",
-      },      z_location:{
-        "@id": this.z_location
-      }
+      },
     };
   }
 }
