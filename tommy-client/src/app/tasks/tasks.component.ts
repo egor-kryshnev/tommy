@@ -57,6 +57,7 @@ export class TasksComponent implements OnInit {
       const formatted_date = moment(taskObject.open_date * 1000).format(
         "hh:mm DD.MM.YYYY"
       );
+      const formatted_transfer_date = moment(taskObject.z_last_transfer_date * 1000).format("hh:mm DD.MM.YYYY");
       return {
         serial_id: taskObject ? taskObject["@id"] : false,
         id: taskObject ? taskObject["@COMMON_NAME"] : false,
@@ -71,7 +72,8 @@ export class TasksComponent implements OnInit {
         icon: `../../assets/${String(taskObject.status["@COMMON_NAME"]).replace('\\', '-')}.svg`,
         link: taskObject.web_url ? taskObject.web_url : "",
         type: taskObject ? taskObject.type : "",
-        statusCode: taskObject ? taskObject.status['@REL_ATTR'] : ""
+        statusCode: taskObject ? taskObject.status['@REL_ATTR'] : "",
+        lastTransferDate: formatted_transfer_date || false
       } as taskModel1;
     } else {
       return false;

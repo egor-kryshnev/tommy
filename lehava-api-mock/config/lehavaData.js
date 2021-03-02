@@ -2269,7 +2269,8 @@ module.exports = {
                         },
                         "active": {
                             "@REL_ATTR": "0"
-                        }
+                        }, 
+                        "z_last_transfer_date": "123456789"
                     },
                     {
                         "@id": "1013352",
@@ -2296,7 +2297,8 @@ module.exports = {
                         },
                         "active": {
                             "@REL_ATTR": "0"
-                        }
+                        }, 
+                        "z_last_transfer_date": "123456789"
                     }]
                 }
             },
@@ -2325,7 +2327,8 @@ module.exports = {
                         "type": "C",
                         "active": {
                             "@REL_ATTR": "0"
-                        }
+                        }, 
+                        "z_last_transfer_date": "123456789"
                     },
                     {
                         "@id": "1023351",
@@ -2350,7 +2353,8 @@ module.exports = {
                         "type": "C",
                         "active": {
                             "@REL_ATTR": "0"
-                        }
+                        }, 
+                        "z_last_transfer_date": "123456789"
                     },
                     {
                         "@id": "1322251",
@@ -2372,7 +2376,8 @@ module.exports = {
                         "z_network": {
                             "@COMMON_NAME": "אמא של רון"
                         },
-                        "type": "C"
+                        "type": "C", 
+                        "z_last_transfer_date": "123456789"
                     }]
                 }
             }
@@ -2409,7 +2414,8 @@ module.exports = {
                         },
                         "active": {
                             "@REL_ATTR": "1"
-                        }
+                        }, 
+                        "z_last_transfer_date": "123456789"
                     },
                     {
                         "@id": "1013351",
@@ -2436,7 +2442,8 @@ module.exports = {
                         },
                         "active": {
                             "@REL_ATTR": "1"
-                        }
+                        }, 
+                        "z_last_transfer_date": "123456789"
                     },
                     {
                         "@id": "1013352",
@@ -2463,7 +2470,8 @@ module.exports = {
                         },
                         "active": {
                             "@REL_ATTR": "1"
-                        }
+                        }, 
+                        "z_last_transfer_date": "123456789"
                     },
                     {
                         "@id": "1013353",
@@ -2490,7 +2498,8 @@ module.exports = {
                         },
                         "active": {
                             "@REL_ATTR": "1"
-                        }
+                        }, 
+                        "z_last_transfer_date": "123456789"
                     },
                     {
                         "@id": "1013354",
@@ -2517,7 +2526,8 @@ module.exports = {
                         },
                         "active": {
                             "@REL_ATTR": "1"
-                        }
+                        }, 
+                        "z_last_transfer_date": "123456789"
                     },
                     {
                         "@id": "1013355",
@@ -2544,7 +2554,8 @@ module.exports = {
                         },
                         "active": {
                             "@REL_ATTR": "1"
-                        }
+                        }, 
+                        "z_last_transfer_date": "123456789"
                     },
                     {
                         "@id": "1013356",
@@ -2571,7 +2582,8 @@ module.exports = {
                         },
                         "active": {
                             "@REL_ATTR": "0"
-                        }
+                        }, 
+                        "z_last_transfer_date": "123456789"
                     }
                     ]
                 }
@@ -2601,7 +2613,8 @@ module.exports = {
                         "type": "C",
                         "active": {
                             "@REL_ATTR": "1"
-                        }
+                        }, 
+                        "z_last_transfer_date": "123456789"
                     },
                     {
                         "@id": "1013362",
@@ -2626,7 +2639,8 @@ module.exports = {
                         "type": "C",
                         "active": {
                             "@REL_ATTR": "0"
-                        }
+                        }, 
+                        "z_last_transfer_date": "123456789"
                     },
                     {
                         "@id": "1023351",
@@ -2651,7 +2665,8 @@ module.exports = {
                         "type": "C",
                         "active": {
                             "@REL_ATTR": "1"
-                        }
+                        }, 
+                        "z_last_transfer_date": "123456789"
                     },
                     {
                         "@id": "1322251",
@@ -2673,7 +2688,8 @@ module.exports = {
                         "z_network": {
                             "@COMMON_NAME": "אמא של רון"
                         },
-                        "type": "C"
+                        "type": "C", 
+                        "z_last_transfer_date": "123456789"
                     },
                     {
                         "@id": "1012311",
@@ -2695,7 +2711,8 @@ module.exports = {
                         "z_network": {
                             "@COMMON_NAME": "אמא של רון"
                         },
-                        "type": "C"
+                        "type": "C", 
+                        "z_last_transfer_date": "123456789"
                     },
                     {
                         "@id": "10123351",
@@ -2717,7 +2734,8 @@ module.exports = {
                         "z_network": {
                             "@COMMON_NAME": "אמא של רון"
                         },
-                        "type": "C"
+                        "type": "C", 
+                        "z_last_transfer_date": "123456789"
                     },
                     {
                         "@id": "1013365",
@@ -2733,7 +2751,8 @@ module.exports = {
                         },
                         "summary": "תקלת תוכנת אופיס",
                         "open_date": 1577822500,
-                        "type": "C"
+                        "type": "C", 
+                        "z_last_transfer_date": "123456789"
                     }
                     ]
                 }
@@ -2774,7 +2793,8 @@ module.exports = {
                 },
                 z_impact_service: {
                     "@COMMON_NAME": "מערכות הפעלה"
-                }
+                }, 
+                z_last_transfer_date: "123456789"
             },
             {
                 "@COMMON_NAME": '458525',
@@ -2792,7 +2812,8 @@ module.exports = {
                 },
                 z_impact_service: {
                     "@COMMON_NAME": "מערכות הפעלה"
-                }
+                }, 
+                z_last_transfer_date: "123456789"
             },
             {
                 "@COMMON_NAME": '596417',
@@ -2810,7 +2831,8 @@ module.exports = {
                 },
                 z_impact_service: {
                     "@COMMON_NAME": "service"
-                }
+                }, 
+                z_last_transfer_date: "123456789"
             },
             {
                 "@COMMON_NAME": '458525',
@@ -2828,7 +2850,8 @@ module.exports = {
                 },
                 z_impact_service: {
                     "@COMMON_NAME": "service"
-                }
+                }, 
+                z_last_transfer_date: "123456789"
             },
             {
                 "@COMMON_NAME": '458525',
@@ -2846,7 +2869,8 @@ module.exports = {
                 },
                 z_impact_service: {
                     "@COMMON_NAME": "service"
-                }
+                }, 
+                z_last_transfer_date: "123456789"
             },
             {
                 "@COMMON_NAME": '458525',
@@ -2864,7 +2888,8 @@ module.exports = {
                 },
                 z_impact_service: {
                     "@COMMON_NAME": "service"
-                }
+                }, 
+                z_last_transfer_date: "123456789"
             },
             {
                 "@COMMON_NAME": '458525',
@@ -2882,7 +2907,8 @@ module.exports = {
                 },
                 z_impact_service: {
                     "@COMMON_NAME": "service"
-                }
+                }, 
+                z_last_transfer_date: "123456789"
             },
             {
                 "@COMMON_NAME": '458525',
@@ -2900,7 +2926,8 @@ module.exports = {
                 },
                 z_impact_service: {
                     "@COMMON_NAME": "service"
-                }
+                }, 
+                z_last_transfer_date: "123456789"
             },
             {
                 "@COMMON_NAME": '458525',
@@ -2918,7 +2945,8 @@ module.exports = {
                 },
                 z_impact_service: {
                     "@COMMON_NAME": "מערכות הפעלה"
-                }
+                }, 
+                z_last_transfer_date: "123456789"
             },
             {
                 "@COMMON_NAME": '458525',
@@ -2936,7 +2964,8 @@ module.exports = {
                 },
                 z_impact_service: {
                     "@COMMON_NAME": "מערכות הפעלה"
-                }
+                }, 
+                z_last_transfer_date: "123456789"
             },
             {
                 "@COMMON_NAME": '458525',
@@ -2954,7 +2983,8 @@ module.exports = {
                 },
                 z_impact_service: {
                     "@COMMON_NAME": "מערכות הפעלה"
-                }
+                }, 
+                z_last_transfer_date: "123456789"
             },
             {
                 "@COMMON_NAME": '458525',
@@ -2972,7 +3002,8 @@ module.exports = {
                 },
                 z_impact_service: {
                     "@COMMON_NAME": "מערכות הפעלה"
-                }
+                }, 
+                z_last_transfer_date: "123456789"
             },
             {
                 "@COMMON_NAME": '458525',
@@ -2990,7 +3021,8 @@ module.exports = {
                 },
                 z_impact_service: {
                     "@COMMON_NAME": "מערכות הפעלה"
-                }
+                }, 
+                z_last_transfer_date: "123456789"
             },
             {
                 "@COMMON_NAME": '458525',
@@ -3008,7 +3040,8 @@ module.exports = {
                 },
                 z_impact_service: {
                     "@COMMON_NAME": "מערכות הפעלה"
-                }
+                }, 
+                z_last_transfer_date: "123456789"
             },
             {
                 "@COMMON_NAME": '458525',
@@ -3026,7 +3059,8 @@ module.exports = {
                 },
                 z_impact_service: {
                     "@COMMON_NAME": "מערכות הפעלה"
-                }
+                }, 
+                z_last_transfer_date: "123456789"
             },
             {
                 "@COMMON_NAME": '458525',
@@ -3041,7 +3075,8 @@ module.exports = {
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
                 z_impact_service: {
                     "@COMMON_NAME": "מערכות הפעלה"
-                }
+                }, 
+                z_last_transfer_date: "123456789"
             },
             {
                 "@COMMON_NAME": '458525',
@@ -3056,7 +3091,8 @@ module.exports = {
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
                 z_impact_service: {
                     "@COMMON_NAME": "מערכות הפעלה"
-                }
+                }, 
+                z_last_transfer_date: "123456789"
             },
             {
                 "@COMMON_NAME": '458525',
@@ -3071,7 +3107,8 @@ module.exports = {
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
                 z_impact_service: {
                     "@COMMON_NAME": "מערכות הפעלה"
-                }
+                }, 
+                z_last_transfer_date: "123456789"
             },
             {
                 "@COMMON_NAME": '458525',
@@ -3086,7 +3123,8 @@ module.exports = {
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
                 z_impact_service: {
                     "@COMMON_NAME": "מערכות הפעלה"
-                }
+                }, 
+                z_last_transfer_date: "123456789"
             },
             {
                 "@COMMON_NAME": '458525',
@@ -3101,7 +3139,8 @@ module.exports = {
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
                 z_impact_service: {
                     "@COMMON_NAME": "מערכות הפעלה"
-                }
+                }, 
+                z_last_transfer_date: "123456789"
             },
             {
                 "@COMMON_NAME": '458525',
@@ -3116,7 +3155,8 @@ module.exports = {
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
                 z_impact_service: {
                     "@COMMON_NAME": "מערכות הפעלה"
-                }
+                }, 
+                z_last_transfer_date: "123456789"
             },
             {
                 "@COMMON_NAME": '458525',
@@ -3131,7 +3171,8 @@ module.exports = {
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
                 z_impact_service: {
                     "@COMMON_NAME": "מערכות הפעלה"
-                }
+                }, 
+                z_last_transfer_date: "123456789"
             },
             {
                 "@COMMON_NAME": '458525',
@@ -3146,7 +3187,8 @@ module.exports = {
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
                 z_impact_service: {
                     "@COMMON_NAME": "מערכות הפעלה"
-                }
+                }, 
+                z_last_transfer_date: "123456789"
             }
             ]
         }
@@ -3166,7 +3208,8 @@ module.exports = {
                     "category": {
                         "@COMMON_NAME": "קטגוריה של תקלה 1 ברוחבית של מקלדות"
                     },
-                    "open_date": 1577822500000
+                    "open_date": 1577822500000, 
+                    "z_last_transfer_date": "123456789"
                 },
                 {
                     "@id": "0",
@@ -3178,7 +3221,8 @@ module.exports = {
                     "category": {
                         "@COMMON_NAME": "קטגוריה של תקלה 2 ברוחבית של מקלדות"
                     },
-                    "open_date": 1577822500000
+                    "open_date": 1577822500000, 
+                    "z_last_transfer_date": "123456789"
                 }
                 ]
             }
@@ -3198,7 +3242,8 @@ module.exports = {
                     "category": {
                         "@COMMON_NAME": "קטגוריה של תקלה 1 ברוחבית של עכברים"
                     },
-                    "open_date": 1577822500000
+                    "open_date": 1577822500000, 
+                    "z_last_transfer_date": "123456789"
                 },
                 {
                     "@id": "1",
@@ -3210,7 +3255,8 @@ module.exports = {
                     "category": {
                         "@COMMON_NAME": "קטגוריה של תקלה 2 ברוחבית של עכברים"
                     },
-                    "open_date": 1577822500000
+                    "open_date": 1577822500000, 
+                    "z_last_transfer_date": "123456789"
                 }
                 ]
             }
@@ -3230,7 +3276,8 @@ module.exports = {
                     "category": {
                         "@COMMON_NAME": "קטגוריה של תקלה 1 ברוחבית של מיילים"
                     },
-                    "open_date": 1577822500000
+                    "open_date": 1577822500000, 
+                    "z_last_transfer_date": "123456789"
                 },
                 {
                     "@id": "2",
@@ -3242,7 +3289,8 @@ module.exports = {
                     "category": {
                         "@COMMON_NAME": "קטגוריה של תקלה 2 ברוחבית של מיילים"
                     },
-                    "open_date": 1577822500000
+                    "open_date": 1577822500000, 
+                    "z_last_transfer_date": "123456789"
                 }
                 ]
             }
@@ -3262,7 +3310,8 @@ module.exports = {
                     "category": {
                         "@COMMON_NAME": "קטגוריה של תקלה 1 ברוחבית של שירות הורדות"
                     },
-                    "open_date": 1577822500000
+                    "open_date": 1577822500000, 
+                    "z_last_transfer_date": "123456789"
                 },
                 {
                     "@id": "3",
@@ -3274,7 +3323,8 @@ module.exports = {
                     "category": {
                         "@COMMON_NAME": "קטגוריה של תקלה 2 ברוחבית של שירות הורדות"
                     },
-                    "open_date": 1577822500000
+                    "open_date": 1577822500000, 
+                    "z_last_transfer_date": "123456789"
                 }
                 ]
             }
