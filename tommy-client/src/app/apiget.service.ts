@@ -47,6 +47,7 @@ export interface taskModel1 {
   "link": string;
   "type": string | object | boolean;
   "statusCode": string;
+  "lastTransferDate" : string;
 }
 
 export interface updatesModel {
@@ -112,7 +113,7 @@ export class ApigetService {
     .set('Content-type', 'application/json')
     .set('X-AccessKey', this.accessKey)
     .set('Accept', 'application/json')
-    .set('X-Obj-Attrs', 'status, summary, description, open_date, z_network, z_impact_service, group, web_url, type, active');
+    .set('X-Obj-Attrs', 'status, summary, description, open_date, z_network, z_impact_service, group, web_url, type, active, z_last_transfer_date');
 
   
   updatesHeaders = new HttpHeaders()
