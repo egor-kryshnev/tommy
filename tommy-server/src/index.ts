@@ -4,7 +4,6 @@ import menash from "menashmq";
 import { config } from "./config";
 import { createGetAccessTokenConsumer } from "./access-token/access-token-client";
 
-import getAllData from "./lehava-data/index";
 
 process.on("uncaughtException", logger);
 
@@ -20,7 +19,6 @@ process.on("uncaughtException", logger);
   await createGetAccessTokenConsumer();
 
   const server: Server = Server.bootstrap();
-  getAllData();
   server.app.on("close", () => {
     logger({ message: "Server closed" });
   });

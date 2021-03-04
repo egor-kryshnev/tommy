@@ -9,8 +9,8 @@ import { logger } from '../utils/logger-client';
 export default class MetadataCache {
 
     private static client: redis.RedisClient = redis.createClient(config.redis.host);
-    private static getRedis = promisify(MetadataCache.client.get).bind(MetadataCache.client);
-    private static setRedis = promisify(MetadataCache.client.setex).bind(MetadataCache.client);
+    static getRedis = promisify(MetadataCache.client.get).bind(MetadataCache.client);
+    static setRedis = promisify(MetadataCache.client.setex).bind(MetadataCache.client);
 
     public static async metadataHttpCacheMiddleware(req: express.Request, res: express.Response, next: express.NextFunction) {
 
@@ -27,7 +27,7 @@ export default class MetadataCache {
 
     }
 
-    private static async cacheReqToRedis(req: express.Request) {        
+    private static async cacheReqToRedis(req: express.Request) {
         const headers = { ...req.headers };
         headers["X-AccessKey"] = await AccessTokenProvider.getAccessToken();
         await axios(`http://${config.lehava_api.fullHost}${req.originalUrl.split('/api')[1]}`,

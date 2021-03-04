@@ -105,7 +105,7 @@ export class TasksComponent implements OnInit {
     this.openTasksFlag
       ? this.addTasksToDisplay(this.openTasksArr)
       : this.addTasksToDisplay(this.closedTasksArr);
-  }  
+  }
 
   addTasksToDisplay(tasksArray: taskModel1[]) {
     this.displayedTasks = tasksArray.filter((task: taskModel1) => {

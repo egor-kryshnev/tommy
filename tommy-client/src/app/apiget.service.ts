@@ -222,8 +222,8 @@ export class ApigetService {
     return this.http.put(config.UPDATE_TASK_URL_FUNCTION(taskType, taskId), config.GET_UPDATE_TASK_STATUS_BODY(taskType, taskStatus), { withCredentials: true, headers: this.head })
   }
 
-  getCategoryDescription(categoryId: string){
-    return this.http.get(config.GET_CATEGORY_KNOWLEDGE_ARTICLE(categoryId), 
+  getCategoryDescription(categoryId: string) {
+    return this.http.get(config.GET_CATEGORY_KNOWLEDGE_ARTICLE(categoryId),
       { withCredentials: true, headers: this.categoryDescriptionHeaders })
   }
 };

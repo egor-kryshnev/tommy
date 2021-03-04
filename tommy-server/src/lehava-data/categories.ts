@@ -54,9 +54,20 @@ interface Exception {
   };
 }
 
+
+
+
+
+
+/**
+  This code was not written by me,
+  I really hope no one has to understand what it does and how it does it,
+  It just works. 
+  Use getCategories with networkId and serviceId to recieve 
+  an Array of categories of the specified network and service.
+*/
 export class CategoryService {
   categories: any;
-  selectedCategory: Array<string> | undefined;
   categoryList: Array<Category> = [];
   categoriesToDisplay: Array<string> | undefined;
 
@@ -113,7 +124,7 @@ export class CategoryService {
     );
   }
 
-  async setCategories(id: string, networkId: string) {
+  async getCategories(id: string, networkId: string) {
     this.categoryList = [];
     const mapCategory = (
       el: CommonCategoryProperties,
@@ -133,15 +144,15 @@ export class CategoryService {
     const appendIncidents = (data: CategoryOfIncidents) =>
       data.collection_pcat.pcat
         ? appendCategoryList(
-            toArray(data.collection_pcat.pcat).map(mapIncident)
-          )
+          toArray(data.collection_pcat.pcat).map(mapIncident)
+        )
         : [];
 
     const appendRequests = (data: CategoryOfRequests) =>
       data.collection_chgcat.chgcat
         ? appendCategoryList(
-            toArray(data.collection_chgcat.chgcat).map(mapRequest)
-          )
+          toArray(data.collection_chgcat.chgcat).map(mapRequest)
+        )
         : [];
 
     const handleDataSubscribe = (
@@ -154,55 +165,36 @@ export class CategoryService {
 
     handleDataSubscribe(categoriesOfIncidents.data);
     handleDataSubscribe(categoriesOfRequests.data);
-    console.log(categoriesOfIncidents.data);
-    console.log(categoriesOfRequests.data);
-
-    // await Promise.all([
-    //   new Promise((resolve, reject) =>
-    //     this.getCategoriesOfIncidents(id).subscribe(
-    //       handleDataSubscribe,
-    //       (err: Error) => reject(err),
-    //       () => resolve()
-    //     )
-    //   ),
-    //   new Promise((resolve, reject) =>
-    //     this.getCategoriesOfRequests(id).subscribe(
-    //       handleDataSubscribe,
-    //       (err: Error) => reject(err),
-    //       () => resolve()
-    //     )
-    //   ),
-    // ]);
 
     const exceptionToCategoryId = (exception: Exception) =>
       exception.category["@id"];
 
     const removeFromCategoryList = (exceptionsArray: Array<string>) =>
-      (this.categoryList = this.categoryList.filter(
-        (category: Category) =>
-          !exceptionsArray.some(
-            (exceptionId: string) => exceptionId === category.id
-          )
-      ));
+    (this.categoryList = this.categoryList.filter(
+      (category: Category) =>
+        !exceptionsArray.some(
+          (exceptionId: string) => exceptionId === category.id
+        )
+    ));
 
     const removeIncidents = (data: ExceptionOfIncidents) =>
       data.collection_z_pcat_to_network &&
-      data.collection_z_pcat_to_network.z_pcat_to_network
+        data.collection_z_pcat_to_network.z_pcat_to_network
         ? removeFromCategoryList(
-            toArray(data.collection_z_pcat_to_network.z_pcat_to_network).map(
-              exceptionToCategoryId
-            )
+          toArray(data.collection_z_pcat_to_network.z_pcat_to_network).map(
+            exceptionToCategoryId
           )
+        )
         : null;
 
     const removeRequests = (data: ExceptionOfRequests) =>
       data.collection_z_chgcat_to_network &&
-      data.collection_z_chgcat_to_network.z_chgcat_to_network
+        data.collection_z_chgcat_to_network.z_chgcat_to_network
         ? removeFromCategoryList(
-            toArray(
-              data.collection_z_chgcat_to_network.z_chgcat_to_network
-            ).map(exceptionToCategoryId)
-          )
+          toArray(
+            data.collection_z_chgcat_to_network.z_chgcat_to_network
+          ).map(exceptionToCategoryId)
+        )
         : null;
 
     const handleExceptionSubscribe = (
@@ -212,45 +204,20 @@ export class CategoryService {
         ? removeIncidents(data)
         : removeRequests(data);
 
-    // await Promise.all([
-    //   new Promise((resolve, reject) =>
-    //     this.getExceptionsOfIncidents(networkId).subscribe(
-    //       handleExceptionSubscribe,
-    //       (err: Error) => reject(err),
-    //       () => resolve()
-    //     )
-    //   ),
-    //   new Promise((resolve, reject) =>
-    //     this.getExceptionsOfRequests(networkId).subscribe(
-    //       handleExceptionSubscribe,
-    //       (err: Error) => reject(err),
-    //       () => resolve()
-    //     )
-    //   ),
-    // ]);
-
     let exceptionsOfIncidents = await this.getExceptionsOfIncidents(networkId);
     let exceptionsOfCategories = await this.getExceptionsOfRequests(networkId);
     handleExceptionSubscribe(exceptionsOfIncidents.data);
     handleExceptionSubscribe(exceptionsOfCategories.data);
 
-    console.log(exceptionsOfIncidents.data);
-    console.log(exceptionsOfCategories.data);
-
-    this.buildData(
-      this.categoryList.map((category: Category) => category.name.split("."))
-    );
-    this.categoriesToDisplay = this.getCategoriesToDisplay();
-    return this.categoriesToDisplay;
+    // this.buildData(
+    //   this.categoryList.map((category: Category) => category.name.split("."))
+    // );
+    console.log(this.categoryList);
+    return this.categoryList;
   }
 
   buildData(categoryList: any) {
-    this.selectedCategory = [];
     this.categories = this.generateObject(categoryList);
-  }
-
-  getCategoriesToDisplay() {
-    return Object.keys(this.categories);
   }
 
   private buildNewProperty(obj: any, array: any) {

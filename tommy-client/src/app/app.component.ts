@@ -1,18 +1,22 @@
-import { Component, Inject, Output, EventEmitter } from "@angular/core";
-import { DOCUMENT } from "@angular/common";
-import { ActivatedRoute, Router } from "@angular/router";
-import { AuthService } from "./auth.service";
-import { HttpClient } from "@angular/common/http";
-import { ApigetService } from "./apiget.service";
-import { EventEmiterService } from "./event.emmiter.service";
-import { PostReqService } from "./open-request/post-req.service";
-import { isArray } from "util";
+import { Component, Inject, Output, EventEmitter } from '@angular/core';
+import { DOCUMENT } from '@angular/common'
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from './auth.service';
+import { HttpClient } from '@angular/common/http';
+import { ApigetService } from './apiget.service';
+import { EventEmiterService } from './event.emmiter.service';
+import { PostReqService } from './open-request/post-req.service';
+import { LehavaDataService } from './lehava-data.service';
+import { CommonModule } from '@angular/common';
+
+
 
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
 })
+
 export class AppComponent {
   title = "tommy";
   userName: string;
@@ -32,10 +36,11 @@ export class AppComponent {
     private http: HttpClient,
     public authService: AuthService,
     public _eventEmmiter: EventEmiterService,
-    private postReqService: PostReqService
-  ) {}
+    private postReqService: PostReqService,
+    public lehavaDataService: LehavaDataService,
+  ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.authService.loginSub().subscribe((res: any) => {
       this.userName = res.name.firstName + " " + res.name.lastName;
       this.userT = res.adfsId.split("@")[0];
@@ -65,6 +70,8 @@ export class AppComponent {
     this.apigetService.getOpenConfig().subscribe((res: any) => {
       this.openConf = res;
     });
+    this.lehavaDataService.setLehavaData();
+    // console.clear();
   }
 
   onHome() {

@@ -25,6 +25,8 @@ import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared.module';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { KnowledgeArticleComponent } from './knowledge-article/knowledge-article.component';
+import { ServicesCategoriesComponent } from './services-categories/services-categories.component';
+import { CardsListCategoriesComponent } from './cards-list-categories/cards-list-categories.component';
 
 
 
@@ -40,7 +42,9 @@ import { KnowledgeArticleComponent } from './knowledge-article/knowledge-article
     ReturnButtonComponent,
     PageTopTitleComponent,
     TransverseIncidentDialog,
-    KnowledgeArticleComponent
+    KnowledgeArticleComponent,
+    ServicesCategoriesComponent,
+    CardsListCategoriesComponent
   ],
   imports: [
     CommonModule,
