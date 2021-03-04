@@ -6,13 +6,17 @@ import { HttpClient } from '@angular/common/http';
 import { ApigetService } from './apiget.service';
 import { EventEmiterService } from './event.emmiter.service';
 import { PostReqService } from './open-request/post-req.service';
-import { isArray } from 'util';
+import { LehavaDataService } from './lehava-data.service';
+import { CommonModule } from '@angular/common';
+
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
   title = 'tommy';
   userName: string;
@@ -23,9 +27,9 @@ export class AppComponent {
   @Output() exampleOutput = new EventEmitter<string>();
   userUUID: string;
 
-  constructor(@Inject(DOCUMENT) document, public apigetService: ApigetService, private router: Router, private route: ActivatedRoute, private http: HttpClient, public authService: AuthService, public _eventEmmiter: EventEmiterService, private postReqService: PostReqService) { }
+  constructor(@Inject(DOCUMENT) document, public apigetService: ApigetService, private router: Router, private route: ActivatedRoute, private http: HttpClient, public authService: AuthService, public _eventEmmiter: EventEmiterService, private postReqService: PostReqService, public lehavaDataService: LehavaDataService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.authService.loginSub().subscribe((res: any) => {
       console.log(res);
       this.userName = res.name.firstName + " " + res.name.lastName;
@@ -51,11 +55,11 @@ export class AppComponent {
         console.log(this.userUUID);
         this._eventEmmiter.sendMsg(this.userUUID);
       });
-      this.authService.setPhone(this.phoneNumber);   
+      this.authService.setPhone(this.phoneNumber);
     });
+    this.lehavaDataService.setLehavaData();
     // console.clear();
   }
-
 
   onHome() {
     this.router.navigateByUrl('/', { relativeTo: this.route });

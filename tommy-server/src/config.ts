@@ -40,7 +40,7 @@ export const config = {
         `http://${process.env.LEHAVA_API_HOST}:${process.env.LEHAVA_API_PORT}/caisd-rest/cr?WC=category%3D'pcat:${categoryId}'%20and%20active%3D1%20and%20impact%3D1`,
       GET_CATEGORIES_EXCEPTIONS_OF_INCIDENTS: (networkId: string) =>
         `http://${process.env.LEHAVA_API_HOST}:${process.env.LEHAVA_API_PORT}/caisd-rest/z_pcat_to_network?WC=network%3D${networkId}&start=1&size=1000`,
-        GET_CATEGORIES_EXCEPTIONS_OF_REQUESTS: (networkId: string) =>
+      GET_CATEGORIES_EXCEPTIONS_OF_REQUESTS: (networkId: string) =>
         `http://${process.env.LEHAVA_API_HOST}:${process.env.LEHAVA_API_PORT}/caisd-rest/z_chgcat_to_network?WC=network%3D${networkId}&start=1&size=1000`,
       GET_UPDATES:
         "http://${process.env.LEHAVA_API_HOST}:${process.env.LEHAVA_API_PORT}/caisd-rest/cr?WC=type%3D'I'%20and%20active%3D1%20and%20impact%3D1&SORT=open_date DESC",
@@ -52,9 +52,11 @@ export const config = {
   serviceName: "tommy-server",
   redis: {
     host: process.env.REDIS_URL || "redis://localhost:6379",
+    lehavaDataKey: process.env.REDIS_LEHAVA_DATA_KEY || "lehavadata",
     cachedReqsTTL: process.env.CACHED_REQS_TTL
       ? parseInt(process.env.CACHED_REQS_TTL)
       : 86400,
+
   },
   lehava_api: {
     serverName: process.env.LEHAVA_API_SERVER_NAME || "localhost",
@@ -81,8 +83,7 @@ export const config = {
         base64: string;
       }
     ): string =>
-      `${reqUrl.split("/file")[1]}?repositoryId=1002&serverName=${
-        config.lehava_api.serverName
+      `${reqUrl.split("/file")[1]}?repositoryId=1002&serverName=${config.lehava_api.serverName
       }&mimeType=${fileObject.type}&description=${fileObject.name}`,
     getFormDataBody: (
       postType: string,
@@ -98,13 +99,12 @@ Content-Disposition: form-data; name="${postType}"
 Content-Type: application/xml; CHARACTERSET=UTF-8
 \r
 <${postType}>
-${
-  postType === "chg"
-    ? `<requestor id="${postObject.requestor["@id"]}"/>
+${postType === "chg"
+        ? `<requestor id="${postObject.requestor["@id"]}"/>
 <category id="${postObject.category["@id"]}"/>`
-    : `<customer id="${postObject.customer["@id"]}"/>
+        : `<customer id="${postObject.customer["@id"]}"/>
 <category REL_ATTR="${postObject.category["@REL_ATTR"]}"/>`
-}
+      }
 <z_cst_phone>${postObject.z_cst_phone}</z_cst_phone>
 <priority id="${postObject.priority["@id"]}"/>
 <Urgency id="${postObject.Urgency["@id"]}"/>
@@ -163,8 +163,7 @@ ${file.base64}
       taskDate: string,
       taskLink: string
     ) =>
-      `היי, אשמח לעזרה בפנייה מספר: ${taskId}, שנפתחה ב ${taskDate}. ${
-        taskLink ? `לינק בלהבה: ${taskLink}` : "לא קיים לינק בלהבה"
+      `היי, אשמח לעזרה בפנייה מספר: ${taskId}, שנפתחה ב ${taskDate}. ${taskLink ? `לינק בלהבה: ${taskLink}` : "לא קיים לינק בלהבה"
       }`,
     announcement: "שעות המענה הן 08:30-17:30",
   },

@@ -28,9 +28,10 @@ export const config = {
             "status": {
                 "@REL_ATTR": taskStatus
             }
-        }        
+        }
         return taskBody;
     },
     GET_CATEGORY_KNOWLEDGE_ARTICLE: (categoryId: string) => `/api/caisd-rest/pcat?WC=id%3D${categoryId}`,
+    GET_LEHAVA_DATA: "/lehavadata",
 
 };

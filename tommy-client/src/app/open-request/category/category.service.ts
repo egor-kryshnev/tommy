@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TransverseIncidentDialog, TransverseIncidentData } from '../transverse-incident/transverse-incident.component';
 import { PostReqService } from '../post-req.service';
 import { data } from 'jquery';
+import { LehavaDataService } from 'src/app/lehava-data.service';
 
 
 export interface CategoryOfIncidents {
@@ -110,7 +111,9 @@ export class CategoryService {
     public transverseIncidentDialog: MatDialog,
     public route: ActivatedRoute,
     private router: Router,
-    public postReqService: PostReqService) { }
+    public postReqService: PostReqService,
+    public lehavaDataService: LehavaDataService,
+  ) { }
 
   getTransverseIncident(categoryId: string) {
     return this.http.get(config.GET_TRANSVERSE_URL_FUNCTION(categoryId),
@@ -139,76 +142,82 @@ export class CategoryService {
     );
   }
 
-  async setCategories(id: string) {
-    this.categoryList = [];
-    const mapCategory = (el: CommonCategoryProperties, isIncident: boolean): Category => ({
-      id: el['@id'],
-      rel_attr: el['@REL_ATTR'] || "1",
-      name: el['@COMMON_NAME'],
-      isIncident
-    });
-    const mapIncident = (el: CommonCategoryProperties) => mapCategory(el, true);
-    const mapRequest = (el: CommonCategoryProperties) => mapCategory(el, false);
-    const appendCategoryList = (arr: Array<Category>) => this.categoryList = this.categoryList.concat(arr);
-    const toArray = (arrOrElem: any) => Array.isArray(arrOrElem) ? arrOrElem : [arrOrElem];
-    const appendIncidents = (data: CategoryOfIncidents) =>
-      data.collection_pcat.pcat ? appendCategoryList(toArray(data.collection_pcat.pcat).map(mapIncident)) : [];
-
-    const appendRequests = (data: CategoryOfRequests) =>
-      data.collection_chgcat.chgcat ? appendCategoryList(toArray(data.collection_chgcat.chgcat).map(mapRequest)) : [];
-
-    const handleDataSubscribe = (data: CategoryOfIncidents | CategoryOfRequests) =>
-      ("collection_pcat" in data) ? appendIncidents(data) : appendRequests(data);
-
-    await Promise.all([
-      new Promise((resolve, reject) =>
-        this.getCategoriesOfIncidents(id)
-          .subscribe(handleDataSubscribe,
-            (err: Error) => reject(err),
-            () => resolve())
-      ),
-      new Promise((resolve, reject) =>
-        this.getCategoriesOfRequests(id)
-          .subscribe(handleDataSubscribe,
-            (err: Error) => reject(err),
-            () => resolve()))
-    ]);
-
-    const exceptionToCategoryId = (exception: Exception) => exception.category["@id"];
-
-    const removeFromCategoryList = (exceptionsArray: Array<string>) =>
-      this.categoryList = this.categoryList.filter((category: Category) =>
-        !(exceptionsArray.some((exceptionId: string) => exceptionId === category.id)));
-
-    const removeIncidents = (data: ExceptionOfIncidents) =>
-      data.collection_z_pcat_to_network && data.collection_z_pcat_to_network.z_pcat_to_network ?
-        removeFromCategoryList(toArray(data.collection_z_pcat_to_network.z_pcat_to_network)
-          .map(exceptionToCategoryId)) : null;
-
-    const removeRequests = (data: ExceptionOfRequests) =>
-      data.collection_z_chgcat_to_network && data.collection_z_chgcat_to_network.z_chgcat_to_network ?
-        removeFromCategoryList(toArray(data.collection_z_chgcat_to_network.z_chgcat_to_network)
-          .map(exceptionToCategoryId)) : null;
-
-    const handleExceptionSubscribe = (data: ExceptionOfIncidents | ExceptionOfRequests) =>
-      ("collection_z_pcat_to_network" in data) ? removeIncidents(data) : removeRequests(data);
-
-    await Promise.all([
-      new Promise((resolve, reject) =>
-        this.getExceptionsOfIncidents(this.postReqService.networkId)
-          .subscribe(handleExceptionSubscribe,
-            (err: Error) => reject(err),
-            () => resolve())),
-      new Promise((resolve, reject) =>
-        this.getExceptionsOfRequests(this.postReqService.networkId)
-          .subscribe(handleExceptionSubscribe,
-            (err: Error) => reject(err),
-            () => resolve())),
-    ]);
-
+  async setCategories(networkId: string, serviceId: string) {
+    this.categoryList = this.lehavaDataService.getCategoriesOfServiceAndNetwork(networkId, serviceId);
     this.buildData(this.categoryList.map((category: Category) => category.name.split(".")));
     this.categoriesToDisplay = this.getCategoriesToDisplay();
   }
+
+  // async setCategoriess(id: string) {
+  //   this.categoryList = [];
+  //   const mapCategory = (el: CommonCategoryProperties, isIncident: boolean): Category => ({
+  //     id: el['@id'],
+  //     rel_attr: el['@REL_ATTR'] || "1",
+  //     name: el['@COMMON_NAME'],
+  //     isIncident
+  //   });
+  //   const mapIncident = (el: CommonCategoryProperties) => mapCategory(el, true);
+  //   const mapRequest = (el: CommonCategoryProperties) => mapCategory(el, false);
+  //   const appendCategoryList = (arr: Array<Category>) => this.categoryList = this.categoryList.concat(arr);
+  //   const toArray = (arrOrElem: any) => Array.isArray(arrOrElem) ? arrOrElem : [arrOrElem];
+  //   const appendIncidents = (data: CategoryOfIncidents) =>
+  //     data.collection_pcat.pcat ? appendCategoryList(toArray(data.collection_pcat.pcat).map(mapIncident)) : [];
+
+  //   const appendRequests = (data: CategoryOfRequests) =>
+  //     data.collection_chgcat.chgcat ? appendCategoryList(toArray(data.collection_chgcat.chgcat).map(mapRequest)) : [];
+
+  //   const handleDataSubscribe = (data: CategoryOfIncidents | CategoryOfRequests) =>
+  //     ("collection_pcat" in data) ? appendIncidents(data) : appendRequests(data);
+
+  //   await Promise.all([
+  //     new Promise((resolve, reject) =>
+  //       this.getCategoriesOfIncidents(id)
+  //         .subscribe(handleDataSubscribe,
+  //           (err: Error) => reject(err),
+  //           () => resolve())
+  //     ),
+  //     new Promise((resolve, reject) =>
+  //       this.getCategoriesOfRequests(id)
+  //         .subscribe(handleDataSubscribe,
+  //           (err: Error) => reject(err),
+  //           () => resolve()))
+  //   ]);
+
+  //   const exceptionToCategoryId = (exception: Exception) => exception.category["@id"];
+
+  //   const removeFromCategoryList = (exceptionsArray: Array<string>) =>
+  //     this.categoryList = this.categoryList.filter((category: Category) =>
+  //       !(exceptionsArray.some((exceptionId: string) => exceptionId === category.id)));
+
+  //   const removeIncidents = (data: ExceptionOfIncidents) =>
+  //     data.collection_z_pcat_to_network && data.collection_z_pcat_to_network.z_pcat_to_network ?
+  //       removeFromCategoryList(toArray(data.collection_z_pcat_to_network.z_pcat_to_network)
+  //         .map(exceptionToCategoryId)) : null;
+
+  //   const removeRequests = (data: ExceptionOfRequests) =>
+  //     data.collection_z_chgcat_to_network && data.collection_z_chgcat_to_network.z_chgcat_to_network ?
+  //       removeFromCategoryList(toArray(data.collection_z_chgcat_to_network.z_chgcat_to_network)
+  //         .map(exceptionToCategoryId)) : null;
+
+  //   const handleExceptionSubscribe = (data: ExceptionOfIncidents | ExceptionOfRequests) =>
+  //     ("collection_z_pcat_to_network" in data) ? removeIncidents(data) : removeRequests(data);
+
+  //   await Promise.all([
+  //     new Promise((resolve, reject) =>
+  //       this.getExceptionsOfIncidents(this.postReqService.networkId)
+  //         .subscribe(handleExceptionSubscribe,
+  //           (err: Error) => reject(err),
+  //           () => resolve())),
+  //     new Promise((resolve, reject) =>
+  //       this.getExceptionsOfRequests(this.postReqService.networkId)
+  //         .subscribe(handleExceptionSubscribe,
+  //           (err: Error) => reject(err),
+  //           () => resolve())),
+  //   ]);
+
+  //   this.buildData(this.categoryList.map((category: Category) => category.name.split(".")));
+  //   this.categoriesToDisplay = this.getCategoriesToDisplay();
+  // }
 
 
   buildData(categoryList) {
@@ -268,8 +277,13 @@ export class CategoryService {
     return obj;
   }
 
+  setSelectedCategories(selectedCategoriesString: string) {
+    this.selectedCategory = selectedCategoriesString.split(".").slice(1);
+  }
+
   openTrandverseIncidentDialog() {
     const selectedCategories = this.getSelectedCategoryString();
+    console.log(selectedCategories);
 
     const categoryIndex = this.categoryList.findIndex(
       (categoryEl: Category) => {

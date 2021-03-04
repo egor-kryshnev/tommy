@@ -1,7 +1,7 @@
 export interface Service {
   serviceName: string;
   serviceId: string;
-  categories: string[];
+  categories: Category[];
 }
 
 export interface Network {
@@ -10,20 +10,9 @@ export interface Network {
   services: Service[];
 }
 
-export interface CategoryOfRequests {
-  collection_chgcat: {
-    chgcat: {
-      "@id": string;
-      "@COMMON_NAME": string;
-    }[];
-  };
-}
-
-export interface CategoryOfIncidents {
-  collection_pcat: {
-    pcat: {
-      "@id": string;
-      "@COMMON_NAME": string;
-    }[];
-  };
+export interface Category {
+  id: string;
+  rel_attr: string;
+  name: string;
+  isIncident: boolean;
 }
