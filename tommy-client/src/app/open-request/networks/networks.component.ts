@@ -35,8 +35,6 @@ export class NetworksComponent implements OnInit {
   }
 
   getNetworksNames() {
-    console.log(this.networks);
-    console.log(this.networksToDisplay);
     return this.networksToDisplay.map(network => network.networkName);
   }
 

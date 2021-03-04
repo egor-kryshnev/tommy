@@ -22,7 +22,6 @@ LehavaDataRouter.get('/', async (req: Request, res: Response) => {
             return res.status(400).send(err);
         }
     }
-    console.log(data);
     res.status(200).send({ status: "success", data });
 
 });
