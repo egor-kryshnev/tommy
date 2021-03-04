@@ -208,11 +208,7 @@ export class CategoryService {
     let exceptionsOfCategories = await this.getExceptionsOfRequests(networkId);
     handleExceptionSubscribe(exceptionsOfIncidents.data);
     handleExceptionSubscribe(exceptionsOfCategories.data);
-
-    // this.buildData(
-    //   this.categoryList.map((category: Category) => category.name.split("."))
-    // );
-    console.log(this.categoryList);
+    
     return this.categoryList;
   }
 
