@@ -5,6 +5,7 @@ import { ApigetService, taskModel1 } from "../apiget.service";
 import { AuthService } from "../auth.service";
 import { EventEmiterService } from "../event.emmiter.service";
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { LehavaDataService } from '../lehava-data.service';
 import * as moment from "moment";
 
 export interface Pnia {
@@ -35,7 +36,8 @@ export class TasksComponent implements OnInit {
     public _eventEmmitter: EventEmiterService,
     public authService: AuthService,
     public taskDetailDialog: MatDialog,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    public lehavaDataService: LehavaDataService
   ) { }
 
   ngOnInit() {
@@ -123,7 +125,7 @@ export class TasksComponent implements OnInit {
 
   async refresh() {
     await this.setTasks();
-    this.openSnackBar("בוצע רענון!", "")
+    this.openSnackBar("בוצע רענון", "")
   }
 
   openSnackBar(message: string, action: string) {

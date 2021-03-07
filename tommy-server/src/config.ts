@@ -23,17 +23,17 @@ export const config = {
   client: {
     url: process.env.CLIENT_URL || "http://localhost:4200",
     requests: {
-      GET_NETWORKS_URL: `http://${process.env.LEHAVA_API_HOST}:${process.env.LEHAVA_API_PORT}/caisd-rest/nr?WC=class%3D1000792%20and%20delete_flag%3D0`,
+      GET_NETWORKS_URL: `http://${process.env.LEHAVA_API_HOST}:${process.env.LEHAVA_API_PORT}/caisd-rest/nr?WC=class%3D1000792%20and%20delete_flag%3D0&start=1&size=1000&SORT=z_requests_network_count DESC`,
       GET_SERVICES_URL_FUNCTION: (id: string) =>
-        `http://${process.env.LEHAVA_API_HOST}:${process.env.LEHAVA_API_PORT}/caisd-rest/z_networks_to_service?WC=network%3D${id}%20and%20delete_flag%3D0`,
+        `http://${process.env.LEHAVA_API_HOST}:${process.env.LEHAVA_API_PORT}/caisd-rest/z_networks_to_service?WC=network%3D${id}%20and%20delete_flag%3D0%20and%20z_service_family%3D1000106&start=1&size=1000&SORT=z_requests_service_count DESC`,
       GET_OPEN_TASKS_URL_FUNCTION: (UUID: string) =>
         `http://${process.env.LEHAVA_API_HOST}:${process.env.LEHAVA_API_PORT}/caisd-rest/cr?WC=customer%3D${UUID}%20and%20type%3D'R'%20and%20active%3D1&SORT=open_date DESC`,
       GET_CLOSED_TASKS_URL_FUNCTION: (UUID: string) =>
         `http://${process.env.LEHAVA_API_HOST}:${process.env.LEHAVA_API_PORT}/caisd-rest/cr?WC=customer%3D${UUID}%20and%20type%3D'R'%20and%20active%3D0&SORT=open_date DESC`,
       GET_CATEGORIES_OF_INCIDENTS_URL_FUNCTION: (id: string) =>
-        `http://${process.env.LEHAVA_API_HOST}:${process.env.LEHAVA_API_PORT}/caisd-rest/pcat?WC=z_impact_service%3D${id}%20and%20delete_flag%3D0`,
+        `http://${process.env.LEHAVA_API_HOST}:${process.env.LEHAVA_API_PORT}/caisd-rest/pcat?WC=z_impact_service%3D${id}%20and%20delete_flag%3D0&start=1&size=1000`,
       GET_CATEGORIES_OF_REQUESTS_URL_FUNCTION: (id: string) =>
-        `http://${process.env.LEHAVA_API_HOST}:${process.env.LEHAVA_API_PORT}/caisd-rest/chgcat?WC=z_impact_service%3D${id}%20and%20delete_flag%3D0`,
+        `http://${process.env.LEHAVA_API_HOST}:${process.env.LEHAVA_API_PORT}/caisd-rest/chgcat?WC=z_impact_service%3D${id}%20and%20delete_flag%3D0&start=1&size=1000`,
       GET_UUID_URL_FUNCTION: (userT: string) =>
         `http://${process.env.LEHAVA_API_HOST}:${process.env.LEHAVA_API_PORT}/caisd-rest/cnt?WC=userid%3D'${userT}'`,
       GET_TRANSVERSE_URL_FUNCTION: (categoryId: string) =>

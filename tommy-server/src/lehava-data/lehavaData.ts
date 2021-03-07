@@ -13,17 +13,21 @@ class LehavaData {
   }
 
   getAllData = async () => {
-    const networks = await this.getNetworks();
+    try {
+      const networks = await this.getNetworks();
 
-    for (const network of networks) {
-      network.services = await this.getNetworkServices(network.networkId);
+      for (const network of networks) {
+        network.services = await this.getNetworkServices(network.networkId);
 
-      for (const service of network.services) {
-        service.categories = await this.getCategories(network.networkId, service.serviceId)
+        for (const service of network.services) {
+          service.categories = await this.getCategories(network.networkId, service.serviceId)
+        }
       }
+      return networks;
+    } catch (err) {
+      console.log(err);
     }
 
-    return networks;
   };
 
   getNetworks = async (): Promise<Network[]> => {
@@ -48,7 +52,7 @@ class LehavaData {
     return networks;
   };
 
-  getNetworkServices = async (networkId: string): Promise<Service[]> => {
+  getNetworkServices = async (networkId: string): Promise<any> => {
     const servicesHeaders = {
       "Content-type": "application/json",
       Accept: "application/json",
@@ -64,14 +68,21 @@ class LehavaData {
     const servicesResponse =
       res.data.collection_z_networks_to_service.z_networks_to_service;
 
-    const services: Service[] = servicesResponse.map((element: any) => {
-      const serviceObject = element.service;
+    const handleLehavaResponse = (res: any) => {
       return {
-        serviceId: serviceObject["@id"],
-        serviceName: serviceObject["@COMMON_NAME"],
+        serviceId: res["@id"],
+        serviceName: res["@COMMON_NAME"],
       };
+    }
+    let services: any[] = [];
+
+    if (!Array.isArray(servicesResponse)) {
+      return [handleLehavaResponse(servicesResponse.service)]
+    }
+    return servicesResponse.map((element: any) => {
+      const serviceObject = element.service;
+      return handleLehavaResponse(serviceObject);
     });
-    return services;
   };
 
   getCategories = async (networkId: string, serviceId: string) => {

@@ -34,7 +34,7 @@ export class CardsListCategoriesComponent implements OnInit {
 
   getDisplayName(listItem: ServiceWithCategory) {
     const categories: String[] = this.lehavaDataService.splitCategory(listItem.category);
-    let displayName = listItem.serviceName + " > ";
+    let displayName = "";
     for (const category of categories) {
       displayName = displayName + category + " > ";
     }

@@ -18,6 +18,7 @@ LehavaDataRouter.get('/', async (req: Request, res: Response) => {
             MetadataCache.setRedis(config.redis.lehavaDataKey, config.redis.cachedReqsTTL, jsonData);
             return res.status(200).send({ status: "success", data: jsonData });
         } catch (err) {
+            console.log(err);
             logger(err);
             return res.status(400).send(err);
         }

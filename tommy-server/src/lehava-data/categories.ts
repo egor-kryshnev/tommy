@@ -124,7 +124,7 @@ export class CategoryService {
     );
   }
 
-  async getCategories(id: string, networkId: string) {
+  async getCategories(networkId: string, serviceId: string) {
     this.categoryList = [];
     const mapCategory = (
       el: CommonCategoryProperties,
@@ -160,8 +160,8 @@ export class CategoryService {
     ) =>
       "collection_pcat" in data ? appendIncidents(data) : appendRequests(data);
 
-    let categoriesOfIncidents = await this.getCategoriesOfIncidents(id);
-    let categoriesOfRequests = await this.getCategoriesOfRequests(id);
+    let categoriesOfIncidents = await this.getCategoriesOfIncidents(serviceId);
+    let categoriesOfRequests = await this.getCategoriesOfRequests(serviceId);
 
     handleDataSubscribe(categoriesOfIncidents.data);
     handleDataSubscribe(categoriesOfRequests.data);
