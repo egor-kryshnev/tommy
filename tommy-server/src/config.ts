@@ -141,26 +141,22 @@ ${file.base64}
   },
 
   chat: {
-    chatUrl: process.env.CHAT_URL || "",
+    chatUrl: process.env.CHAT_URL || "http://lehava-api-mock:8050/api/v1",
     hiChatUrl: process.env.HI_CHAT_URL || "http://lehava-api-mock:8050/api/v1",
     chatGroupUrl:
-      process.env.CHAT_GROUP_URL || "http://lehava-api-mock:8050/group",
+      process.env.CHAT_GROUP_URL || "groups",
     chatLoginUrl: process.env.CHAT_LOGIN_URL || "login",
     chatMessageUrl: process.env.CHAT_MESSAGE_URL || "chat",
     loginUser: process.env.LOGIN_USER || "tommy",
     loginPass: process.env.LOGIN_PASS || "Aa123456",
     getSupportUsers: async () => {
       try {
-        return (
-          (await SupportersList.getSupportersList()) ||
-          process.env.SUPPORT_USERS?.split(",") ||
-          []
-        );
+        return ( await SupportersList.getSupportersList() || process.env.SUPPORT_USERS?.split(",") || []);
       } catch (e) {
         return process.env.SUPPORT_USERS?.split(",") || [];
       }
     },
-    hiChatGroupTitle: (userT: string) => `Tom Support ${userT}`,
+    hiChatGroupTitle: (userT: string) => `${process.env.HI_CHAT_ROOM_NAME} ${userT}` || `Tommy Support Room ${userT}`,
     hiChatTaskMessageStructure: (
       taskId: string,
       taskDate: string,
@@ -168,6 +164,7 @@ ${file.base64}
     ) =>
       `היי, אשמח לעזרה בפנייה מספר: ${taskId}, שנפתחה ב ${taskDate}. ${taskLink ? `לינק בלהבה: ${taskLink}` : "לא קיים לינק בלהבה"
       }`,
-    announcement: "שעות המענה הן 08:30-17:30",
+      announcement: process.env.HI_ANNOUNCEMENT || 'שעות המענה הן 08:00-17:00'
+
   },
 };

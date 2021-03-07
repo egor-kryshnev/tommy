@@ -6,9 +6,8 @@ import session from "express-session";
 import cookieParser from "cookie-parser";
 import { config } from "./config";
 import { LehavaRouter } from "./lehava.router";
-import { HichatRouter } from "./hichat.router";
+import HichatRouter from './hichat/hichat.router'
 import LehavaDataRouter from "./lehava-data/lehavaData.router";
-
 import {
   userErrorHandler,
   serverErrorHandler,
