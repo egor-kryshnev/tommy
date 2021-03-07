@@ -47,6 +47,7 @@ export interface taskModel1 {
   "link": string;
   "type": string | object | boolean;
   "statusCode": string;
+  "lastTransferDate" : string;
 }
 
 export interface updatesModel {
@@ -100,7 +101,7 @@ export class ApigetService {
     .set('Content-type', 'application/json')
     .set('X-AccessKey', this.accessKey)
     .set('Accept', 'application/json')
-    .set('X-Obj-Attrs', 'status, summary, description, open_date, z_network, z_impact_service, group, web_url, type, active');
+    .set('X-Obj-Attrs', 'status, summary, description, open_date, z_network, z_impact_service, group, web_url, type, active, z_last_transfer_date');
 
   updatesHeaders = new HttpHeaders()
     .set('Content-type', 'application/json')
@@ -120,6 +121,12 @@ export class ApigetService {
     'Content-type': 'application/json',
     'Accept': 'application/json'
   })
+
+  getOpenConfig() {
+    return this.http.get(config.GET_HOMEPAGE_TUTORIAL_URL,
+      { withCredentials: true, headers: this.head }
+    );
+  }
 
   getNetworks() {
     this.networksByIdArray = [];
@@ -215,8 +222,8 @@ export class ApigetService {
     return this.http.put(config.UPDATE_TASK_URL_FUNCTION(taskType, taskId), config.GET_UPDATE_TASK_STATUS_BODY(taskType, taskStatus), { withCredentials: true, headers: this.head })
   }
 
-  getCategoryDescription(categoryId: string){
-    return this.http.get(config.GET_CATEGORY_KNOWLEDGE_ARTICLE(categoryId), 
+  getCategoryDescription(categoryId: string) {
+    return this.http.get(config.GET_CATEGORY_KNOWLEDGE_ARTICLE(categoryId),
       { withCredentials: true, headers: this.categoryDescriptionHeaders })
   }
 };

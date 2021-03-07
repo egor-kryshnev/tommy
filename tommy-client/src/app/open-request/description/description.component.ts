@@ -51,7 +51,6 @@ export class DescriptionComponent implements OnInit {
     if (this.authService.getPhone()) this.setPhoneFromShraga(this.authService.getPhone());
     this._eventEmmitter.dataStr.subscribe((data) => (this.userUUID = data));
     this.isPending = false;
-    console.log(this.postReqService.categoryId);
   }
 
   onReturn() {
@@ -89,7 +88,6 @@ export class DescriptionComponent implements OnInit {
         document.getElementById("subject")
       )).value;
       this.postReqService.location = this.locationInput;
-      console.log(this.phoneInput);
       this.postReqService.phoneNumber = this.phoneInput;
       this.postReqService.computerName = this.computerNameInput;
       this.postReqService.voip = this.voip;
@@ -110,7 +108,6 @@ export class DescriptionComponent implements OnInit {
 
   private finishRequestDialog(res: PostResponse) {
     const requestId = this.postReqService.getRequestId(res);
-    console.log(`request id: ${requestId}`);
     this.dialog
       .open(FinishRequestComponent, {
         width: "430px",
