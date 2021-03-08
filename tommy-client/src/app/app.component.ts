@@ -36,7 +36,6 @@ export class AppComponent {
 
   ngOnInit() {
     this.authService.loginSub().subscribe((res: any) => {
-      console.log(res);
       this.userName = res.name.firstName + " " + res.name.lastName;
       this.userT = res.adfsId.split("@")[0];
       this.phoneNumber = res.phoneNumbers;
@@ -45,7 +44,6 @@ export class AppComponent {
       res.phoneNumbers ? this._eventEmmiter.phoneSubject.next(res.phoneNumbers[0]) : this._eventEmmiter.phoneSubject.next('');
       this._eventEmmiter.sendUser(res);
       this._eventEmmiter.sendTuser(this.userT);
-      // console.log(this.phoneNumber[0]);
       this._eventEmmiter.sendPhone("this.phoneNumber[0]");
       this.apigetService.getUUID(this.userT).subscribe((res: any) => {
         if(res.collection_cnt['@TOTAL_COUNT'] == '0' ){
@@ -60,7 +58,6 @@ export class AppComponent {
         this.authService.setUUID(this.userUUID);
         this.postReqService.userT = this.userT;
         this.postReqService.userUUID = this.userUUID;
-        console.log(this.userUUID);
         this._eventEmmiter.sendMsg(this.userUUID);      
         this.updatePlaces() 
       });
@@ -102,7 +99,6 @@ export class AppComponent {
               value: res.collection_org.org.z_location['@COMMON_NAME']
             }
             this.specPlaceService.setPlace(this.initialPlace); 
-            console.log('user location:', this.initialPlace)
             if(this.initialPlace){
               if(this.placesList.includes(this.initialPlace)){
                 this.placesList = this.placesList.filter(place => place!== this.initialPlace);

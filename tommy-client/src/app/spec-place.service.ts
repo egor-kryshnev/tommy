@@ -5,7 +5,6 @@ import { Subject, from } from 'rxjs';
   providedIn: 'root'
 })
 export class SpecPlaceService {
-
   specPlace: model1={id: '', value:''};
   placesList: model1[];
   subject = new Subject<model1>();

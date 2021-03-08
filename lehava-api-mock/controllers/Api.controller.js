@@ -8,7 +8,6 @@ const hichatTools = require('../modules/hichat.tools')
 const {
     json
 } = require('express')
-const delay = require('../utils/delay');
 
 module.exports = (app) => {
 
@@ -25,14 +24,14 @@ module.exports = (app) => {
             });
         }
     });
-    // app.use(async (req, res, next) => {await delay(5000);next();})
+    // app.us)
     // GET all exceptions
-    app.get('/caisd-rest/z_pcat_to_network', async (req, res, next) => {await delay(5000);next();}, (req, res) => res.json(lehavaData.exceptions.incidents));
-    app.get('/caisd-rest/z_chgcat_to_network', async (req, res, next) => {await delay(5000);next();}, (req, res) => res.json(lehavaData.exceptions.requests));
+    app.get('/caisd-rest/z_pcat_to_network', (req, res) => res.json(lehavaData.exceptions.incidents));
+    app.get('/caisd-rest/z_chgcat_to_network', (req, res) => res.json(lehavaData.exceptions.requests));
 
 
     // GET all networks details
-    app.get('/caisd-rest/nr', async (req, res, next) => {await delay(5000);next();}, (req, res) => {
+    app.get('/caisd-rest/nr', (req, res) => {
         // if (validator.allNetworksWCValidator(req)) {
             res.json(lehavaData.all_networks);
         // } else {
@@ -55,7 +54,7 @@ module.exports = (app) => {
     
 
      // GET all location by Organization uuid
-     app.get('/caisd-rest/org', async (req, res, next) => {await delay(5000);next();}, (req, res) => {
+     app.get('/caisd-rest/org', (req, res) => {
          console.log('organization location:', lehavaData.organizations)
          res.json(lehavaData.organizations);
      });
@@ -72,7 +71,7 @@ module.exports = (app) => {
     });
 
     // GET all service PROBLEM categories by service's unique id
-    app.get('/caisd-rest/pcat', async (req, res, next) => {await delay(5000);next();}, (req, res) => {
+    app.get('/caisd-rest/pcat', (req, res) => {
         if (validator.categoriesValidator(req)) {
             res.json(lehavaData.problemCategories[req.query.WC.split("'")[1] - 1]);
         } else {
@@ -102,7 +101,7 @@ module.exports = (app) => {
     });
 
     // GET all service REQUEST categories by service's unique id
-    app.get('/caisd-rest/chgcat', async (req, res, next) => {await delay(5000);next();}, (req, res) => {
+    app.get('/caisd-rest/chgcat', (req, res) => {
         if (validator.categoriesValidator(req)) {
             res.json(lehavaData.requestsCategories[req.query.WC.split("'")[1] - 1]);
         } else {
@@ -116,7 +115,6 @@ module.exports = (app) => {
     // Lehava | GET Supporters List
     app.get('/caisd-rest/cnt', async (req, res) => {
         if (validator.isOrganization(req)) {
-            await delay(5000);
             console.log('organizations:', lehavaData.users[0].data);
             res.json(lehavaData.users[0].data);
         }

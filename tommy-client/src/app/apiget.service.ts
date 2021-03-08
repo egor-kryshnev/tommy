@@ -139,8 +139,6 @@ export class ApigetService {
     return this.http.get(config.GET_NETWORKS_URL,
       { withCredentials: true, headers: this.head }
     );
-    //console.log(this.networksByIdArray);
-    //return this.networksByIdArray;
   }
 
   getUUID(UUID) {

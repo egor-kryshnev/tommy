@@ -22,7 +22,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.setGreeting(moment());
-    console.log()
   }
 
   onHome() {

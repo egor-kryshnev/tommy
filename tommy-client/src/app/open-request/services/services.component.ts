@@ -64,7 +64,6 @@ export class ServicesComponent implements OnInit {
     this.filterServices = this.services.filter((service: model1) => {
       return service.value.toLowerCase().includes(this.searchText);
     });
-    console.log(this.filterServices);
   }
 
   stripWhiteSpaces(str) {

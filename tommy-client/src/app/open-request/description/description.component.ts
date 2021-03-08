@@ -9,24 +9,24 @@ import { MatDialog } from "@angular/material/dialog";
 import { FinishRequestComponent } from "../finish-request/finish-request.component";
 import { AlertComponent } from "../alert/alert.component";
 import { KnowledgeArticleComponent } from "../knowledge-article/knowledge-article.component";
-import { config } from '../../../environments/config.dev';
-import {SpecPlaceService} from '../../spec-place.service'
-import { Subscription } from 'rxjs'
+import { config } from "../../../environments/config.dev";
+import { SpecPlaceService } from "../../spec-place.service";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-description",
   templateUrl: "./description.component.html",
   styleUrls: ["./description.component.css"],
 })
-export class DescriptionComponent implements OnInit, OnDestroy {
+export class DescriptionComponent implements OnInit {
   locationWarning = "";
   phoneWarning = "";
   computerNameWarning = "";
   locationInput: string = "";
   phoneInput: string = "";
   placesList: model1[] = [];
-  initialPlace: model1 ={id: '', value:''};
-  place: string='';
+  initialPlace: model1 = { id: "", value: "" };
+  place: string = "";
   voip: string = "";
   computerNameInput: string = "";
   services: model1[];
@@ -36,7 +36,7 @@ export class DescriptionComponent implements OnInit, OnDestroy {
   isPending: boolean = false;
   file: { name: string; type: string; base64: string } = undefined;
   organizationUUID: string;
-  subscription:Subscription;
+  subscription: Subscription;
 
   constructor(
     private router: Router,
@@ -47,9 +47,9 @@ export class DescriptionComponent implements OnInit, OnDestroy {
     public categoryService: CategoryService,
     public dialog: MatDialog,
     public knowledgeArticleDialog: MatDialog,
-    private apiGetService: ApigetService, 
+    private apiGetService: ApigetService,
     private specPlaceService: SpecPlaceService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     // this.isKnowledgeArticle();
@@ -60,24 +60,15 @@ export class DescriptionComponent implements OnInit, OnDestroy {
       this.authService.setUserShraga(data)
     );
     this.userUUID = this.authService.getUuid();
-    if (this.authService.getPhone()) this.setPhoneFromShraga(this.authService.getPhone());
+    if (this.authService.getPhone())
+      this.setPhoneFromShraga(this.authService.getPhone());
     this._eventEmmitter.dataStr.subscribe((data) => {
-      this.userUUID = data
-
-
+      this.userUUID = data;
     });
-    console.log(this.userUUID);
-     this.subscription = this.specPlaceService.subject.subscribe((specPlace)=>{
-      this.updatePlaces();
-    })
+    this.place = this.specPlaceService.specPlace.value;
+    this.updatePlaces();
     this.isPending = false;
-    console.log(this.postReqService.categoryId);
   }
-
-  ngOnDestroy(){
-    this.subscription.unsubscribe();
-  }
-
 
   onReturn() {
     this.router.navigate(["/categories", this.postReqService.serviceId], {
@@ -92,14 +83,15 @@ export class DescriptionComponent implements OnInit, OnDestroy {
   handleFileUpload(event: any) {
     const file = event.target.files[0];
     if (file.size > this.getFileSizeLimit()) {
-      document.getElementById("files")['value'] = "";
-      this.dialog
-        .open(AlertComponent, {
-          width: "330px",
-          height: "225px",
-          data: { title: 'הקובץ שנבחר גדול מדי', content: `${this.getFileSizeLimit() / 1048576}  MB הגבלת הגודל היא` },
-        });
-
+      document.getElementById("files")["value"] = "";
+      this.dialog.open(AlertComponent, {
+        width: "330px",
+        height: "225px",
+        data: {
+          title: "הקובץ שנבחר גדול מדי",
+          content: `${this.getFileSizeLimit() / 1048576}  MB הגבלת הגודל היא`,
+        },
+      });
     } else {
       const reader = new FileReader();
       reader.readAsDataURL(file);
@@ -130,22 +122,21 @@ export class DescriptionComponent implements OnInit, OnDestroy {
         document.getElementById("subject")
       )).value;
       this.postReqService.location = this.locationInput;
-      console.log(this.phoneInput);
       this.postReqService.phoneNumber = this.phoneInput;
       this.postReqService.computerName = this.computerNameInput;
       this.postReqService.voip = this.voip;
       this.postReqService.file = this.file;
-      console.log(this.place)
-      this.postReqService.z_location = this.place ==='' ? this.place : this.getPlaceId(this.place);
+      this.postReqService.z_location =
+        this.place === "" ? this.place : this.getPlaceId(this.place);
       this.file
         ? this.postReqService
-          .postWithFileAppeal()
-          .subscribe((res: PostResponse) => {
-            this.finishRequestDialog(res);
-          })
+            .postWithFileAppeal()
+            .subscribe((res: PostResponse) => {
+              this.finishRequestDialog(res);
+            })
         : this.postReqService.postAppeal().subscribe((res: PostResponse) => {
-          this.finishRequestDialog(res);
-        });
+            this.finishRequestDialog(res);
+          });
     } else {
       this.inputPlaceholderChanger();
     }
@@ -153,7 +144,6 @@ export class DescriptionComponent implements OnInit, OnDestroy {
 
   private finishRequestDialog(res: PostResponse) {
     const requestId = this.postReqService.getRequestId(res);
-    console.log(`request id: ${requestId}`);
     this.dialog
       .open(FinishRequestComponent, {
         width: "430px",
@@ -188,9 +178,8 @@ export class DescriptionComponent implements OnInit, OnDestroy {
     this.locationInput = location;
   }
 
-  setPlace(newPlace: string){
-    this.place = newPlace; 
-    console.log(this.place)
+  setPlace(newPlace: string) {
+    this.place = newPlace;
   }
 
   inputPlaceholderChanger() {
@@ -243,26 +232,28 @@ export class DescriptionComponent implements OnInit, OnDestroy {
   }
 
   getPlaceId(placeName: string) {
-    const placeSelected = this.placesList.find(place => {
+    const placeSelected = this.placesList.find((place) => {
       return place?.value === placeName;
     });
     return placeSelected.id;
   }
 
   updatePlaces() {
-   this.placesList = this.specPlaceService.placesList ? this.specPlaceService.placesList: []; 
-   this.initialPlace = {
-     id: this.specPlaceService.specPlace.id,
-     value: this.specPlaceService.specPlace.value,
-
-    }
-  //  if(this.initialPlace){
-  //   if(this.placesList.includes(this.initialPlace)){
-  //     this.placesList = this.placesList.filter(place => place!== this.initialPlace);
-  //   }
-  //   this.placesList.unshift(this.initialPlace)
-  // }
-  this.initialPlace.value ? this.place = this.initialPlace.value : this.place='';
-
+    this.placesList = this.specPlaceService.placesList
+      ? this.specPlaceService.placesList
+      : [];
+    this.initialPlace = {
+      id: this.specPlaceService.specPlace.id,
+      value: this.specPlaceService.specPlace.value,
+    };
+    //  if(this.initialPlace){
+    //   if(this.placesList.includes(this.initialPlace)){
+    //     this.placesList = this.placesList.filter(place => place!== this.initialPlace);
+    //   }
+    //   this.placesList.unshift(this.initialPlace)
+    // }
+    this.initialPlace.value
+      ? (this.place = this.initialPlace.value)
+      : (this.place = "");
   }
 }
