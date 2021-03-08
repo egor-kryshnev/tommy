@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { model1, ApigetService } from "../../apiget.service";
 import { AuthService } from "../../auth.service";
@@ -11,7 +11,6 @@ import { AlertComponent } from "../alert/alert.component";
 import { KnowledgeArticleComponent } from "../knowledge-article/knowledge-article.component";
 import { config } from "../../../environments/config.dev";
 import { SpecPlaceService } from "../../spec-place.service";
-import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-description",
@@ -36,7 +35,6 @@ export class DescriptionComponent implements OnInit {
   isPending: boolean = false;
   file: { name: string; type: string; base64: string } = undefined;
   organizationUUID: string;
-  subscription: Subscription;
 
   constructor(
     private router: Router,
@@ -66,7 +64,7 @@ export class DescriptionComponent implements OnInit {
       this.userUUID = data;
     });
     this.place = this.specPlaceService.specPlace.value;
-    this.updatePlaces();
+      this.updatePlaces();
     this.isPending = false;
   }
 
