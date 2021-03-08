@@ -128,12 +128,6 @@ export class TasksListComponent {
     return `${this.getNetwork(task)} - ${this.getService(task)}`;
   }
 
-  getGroup(task: taskModel1): string | boolean {
-    const taskGroup = task.group;
-    if (taskGroup && taskGroup !== null) {
-      return ` ${taskGroup}`;
-    }
-    return false;
-  }
+
 
 }
