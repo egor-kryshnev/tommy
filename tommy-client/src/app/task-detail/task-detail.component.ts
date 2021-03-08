@@ -12,7 +12,6 @@ export class TaskDetailDialog implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public task: any) { }
 
   ngOnInit(): void {
-    console.log(this.task);
   }
 
   getDesc(): string {

@@ -1,12 +1,13 @@
-const lehavaData = require("../config/lehavaData");
-const hiData = require("../config/hichat.credentials");
-const validator = require("../validators/mainValidator");
-const arraysearch = require("../modules/arraysearch");
-const headerValidators = require("../routes/api.router");
-const Call = require("../modules/newCall");
-const hichatTools = require("../modules/hichat.tools");
-const { json } = require("express");
-const delay = require("../utils/delay");
+const lehavaData = require('../config/lehavaData')
+const hiData = require('../config/hichat.credentials')
+const validator = require('../validators/mainValidator')
+const arraysearch = require('../modules/arraysearch')
+const headerValidators = require('../routes/api.router')
+const Call = require('../modules/newCall');
+const hichatTools = require('../modules/hichat.tools')
+const {
+    json
+} = require('express')
 
 module.exports = (app) => {
   // Header Values Middleware-Validator
@@ -40,18 +41,24 @@ module.exports = (app) => {
     //         error: "WC Parameter not set properly"
     //     });
     // }
-  });
+  });  
 
-  // GET all locations details
-  app.get("/caisd-rest/loc", (req, res) => {
-    // if (validator.allLocationsWCValidator(req)) {
+    // GET all locations details
+    app.get('/caisd-rest/loc', (req, res) => {
+        // if (validator.allLocationsWCValidator(req)) {
+            res.json(lehavaData.all_locations);
+        // } else {
+            // res.status(400).send({
+                // error: "WC Parameter not set properly"
+            // });
+        })
+    
 
-    res.json(lehavaData.all_locations);
-    // } else {
-    // res.status(400).send({
-    // error: "WC Parameter not set properly"
-    // });
-  });
+     // GET all location by Organization uuid
+     app.get('/caisd-rest/org', (req, res) => {
+         console.log('organization location:', lehavaData.organizations)
+         res.json(lehavaData.organizations);
+     });
 
   // GET all network's services by network's unique id
   app.get("/caisd-rest/z_networks_to_service", (req, res) => {
@@ -108,23 +115,24 @@ module.exports = (app) => {
 
   // Lehava | GET user Unique id by T username
   // Lehava | GET Supporters List
-  app.get("/caisd-rest/cnt", (req, res) => {
-    if (validator.isUserSupporter(req)) {
-      res.json(lehavaData.supporters);
-    } else {
-      if (validator.userExistsValidator(req)) {
-        res.json(
-          lehavaData.users[
-            arraysearch("T", req.query.WC.split("'")[1], lehavaData.users)
-          ].data
-        );
-      } else {
-        res.status(400).send({
-          error: `User:${req.query.WC.split("'")[1]} Doesn't Exist`,
-        });
-      }
+  app.get('/caisd-rest/cnt', async (req, res) => {
+    if (validator.isOrganization(req)) {
+        await delay(5000);
+        console.log('organizations:', lehavaData.users[0].data);
+        res.json(lehavaData.users[0].data);
     }
-  });
+    if (validator.isUserSupporter(req)) {
+        res.json(lehavaData.supporters);
+    } else {
+        if (validator.userExistsValidator(req)) {
+            res.json(lehavaData.users[arraysearch("T", req.query.WC.split("'")[1], lehavaData.users)].data);
+        } else {
+            res.status(400).send({
+                error: `User:${req.query.WC.split("'")[1]} Doesn't Exist`
+            });
+        }
+    }
+    });
 
   // GET user active and non-active calls by user unique id
   app.get("/caisd-rest/cr", (req, res) => {
