@@ -10,14 +10,18 @@ import { MatDialog } from '@angular/material/dialog';
 import { LehavaUserComponent } from './lehava-user/lehava-user.component';
 import {SpecPlaceService} from './spec-place.service'
 import { isArray } from 'util';
+import { LehavaDataService } from './lehava-data.service';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"],
 })
+
 export class AppComponent {
-  title = 'tommy';
+  title = "tommy";
   userName: string;
   messages: any[] = [];
   openChat: boolean = false;
@@ -32,28 +36,38 @@ export class AppComponent {
   @Output() exampleOutput = new EventEmitter<string>();
   userUUID: string;
 
-  constructor(@Inject(DOCUMENT) document, public apigetService: ApigetService, private router: Router, private route: ActivatedRoute, private http: HttpClient, public authService: AuthService, public _eventEmmiter: EventEmiterService, private postReqService: PostReqService,public dialog: MatDialog, private specPlaceService: SpecPlaceService) { }
+  constructor(
+    @Inject(DOCUMENT) document,
+    public apigetService: ApigetService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private http: HttpClient,
+    public authService: AuthService,
+    public _eventEmmiter: EventEmiterService,
+    private postReqService: PostReqService,
+    public lehavaDataService: LehavaDataService,
+    public dialog: MatDialog,
+    private specPlaceService: SpecPlaceService
+  ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.authService.loginSub().subscribe((res: any) => {
       this.userName = res.name.firstName + " " + res.name.lastName;
       this.userT = res.adfsId.split("@")[0];
       this.phoneNumber = res.phoneNumbers;
       this.authService.setUser(this.userT);
       this.authService.setUserShraga(res);
-      res.phoneNumbers ? this._eventEmmiter.phoneSubject.next(res.phoneNumbers[0]) : this._eventEmmiter.phoneSubject.next('');
+      res.phoneNumbers
+        ? this._eventEmmiter.phoneSubject.next(res.phoneNumbers[0])
+        : this._eventEmmiter.phoneSubject.next("");
       this._eventEmmiter.sendUser(res);
       this._eventEmmiter.sendTuser(this.userT);
       this._eventEmmiter.sendPhone("this.phoneNumber[0]");
       this.apigetService.getUUID(this.userT).subscribe((res: any) => {
-        if(res.collection_cnt['@TOTAL_COUNT'] == '0' ){
-          this.openDialog();
-        }
         if (Array.isArray(res.collection_cnt.cnt)) {
-          this.userUUID = res.collection_cnt.cnt[1]['@id'];
-        }
-        else {
-          this.userUUID = res.collection_cnt.cnt['@id'];
+          this.userUUID = res.collection_cnt.cnt[1]["@id"];
+        } else {
+          this.userUUID = res.collection_cnt.cnt["@id"];
         }
         this.authService.setUUID(this.userUUID);
         this.postReqService.userT = this.userT;
@@ -63,20 +77,15 @@ export class AppComponent {
       });
       this.authService.setPhone(this.phoneNumber);  
     });
+    this.apigetService.getOpenConfig().subscribe((res: any) => {
+      this.openConf = res;
+    });
+    this.lehavaDataService.setLehavaData();
     // console.clear();
   }
 
-
   onHome() {
-    this.router.navigateByUrl('/', { relativeTo: this.route });
-  }
-
-  openDialog(){
-    this.dialog.open(LehavaUserComponent, {
-      height: '250px',
-      width: '430px',
-      disableClose: true 
-    });
+    this.router.navigateByUrl("/", { relativeTo: this.route });
   }
 
   updatePlaces(){

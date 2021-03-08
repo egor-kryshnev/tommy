@@ -6,7 +6,8 @@ import session from "express-session";
 import cookieParser from "cookie-parser";
 import { config } from "./config";
 import { LehavaRouter } from "./lehava.router";
-import { HichatRouter } from "./hichat.router";
+import HichatRouter from './hichat/hichat.router'
+import LehavaDataRouter from "./lehava-data/lehavaData.router";
 import {
   userErrorHandler,
   serverErrorHandler,
@@ -57,8 +58,10 @@ export class Server {
       });
       next();
     });
+    this.app.get("/openconf", AuthenticationMiddleware.requireAuth, (_req: express.Request, res: express.Response) => res.json(config.openConf));
     this.app.use("/api", AuthenticationMiddleware.requireAuth, LehavaRouter);
     this.app.use("/hichat", AuthenticationMiddleware.requireAuth, HichatRouter);
+    this.app.use("/lehavadata", AuthenticationMiddleware.requireAuth, LehavaDataRouter);
     this.initializeErrorHandler();
     this.app.get(
       "/user",
@@ -128,8 +131,8 @@ export class Server {
 
     const RedisStore = connectRedis(session);
     const redisClient: redis.RedisClient = redis.createClient(config.redis.host);
-    this.app.use(bodyParser.json({ limit: '100mb' }));
-    this.app.use(bodyParser.urlencoded({ limit: '100mb', extended: true }));
+    this.app.use(bodyParser.json());
+    this.app.use(bodyParser.urlencoded({ extended: true }));
     this.app.use(cookieParser());
     this.app.use(
       session({

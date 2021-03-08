@@ -6,6 +6,7 @@ import { IpMiddleware } from "./utils/middlewares/ip-middleware";
 import { config } from "./config";
 import { logger } from "./utils/logger-client";
 import MetadataCache from './metadata-cache/metadataCache'
+import HichatManager from "./hichat/hichat.manager";
 
 const LehavaRouter: Router = Router();
 
@@ -27,8 +28,12 @@ LehavaRouter.post("/file/*", async (req: Request, res: Response) => {
         url,
         params: req.params,
         headers: apiHeaders,
-        data: {[req.body.postType]: req.body[req.body.postType], fileName: req.body.file.name },
-      }
+        data: config.lehava_api.getFormDataBody(
+          req.body.postType,
+          req.body[req.body.postType],
+          req.body.file
+        ),
+      },
     });
 
     const apiRes = await axios({

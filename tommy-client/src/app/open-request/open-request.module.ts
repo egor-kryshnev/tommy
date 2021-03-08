@@ -6,7 +6,6 @@ import { DescriptionComponent } from './description/description.component';
 import { CategoryComponent } from './category/category.component';
 import { SubcategoryComponent } from './subcategory/subcategory.component';
 import { FinishRequestComponent } from './finish-request/finish-request.component';
-import { AlertComponent } from './alert/alert.component';
 import { CardsListComponent } from './cards-list/cards-list.component';
 import { ReturnButtonComponent } from './return-button/return-button.component';
 import { PageTopTitleComponent } from './page-top-title/page-top-title.component';
@@ -24,10 +23,9 @@ import { AppRoutingModule } from '../app-routing.module';
 import { TransverseIncidentDialog } from './transverse-incident/transverse-incident.component';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared.module';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { KnowledgeArticleComponent } from './knowledge-article/knowledge-article.component';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatSelectModule} from '@angular/material/select';
+import { CardsListCategoriesComponent } from './cards-list-categories/cards-list-categories.component';
 
 
 
@@ -39,12 +37,12 @@ import {MatSelectModule} from '@angular/material/select';
     CategoryComponent,
     SubcategoryComponent,
     FinishRequestComponent,
-    AlertComponent,
     CardsListComponent,
     ReturnButtonComponent,
     PageTopTitleComponent,
     TransverseIncidentDialog,
-    KnowledgeArticleComponent
+    KnowledgeArticleComponent,
+    CardsListCategoriesComponent
   ],
   imports: [
     CommonModule,
@@ -59,9 +57,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatDialogModule,
     FormsModule,
     SharedModule,
-    MatTooltipModule,
-    MatFormFieldModule,
-    MatSelectModule
+    MatTooltipModule
   ],
   exports: [
     NetworksComponent,
@@ -70,7 +66,6 @@ import {MatSelectModule} from '@angular/material/select';
     CategoryComponent,
     SubcategoryComponent,
     FinishRequestComponent,
-    AlertComponent,
     CardsListComponent,
     ReturnButtonComponent,
     PageTopTitleComponent
