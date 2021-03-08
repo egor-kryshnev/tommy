@@ -160,7 +160,7 @@ export class PostReqService {
         "@id": "1603",
       },
       z_location: {
-        "@id": this.z_location
+        "@id": this.location
       } 
     };
   }

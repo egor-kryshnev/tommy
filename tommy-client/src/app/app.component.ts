@@ -27,6 +27,7 @@ export class AppComponent {
   openChat: boolean = false;
   phoneNumber: string[];
   userT: string;
+  openConf: any = {};
   placesList: model1[] = [];
   initialPlace: model1;
   organizationUUID: string;

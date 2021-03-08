@@ -50,7 +50,6 @@ export class TaskDetailDialog implements OnInit {
   getLastTransferDate(): string | boolean {
     const lastTransferDate = this.task.lastTransferDate;
     if (lastTransferDate && lastTransferDate !== null) {
-      console.log('lastTransferDate', lastTransferDate);
       
       return `תאריך עדכון אחרון: ${lastTransferDate}`;
     }

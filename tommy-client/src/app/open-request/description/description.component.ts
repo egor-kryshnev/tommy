@@ -126,7 +126,7 @@ export class DescriptionComponent implements OnInit {
       this.postReqService.computerName = this.computerNameInput;
       this.postReqService.voip = this.voip;
       this.postReqService.file = this.file;
-      this.postReqService.z_location =
+      this.postReqService.location =
         this.place === "" ? this.place : this.getPlaceId(this.place);
       this.file
         ? this.postReqService

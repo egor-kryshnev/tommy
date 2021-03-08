@@ -154,7 +154,7 @@ textarea:focus {
   text-decoration: none;
   background: #3f9c67;
   padding: 20px;
-  margin-top: 5.2vh;
+  margin-top: 1vh;
   font-family: Rubik;
   width: 20vh;
   border-radius: 50px;
@@ -247,7 +247,7 @@ input::-webkit-inner-spin-button {
   direction: rtl;
   border: solid 1px #afc514;
   align-items: center;
-
+  cursor: pointer;
 }
 
 #places-div{
