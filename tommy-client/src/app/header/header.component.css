@@ -86,7 +86,5 @@ span {cursor: context-menu;}
     height: 30px;
     position: absolute;
     left: 110px;
-    cursor: pointer;
-    top: 20px;
-    
+    cursor: pointer;    
 }
