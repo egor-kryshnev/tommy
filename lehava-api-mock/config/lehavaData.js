@@ -2273,7 +2273,8 @@ module.exports = {
                         },
                         "active": {
                             "@REL_ATTR": "0"
-                        }
+                        }, 
+                        "z_last_transfer_date":1577822500,
                     },
                     {
                         "@id": "1013352",
@@ -2300,7 +2301,7 @@ module.exports = {
                         },
                         "active": {
                             "@REL_ATTR": "0"
-                        }
+                        }, 
                     }]
                 }
             },
@@ -2329,7 +2330,8 @@ module.exports = {
                         "type": "C",
                         "active": {
                             "@REL_ATTR": "0"
-                        }
+                        }, 
+                        "z_last_transfer_date":1577822500,
                     },
                     {
                         "@id": "1023351",
@@ -2354,7 +2356,7 @@ module.exports = {
                         "type": "C",
                         "active": {
                             "@REL_ATTR": "0"
-                        }
+                        }, 
                     },
                     {
                         "@id": "1322251",
@@ -2413,7 +2415,8 @@ module.exports = {
                         },
                         "active": {
                             "@REL_ATTR": "1"
-                        }
+                        }, 
+                        "z_last_transfer_date":1577822500,
                     },
                     {
                         "@id": "1013351",
@@ -2440,7 +2443,7 @@ module.exports = {
                         },
                         "active": {
                             "@REL_ATTR": "1"
-                        }
+                        }, 
                     },
                     {
                         "@id": "1013352",
@@ -2467,7 +2470,8 @@ module.exports = {
                         },
                         "active": {
                             "@REL_ATTR": "1"
-                        }
+                        }, 
+                        "z_last_transfer_date":1577822500,
                     },
                     {
                         "@id": "1013353",
@@ -2494,7 +2498,7 @@ module.exports = {
                         },
                         "active": {
                             "@REL_ATTR": "1"
-                        }
+                        }, 
                     },
                     {
                         "@id": "1013354",
@@ -2521,7 +2525,8 @@ module.exports = {
                         },
                         "active": {
                             "@REL_ATTR": "1"
-                        }
+                        }, 
+                        "z_last_transfer_date":1577822500,
                     },
                     {
                         "@id": "1013355",
@@ -2548,7 +2553,7 @@ module.exports = {
                         },
                         "active": {
                             "@REL_ATTR": "1"
-                        }
+                        }, 
                     },
                     {
                         "@id": "1013356",
@@ -2575,7 +2580,8 @@ module.exports = {
                         },
                         "active": {
                             "@REL_ATTR": "0"
-                        }
+                        }, 
+                        "z_last_transfer_date":1577822500,
                     }
                     ]
                 }
@@ -2605,7 +2611,8 @@ module.exports = {
                         "type": "C",
                         "active": {
                             "@REL_ATTR": "1"
-                        }
+                        }, 
+                        "z_last_transfer_date":1577822500,
                     },
                     {
                         "@id": "1013362",
