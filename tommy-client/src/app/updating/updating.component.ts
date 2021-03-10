@@ -32,7 +32,7 @@ export class UpdatingComponent implements OnInit {
         if (Array.isArray(Response)) {
           Response.map((update: any) => {
             const formatted_date = moment(update.open_date * 1000).format(
-              "hh:mm · DD.MM.YYYY"
+              "HH:mm · DD.MM.YYYY"
             );
             this.updatesArray.push(
               {
@@ -47,7 +47,7 @@ export class UpdatingComponent implements OnInit {
         } else {
           let updateDate = new Date(Response.open_date * 1000);
           const formatted_date = moment(Response.open_date * 1000).format(
-            "hh:mm · DD.MM.YYYY"
+            "HH:mm · DD.MM.YYYY"
           );
           this.updatesArray.push(
             {
