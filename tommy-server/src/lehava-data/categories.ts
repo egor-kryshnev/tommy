@@ -166,14 +166,14 @@ export class CategoryService {
     handleDataSubscribe(categoriesOfIncidents.data);
     handleDataSubscribe(categoriesOfRequests.data);
 
-    const exceptionToCategoryId = (exception: Exception) =>
-      exception.category["@id"];
+    const exceptionToCategory = (exception: Exception) =>
+      ({id: exception.category["@id"], name: exception.category["@COMMON_NAME"]});
 
-    const removeFromCategoryList = (exceptionsArray: Array<string>) =>
+    const removeFromCategoryList = (exceptionsArray: Array<any>) =>
     (this.categoryList = this.categoryList.filter(
       (category: Category) =>
         !exceptionsArray.some(
-          (exceptionId: string) => exceptionId === category.id
+          (exception: any) => exception.id === category.id && exception.name === category.name
         )
     ));
 
@@ -182,7 +182,7 @@ export class CategoryService {
         data.collection_z_pcat_to_network.z_pcat_to_network
         ? removeFromCategoryList(
           toArray(data.collection_z_pcat_to_network.z_pcat_to_network).map(
-            exceptionToCategoryId
+            exceptionToCategory
           )
         )
         : null;
@@ -193,7 +193,7 @@ export class CategoryService {
         ? removeFromCategoryList(
           toArray(
             data.collection_z_chgcat_to_network.z_chgcat_to_network
-          ).map(exceptionToCategoryId)
+          ).map(exceptionToCategory)
         )
         : null;
 

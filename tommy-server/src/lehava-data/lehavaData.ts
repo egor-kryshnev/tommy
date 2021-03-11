@@ -23,12 +23,19 @@ class LehavaData {
           service.categories = await this.getCategories(network.networkId, service.serviceId)
         }
       }
-      return networks;
+      return this.removeNoCatergoriesServices(networks)
     } catch (err) {
       console.log(err);
     }
-
   };
+
+  removeNoCatergoriesServices = (networks: Network[]) => {
+    return networks.map((network: Network) => {
+      network.services = network.services.filter( (service: Service) => service.categories.length > 0 )
+      return network;
+    })
+  }
+
 
   getNetworks = async (): Promise<Network[]> => {
     const networksHeaders = {
