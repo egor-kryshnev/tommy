@@ -41,6 +41,8 @@ export class PostReqService {
   voip: string;
   categoryId: string;
   file: { name: string; type: string; base64: string };
+  z_location: string;
+  
   public isIncident: boolean = true;
 
   postAppeal() {
@@ -159,7 +161,9 @@ export class PostReqService {
       impact: {
         "@id": "1603",
       },
-      z_location: this.location
+      z_location: {
+        "@id": this.z_location
+      } 
     };
   }
 }
