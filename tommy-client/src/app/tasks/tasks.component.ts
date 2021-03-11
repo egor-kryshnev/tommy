@@ -57,9 +57,9 @@ export class TasksComponent implements OnInit {
   jsonParser(taskObject) {
     if (taskObject) {
       const formatted_date = moment(taskObject.open_date * 1000).format(
-        "hh:mm DD.MM.YYYY"
+        "HH:mm DD.MM.YYYY"
       );
-      const formatted_transfer_date = moment(taskObject.z_last_transfer_date * 1000).format("hh:mm DD.MM.YYYY");
+      const formatted_transfer_date =taskObject.z_last_transfer_date ? moment(taskObject.z_last_transfer_date * 1000).format("HH:mm DD.MM.YYYY"): null;
       return {
         serial_id: taskObject ? taskObject["@id"] : false,
         id: taskObject ? taskObject["@COMMON_NAME"] : false,

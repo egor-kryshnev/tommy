@@ -159,9 +159,7 @@ export class PostReqService {
       impact: {
         "@id": "1603",
       },
-      z_location: {
-        "@id": this.location
-      } 
+      z_location: this.location
     };
   }
 }

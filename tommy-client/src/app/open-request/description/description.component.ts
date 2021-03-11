@@ -50,7 +50,7 @@ export class DescriptionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.isKnowledgeArticle();
+    this.isKnowledgeArticle();
     const id = this.route.snapshot.paramMap.get("id");
     const selectedCategories = this.categoryService.getSelectedCategoryString();
     this.postReqService.descriptionCategory = selectedCategories;
@@ -124,8 +124,7 @@ export class DescriptionComponent implements OnInit {
       this.postReqService.computerName = this.computerNameInput;
       this.postReqService.voip = this.voip;
       this.postReqService.file = this.file;
-      this.postReqService.location =
-        this.place === "" ? this.place : this.getPlaceId(this.place);
+      this.postReqService.location = this.place;
       this.file
         ? this.postReqService
             .postWithFileAppeal()
@@ -229,13 +228,6 @@ export class DescriptionComponent implements OnInit {
       });
   }
 
-  getPlaceId(placeName: string) {
-    const placeSelected = this.placesList.find((place) => {
-      return place?.value === placeName;
-    });
-    return placeSelected.id;
-  }
-
   updatePlaces() {
     this.placesList = this.specPlaceService.placesList
       ? this.specPlaceService.placesList
@@ -244,12 +236,6 @@ export class DescriptionComponent implements OnInit {
       id: this.specPlaceService.specPlace.id,
       value: this.specPlaceService.specPlace.value,
     };
-    //  if(this.initialPlace){
-    //   if(this.placesList.includes(this.initialPlace)){
-    //     this.placesList = this.placesList.filter(place => place!== this.initialPlace);
-    //   }
-    //   this.placesList.unshift(this.initialPlace)
-    // }
     this.initialPlace.value
       ? (this.place = this.initialPlace.value)
       : (this.place = "");
