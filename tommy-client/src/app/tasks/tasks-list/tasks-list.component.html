@@ -1,7 +1,8 @@
 <div *ngIf="tasks">
     <div *ngFor="let task of tasks">
         <div class="task">
-            <img class="chatImg" src="{{ chatIcon }}" (click)="sendTaskSumMsg(task)" matTooltip="לתמיכה לחץ כאן">
+            <!-- <img class="chatImg" src="{{ chatIcon }}" (click)="sendTaskSumMsg(task)" matTooltip="לתמיכה לחץ כאן"> -->
+            <img class="chatImg" src="{{ chatIcon }}" (click)="openTaskMsgDialog(task)" matTooltip="לתמיכה לחץ כאן">
             <div *ngIf="isActiveTask(task); else nonActive">
                 <div *ngIf="task.status == 'טופל'; else yetTreated">
                     <div *ngIf="getTaskType(task) == 'chg'; else incident">
