@@ -64,7 +64,7 @@ export class DescriptionComponent implements OnInit {
       this.userUUID = data;
     });
     this.place = this.specPlaceService.specPlace.value;
-      this.updatePlaces();
+    this.updatePlaces();
     this.isPending = false;
   }
 
