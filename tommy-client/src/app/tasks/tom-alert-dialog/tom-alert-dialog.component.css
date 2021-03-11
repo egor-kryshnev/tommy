@@ -46,5 +46,5 @@
 }
 
 :host ::ng-deep .mat-checkbox-inner-container {
-  margin-left: 10px !important;
+  margin-left: 0.8rem !important;
 }

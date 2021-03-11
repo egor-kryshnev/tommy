@@ -125,7 +125,7 @@ export class DescriptionComponent implements OnInit {
       this.postReqService.voip = this.voip;
       this.postReqService.file = this.file;
       this.postReqService.z_location =
-      this.place === "" ? this.place : this.getPlaceId(this.place);
+        this.place === "" ? this.place : this.getPlaceId(this.place);
       this.file
         ? this.postReqService
             .postWithFileAppeal()
@@ -219,8 +219,12 @@ export class DescriptionComponent implements OnInit {
     this.apiGetService
       .getCategoryDescription(categoryId)
       .subscribe((res: any) => {
-        const knowledgeArticle = res.collection_pcat.pcat
-          ? res.collection_pcat.pcat.description
+        const knowledgeArticle = this.postReqService.isIncident
+          ? res.collection_pcat.pcat
+            ? res.collection_pcat.pcat.description
+            : null
+          : res.collection_chgcat.chgcat
+          ? res.collection_chgcat.chgcat.description
           : null;
 
         if (knowledgeArticle) {
