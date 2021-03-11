@@ -124,7 +124,8 @@ export class DescriptionComponent implements OnInit {
       this.postReqService.computerName = this.computerNameInput;
       this.postReqService.voip = this.voip;
       this.postReqService.file = this.file;
-      this.postReqService.location = this.place;
+      this.postReqService.z_location =
+      this.place === "" ? this.place : this.getPlaceId(this.place);
       this.file
         ? this.postReqService
             .postWithFileAppeal()
@@ -226,6 +227,13 @@ export class DescriptionComponent implements OnInit {
           this.openKnowlengeDialog();
         }
       });
+  }
+
+  getPlaceId(placeName: string) {
+    const placeSelected = this.placesList.find((place) => {
+      return place?.value === placeName;
+    });
+    return placeSelected.id;
   }
 
   updatePlaces() {
