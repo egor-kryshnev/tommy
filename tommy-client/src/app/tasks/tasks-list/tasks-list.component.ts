@@ -10,6 +10,7 @@ import {
   MAT_TOOLTIP_DEFAULT_OPTIONS,
   MatTooltipDefaultOptions,
 } from "@angular/material/tooltip";
+import { HiChatService } from 'src/app/hichat.service';
 
 export const myCustomTooltipDefaults: MatTooltipDefaultOptions = {
   showDelay: 500,
@@ -43,7 +44,8 @@ export class TasksListComponent {
     public taskDetailDialog: MatDialog,
     public aPIgetService: ApigetService,
     public tasksComponent: TasksComponent,
-    public merkazTomAlert: MatDialog
+    public merkazTomAlert: MatDialog,
+    public hiChatService: HiChatService
   ) {}
 
   openTaskDetailDialog(selectedTask) {
@@ -63,6 +65,7 @@ export class TasksListComponent {
   }
 
   async openTaskMsgDialog(task: taskModel1) {
+    this.hiChatService.setHiChatStatus();
     const checkedAlert = Cookies.get("checkedMerkazTomAlert") === "true";
     if (checkedAlert) {
       this.sendTaskSumMsg(task);
