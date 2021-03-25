@@ -1,15 +1,31 @@
 import MetadataCache from '../metadata-cache/metadataCache';
-import { Router, Request, Response, NextFunction } from "express";
+import { wrapController } from '../utils/index'
+import LehavaDataController from './lehavaData.controller';
+import moment from 'moment';
+import { Router, Request, Response } from "express";
 import { config } from '../config'
 import { logger } from '../utils/logger-client';
 import LehavaData from "./lehavaData";
 
 
-const LehavaDataRouter: Router = Router();
+const lehavaDataRouter: Router = Router();
+
+lehavaDataRouter.get('/', wrapController(LehavaDataController.getData))
+
+// Returns time difference between current time and dateToCompare in hours
+const getTimeDifference = (dateToCompare: Date) => {
+    const currentTime = moment();
+    return currentTime.diff(dateToCompare, 'h')
+}
 
 
 LehavaDataRouter.get('/', async (req: Request, res: Response) => {
     const data = await MetadataCache.getRedis(config.redis.lehavaDataKey);
+    const dataTime = await MetadataCache.getRedis(config.redis.lehavaDataStoredTimeKey);
+
+    if (getTimeDifference(dataTime) > config.redis.lehavaDataTTL) {
+
+    }
     if (!data) {
         const lehavaData = new LehavaData();
         try {
