@@ -59,7 +59,7 @@ export const config = {
     cachedReqsTTL: process.env.CACHED_REQS_TTL
       ? parseInt(process.env.CACHED_REQS_TTL)
       : 86400,
-    lehavaDataStoredTimeKey: process.env.REDIS_LEHAVA_DATA_TIME_KEY || "lehavadata:time",
+    lehavaDataStoredTimeKey: process.env.REDIS_LEHAVA_DATA_TIME_KEY || "lehavadata:date",
     lehavaDataTTL: process.env.LEHAVA_DATA_TTL
       ? parseInt(process.env.LEHAVA_DATA_TTL)
       : 24,
