@@ -19,7 +19,6 @@
   right: 80px;
 }
 
-
 .task-id {
   float: left;
   position: relative;
@@ -35,7 +34,7 @@
   right: 136px;
   font-family: rubik;
   font-size: 14px;
-  color: rgba(59, 59, 59, .65);
+  color: rgba(59, 59, 59, 0.65);
   top: 60px;
 }
 
@@ -53,8 +52,8 @@
   opacity: 0.5;
   height: 20px;
 }
-  
-.cancelImg:hover{
+
+.cancelImg:hover {
   opacity: 1;
 }
 
@@ -125,7 +124,7 @@
   opacity: 0.5;
 }
 
-.chatImg:hover{
+.chatImg:hover {
   opacity: 1;
 }
 
