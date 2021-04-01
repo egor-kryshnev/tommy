@@ -1,4 +1,4 @@
-<div id="home">
+<div id="home"> 
     <div class="flex-container">
         <app-tasks *ngIf="this.authService.getUuid()" class="task-component"></app-tasks>
         <app-updating class="updating-component"></app-updating>
@@ -6,5 +6,5 @@
     <button style="display: none;" id="btnChat" (click)="chatTag()" mat-fab>
         <img class="chatImg" src="../assets/chat.png">
     </button>
-    <app-chat id="chatBox"></app-chat>
+    <app-chat id="chatBox" *ngIf="getHiChat()"></app-chat>
 </div>
